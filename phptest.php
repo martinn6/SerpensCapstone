@@ -7,5 +7,5 @@
 <?php include('serpens.php'); ?>
 </div>
 <div id="test">
-Test successful.
+ 
 </div>
