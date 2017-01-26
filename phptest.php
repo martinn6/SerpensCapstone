@@ -4,7 +4,7 @@
 </head>
 <body>
 <div id="header">
-SERPEN'S PHP TEST
+<?php include('serpens.php'); ?>
 </div>
 <div id="test">
 Test successful.
