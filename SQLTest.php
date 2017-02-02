@@ -10,7 +10,7 @@
 	try
 	{
 		echo "Trying Connection to $server...\n";
-		$conn = new PDO("sqlsrv:server=$server ; Database = $database", $username, $password);
+		$connection = new PDO("sqlsrv:server=$server ; Database = $database", $username, $password);
 	}
 	catch(Exception $e)
 	{
