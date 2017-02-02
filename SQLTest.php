@@ -26,7 +26,7 @@
 			 echo "<table>";
 			 echo "<tr><th>AwardId</th>";
 			 echo "<th>Award Name</th></tr>";
-			foreach($awardss as $award) {
+			foreach($awards as $award) {
 				echo "<tr><td>".$award['AwardId']."</td>";
 				echo "<td>".$award['AwardTypeName']."</td></tr>";
 			}
