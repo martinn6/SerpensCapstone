@@ -6,7 +6,7 @@
 	 $user = "Serpins_Login";
 	 $pwd = "T3amSerpin$!";
 	 $db = "OSU_Capstone";
-	 echo "Trying to connect....\n";
+	 echo "<p>Trying to connect....</p>";
 	 try{
 		 $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
 	  }
@@ -16,11 +16,28 @@
 	 
 	 if($conn)
 	 {
-		 echo "Connection Established.\n";
+		 echo "<p>Connection Established.</p>";
+		 $sql_select = "SELECT * FROM dbo.Awards";
+		 $stmt = $conn->query($sql_select);
+		 $awards = $stmt->fetchAll();
+		 if(count($awards) > 0) {
+			 echo "<h2>Awards:</h2>";
+			 echo "<table>";
+			 echo "<tr><th>AwardId</th>";
+			 echo "<th>Award Name</th></tr>";
+			foreach($awardss as $award) {
+				echo "<tr><td>".$award['AwardId']."</td>";
+				echo "<td>".$award['AwardTypeName']."</td></tr>";
+			}
+			echo "<table>";
+		}	
+		else {
+			echo "<p>No awards found.</p>";
+		} 
 	 }
 	 
 	 
- echo "Done.\n";
+	echo "<p>Done.</p>";
  ?>
 </BODY>
 </HTML>
