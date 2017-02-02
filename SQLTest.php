@@ -2,24 +2,19 @@
 <BODY>
 	<?php
 
-	$server = "cs496osusql.database.windows.net,1433";
-	$username = "Serpins_Login";
-	$password = "T3amSerpin$!";
-	$database = "OSU_Capstone";
-	
-	try
+	$serverName = "tcp:cs496osusql.database.windows.net, 1433";
+	$connectionOptions = array("Database" => "OSU_Capstone", 
+							   "UID" => "Serpins_Login",
+							   "PWD" => "T3amSerpin$!");
+							   
+	echo "Trying to connect...\n";
+	$connection = sqlsrv_connect($serverName, $connectionOptions);
+	 
+	if($connection === false)
 	{
-		echo "Trying Connection to $server...\n";
-		$connection = new PDO("sqlsrv:server=$server ; Database = $database", $username, $password);
+		die(print_r(sqlsrv_errors(), true));
 	}
-	catch(Exception $e)
-	{
-		echo "Connection Failed.";
-		die(print_r($e));
-	}
-
-	echo "Done.";
-	
+		
 	if ($connection)
 	{
 		$res= mssql_query('SELECT * FROM [OSU_Capstone].[dbo].[Awards]', $connection);
