@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <HTML>
 <BODY>
 	<?php
@@ -29,7 +30,7 @@
 				echo "<tr><td>".$award['AwardId']."</td>";
 				echo "<td>".$award['AwardTypeName']."</td></tr>";
 			}
-			echo "<table>";
+			echo "</table>";
 		}	
 		else {
 			echo "<p>No awards found.</p>";
