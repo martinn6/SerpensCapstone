@@ -34,7 +34,6 @@
 			</form>
 		</section>
 	</div>
-
 	<div class="row">
 		<section class="col-xs-offset-3 col-xs-6">
 			<a href="admin.html" role="button" class="btn btn-primary">Return to Admin</a>
