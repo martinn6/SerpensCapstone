@@ -8,6 +8,7 @@
 </head>
 <body>
 <?php
+echo"<p>Start</p>";
 	// DB connection info
 	$host = "cs496osusql.database.windows.net";
 	 $user = "Serpins_Login";
