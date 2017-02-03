@@ -123,9 +123,18 @@ function checkNameMatch() {
 }
 
 $(document).ready(function () {
-	$("#NewEmail").keyup(checkEmailMatch);
-    $("#NewPassword, #ConfirmPassword").keyup(checkPasswordMatch);
-	$("#NewFName, #NewLName").keyup(checkNameMatch);
+	$("#newEmail").keyup(function() {
+		checkEmail($(this));
+
+	});
+	$("#NewPassword, #ConfirmPassword").keyup(function() {
+		checkPasswordMatch($(this));
+
+	});
+	$("#NewFName, #NewLName").keyup(function() {
+		checkNameMatch($(this));
+
+	});
 });
 
 </script>
@@ -155,7 +164,7 @@ $(document).ready(function () {
 										  Current Email address
 										</label>
 										<div class="col-sm-7">
-											<input type="email" class="form-control" onChange="checkNewEmail();"
+											<input type="email" class="form-control" onChange="checkEmailMatch();"
 											id="OldEmail" value="a@a.com" readonly="readonly">
 										</div>
 									</div>
@@ -164,7 +173,7 @@ $(document).ready(function () {
 										  New Email address
 										</label>
 										<div class="col-sm-7">
-											<input type="email" class="form-control" onChange="checkNewEmail();"
+											<input type="email" class="form-control" onChange="checkEmailMatch();"
 											id="NewEmail" placeholder="New Email" required>
 											<span id='email_message'></span>
 										</div>
