@@ -16,29 +16,22 @@
     
     // fetch mysql table rows
     $sql = "SELECT * FROM dbo.Awards";
-    $result = sqlsrv_query($conn, $sql);
+    $sqlResultesult = sqlsrv_query($conn, $sql);
 
-if (!$result) die ('Couldn\'t fetch records');
+$csvName = "export.csv"
 
-$headers = array();
+$fp = fopen(csvName , 'w');
 
-foreach (sqlsrv_field_metadata($result) as $fieldMetadata) {
-    $headers[] = $fieldMetadata['Name'];
-}
-
-$fp = fopen('php://output', 'w');
-if ($fp && $result) {
-    header('Content-Type: text/csv');
-    header('Content-Disposition: attachment; filename="export.csv"');
-    header('Pragma: no-cache');
-    header('Expires: 0');
-    fputcsv($fp, $headers);
-    while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_NUMERIC)) {
-        fputcsv($fp, array_values($row));
+while ($export = odbc_fetch_array($sqlRresult)) {
+    if (!isset($headings))
+    {
+        $headings = array_keys($export);
+        fputcsv($fp, $headings, ',', '"');
     }
-    die;
+    fputcsv($fp, $export, ',', '"');
 }
-
+fclose($fp);
+    echo "<p>success</p>";
     //close the db connection
     mysqli_close($connection);
 ?>
