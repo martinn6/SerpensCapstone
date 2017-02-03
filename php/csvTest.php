@@ -9,6 +9,7 @@
     // open connection to sql database
     try{
 		 $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
+         echo "connected";
 	  }
 	 catch(Exception $e){
 		 die(print_r($e));
@@ -21,7 +22,7 @@
 $csvName = "export.csv"
 
 $fp = fopen(csvName , 'w');
-
+echo "opened";
 while ($export = odbc_fetch_array($sqlRresult)) {
     if (!isset($headings))
     {
@@ -31,7 +32,7 @@ while ($export = odbc_fetch_array($sqlRresult)) {
     fputcsv($fp, $export, ',', '"');
 }
 fclose($fp);
-    echo "<p>success</p>";
+echo "<p>success</p>";
     //close the db connection
-    mysqli_close($connection);
+    //mysqli_close($connection);
 ?>
