@@ -9,7 +9,174 @@
   <title>Serpens Admin Portal</title>
 </head>
 <body>
+<script src="../js/jquery-2.1.4.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/script.js"></script>
+<script>
+function isEmail(email) {
+	var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	return regex.test(email);
+}
 
+function validPassword(password) {
+	var regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/;
+	return regex.test(password);
+}
+
+
+function validName(name) {
+	var regex = /^[a-zA-Z ]{2,30}$/;
+	return regex.test(name);
+}
+
+function checkEmail(thisObj) {
+    var email = thisObj.val();
+	var button = thisObj.closest("form").find('.btn');
+	var message = thisObj.parent().children('span');
+	if (!isEmail(email) ){
+		message.html('not a valid email').css('color', 'red');
+		button.prop('disabled', true);
+    }else {
+        message.html('');
+		button.prop('disabled', false);
+	}	
+}
+
+function checkPasswordMatch() {
+    var password = $("#NewPassword").val();
+    var confirmPassword = $("#ConfirmPassword").val();
+	
+	if (password.length == 0){
+		$('#new_password_message').html('');
+		return;
+	} else if (password.length < 8){
+		$('#new_password_message').html('');
+		$('#ConfirmPassword').prop('disabled', true);
+		return;
+	} else if (!validPassword(password)){
+		$('#new_password_message').html('not a valid password').css('color', 'red');
+		$('#password-btn').prop('disabled', true);
+		$('#ConfirmPassword').prop('disabled', true);
+		return;
+	} else {
+		$('#new_password_message').html('');
+		$('#password-btn').prop('disabled', false);
+		$('#ConfirmPassword').prop('disabled', false);
+	}
+	
+	if (confirmPassword.length == 0){
+		$('#confirm_password_message').html('');
+		return;
+	} else if (confirmPassword.length < 8){
+		$('#confirm_password_message').html('');
+		return;
+	} else if (password != confirmPassword) {
+        $('#confirm_password_message').html('Passwords do not match').css('color', 'red');
+		$('#password-btn').prop('disabled', true);
+    } else {
+		$('#new_password_message').html('');
+		$('#confirm_password_message').html('');
+		$('#password-btn').prop('disabled', false);
+	}
+       
+}
+
+function checkNameMatch() {
+    var oldFName = $("#OldFName").val();
+    var newFName = $("#NewFName").val();
+	var oldLName = $("#OldLName").val();
+    var newLName = $("#NewLName").val();
+	
+	if (newFName.length == 0 && newLName.length == 0){
+		$('#fname_message').html('');
+		$('#lname_message').html('');
+		$('#name-btn').prop('disabled', true);
+		return;
+	} 
+	
+	if (newFName.length == 0){
+		$('#fname_message').html('');
+		return
+	} else if (!validName(newFName)){
+		$('#fname_message').html('invalid new First Name').css('color', 'red');
+		$('#name-btn').prop('disabled', true);
+		return;
+	} else {
+		$('#fname_message').html('');
+		$('#name-btn').prop('disabled', false);
+	}
+	
+	if (newLName.length == 0){
+		$('#lname_message').html('');
+		return
+	} else if (!validName(newLName)){
+		$('#lname_message').html('invalid new Last Name').css('color', 'red');
+		$('#name-btn').prop('disabled', true);
+		return;
+	} else {
+		$('#lname_message').html('');
+		$('#name-btn').prop('disabled', false);
+	}
+	
+}
+
+$(document).ready(function(){
+	$("#newEmail").keyup(function() {
+		checkEmail($(this));
+
+	});
+		
+	$("#editEmail").keyup(function() {
+		checkEmail($(this));
+	});
+	
+	$("#deleteEmail").keyup(function() {
+		checkEmail($(this));
+	});
+	
+	$("#addBtn").click(function(e){
+		e.preventDefault();
+		$('#newPassword2').attr('disabled', true);
+		var url = "admin.html";
+		var json = JSON.stringify($("#addUserForm").serializeArray());
+		console.log(json);
+		$.post(url, json, function(data){
+			alert(data);
+		});
+		$('#newPassword2').attr('disabled', false)
+		$("#addUserForm").each(function(){
+			this.reset();
+		});
+	});
+	
+	$("#editBtn").click(function(e){
+		e.preventDefault();
+		var url = "editUser.html";
+		var json = JSON.stringify($("#editUserForm").serializeArray());
+		console.log(json);
+		$.post(url, json, function(data){
+			alert(data);
+		});
+		$("#editUserForm").each(function(){
+			this.reset();
+		});
+	});
+	
+	$("#deleteBtn").click(function(e){
+		e.preventDefault();
+		var url = "admin.html";
+		var json = JSON.stringify($("#deleteUserForm").serializeArray());
+		console.log(json);
+		$.post(url, json, function(data){
+			alert(data);
+		});
+		$("#deleteUserForm").each(function(){
+			this.reset();
+		});
+	});
+	
+});
+</script>
 <div class="container">
 	<div class="row">
 		<section class="col-xs-offset-3 col-xs-6">
@@ -28,23 +195,23 @@
 					</div>
 					<div id="newUser" class="panel-collapse collapse">
 						<div class="panel-body">
-							<form id="email" class="form-horizontal" action="admin.html">
+							<form class="form-horizontal" action="" id="addUserForm">
 								<div class="row">
 									<div class="form-group">
 										<label class="col-sm-3" for="newEmail">
 										  Email address
 										</label>
 										<div class="col-sm-7">
-											<input type="email" class="form-control"
-											id="newEmail" placeholder="Email" required>
+											<input type="email" class="form-control" onChange="checkEmail($(this));"
+											name="email" id="newEmail" placeholder="Email" required>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-3" for="newPassword">
-										  New Password
+										  Password
 										</label>
 										<div class="col-sm-7">
-											<input type="password" class="form-control"
+											<input type="password" class="form-control" name="password"
 											id="showPassword" placeholder="Password" required>
 										</div>
 									</div>
@@ -53,7 +220,7 @@
 										  Re-Enter Password
 										</label>
 										<div class="col-sm-7">
-											<input type="password" class="form-control"
+											<input type="password" class="form-control" name="password2"
 											id="newPassword2" placeholder="Password" required>
 										</div>
 									</div>
@@ -62,7 +229,7 @@
 											New First Name
 										</label>
 										<div class="col-sm-7">
-											<input type="text" class="form-control"
+											<input type="text" class="form-control" name="FName"
 												id="showFName" placeholder="FirstName" required>
 										</div>
 									</div>
@@ -71,13 +238,13 @@
 											New Last Name
 										</label>
 										<div class="col-sm-7">
-											<input type="text" class="form-control"
+											<input type="text" class="form-control" name="LName"
 												id="newLName" placeholder="LastName" required>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-sm-offset-3 col-sm-3">
-											<button type="submit"
+											<button type="submit" id="addBtn"
 											class="btn btn-default">Add User</button>
 										</div>
 									</div>
@@ -96,21 +263,22 @@
 					</div>
 					<div id="editUser" class="panel-collapse collapse">
 						<div class="panel-body">
-							<form class="form-horizontal" action="editUser.html">
+							<form class="form-horizontal" action="" id="editUserForm">
 								<div class="row">
 									<div class="form-group">
 										<label class="col-sm-3" for="editEmail">
 											Email address
 										</label>
 										<div class="col-sm-7">
-											<input type="email" class="form-control"
-											id="editEmail" placeholder="Email" required>
+											<input type="email" class="form-control" onChange="checkEmail($(this));"
+											name="email" id="editEmail" placeholder="Email" required>
+											<span name='email_message'></span>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-sm-offset-3 col-sm-7">
-											<button type="submit"
-											class="btn btn-default">Edit User</button>
+											<button type="submit" id="editBtn"
+											class="btn btn-default" disabled>Edit User</button>
 										</div>
 									</div>
 								</div>
@@ -128,21 +296,22 @@
 					</div>
 					<div id="deleteUser" class="panel-collapse collapse">
 						<div class="panel-body">
-							<form class="form-horizontal" action="admin.html">
+							<form class="form-horizontal" action="" id="deleteUserForm">
 								<div class="row">
 									<div class="form-group">
 										<label class="col-sm-3" for="deleteEmail">
 											Email address
 										</label>
 										<div class="col-sm-7">
-											<input type="email" class="form-control"
-											id="deleteEmail" placeholder="Email" required>
+											<input type="email" class="form-control" onChange="checkEmail($(this));"
+											name="email" id="deleteEmail" placeholder="Email" required>
+											<span name='email_message'></span>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-sm-offset-3 col-sm-7">
-											<button type="submit"
-											class="btn btn-default">Delete User</button>
+											<button type="submit" id="deleteBtn"
+											class="btn btn-default" disabled>Delete User</button>
 										</div>
 									</div>
 								</div>
@@ -170,9 +339,5 @@
 	</section>
 </div>
 
-
-<script src="../js/jquery-2.1.4.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/script.js"></script>
 </body>
 </html>
