@@ -34,8 +34,7 @@
 			</form>
 		</section>
 	</div>
-	<?php echo "HELLO!"; ?>
-	<?php include('csvTest.php'); ?>
+
 	<div class="row">
 		<section class="col-xs-offset-3 col-xs-6">
 			<a href="admin.html" role="button" class="btn btn-primary">Return to Admin</a>
@@ -43,7 +42,7 @@
 	</div>
 </div>
 
-
+	<?php include('/csvTest.php'); ?>
 <script src="../js/jquery-2.1.4.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/script.js"></script>
