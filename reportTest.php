@@ -20,7 +20,7 @@
 		echo "<p>Connection Established.</p>";
 		// fetch mysql table rows
 		$sql = "SELECT * FROM dbo.Awards";
-		$sqlResultesult = sqlsrv_query($conn, $sql);
+		$sqlResult = sqlsrv_query($conn, $sql);
 		$csvName = "export.csv"
 		$fp = fopen(csvName , 'w');
 		echo "opened";
