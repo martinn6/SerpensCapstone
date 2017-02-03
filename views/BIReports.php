@@ -41,42 +41,41 @@
 	</div>
 </div>
 	<?php
-    // mysql database connection details
-    $host = "cs496osusql.database.windows.net";
-	 $username = "Serpins_Login";
-	 $password = "T3amSerpin$!";
-	 $dbname = "OSU_Capstone";
-
-
-    // open connection to sql database
-    try{
+	 // DB connection info
+	 $host = "cs496osusql.database.windows.net";
+	 $user = "Serpins_Login";
+	 $pwd = "T3amSerpin$!";
+	 $db = "OSU_Capstone";
+	 echo "<p>Trying to connect....</p>";
+	 try{
 		 $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
-         echo "connected";
 	  }
 	 catch(Exception $e){
 		 die(print_r($e));
 	 }
-    
+	 
+	 if($conn)
+	 {
+    echo "<p>Connection Established.</p>";
     // fetch mysql table rows
     $sql = "SELECT * FROM dbo.Awards";
     $sqlResultesult = sqlsrv_query($conn, $sql);
 
-$csvName = "export.csv"
+	$csvName = "export.csv"
 
-$fp = fopen(csvName , 'w');
-echo "opened";
-while ($export = odbc_fetch_array($sqlRresult)) {
-    if (!isset($headings))
-    {
-        $headings = array_keys($export);
-        fputcsv($fp, $headings, ',', '"');
+	$fp = fopen(csvName , 'w');
+	echo "opened";
+	while ($export = odbc_fetch_array($sqlRresult)) {
+		if (!isset($headings))
+		{
+			$headings = array_keys($export);
+			fputcsv($fp, $headings, ',', '"');
+		}
+		fputcsv($fp, $export, ',', '"');
+	}
+	fclose($fp);
+	echo "<p>success</p>";
     }
-    fputcsv($fp, $export, ',', '"');
-}
-fclose($fp);
-echo "<p>success</p>";
-    //close the db connection
-    //mysqli_close($connection);
 ?>
 
 <script src="../js/jquery-2.1.4.min.js"></script>
