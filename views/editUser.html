@@ -69,9 +69,6 @@ function checkPasswordMatch() {
 	if (confirmPassword.length == 0){
 		$('#confirm_password_message').html('');
 		return;
-	} else if (confirmPassword.length < 8){
-		$('#confirm_password_message').html('');
-		return;
 	} else if (password != confirmPassword) {
         $('#confirm_password_message').html('Passwords do not match').css('color', 'red');
 		$('#password-btn').prop('disabled', true);
