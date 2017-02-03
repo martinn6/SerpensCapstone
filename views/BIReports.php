@@ -16,7 +16,7 @@
 			<h2>Business Intelligence Reports</h2>
 		</section>
 	</div>
-
+	<?php include('../php/csvTest.php'); ?>
 	<div class="row">
 		<section class="col-xs-offset-2 col-xs-8">
 			<form class="form-horizontal" action="adminLanding.html">
@@ -41,7 +41,7 @@
 	</div>
 </div>
 
-	<?php include('../php/csvTest.php'); ?>
+
 <script src="../js/jquery-2.1.4.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/script.js"></script>
