@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <HTML>
 <BODY>
-<?php
-    echo"<p>Start</p>";
-	DB connection info
-	$host = "cs496osusql.database.windows.net";
+	<?php
+	 // DB connection info
+	 $host = "cs496osusql.database.windows.net";
 	 $user = "Serpins_Login";
 	 $pwd = "T3amSerpin$!";
 	 $db = "OSU_Capstone";
@@ -13,11 +12,10 @@
 		 $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
 	  }
 	 catch(Exception $e){
-         echo"<p>fail</p>";
 		 die(print_r($e));
 	 }
-	
-	if($conn)
+	 
+	 if($conn)
 	{
 		echo "<p>Connection Established.</p>";
 		// fetch mysql table rows
@@ -37,6 +35,9 @@
 		fclose($fp);
 		echo "<p>success</p>";
 	}
+	 
+	 
+	echo "<p>Done.</p>";
  ?>
 </BODY>
 </HTML>
