@@ -3,10 +3,10 @@
 <head>
   <!--<meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/styles.css">
-  <title>BI Reports</title>
+  <title>BI Reports</title>-->
 </head>
 <body>
 <script src="../js/jquery-2.1.4.min.js"></script>
@@ -24,6 +24,7 @@
 		 $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
 	  }
 	 catch(Exception $e){
+         echo"<p>fail</p>";
 		 die(print_r($e));
 	 }
 	
