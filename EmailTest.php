@@ -2,25 +2,43 @@
 <HTML>
 <BODY>
 <?php
-	echo "Email Test Start.";
-	// using SendGrid's PHP Library
-	// https://github.com/sendgrid/sendgrid-php
+	echo "Email test start...<BR>";
+	$url = 'https://api.sendgrid.com/';
+	$user = 'serpenscapstone';
+	$pass = 'T3amSerpin$!';
 
-	$from = new SendGrid\Email("Example User", "test@example.com");
-	$subject = "Sending with SendGrid is Fun";
-	$to = new SendGrid\Email("Nick Martin", "martinn6@oregonstate.edu");
-	$content = new SendGrid\Content("text/plain", "and easy to do anywhere, even with PHP");
-	$mail = new SendGrid\Mail($from, $subject, $to, $content);
+	$params = array(
+		'api_user'  => $user,
+		'api_key'   => $pass,
+		'to'        => 'martinn6@oregonstate.edu',
+		'subject'   => 'testing from curl',
+		'html'      => 'testing body',
+		'text'      => 'testing body',
+		'from'      => 'serpenscapstone.gmail.com',
+	  );
 
-	$apiKey = "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";
-	$sg = new \SendGrid($apiKey);
 
-	$response = $sg->client->mail()->send()->post($mail);
-	echo $response->statusCode();
-	echo $response->headers();
-	echo $response->body();
-	
-	echo "Email Test End.";
+	$request =  $url.'api/mail.send.json';
+
+	// Generate curl request
+	$session = curl_init($request);
+	// Tell curl to use HTTP POST
+	curl_setopt ($session, CURLOPT_POST, true);
+	// Tell curl that this is the body of the POST
+	curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
+	// Tell curl not to return headers, but do return the response
+	curl_setopt($session, CURLOPT_HEADER, false);
+	// Tell PHP not to use SSLv3 (instead opting for TLS)
+	curl_setopt($session, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+	curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+
+	// obtain response
+	$response = curl_exec($session);
+	curl_close($session);
+
+	// print everything out
+	print_r($response);
+	echo "Email test end.<BR>";
 ?>
 </BODY>
 </HTML>
