@@ -21,7 +21,8 @@ $email = $_POST["email"];
         $stmt = $conn->query($sql_select);
         $result = $stmt->fetchAll();
         echo json_encode($result);
-        return json_encode($result);
+        //return json_encode($result);
+        return $result;
 
         if ($result['FullName'] === NULL) {
             return false;
