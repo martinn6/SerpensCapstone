@@ -32,20 +32,4 @@ echo $name;
     }  
     $stmt->close();
 
-    // if($conn)
-    // {
-    //     //$sql_select = "SELECT * FROM dbo.UserAccount where Email = '".$email."'";
-    //     $sql_select = "SELECT * FROM dbo.UserAccount";
-    //     $stmt = $conn->query($sql_select);
-    //     $result = $stmt->fetchAll();
-    //     echo json_encode($result);
-    //     //return json_encode($result);
-    //     return $result;
-
-    //     if ($result['FullName'] === NULL) {
-    //         return false;
-    //     } else {
-    //         return $result;
-    //     }
-    // }
 ?>
