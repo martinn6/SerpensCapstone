@@ -21,7 +21,7 @@ $email = $_POST["email"];
         $stmt = $conn->query($sql_select);
         $result = $stmt->fetchAll();
         echo $result;
-        return;
+        return $result;
 
         if ($result['FullName'] === NULL) {
             return false;
