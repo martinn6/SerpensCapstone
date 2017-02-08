@@ -16,8 +16,7 @@ $email = $_POST["email"];
     
     if($conn)
     {
-        //$sql_select = "SELECT * FROM dbo.UserAccount where Email = '".$email."'";
-        $sql_select = "SELECT * FROM dbo.UserAccount";
+        $sql_select = "SELECT * FROM dbo.UserAccount where UserAccount.Email = '".$email."'";
         $stmt = $conn->query($sql_select);
         $result = $stmt->fetchAll();
         echo json_encode($result);

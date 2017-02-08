@@ -138,20 +138,25 @@ $(document).ready(function(){
 		e.preventDefault();
 		$('#newPassword2').attr('disabled', true);
 		var url = "../php/addUser.php";
-		var json = JSON.stringify($("#addUserForm").serializeArray());
-		console.log(json);
-		$.post(url, json, function(data){
-			alert(data);
+		var data = $("#addUserForm").serializeArray();
+		console.log(data);
+		$.post(url, data, function(response){
+			if (!result) {
+				$("[name=email_message]").html('database error').css('color', 'red');
+			} else {
+				console.log(result);
+				$('#newPassword2').attr('disabled', false)
+				$("#addUserForm").each(function(){
+					this.reset();
+				});
+			}
 		});
-		$('#newPassword2').attr('disabled', false)
-		$("#addUserForm").each(function(){
-			this.reset();
-		});
+		
 	});
 	
 	$("#editBtn").click(function(e){
 		e.preventDefault();
-		var url = "../php/findUser.php";
+		var url = "../php/editUser.php";
 		var data = $('#editUserForm').serialize();
 		console.log(data);
 		$.post(url, data, function(result){
@@ -169,15 +174,20 @@ $(document).ready(function(){
 	
 	$("#deleteBtn").click(function(e){
 		e.preventDefault();
-		var url = "../php/findUser.php";
-		var json = JSON.stringify($("#deleteUserForm").serializeArray());
-		console.log(json);
-		$.post(url, json, function(data){
-			alert(data);
+		var url = "../php/deleteUser.php";
+		var data = ("#deleteUserForm").serialize();
+		console.log(data);
+		$.post(url, data, function(result){
+			if (!result) {
+				$("[name=email_message]").html('user not found').css('color', 'red');
+			} else {
+				console.log(result);
+				$("#deleteUserForm").each(function(){
+					this.reset();
+				});
+			}
 		});
-		$("#deleteUserForm").each(function(){
-			this.reset();
-		});
+		
 	});
 	
 });
