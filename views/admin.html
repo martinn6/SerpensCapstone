@@ -156,7 +156,7 @@ $(document).ready(function(){
 		console.log(data);
 		$.post(url, data, function(result){
 			if (!result) {
-				$([name="email_message"]).html('user not found').css('color', 'red');
+				$(["name=email_message"]).html('user not found').css('color', 'red');
 			} else {
 				$("#editUserForm").each(function(){
 					this.reset();
