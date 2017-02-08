@@ -152,8 +152,7 @@ $(document).ready(function(){
 	$("#editBtn").click(function(e){
 		e.preventDefault();
 		var url = "../php/findUser.php";
-		//var data = $('#editUserForm').serialize();
-		var data = JSON.stringify($("#editUserForm").serializeArray());
+		var data = $('#editUserForm').serialize();
 		console.log(data);
 		$.post(url, data, function(result){
 			console.log(result);
