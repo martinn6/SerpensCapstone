@@ -155,11 +155,16 @@ $(document).ready(function(){
 		var data = $('#editUserForm').serialize();
 		console.log(data);
 		$.post(url, data, function(result){
-			console.log(result);
+			if (!result) {
+				var message = thisObj.parent().children('span');	
+				message.html('user not found').css('color', 'red');
+			} else {
+				$("#editUserForm").each(function(){
+					this.reset();
+				});
+			}
 		});
-		$("#editUserForm").each(function(){
-			this.reset();
-		});
+		
 	});
 	
 	$("#deleteBtn").click(function(e){
