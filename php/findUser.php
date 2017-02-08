@@ -19,6 +19,7 @@ echo $email;
     
     if($conn)
     {
+        echo "success\r\n";
       $sql_select = "SELECT * FROM dbo.UserAccount where email = '".$email."'";
 		 $stmt = $conn->query($sql_select);
 		 $user = $stmt->fetchAll();
