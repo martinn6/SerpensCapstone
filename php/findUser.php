@@ -2,8 +2,8 @@
 
 $data = file_get_contents("php://input");
 echo $data;
-$json = json_decode($data);
-echo $json;
+$email = $_POST["email"];
+echo email;
 
 //     // DB connection info
 //     $host = "cs496osusql.database.windows.net";
