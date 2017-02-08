@@ -164,7 +164,7 @@ $(document).ready(function(){
 	
 	$("#deleteBtn").click(function(e){
 		e.preventDefault();
-		var url = "../php/findUser.phpl";
+		var url = "../php/findUser.php";
 		var json = JSON.stringify($("#deleteUserForm").serializeArray());
 		console.log(json);
 		$.post(url, json, function(data){
