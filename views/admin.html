@@ -137,7 +137,7 @@ $(document).ready(function(){
 	$("#addBtn").click(function(e){
 		e.preventDefault();
 		$('#newPassword2').attr('disabled', true);
-		var url = "../php/getUser.php";
+		var url = "../php/addUser.php";
 		var json = JSON.stringify($("#addUserForm").serializeArray());
 		console.log(json);
 		$.post(url, json, function(data){
@@ -151,7 +151,7 @@ $(document).ready(function(){
 	
 	$("#editBtn").click(function(e){
 		e.preventDefault();
-		var url = "editUser.html";
+		var url = "../php/findUser.php";
 		var data = JSON.stringify($("#editUserForm").serializeArray());
 		console.log(data);
 		$.post(url, data, function(result){
@@ -164,7 +164,7 @@ $(document).ready(function(){
 	
 	$("#deleteBtn").click(function(e){
 		e.preventDefault();
-		var url = "admin.html";
+		var url = "../php/findUser.phpl";
 		var json = JSON.stringify($("#deleteUserForm").serializeArray());
 		console.log(json);
 		$.post(url, json, function(data){
