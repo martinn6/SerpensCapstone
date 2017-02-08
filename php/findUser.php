@@ -3,7 +3,7 @@
 $data = file_get_contents("php://input");
 echo $data;
 $email = $_POST["email"];
-echo email;
+echo $email;
 
 //     // DB connection info
 //     $host = "cs496osusql.database.windows.net";
