@@ -158,6 +158,7 @@ $(document).ready(function(){
 			if (!result) {
 				$("[name=email_message]").html('user not found').css('color', 'red');
 			} else {
+				console.log(result);
 				$("#editUserForm").each(function(){
 					this.reset();
 				});
