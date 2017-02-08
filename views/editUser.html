@@ -122,15 +122,12 @@ function checkNameMatch() {
 $(document).ready(function () {
 	$("#newEmail").keyup(function() {
 		checkEmail($(this));
-
 	});
 	$("#NewPassword, #ConfirmPassword").keyup(function() {
 		checkPasswordMatch($(this));
-
 	});
 	$("#NewFName, #NewLName").keyup(function() {
 		checkNameMatch($(this));
-
 	});
 });
 

@@ -137,7 +137,7 @@ $(document).ready(function(){
 	$("#addBtn").click(function(e){
 		e.preventDefault();
 		$('#newPassword2').attr('disabled', true);
-		var url = "admin.html";
+		var url = "../php/getUser.php";
 		var json = JSON.stringify($("#addUserForm").serializeArray());
 		console.log(json);
 		$.post(url, json, function(data){
