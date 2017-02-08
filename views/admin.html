@@ -152,10 +152,10 @@ $(document).ready(function(){
 	$("#editBtn").click(function(e){
 		e.preventDefault();
 		var url = "editUser.html";
-		var json = JSON.stringify($("#editUserForm").serializeArray());
-		console.log(json);
-		$.post(url, json, function(data){
-			alert(data);
+		var data = JSON.stringify($("#editUserForm").serializeArray());
+		console.log(data);
+		$.post(url, data, function(result){
+			console.log(result);
 		});
 		$("#editUserForm").each(function(){
 			this.reset();

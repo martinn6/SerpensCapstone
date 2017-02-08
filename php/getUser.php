@@ -1,7 +1,8 @@
 <?php
 
-$json = json_decode($_Post[]);
-echo $json;
+$data = file_get_contents("php://input");
+
+echo $data;
 
 //     // DB connection info
 //     $host = "cs496osusql.database.windows.net";
