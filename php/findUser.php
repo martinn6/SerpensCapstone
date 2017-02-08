@@ -16,9 +16,12 @@ $email = $_POST["email"];
     
     if($conn)
     {
-        $sql_select = "SELECT * FROM dbo.UserAccount where Email = '".$email."'";
+        //$sql_select = "SELECT * FROM dbo.UserAccount where Email = '".$email."'";
+        $sql_select = "SELECT * FROM dbo.UserAccount";
         $stmt = $conn->query($sql_select);
         $result = $stmt->fetchAll();
+        return $result;
+
         if ($result['FullName'] === NULL) {
             return false;
         } else {
