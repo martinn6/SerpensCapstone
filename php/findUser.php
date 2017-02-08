@@ -20,8 +20,8 @@ $email = $_POST["email"];
         $sql_select = "SELECT * FROM dbo.UserAccount";
         $stmt = $conn->query($sql_select);
         $result = $stmt->fetchAll();
-        echo $result;
-        return $result;
+        echo json_encode($result);
+        return json_encode($result);
 
         if ($result['FullName'] === NULL) {
             return false;
