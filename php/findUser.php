@@ -4,6 +4,7 @@ $data = file_get_contents("php://input");
 echo $data;
 echo "\r\n";
 $_POST = json_decode(file_get_contents('php://input'), true);
+echo $_POST;
 $email = $_POST["email"];
 echo $email;
 
