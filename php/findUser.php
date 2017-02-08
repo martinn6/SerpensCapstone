@@ -22,7 +22,7 @@ $email = $_POST["email"];
         if ($result['FullName'] === NULL) {
             return false;
         } else {
-            return $result
+            return $result;
         }
     }
 ?>
