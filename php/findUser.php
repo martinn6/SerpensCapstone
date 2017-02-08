@@ -23,9 +23,10 @@ echo $email;
       $sql_select = "SELECT * FROM dbo.UserAccount where email = '".$email."'";
 		 $stmt = $conn->query($sql_select);
 		 $user = $stmt->fetchAll();
-         echo $user;
+         $result = json_encode($user);
+         echo $result;
     }
     
     
-echo "Done.";
+echo "\r\n Done.";
 ?>
