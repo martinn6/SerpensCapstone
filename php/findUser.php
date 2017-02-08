@@ -2,6 +2,7 @@
 
 $data = file_get_contents("php://input");
 echo $data;
+echo "\r\n";
 $email = $_POST["email"];
 echo $email;
 
