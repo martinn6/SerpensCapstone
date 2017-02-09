@@ -138,7 +138,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		$('#newPassword2').attr('disabled', true);
 		var url = "../php/addUser.php";
-		var data = $("#addUserForm").serializeArray();
+		var data = $('#addUserForm').serialize();
 		console.log(data);
 		$.post(url, data, function(response){
 			if (!result) {
@@ -175,7 +175,7 @@ $(document).ready(function(){
 	$("#deleteBtn").click(function(e){
 		e.preventDefault();
 		var url = "../php/deleteUser.php";
-		var data = ("#deleteUserForm").serialize();
+		var data = ('#deleteUserForm').serialize();
 		console.log(data);
 		$.post(url, data, function(result){
 			if (!result) {
