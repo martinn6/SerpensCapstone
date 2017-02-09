@@ -26,7 +26,7 @@ echo $name;
         ':em' => $email,
         ':pw' => $password,
         ':fn' => $name,
-        ':ut' => '~Admin'
+        ':ut' => 'Admin'
     ))){
         if($stmt->errno == 1062){
         echo "Cannot add '" .$name. "' because there is already a user with the email '".$email."'.";

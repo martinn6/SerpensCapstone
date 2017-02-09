@@ -142,7 +142,7 @@ $(document).ready(function(){
 		console.log(data);
 		$.post(url, data, function(response){
 			if (!result) {
-				$("[name=email_message]").html('database error').css('color', 'red');
+				$("#resultSpan").html('database error').css('color', 'red');
 			} else {
 				console.log(result);
 				$('#newPassword2').attr('disabled', false)
@@ -161,7 +161,7 @@ $(document).ready(function(){
 		console.log(data);
 		$.post(url, data, function(result){
 			if (!result) {
-				$("[name=email_message]").html('user not found').css('color', 'red');
+				$("#resultSpan").html('user not found').css('color', 'red');
 			} else {
 				console.log(result);
 				$('#editUserForm').each(function(){
@@ -175,11 +175,11 @@ $(document).ready(function(){
 	$("#deleteBtn").click(function(e){
 		e.preventDefault();
 		var url = "../php/deleteUser.php";
-		var data = ('#deleteUserForm').serialize();
+		var data = $('#deleteUserForm').serialize();
 		console.log(data);
 		$.post(url, data, function(result){
 			if (!result) {
-				$("[name=email_message]").html('user not found').css('color', 'red');
+				$("#resultSpan").html('user not found').css('color', 'red');
 			} else {
 				console.log(result);
 				$('#deleteUserForm').each(function(){
@@ -199,6 +199,7 @@ $(document).ready(function(){
 		</section>
 	</div>
     <div class="row">
+		<span id="resultSpan"></span>
 		<section class="col-xs-offset-2 col-xs-8">
 			<div class="panel-group" id="accordion">
 				<div class="panel panel-default">
