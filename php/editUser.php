@@ -14,7 +14,7 @@ $email = $_POST["email"];
         die(print_r($e));
     }
     
-    if(!($stmt = $myDB->prepare("select dbo.UserAccount.id where UserAccount.email = (?)"))){
+    if(!($stmt = $conn->prepare("select dbo.UserAccount.id where UserAccount.email = (?)"))){
         echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
     } else {
         echo "prepare success\r\n";
