@@ -16,7 +16,7 @@ echo $email;
         die(print_r($e));
     }
     echo "connected\r\n";
-    if(!($stmt = $conn->prepare("select UserAccount.id where UserAccount.email = ?"))){
+    if(!($stmt = $conn->prepare("select userAccount.name from userAccount where UserAccount.email = ?"))){
         echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
     } else {
         echo "prepare success\r\n";
@@ -31,28 +31,8 @@ echo $email;
     } else {
         echo "execute success\r\n";
     }
-    if(!$stmt->bindResult($id)){
-        echo "Bind Failed";
-    } else {
-        echo $id"\r\n";
-    }
+    $name = $stmt->FullName();
+    echo $name;
     $stmt->fetch();
     $stmt->close();
-
-
-    // if($conn)
-    // {
-    //     $sql_select = "SELECT * FROM dbo.UserAccount where UserAccount.Email = '".$email."'";
-    //     $stmt = $conn->query($sql_select);
-    //     $result = $stmt->fetchAll();
-    //     echo json_encode($result);
-    //     //return json_encode($result);
-    //     return $result;
-
-    //     if ($result['FullName'] === NULL) {
-    //         return false;
-    //     } else {
-    //         return $result;
-    //     }
-    // }
 ?>
