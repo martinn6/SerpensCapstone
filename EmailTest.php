@@ -2,18 +2,18 @@
 <HTML>
 <BODY>
 <?php
-	echo "Email test start...V1.12<BR>";
+	echo "Email test start...V1.13<BR>";
 	
 	 require_once "Mail.php";
  
-	// $from = "Serpens <serpenscapstone@gmail.com>";
-	// $to = "Nick Martin <martinn6@oregonstate.edu>";
-	// $subject = "Hi!";
-	// $body = "Hi,\n\nHow are you?";
+	$from = "Serpens <serpenscapstone@gmail.com>";
+	$to = "Nick Martin <martinn6@oregonstate.edu>";
+	$subject = "Hi!";
+	$body = "Hi,\n\nHow are you?";
 
-	// $host = "smtp.gmail.com";
-	// $username = "serpenscapstone";
-	// $password = "T3amSerpin$!";
+	$host = "smtp.gmail.com";
+	$username = "serpenscapstone";
+	$password = "T3amSerpin$!";
 
 	// $headers = array ('From' => $from,
 	//   'To' => $to,
