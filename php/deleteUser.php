@@ -14,32 +14,29 @@ $email = $_POST["email"];
         die(print_r($e));
     }
 
-    if(!($stmt = $conn->prepare("select dbo.UserAccount.id where UserAccount.email = (?)"))){
+    if(!($stmt = $conn->prepare("select UserAccount.id where UserAccount.email = ?"))){
         echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
     } else {
         echo "prepare success\r\n";
     }
-
-    if(!($stmt->bind_param("i",$email))){
+    if(!($stmt->bindParam(1,$email))){
         echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
     } else {
         echo "bind success\r\n";
     }
-
     if(!$stmt->execute()){
         echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
     } else {
         echo "execute success\r\n";
     }
-
-    if(!$stmt->bind_result($id)){
+    if(!$stmt->bindResult($id)){
         echo "Bind Failed";
     } else {
-        echo "id\r\n";
+        echo $id"\r\n";
     }
-    
     $stmt->fetch();
     $stmt->close();
+
 
     // if($conn)
     // {

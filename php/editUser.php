@@ -19,7 +19,7 @@ $email = $_POST["email"];
     } else {
         echo "prepare success\r\n";
     }
-    if(!($stmt->bind_param(1,$email))){
+    if(!($stmt->bindParam(1,$email))){
         echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
     } else {
         echo "bind success\r\n";
@@ -29,10 +29,10 @@ $email = $_POST["email"];
     } else {
         echo "execute success\r\n";
     }
-    if(!$stmt->bind_result($id)){
+    if(!$stmt->bindResult($id)){
         echo "Bind Failed";
     } else {
-        echo "id\r\n";
+        echo $id"\r\n";
     }
     $stmt->fetch();
     $stmt->close();
