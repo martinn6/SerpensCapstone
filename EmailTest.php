@@ -2,7 +2,7 @@
 <HTML>
 <BODY>
 <?php
-	echo "Email test start...V1.21<BR>";
+	echo "Email test start...V1.22<BR>";
 	
 	require '/email/PHPMailerAutoload.php';
 
