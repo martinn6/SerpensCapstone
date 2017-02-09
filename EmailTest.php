@@ -2,42 +2,37 @@
 <HTML>
 <BODY>
 <?php
-	echo "Email test start...<BR>";
-	$url = 'https://api.sendgrid.com/';
-	$user = 'serpenscapstone';
-	$pass = 'T3amSerpin$!';
+	echo "Email test start...V1.23<BR>";
+	
+	require '/email/PHPMailerAutoload.php';
 
-	$params = array(
-		'api_user'  => $user,
-		'api_key'   => $pass,
-		'to'        => 'martinn6@oregonstate.edu',
-		'subject'   => 'testing from curl',
-		'html'      => 'testing body',
-		'text'      => 'testing body',
-		'from'      => 'serpenscapstone.gmail.com',
-	  );
+	$mail = new PHPMailer;
 
+	//$mail->SMTPDebug = 3;                               // Enable verbose debug output
 
-	$request =  $url.'api/mail.send.json';
+	$mail->isSMTP();                                      // Set mailer to use SMTP
+	$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+	$mail->SMTPAuth = true;                               // Enable SMTP authentication
+	$mail->Username = 'serpenscapstone@gmail.com' ;                // SMTP username
+	$mail->Password = 'T3amSerpin$!';                           // SMTP password
+	//$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+	$mail->Port = 587;                                    // TCP port to connect to
 
-	// Generate curl request
-	$session = curl_init($request);
-	// Tell curl to use HTTP POST
-	curl_setopt ($session, CURLOPT_POST, true);
-	// Tell curl that this is the body of the POST
-	curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
-	// Tell curl not to return headers, but do return the response
-	curl_setopt($session, CURLOPT_HEADER, false);
-	// Tell PHP not to use SSLv3 (instead opting for TLS)
-	curl_setopt($session, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
-	curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+	$mail->setFrom('serpenscapstone@gmail.com', 'Serpens');
+	$mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
+	$mail->isHTML(true);                                  // Set email format to HTML
 
-	// obtain response
-	$response = curl_exec($session);
-	curl_close($session);
+	$mail->Subject = 'Here is the subject';
+	$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+	$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-	// print everything out
-	print_r($response);
+	if(!$mail->send()) {
+		echo 'Message could not be sent.';
+		echo 'Mailer Error: ' . $mail->ErrorInfo;
+	} else {
+		echo 'Message has been sent';
+	}
+	
 	echo "Email test end.<BR>";
 ?>
 </BODY>
