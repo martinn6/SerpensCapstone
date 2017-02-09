@@ -2,7 +2,7 @@
 <HTML>
 <BODY>
 <?php
-	echo "Email test start...V1.14<BR>";
+	echo "Email test start...V1.15<BR>";
 	
 	 require_once "Mail.php";
  
@@ -12,7 +12,7 @@
 	$body = "Hi,\n\nHow are you?";
 
 	$host = "smtp.gmail.com";
-	$username = "serpenscapstone";
+	$username = "serpenscapstone@gmail.com";
 	$password = "T3amSerpin$!";
 
 	$headers = array ('From' => $from,
