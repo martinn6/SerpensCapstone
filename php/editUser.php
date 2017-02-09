@@ -16,9 +16,7 @@ $email = $_POST["email"];
     
     if(!($stmt = $conn->prepare("select dbo.UserAccount.id where UserAccount.email = (?)"))){
         echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
-    } else {
-        echo "prepare success\r\n";
-    }
+    } 
     if(!($stmt->bind_param("i",$email))){
         echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
     } else {
