@@ -13,6 +13,7 @@ echo $name;
         $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
     }
     catch(Exception $e){
+        echo "\r\n failure";
         die(print_r($e));
     }
     echo "connected\r\n";

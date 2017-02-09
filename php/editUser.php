@@ -1,6 +1,7 @@
 <?php
 
 $email = $_POST["email"];
+echo $email;
 
     // DB connection info
     $host = "cs496osusql.database.windows.net";
@@ -11,6 +12,7 @@ $email = $_POST["email"];
         $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
     }
     catch(Exception $e){
+        echo "\r\n failure";
         die(print_r($e));
     }
     echo "connected\r\n";
