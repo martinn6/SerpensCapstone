@@ -13,7 +13,7 @@ $email = $_POST["email"];
     catch(Exception $e){
         die(print_r($e));
     }
-
+    echo "connected\r\n";
     if(!($stmt = $conn->prepare("select UserAccount.id where UserAccount.email = ?"))){
         echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
     } else {
