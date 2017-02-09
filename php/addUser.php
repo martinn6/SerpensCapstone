@@ -13,15 +13,15 @@ echo $name;
         $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
     }
     catch(Exception $e){
-        echo "\r\n failure";
+        return "\r\n failure";
         die(print_r($e));
     }
     echo "connected\r\n";
     if(!($stmt = $conn->prepare("Insert into UserAccount(Email,Password,FullName,UserTypeID)
     values(:em,:pw,:fn (SELECT id from UserType where UserType.id=:ut))"))){
-        echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+        return "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
     } else {
-        echo "prepare success\r\n";
+        return "prepare success\r\n";
     }
     if(!$stmt->execute(array(
         ':em' => $email,
@@ -30,12 +30,12 @@ echo $name;
         ':ut' => 'Admin'
     ))){
         if($stmt->errno == 1062){
-        echo "Cannot add '" .$name. "' because there is already a user with the email '".$email."'.";
+        return "Cannot add '" .$name. "' because there is already a user with the email '".$email."'.";
         } else {
-            echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
+            return "Execute failed: "  . $stmt->errno . " " . $stmt->error;
         } 
     } else {
-        echo "Added '" .$user. "' as an admin user.";
+        return "Added '" .$user. "' as an admin user.";
     }  
     $stmt->close();
     
