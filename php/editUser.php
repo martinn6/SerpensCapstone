@@ -19,7 +19,7 @@ $email = $_POST["email"];
     } else {
         echo "prepare success\r\n";
     }
-    if(!($stmt->bindParam(1,$email))){
+    if(!($stmt->bindParam(1,$email,PDO::PARAM_STR, 50))){
         echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
     } else {
         echo "bind success\r\n";

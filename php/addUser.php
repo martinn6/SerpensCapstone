@@ -15,21 +15,27 @@ echo $name;
     catch(Exception $e){
         die(print_r($e));
     }
-    
-    if(!($stmt = $conn->prepare("Insert into dbo.UserAccount(Email,Password,FullName,UserTypeID)
-    values((?),(?),(?) (SELECT id from UserType where UserType.id=(?)))"))){
+    echo "connected\r\n";
+    if(!($stmt = $conn->prepare("Insert into UserAccount(Email,Password,FullName,UserTypeID)
+    values(:em,:pw,:fn (SELECT id from UserType where UserType.id=:ut))"))){
         echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
-    }
-    if(!($stmt->bind_param($email,$passsword,$name,"admin"))){
-        echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
-    }
-    if(!$stmt->execute()){
-    if($stmt->errno == 1062){
-        echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
-    } 
     } else {
-        echo "Added '" .$name."'.";
+        echo "prepare success\r\n";
+    }
+    if(!$stmt->execute(array(
+        ':em' => $email,
+        ':pw' => $password,
+        ':fn' => $name,
+        ':ut' => '~Admin'
+    ))){
+        if($stmt->errno == 1062){
+        echo "Cannot add '" .$name. "' because there is already a user with the email '".$email."'.";
+        } else {
+            echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
+        } 
+    } else {
+        echo "Added '" .$user. "' as an admin user.";
     }  
     $stmt->close();
-
+    
 ?>
