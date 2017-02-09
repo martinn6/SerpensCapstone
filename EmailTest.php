@@ -2,7 +2,7 @@
 <HTML>
 <BODY>
 <?php
-	echo "Email test start...<BR>";
+	echo "Email test start...V1.11<BR>";
 	
 	 require_once "Mail.php";
  
