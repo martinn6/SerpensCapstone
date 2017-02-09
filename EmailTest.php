@@ -2,7 +2,7 @@
 <HTML>
 <BODY>
 <?php
-	echo "Email test start...V1.13<BR>";
+	echo "Email test start...V1.14<BR>";
 	
 	 require_once "Mail.php";
  
@@ -15,14 +15,14 @@
 	$username = "serpenscapstone";
 	$password = "T3amSerpin$!";
 
-	// $headers = array ('From' => $from,
-	//   'To' => $to,
-	//   'Subject' => $subject);
-	// $smtp = Mail::factory('smtp',
-	//   array ('host' => $host,
-	//     'auth' => true,
-	//     'username' => $username,
-	//     'password' => $password));
+	$headers = array ('From' => $from,
+	  'To' => $to,
+	  'Subject' => $subject);
+	$smtp = Mail::factory('smtp',
+	  array ('host' => $host,
+	    'auth' => true,
+	    'username' => $username,
+	    'password' => $password));
 
 	// $mail = $smtp->send($to, $headers, $body);
 
