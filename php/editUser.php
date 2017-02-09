@@ -16,15 +16,15 @@ $email = $_POST["email"];
     }
     echo "connected\r\n";
     if(!($stmt = $conn->prepare("select userAccount.name from userAccount where UserAccount.email = ?"))){
-        return "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+        return "Prepare failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
     }
     
     if(!($stmt->bindParam(1,$email,PDO::PARAM_STR, 50))){
-        return "Bind failed: "  . $stmt->errno . " " . $stmt->error;
+        return "Bind failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
     } 
 
     if(!$stmt->execute()){
-       return "Execute failed: "  . $stmt->errno . " " . $stmt->error;
+       return "Execute failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
     } 
 
     $name = $stmt->FullName();

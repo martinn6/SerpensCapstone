@@ -17,17 +17,17 @@ echo $email;
     }
     echo "connected\r\n";
     if(!($stmt = $conn->prepare("select UserAccount.id where UserAccount.email = ?"))){
-        echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+        echo "Prepare failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
     } else {
         echo "prepare success\r\n";
     }
     if(!($stmt->bindParam(1,$email,PDO::PARAM_STR, 50))){
-        echo "Bind failed: "  . $stmt->errno . " " . $stmt->error;
+        echo "Bind failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
     } else {
         echo "bind success\r\n";
     }
     if(!$stmt->execute()){
-        echo "Execute failed: "  . $stmt->errno . " " . $stmt->error;
+        echo "Execute failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
     } else {
         echo "execute success\r\n";
     }

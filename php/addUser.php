@@ -19,7 +19,7 @@ echo $name;
     echo "connected\r\n";
     if(!($stmt = $conn->prepare("Insert into UserAccount(Email,Password,FullName,UserTypeID)
     values(:em,:pw,:fn (SELECT id from UserType where UserType.id=:ut))"))){
-        return "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+        return "Prepare failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
     } else {
         return "prepare success\r\n";
     }
@@ -32,7 +32,7 @@ echo $name;
         if($stmt->errno == 1062){
         return "Cannot add '" .$name. "' because there is already a user with the email '".$email."'.";
         } else {
-            return "Execute failed: "  . $stmt->errno . " " . $stmt->error;
+            return "Execute failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();;
         } 
     } else {
         return "Added '" .$user. "' as an admin user.";
