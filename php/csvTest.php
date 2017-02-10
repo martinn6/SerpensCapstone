@@ -14,11 +14,9 @@
 	
 	if($conn)
 	{
-		$stmt = $conn->prepare('SELECT * FROM ? ');
-		$stmt->bindParam(1, $_GET['table'];, PDO::PARAM_STR, 25);
+		$stmt = $conn->prepare('SELECT * FROM ?');
+		$stmt->bindParam(1, $_GET['table'], PDO::PARAM_STR, 25);
 		$stmt->execute();
-		// $sql_select = "SELECT * FROM :table ";
-		// $stmt = $conn->query($sql_select);
 		$awards = $stmt->fetchAll();
 		$file_name = "test.csv";
 		header("Last-Modified: " . gmdate("D, d M Y H:i:s",$_GET['timestamp']) . " GMT");
