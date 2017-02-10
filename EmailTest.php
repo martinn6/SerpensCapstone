@@ -2,7 +2,7 @@
 <HTML>
 <BODY>
 <?php
-	echo "Email Test v.1.24";
+	echo "Email Test v.1.25<BR>";
 	
 	/**
 	 * This example shows settings to use when sending via Google's Gmail servers.
@@ -61,7 +61,7 @@
 
 	//Read an HTML message body from an external file, convert referenced images to embedded,
 	//convert HTML into a basic plain-text alternative body
-	$mail->msgHTML(file_get_contents('contents.html'), dirname(__FILE__));
+	$mail->msgHTML = 'This <B>is</B> a html-text message body!';
 
 	//Replace the plain text body with one created manually
 	$mail->AltBody = 'This is a plain-text message body';
