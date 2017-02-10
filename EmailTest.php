@@ -2,7 +2,7 @@
 <HTML>
 <BODY>
 <?php
-	echo "Email Test v.1.28<BR>";
+	echo "Email Test v.1.29<BR>";
 	
 	/**
 	 * This example shows settings to use when sending via Google's Gmail servers.
@@ -36,10 +36,10 @@
 	// if your network does not support SMTP over IPv6
 
 	//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-	$mail->Port = 587;
+	$mail->Port = 465;
 
 	//Set the encryption system to use - ssl (deprecated) or tls
-	$mail->SMTPSecure = 'tls';
+	$mail->SMTPSecure = 'ssl';
 
 	//Whether to use SMTP authentication
 	$mail->SMTPAuth = true;
