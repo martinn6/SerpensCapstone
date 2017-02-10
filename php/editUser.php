@@ -24,7 +24,7 @@ $email = $_POST["email"];
     } 
 
     if(!$stmt->execute()){
-       echo "Execute failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
+       return "Execute failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
        return;
     } 
 
