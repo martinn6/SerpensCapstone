@@ -18,10 +18,8 @@ $(document).ready(function(){
 	$("#downloadCSV").click(function(e){
 		e.preventDefault();
 		var url = "../php/csvTEST.php";
-		var data = $('#deleteUserForm').serialize();
-		console.log(data);
+		var data = '';
 		$.post(url, data, function(result){
-
 		});
 		
 	});
