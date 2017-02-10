@@ -13,11 +13,11 @@ $email = $_POST["email"];
     catch(Exception $e){
         die(print_r($e));
     }
-    if(!($stmt = $conn->prepare("select UserAccount.name from userAccount where UserAccount.email = ?"))){
+    if(!($stmt = $conn->prepare('select name from UserAccount where email = :email'))){
         die(print_r($stmt->errorInfo()));
     }
     
-    if(!($stmt->bindParam(1,$email,PDO::PARAM_STR, 50))){
+    if(!($stmt->bindParam(:email,$email,PDO::PARAM_STR, 50))){
         die(print_r($stmt->errorInfo()));
     } 
 
