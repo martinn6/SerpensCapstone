@@ -15,7 +15,7 @@
 	if($conn)
 	{
 		$stmt = $conn->prepare('SELECT * FROM ?');
-		$stmt->bindParam(1, $_GET['table'], PDO::PARAM_STR, 25);
+		$stmt->bindParam(1, $_GET['MyTable'], PDO::PARAM_STR, 25);
 		$stmt->execute();
 		$awards = $stmt->fetchAll();
 		$file_name = $_GET['title'];

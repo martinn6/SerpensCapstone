@@ -30,7 +30,6 @@ $(document).ready(function(){
 		var MyTimestamp = new Date().getTime();
 		var MyTable = "dbo.UserAccounts";
 		var MyTitle = "UserAccounts.csv";
-		var url = "../php/csvTest.php";
 		$.get('../php/csvTEST.php','timestamp='+MyTimestamp+'&table='+MyTable,function(){
         document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+MyTable;
 		});
