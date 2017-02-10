@@ -22,7 +22,7 @@ $email = $_POST["email"];
     } 
 
     if(!$stmt->execute()){
-       die(print_r($stmt->errorInfo()));
+       die(print_r($stmt->errorCode()));
     } 
 
     $name = $stmt->FullName();
