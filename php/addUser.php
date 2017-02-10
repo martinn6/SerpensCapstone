@@ -27,7 +27,7 @@ printf($name);
         ':fn' => $name,
         ':ut' => 'Admin'
     ))){
-        if($stmt->errno == 1062){
+        if($stmt->errorInfo() == 1062){
         die(printf("Cannot add '" .$name. "' because there is already a user with the email '".$email."'."));
         } else {
             die(print_r($stmt->errorInfo()));
