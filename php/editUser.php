@@ -14,7 +14,6 @@ $email = $_POST["email"];
         return "\r\n failure";
         die(print_r($e));
     }
-    echo "connected\r\n";
     if(!($stmt = $conn->prepare("select userAccount.name from userAccount where UserAccount.email = ?"))){
         return "Prepare failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
     }

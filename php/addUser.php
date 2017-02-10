@@ -3,7 +3,7 @@
 $email = $_POST["email"];
 $password = $_POST["password"];
 $name = $_POST["fName"] $_POST["lName"];
-echo $name;
+
     // DB connection info
     $host = "cs496osusql.database.windows.net";
     $user = "Serpins_Login";
@@ -16,7 +16,6 @@ echo $name;
         return "\r\n failure";
         die(print_r($e));
     }
-    echo "connected\r\n";
     if(!($stmt = $conn->prepare("Insert into UserAccount(Email,Password,FullName,UserTypeID)
     values(:em,:pw,:fn (SELECT id from UserType where UserType.id=:ut))"))){
         return "Prepare failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
