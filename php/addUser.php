@@ -17,7 +17,7 @@ $name = $_POST["fName"] $_POST["lName"];
     }
     if(!($stmt = $conn->prepare("Insert into UserAccount(Email,Password,FullName,UserTypeID)
     values(:em,:pw,:fn (SELECT id from UserType where UserType.id=:ut))"))){
-        return "Prepare failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
+        die(print_r($stmt->errorInfo()));
     } 
     if(!$stmt->execute(array(
         ':em' => $email,
@@ -26,12 +26,12 @@ $name = $_POST["fName"] $_POST["lName"];
         ':ut' => 'Admin'
     ))){
         if($stmt->errno == 1062){
-        return "Cannot add '" .$name. "' because there is already a user with the email '".$email."'.";
+        die(printf("Cannot add '" .$name. "' because there is already a user with the email '".$email."'."));
         } else {
-            return "Execute failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
+            die(print_r($stmt->errorInfo()));
         } 
     } else {
-        return "Added '" .$user. "' as an admin user.";
+        printf("Added '" .$user. "' as an admin user.");
     }  
     $stmt->close();
     

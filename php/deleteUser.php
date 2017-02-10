@@ -14,13 +14,13 @@ $email = $_POST["email"];
         die(print_r($e));
     }
     if(!($stmt = $conn->prepare("select UserAccount.id where UserAccount.email = ?"))){
-        return "Prepare failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
+        die(print_r($stmt->errorInfo()));
     } 
     if(!($stmt->bindParam(1,$email,PDO::PARAM_STR, 50))){
-        return"Bind failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
+        die(print_r($stmt->errorInfo()));
     } 
     if(!$stmt->execute()){
-        return "Execute failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
+        die(print_r($stmt->errorInfo()));
     } 
     
     $stmt->fetch();
