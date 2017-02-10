@@ -18,10 +18,10 @@ $(document).ready(function(){
 	$("#awardsCSV").click(function(e){
 		e.preventDefault();
 		var MyTimestamp = new Date().getTime();
-		var table = "dbo.Awards";
+		var MyTable = "dbo.Awards";
 		var MyTitle = "UserAccounts.csv";
-		$.get('../php/csvTEST.php','timestamp='+MyTimestamp+'&table='+table,function(){
-        document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+table;
+		$.get('../php/csvTEST.php','timestamp='+MyTimestamp+'&table='+MyTable,function(){
+        document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+MyTable;
 		});
 	});
 
@@ -31,8 +31,8 @@ $(document).ready(function(){
 		var MyTable = "dbo.UserAccounts";
 		var MyTitle = "UserAccounts.csv";
 		var url = "../php/csvTest.php";
-		$.get('../php/csvTEST.php','timestamp='+MyTimestamp+'&table='+table,function(){
-        document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+table;
+		$.get('../php/csvTEST.php','timestamp='+MyTimestamp+'&table='+MyTable,function(){
+        document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+MyTable;
 		});
 	});
 	
