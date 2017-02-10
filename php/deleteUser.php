@@ -1,5 +1,5 @@
-json_encode($result);<?php
-
+<?php
+header('Location: ../views/admin.html');
 $email = $_POST["email"];
 
     // DB connection info
