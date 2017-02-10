@@ -17,7 +17,7 @@ $(document).ready(function(){
 
 	$("#downloadCSV").click(function(e){
 		e.preventDefault();
-		MyTimestamp = new Date().getTime();
+		var MyTimestamp = new Date().getTime();
 		$.get('../php/csvTEST.php','timestamp='+MyTimestamp,function(){
         document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp;
 	
