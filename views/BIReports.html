@@ -15,10 +15,20 @@
 <script>
 $(document).ready(function(){
 
-	$("#downloadCSV").click(function(e){
+	$("#awardsCSV").click(function(e){
 		e.preventDefault();
 		var MyTimestamp = new Date().getTime();
-		$.get('../php/csvTEST.php','timestamp='+MyTimestamp,function(){
+		var table = Awards;
+		$.get('../php/csvTEST.php','timestamp='+MyTimestamp,'table='+table,function(){
+        document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp;
+		});
+	});
+
+	$("#usersCSV").click(function(e){
+		e.preventDefault();
+		var MyTimestamp = new Date().getTime();
+		var table = UserAccounts;
+		$.get('../php/csvTEST.php','timestamp='+MyTimestamp,'table='+table,function(){
         document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp;
 		});
 	});
@@ -38,10 +48,21 @@ $(document).ready(function(){
 				<div class="row">
 					<div class="form-group">
 						<label class="col-sm-2" for="report Type">
-						Report Type
+						Awards Report
 						</label>
 						<div class="col-sm-10">
-						<button type="submit" id="downloadCSV"
+						<button type="submit" id="awardsCSV"
+						 class="btn btn-default">Download CSV</button>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label class="col-sm-2" for="report Type">
+						Users Report
+						</label>
+						<div class="col-sm-10">
+						<button type="submit" id="usersCSV"
 						 class="btn btn-default">Download CSV</button>
 						</div>
 					</div>
