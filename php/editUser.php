@@ -13,7 +13,7 @@ $email = $_POST["email"];
     catch(Exception $e){
         die(print_r($e));
     }
-    if(!($stmt = $conn->prepare('select name from UserAccount where email = :email'))){
+    if(!($stmt = $conn->prepare('SELECT name FROM UserAccount WHERE email = :email'))){
         die(print_r($stmt->errorInfo()));
     }
     

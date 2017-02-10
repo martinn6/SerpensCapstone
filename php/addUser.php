@@ -17,7 +17,7 @@ printf($name);
     catch(Exception $e){
         die(print_r($e));
     }
-    if(!($stmt = $conn->prepare("Insert into UserAccount(Email,Password,FullName,UserTypeID)
+    if(!($stmt = $conn->prepare("INSERT INTO UserAccount(Email,Password,FullName,UserTypeID)
     values(:em,:pw,:fn (SELECT id from UserType where UserType.id=:ut))"))){
         die(print_r($stmt->errorInfo()));
     } 
