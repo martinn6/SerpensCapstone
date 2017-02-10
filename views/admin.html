@@ -160,14 +160,16 @@ $(document).ready(function(){
 		var data = $('#editUserForm').serialize();
 		console.log(data);
 		$.post(url, data, function(result){
-			if (!result) {
-				console.log(result);
-				$("#resultSpan").html(result).css('color', 'red');
-			} else {
-				console.log(result);
-				$('#editUserForm').each(function(){
-					window.location = "../views/editUser.html";
-				});
+			console.log(result);
+			$("#resultSpan").html(result).css('color', 'red');
+			// if (!result) {
+			// 	console.log(result);
+			// 	$("#resultSpan").html(result).css('color', 'red');
+			// } else {
+			// 	console.log(result);
+			// 	$('#editUserForm').each(function(){
+			// 		window.location = "../views/editUser.html";
+			// 	});
 			}
 		});
 		
