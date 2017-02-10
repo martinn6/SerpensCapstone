@@ -1,11 +1,9 @@
 <?php
 
 $email = $_POST["email"];
-printf($email);
 $password = $_POST["password"];
-printf($password);
 $name = $_POST["fName"] $_POST["lName"];
-printf($name);
+
     // DB connection info
     $host = "cs496osusql.database.windows.net";
     $user = "Serpins_Login";
