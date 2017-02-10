@@ -19,6 +19,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		var MyTimestamp = new Date().getTime();
 		var table = "dbo.Awards";
+		var MyTitle = "UserAccounts.csv";
 		$.get('../php/csvTEST.php','timestamp='+MyTimestamp+'&table='+table,function(){
         document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+table;
 		});
@@ -28,6 +29,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		var MyTimestamp = new Date().getTime();
 		var MyTable = "dbo.UserAccounts";
+		var MyTitle = "UserAccounts.csv";
 		var url = "../php/csvTest.php";
 		$.get('../php/csvTEST.php','timestamp='+MyTimestamp+'&table='+table,function(){
         document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+table;
