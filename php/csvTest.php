@@ -13,7 +13,7 @@
 	
 	if($conn)
 	{
-		$sql_select = "SELECT * FROM dbo.UserAccount";
+		$sql_select = "SELECT * FROM dbo.Awards";
 		$stmt = $conn->query($sql_select);
 		$awards = $stmt->fetchAll();
 		$file_name = "test.csv";
