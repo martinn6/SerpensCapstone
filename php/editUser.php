@@ -1,5 +1,5 @@
 <?php
-header('Location: ../views/admin.html');
+header('Location: ../views/editUser.html');
 $email = $_POST["email"];
 
     // DB connection info
