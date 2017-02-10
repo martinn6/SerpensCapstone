@@ -30,7 +30,7 @@
         $output = fopen("php://output", "w");
 		 if(count($awards) > 0) {
 			foreach($awards as $award) {
-				fputcsv($output, $row);
+				fputcsv($output, $award);
 			}
 		}	
 		# Close the stream off
