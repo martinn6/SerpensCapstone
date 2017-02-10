@@ -17,6 +17,7 @@
 		$sql_select = "SELECT * FROM dbo.Awards";
 		$stmt = $conn->query($sql_select);
 		$awards = $stmt->fetchAll();
+		$file_name = "test.csv";
 		header("Content-Type: text/csv");
         header("Content-Disposition: attachment; filename=$file_name");
         # Disable caching - HTTP 1.1
