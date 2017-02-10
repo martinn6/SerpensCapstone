@@ -1,8 +1,11 @@
 <?php
 
 $email = $_POST["email"];
+echo $email;
 $password = $_POST["password"];
+echo $password;
 $name = $_POST["fName"] $_POST["lName"];
+echo $name;
 
     // DB connection info
     $host = "cs496osusql.database.windows.net";
