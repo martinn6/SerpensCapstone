@@ -2,7 +2,7 @@
 <HTML>
 <BODY>
 <?php
-	echo "Email Test v.1.30<BR>";
+	echo "Email Test v.1.31<BR>";
 	
 	/**
 	 * This example shows settings to use when sending via Google's Gmail servers.
@@ -45,13 +45,13 @@
 	$mail->SMTPAuth = true;
 
 	//Username to use for SMTP authentication - use full email address for gmail
-	$mail->Username = "serpentscapstone@gmail.com";
+	$mail->Username = "serpenscapstone@gmail.com";
 
 	//Password to use for SMTP authentication
 	$mail->Password = "T3amSerpin$!";
 
 	//Set who the message is to be sent from
-	$mail->setFrom('serpentscapstone@gmail.com', 'serpents');
+	$mail->setFrom('serpenscapstone@gmail.com', 'serpens');
 
 	//Set who the message is to be sent to
 	$mail->addAddress('martinn6@oregonstate.edu', 'Nick Martin');
