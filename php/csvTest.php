@@ -18,15 +18,12 @@
 		$stmt = $conn->query($sql_select);
 		$awards = $stmt->fetchAll();
 		$file_name = "test.csv";
-		header("Content-Type: text/csv");
-        header("Content-Disposition: attachment; filename=$file_name");
-        # Disable caching - HTTP 1.1
-        header("Cache-Control: no-cache, no-store, must-revalidate");
-        # Disable caching - HTTP 1.0
-        header("Pragma: no-cache");
-        # Disable caching - Proxies
-        header("Expires: 0");
-        # Start the ouput
+		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+		header('Content-Description: File Transfer');
+		header("Content-type: text/csv");
+		header("Content-Disposition: attachment; filename={$file_name}");
+		header("Expires: 0");
+		header("Pragma: public");
         $output = fopen("php://output", "w");
 		 if(count($awards) > 0) {
 			foreach($awards as $award) {
