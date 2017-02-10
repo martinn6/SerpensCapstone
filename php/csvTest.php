@@ -14,8 +14,8 @@
 	
 	if($conn)
 	{
-		$stmt = $conn->prepare("SELECT * FROM :table ");
-		$stmt->bindParam(':table', $_GET['table'];, PDO::PARAM_STR, 25);
+		$stmt = $conn->prepare('SELECT * FROM ? ');
+		$stmt->bindParam(1, $_GET['table'];, PDO::PARAM_STR, 25);
 		$stmt->execute();
 		// $sql_select = "SELECT * FROM :table ";
 		// $stmt = $conn->query($sql_select);
