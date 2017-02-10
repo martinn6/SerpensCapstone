@@ -20,7 +20,7 @@ $(document).ready(function(){
 		var MyTimestamp = new Date().getTime();
 		var table = "Awards";
 		$.get('../php/csvTEST.php','timestamp='+MyTimestamp,'table='+table,function(){
-        document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp;
+        document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+table;
 		});
 	});
 
