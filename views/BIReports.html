@@ -17,11 +17,10 @@ $(document).ready(function(){
 
 	$("#downloadCSV").click(function(e){
 		e.preventDefault();
-		var url = "../php/csvTEST.php";
-		var data = '';
-		$.post(url, data, function(result){
-		});
-		
+		MyTimestamp = new Date().getTime();
+		$.get('../php/csvTEST.php','timestamp='+MyTimestamp,function(){
+        document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp;
+	
 	});
 	
 });

@@ -18,6 +18,7 @@
 		$stmt = $conn->query($sql_select);
 		$awards = $stmt->fetchAll();
 		$file_name = "test.csv";
+		header("Last-Modified: " . gmdate("D, d M Y H:i:s",$_GET['timestamp']) . " GMT");
 		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 		header('Content-Description: File Transfer');
 		header("Content-type: text/csv");
@@ -30,7 +31,6 @@
 				fputcsv($output, $award);
 			}
 		}	
-		# Close the stream off
         fclose($output);
 
 	}
