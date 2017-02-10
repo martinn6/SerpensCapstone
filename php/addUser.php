@@ -13,15 +13,13 @@ $name = $_POST["fName"] $_POST["lName"];
         $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
     }
     catch(Exception $e){
-        return "\r\n failure";
         die(print_r($e));
     }
     if(!($stmt = $conn->prepare("Insert into UserAccount(Email,Password,FullName,UserTypeID)
     values(:em,:pw,:fn (SELECT id from UserType where UserType.id=:ut))"))){
-        return "Prepare failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
-    } else {
-        return "prepare success\r\n";
-    }
+        echo "Prepare failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
+        return;
+    } 
     if(!$stmt->execute(array(
         ':em' => $email,
         ':pw' => $password,
@@ -29,12 +27,15 @@ $name = $_POST["fName"] $_POST["lName"];
         ':ut' => 'Admin'
     ))){
         if($stmt->errno == 1062){
-        return "Cannot add '" .$name. "' because there is already a user with the email '".$email."'.";
+        echo "Cannot add '" .$name. "' because there is already a user with the email '".$email."'.";
+        return;
         } else {
-            return "Execute failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();;
+            echo "Execute failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
+            return;
         } 
     } else {
-        return "Added '" .$user. "' as an admin user.";
+        echo "Added '" .$user. "' as an admin user.";
+        return;
     }  
     $stmt->close();
     

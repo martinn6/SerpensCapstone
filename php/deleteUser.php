@@ -11,22 +11,23 @@ $email = $_POST["email"];
         $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
     }
     catch(Exception $e){
-        return "\r\n failure";
         die(print_r($e));
     }
     if(!($stmt = $conn->prepare("select UserAccount.id where UserAccount.email = ?"))){
-        return "Prepare failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
+        echo "Prepare failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
+        return;
     } 
     if(!($stmt->bindParam(1,$email,PDO::PARAM_STR, 50))){
-        return "Bind failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
+        echo"Bind failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
+        return;
     } 
     if(!$stmt->execute()){
-        return "Execute failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
-    } else {
-        echo "execute success\r\n";
-    }
+        echo "Execute failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
+        return
+    } 
     if(!$stmt->bindResult($id)){
         echo "Bind Failed";
+        return;
     } 
     $stmt->fetch();
     $stmt->close();
