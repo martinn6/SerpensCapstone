@@ -20,7 +20,7 @@ $(document).ready(function(){
 		var MyTimestamp = new Date().getTime();
 		$.get('../php/csvTEST.php','timestamp='+MyTimestamp,function(){
         document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp;
-	
+		});
 	});
 	
 });
