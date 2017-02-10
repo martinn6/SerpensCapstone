@@ -1,5 +1,5 @@
 <?php
-header('Location: ../views/admin.html');
+
 $email = $_POST["email"];
 $password = $_POST["password"];
 $name = $_POST["fName"] $_POST["lName"];
