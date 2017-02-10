@@ -1,11 +1,8 @@
 <?php
-echo "hello";
+
 $email = $_POST["email"];
-echo $email;
 $password = $_POST["password"];
-echo $password;
 $name = $_POST["fName"] $_POST["lName"];
-echo $name;
 
     // DB connection info
     $host = "cs496osusql.database.windows.net";
@@ -20,8 +17,7 @@ echo $name;
     }
     if(!($stmt = $conn->prepare("Insert into UserAccount(Email,Password,FullName,UserTypeID)
     values(:em,:pw,:fn (SELECT id from UserType where UserType.id=:ut))"))){
-        echo "Prepare failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
-        return;
+        return "Prepare failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
     } 
     if(!$stmt->execute(array(
         ':em' => $email,
@@ -30,15 +26,12 @@ echo $name;
         ':ut' => 'Admin'
     ))){
         if($stmt->errno == 1062){
-        echo "Cannot add '" .$name. "' because there is already a user with the email '".$email."'.";
-        return;
+        return "Cannot add '" .$name. "' because there is already a user with the email '".$email."'.";
         } else {
-            echo "Execute failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
-            return;
+            return "Execute failed: "  . $stmt->errorCode() . " " . $stmt->errorInfo();
         } 
     } else {
-        echo "Added '" .$user. "' as an admin user.";
-        return;
+        return "Added '" .$user. "' as an admin user.";
     }  
     $stmt->close();
     

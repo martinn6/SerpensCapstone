@@ -161,7 +161,8 @@ $(document).ready(function(){
 		console.log(data);
 		$.post(url, data, function(result){
 			if (!result) {
-				$("#resultSpan").html('user not found').css('color', 'red');
+				console.log(result);
+				$("#resultSpan").html(result).css('color', 'red');
 			} else {
 				console.log(result);
 				$('#editUserForm').each(function(){
