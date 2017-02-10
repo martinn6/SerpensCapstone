@@ -160,17 +160,17 @@ $(document).ready(function(){
 		var data = $('#editUserForm').serialize();
 		console.log(data);
 		$.post(url, data, function(result){
-			console.log(result);
-			$("#resultSpan").html(result).css('color', 'red');
-		// 	if (!result) {
-		// 		console.log(result);
-		// 		$("#resultSpan").html(result).css('color', 'red');
-		// 	} else {
-		// 		console.log(result);
-		// 		$('#editUserForm').each(function(){
-		// 		});
-		// 	}
-		// });
+
+			if (!result) {
+				console.log(result);
+				$("#resultSpan").html(result).css('color', 'red');
+			} else {
+				console.log(result);
+				$("#resultSpan").html(result).css('color', 'red');
+				$('#editUserForm').each(function(){
+				});
+			}
+		});
 		
 	});
 	
