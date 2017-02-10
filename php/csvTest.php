@@ -1,5 +1,6 @@
 <?php
-
+echo $_GET['table'];
+echo $_GET['timestamp'];
 	// DB connection info
 	$host = "cs496osusql.database.windows.net";
 	$user = "Serpins_Login";

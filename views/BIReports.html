@@ -27,7 +27,8 @@ $(document).ready(function(){
 	$("#usersCSV").click(function(e){
 		e.preventDefault();
 		var MyTimestamp = new Date().getTime();
-		var table = "UserAccounts";
+		var MyTable = "UserAccounts";
+		var url = "../php/csvTest.php";
 		$.get('../php/csvTEST.php','timestamp='+MyTimestamp,'table='+table,function(){
         document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+table;
 		});
