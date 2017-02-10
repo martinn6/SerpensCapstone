@@ -64,7 +64,7 @@
 	$mail->msgHTML = 'This <B>is</B> a html-text message body!';
 
 	//Replace the plain text body with one created manually
-	$mail->AltBody = 'This is a plain-text message body';
+	$mail->Body = 'This is a plain-text message body';
 
 	//send the message, check for errors
 	if (!$mail->send()) {
