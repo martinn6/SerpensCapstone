@@ -1,5 +1,5 @@
 <?php
-$table = $_GET["table"];
+
 	// DB connection info
 	$host = "cs496osusql.database.windows.net";
 	$user = "Serpins_Login";
@@ -15,7 +15,7 @@ $table = $_GET["table"];
 	if($conn)
 	{
 		$stmt = $conn->prepare("SELECT * FROM :table ");
-		$stmt->bindParam(':table', $table, PDO::PARAM_STR, 25);
+		$stmt->bindParam(':table', $_GET['table'];, PDO::PARAM_STR, 25);
 		$stmt->execute();
 		// $sql_select = "SELECT * FROM :table ";
 		// $stmt = $conn->query($sql_select);
