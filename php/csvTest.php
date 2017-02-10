@@ -4,7 +4,6 @@
 	$user = "Serpins_Login";
 	$pwd = "T3amSerpin$!";
 	$db = "OSU_Capstone";
-	echo "<p>Trying to connect....</p>";
 	try{
 		$conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
 	}
