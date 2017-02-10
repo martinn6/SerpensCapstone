@@ -2,7 +2,7 @@
 <HTML>
 <BODY>
 <?php
-	echo "Email Test v.1.29<BR>";
+	echo "Email Test v.1.30<BR>";
 	
 	/**
 	 * This example shows settings to use when sending via Google's Gmail servers.
@@ -10,7 +10,7 @@
 
 	//SMTP needs accurate times, and the PHP time zone MUST be set
 	//This should be done in your php.ini, but this is how to do it if you don't have access to that
-	date_default_timezone_set('Etc/UTC');
+	date_default_timezone_set('America/Los_Angeles');
 
 	require '/PHPMailer/PHPMailerAutoload.php';
 
@@ -36,10 +36,10 @@
 	// if your network does not support SMTP over IPv6
 
 	//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-	$mail->Port = 465;
+	$mail->Port = 587;
 
 	//Set the encryption system to use - ssl (deprecated) or tls
-	$mail->SMTPSecure = 'ssl';
+	$mail->SMTPSecure = 'tls';
 
 	//Whether to use SMTP authentication
 	$mail->SMTPAuth = true;
