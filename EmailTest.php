@@ -2,7 +2,7 @@
 <HTML>
 <BODY>
 <?php
-	echo "Email Test v.1.27<BR>";
+	echo "Email Test v.1.28<BR>";
 	
 	/**
 	 * This example shows settings to use when sending via Google's Gmail servers.
