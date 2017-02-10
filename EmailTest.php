@@ -2,7 +2,7 @@
 <HTML>
 <BODY>
 <?php
-	echo "Email Test v.1.25<BR>";
+	echo "Email Test v.1.27<BR>";
 	
 	/**
 	 * This example shows settings to use when sending via Google's Gmail servers.
@@ -18,7 +18,7 @@
 	$mail = new PHPMailer;
 
 	//Tell PHPMailer to use SMTP
-	$mail->isSMTP();
+	//$mail->isSMTP();
 
 	//Enable SMTP debugging
 	// 0 = off (for production use)
