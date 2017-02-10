@@ -9,7 +9,25 @@
   <title>BI Reports</title>
 </head>
 <body>
+<script src="../js/jquery-2.1.4.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/script.js"></script>
+<script>
+$(document).ready(function(){
 
+	$("#downloadCSV").click(function(e){
+		e.preventDefault();
+		var url = "../php/csvTEST.php";
+		var data = $('#deleteUserForm').serialize();
+		console.log(data);
+		$.post(url, data, function(result){
+
+		});
+		
+	});
+	
+});
+</script>
 <div class="container">
 	<div class="row">
 		<section class="col-xs-offset-3 col-xs-6">
@@ -26,8 +44,7 @@
 						Report Type
 						</label>
 						<div class="col-sm-10">
-						<input type="email" class="form-control"
-						id="adminEmail" placeholder="Email" required>
+						<a href="" role="button" class="btn btn-primary">view BI Reports</a>
 						</div>
 					</div>
 				</div>
@@ -37,7 +54,8 @@
 	
 	<div class="row">
 		<section class="col-xs-offset-3 col-xs-6">
-			<a href="admin.html" role="button" class="btn btn-primary">Return to Admin</a>
+			<button type="submit" id="downloadCSV"
+			 class="btn btn-default">Download CSV</button>
 		</section>
 	</div>
 </div>

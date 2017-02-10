@@ -14,22 +14,27 @@
 	
 	if($conn)
 	{
-		echo "<p>Connection Established.</p>";
-		// fetch mysql table rows
-		$sql = "SELECT * FROM dbo.Awards";
-		$sqlResultesult = sqlsrv_query($conn, $sql);
-		$csvName = "export.csv"
-		$fp = fopen(csvName , 'w');
-		echo "opened";
-		while ($export = odbc_fetch_array($sqlRresult)) {
-			if (!isset($headings))
-			{
-				$headings = array_keys($export);
-				fputcsv($fp, $headings, ',', '"');
+		$sql_select = "SELECT * FROM dbo.Awards";
+		$stmt = $conn->query($sql_select);
+		$awards = $stmt->fetchAll();
+		header("Content-Type: text/csv");
+        header("Content-Disposition: attachment; filename=$file_name");
+        # Disable caching - HTTP 1.1
+        header("Cache-Control: no-cache, no-store, must-revalidate");
+        # Disable caching - HTTP 1.0
+        header("Pragma: no-cache");
+        # Disable caching - Proxies
+        header("Expires: 0");
+        # Start the ouput
+        $output = fopen("php://output", "w");
+		 if(count($awards) > 0) {
+			foreach($awards as $award) {
+				fputcsv($output, $row);
 			}
-			fputcsv($fp, $export, ',', '"');
-		}
-		fclose($fp);
-		echo "<p>success</p>";
+		}	
+		# Close the stream off
+        fclose($output);
+
 	}
+
 ?>
