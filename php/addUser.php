@@ -2,7 +2,7 @@
 
 $email = $_POST["email"];
 $password = $_POST["password"];
-$name = $_POST["fName"] . ' ' . $_POST["lName"];
+$name = $_POST["FName"] . ' ' . $_POST["LName"];
 
     // DB connection info
     $host = "cs496osusql.database.windows.net";
