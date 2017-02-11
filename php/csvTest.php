@@ -16,9 +16,6 @@
 	
 	if($conn)
 	{
-		$stmt = $conn->prepare('SELECT * FROM dbo.UserAccount');
-		$stmt->execute();
-		// $stmt->execute(array('table' => $table));
 		header("Last-Modified: " . gmdate("D, d M Y H:i:s",$_GET['timestamp']) . " GMT");
 		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 		header('Content-Description: File Transfer');
@@ -26,9 +23,13 @@
 		header("Content-Disposition: attachment; filename={$file_name}");
 		header("Expires: 0");
 		header("Pragma: public");
+		$q = $conn->prepare('SELECT * From INFORMATION_SCHEMA.COLUMNS Where TABLE_NAME = UserAccount');
+		$q->execute();
+		$headers = $q->fetchAll(PDO::FETCH_COLUMN);
+		fputcsv($output, $headers);		
         $output = fopen("php://output", "w");
-		$headers = $stmt->fetchAll(PDO::FETCH_COLUMN);
-		fputcsv($output, $headers);
+		$stmt = $conn->prepare('SELECT * FROM dbo.UserAccount');
+		$stmt->execute();
 		$result = $stmt->fetchAll();
 		foreach($result as $row) {
 			fputcsv($output, $row);
