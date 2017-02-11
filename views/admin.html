@@ -155,11 +155,7 @@ $(document).ready(function(){
 		var data = $('#editUserForm').serialize();
 		console.log(data);
 		$.post(url, data, function(result){
-			if (!result) {
-				$("#resultSpan").html('user not found').css('color', 'red');
-			} else {
-
-			}
+			$("#resultSpan").html('user not found').css('color', 'red');
 		});
 		
 	});
@@ -170,11 +166,7 @@ $(document).ready(function(){
 		var data = $('#deleteUserForm').serialize();
 		console.log(data);
 		$.post(url, data, function(result){
-			if (!result) {
-				$("#resultSpan").html('user not found').css('color', 'red');
-			} else {
-				$("#resultSpan").html(result +'has been deleted').css('color', 'red');
-			}
+			$("#resultSpan").html('user not found').css('color', 'red');
 		});
 		
 	});
