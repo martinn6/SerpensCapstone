@@ -20,7 +20,17 @@ $email = $_POST["email"];
         try {
             $stmt->execute(array('email' => $email));
             $results=$stmt->fetchAll(PDO::FETCH_ASSOC);
-            print_r($result['FullName']);
+            $name = $result['FullName'];
+        } catch (PDOException $e) {
+            if ($e->errorInfo[1] == 1054) {
+                printf("Cannot find user with email '" .$email. "'.");
+            } else {
+                die(print_r($stmt->errorInfo()));
+            }
+        }
+        $stmt = $conn->prepare('DELETE * FROM dbo.UserAccount WHERE email = :email');
+        try {
+            $stmt->execute(array('email' => $email));
         } catch (PDOException $e) {
             if ($e->errorInfo[1] == 1054) {
                 printf("Cannot find user with email '" .$email. "'.");
