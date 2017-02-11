@@ -19,7 +19,7 @@ $email = $_POST["email"];
         try {
             $stmt->execute(array('email' => $email));
             $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
-            $name = $result["FullName"];
+            $name = $result['FullName'];
             print_r($name);
         } catch (PDOException $e) {
             if ($e->errorInfo[1] == 1054) {
