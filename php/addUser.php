@@ -17,7 +17,7 @@ $name = $_POST["FName"] . ' ' . $_POST["LName"];
     }
     if ($conn){
         $stmt = $conn->prepare("INSERT INTO dbo.UserAccount(Email,Password,FullName,UserTypeID)
-            values(:em,:pw,:fn (SELECT id FROM dbo.UserType WHERE id=Admin))");
+            values(:em,:pw,:fn, (SELECT UserTypeId FROM dbo.UserType WHERE UserType=Admin))");
         $stmt->execute(array(
             ':em' => $email,
             ':pw' => $password,
