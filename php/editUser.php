@@ -20,8 +20,7 @@ $email = $_POST["email"];
     
   
     $result = $stmt->fetchAll();
-    $json=json_encode($stmt);
-    $stmt->close();
-    print_r($stmt);
+    $json=json_encode($result);
+    print_r($json);
     }
 ?>
