@@ -9,14 +9,14 @@ $email = $_POST["email"];
     $db = "OSU_Capstone";
     try{
         $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch(Exception $e){
         die(print_r($e));
     }
 
     if ($conn)
-    {
-
+    { 
         try {
             $stmt = $conn->prepare('SELECT FullName FROM dbo.UserAccount WHERE email = :email');
             $stmt->execute(array('email' => $email));
