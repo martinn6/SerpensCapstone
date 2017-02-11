@@ -27,7 +27,7 @@ $name = $_POST["FName"] . ' ' . $_POST["LName"];
         if($stmt->errorInfo()){
             die(print_r($stmt->errorInfo()));
         } else {
-            printf("Added '" .$user. "' as an admin user.");
+            printf("Added '" .$name. "' as an admin user.");
         }  
     }
     
