@@ -21,7 +21,7 @@ $email = $_POST["email"];
   
     $result = $stmt->fetchAll();
     echo $result;
-    $name = $stmt->FullName();
+    $name = $result->FullName();
     $stmt->close();
     echo $name;
     print_r($name);
