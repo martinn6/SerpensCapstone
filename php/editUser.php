@@ -15,11 +15,12 @@ $email = $_POST["email"];
     }
     if ($conn)
     {
-        $stmt = $conn->prepare('SELECT * FROM dbo.UserAccount WHERE email = :email');
+        $stmt = $conn->prepare('SELECT FullName FROM dbo.UserAccount WHERE email = :email');
 		$stmt->execute(array('email' => $email));
-    
-        $result = $stmt->fetchAll();
-        print_r($result);
-        // print_r($result['FullName']);
+        if ($stmt->rowCount() > 0) {
+            print_r($result['FullName']);
+        } else {
+            return;
+        }
     }
 ?>
