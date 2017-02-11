@@ -140,7 +140,7 @@ $(document).ready(function(){
 		var url = "../php/addUser.php";
 		var data = $('#addUserForm').serialize();
 		console.log(data);
-		$.post(url, data, function(response){
+		$.post(url, data, function(result){
 			if (!result) {
 				$("#resultSpan").html('database error').css('color', 'red');
 			} else {
