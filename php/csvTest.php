@@ -22,23 +22,16 @@
 		header("Content-type: text/csv");
 		header("Content-Disposition: attachment; filename={$file_name}");
 		header("Expires: 0");
-		header("Pragma: public");
-	    $output = fopen("php://output", "w");
-
+		header("Pragma: public");		
+        $output = fopen("php://output", "w");
+		
 		$stmt = $conn->prepare('SELECT * FROM dbo.UserAccount');
 		$stmt->execute();
 		$result = $stmt->fetchAll();
-
-		// first set
-		$first_row = $stmt->fetch(PDO::FETCH_ASSOC);
-		$headers = array_keys($first_row);
-		fputcsv($output, $headers); // put the headers
-		fputcsv($output, array_values($first_row)); // put the first row
-
-		while ($row = $stmt->fetch(PDO::FETCH_NUM))  {
-		fputcsv($output,$row); // push the rest
+		foreach($result as $row) {
+			fputcsv($output, $row);
 		}
-		fclose($output); 
+        fclose($output);
 
 	}
 
