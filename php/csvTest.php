@@ -18,7 +18,7 @@
 		$stmt->bindParam(1, $_GET['MyTable'], PDO::PARAM_STR, 25);
 		$stmt->execute();
 		$awards = $stmt->fetchAll();
-		$file_name = $_GET['title'];
+		$file_name = $_GET['MyTitle'];
 		header("Last-Modified: " . gmdate("D, d M Y H:i:s",$_GET['timestamp']) . " GMT");
 		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 		header('Content-Description: File Transfer');
