@@ -155,7 +155,7 @@ $(document).ready(function(){
 		var data = $('#editUserForm').serialize();
 		console.log(data);
 		$.post(url, data, function(result){
-			$("#resultSpan").html('user not found').css('color', 'red');
+			$("#resultSpan").html(result).css('color', 'red');
 		});
 		
 	});
@@ -166,7 +166,7 @@ $(document).ready(function(){
 		var data = $('#deleteUserForm').serialize();
 		console.log(data);
 		$.post(url, data, function(result){
-			$("#resultSpan").html('user not found').css('color', 'red');
+			$("#resultSpan").html(result).css('color', 'red');
 		});
 		
 	});
