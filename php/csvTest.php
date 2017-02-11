@@ -25,18 +25,20 @@
 		header("Pragma: public");
 	    $output = fopen("php://output", "w");
 
-		$q = $conn->prepare('SELECT * From INFORMATION_SCHEMA.COLUMNS Where TABLE_NAME = dbo.UserAccount');
-		$q->execute();
-		$headers = $q->fetchAll(PDO::FETCH_COLUMN);
-		fputcsv($output, $headers);		
-
 		$stmt = $conn->prepare('SELECT * FROM dbo.UserAccount');
 		$stmt->execute();
 		$result = $stmt->fetchAll();
-		foreach($result as $row) {
-			fputcsv($output, $row);
+
+		// first set
+		$first_row = $stmt->fetch(PDO::FETCH_ASSOC);
+		$headers = array_keys($first_row);
+		fputcsv($output, $headers); // put the headers
+		fputcsv($output, array_values($first_row)); // put the first row
+
+		while ($row = $stmt->fetch(PDO::FETCH_NUM))  {
+		fputcsv($output,$row); // push the rest
 		}
-        fclose($output);
+		fclose($output); 
 
 	}
 
