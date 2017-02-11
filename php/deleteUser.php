@@ -16,18 +16,18 @@ $email = $_POST["email"];
 
     if ($conn)
     {
-        // $stmt = $conn->prepare('SELECT FullName FROM dbo.UserAccount WHERE email = :email');
-        // try {
-        //     $stmt->execute(array('email' => $email));
-        //     $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
-        //     $name = $result['FullName'];
-        // } catch (PDOException $e) {
-        //     if ($e->errorInfo[1] == 1054) {
-        //         die(printf("Cannot find user with email '" .$email. "'."));
-        //     } else {
-        //         die(print_r($stmt->errorInfo()));
-        //     }
-        // }
+        $stmt = $conn->prepare('SELECT FullName FROM dbo.UserAccount WHERE email = :email');
+        try {
+            $stmt->execute(array('email' => $email));
+            $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            $name = $result['FullName'];
+        } catch (PDOException $e) {
+            if ($e->errorInfo[1] == 1054) {
+                die(printf("Cannot find user with email '" .$email. "'."));
+            } else {
+                die(print_r($stmt->errorInfo()));
+            }
+        }
         $stmt = $conn->prepare('DELETE FROM dbo.UserAccount WHERE email = :email');
         try {
             $stmt->execute(array('email' => $email));
