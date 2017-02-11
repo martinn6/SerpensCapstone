@@ -160,8 +160,7 @@ $(document).ready(function(){
 		var data = $('#editUserForm').serialize();
 		console.log(data);
 		$.post(url, data, function(result){
-			var resp = json.stingify(result);
-			if (resp.FullName = '') {
+			if (result = '') {
 				$("#resultSpan").html('user not found').css('color', 'red');
 			} 
 		});
@@ -174,7 +173,7 @@ $(document).ready(function(){
 		var data = $('#deleteUserForm').serialize();
 		console.log(data);
 		$.post(url, data, function(result){
-			var resp = json.stingify(result);
+			var resp = $json.stingify(result);
 			if (resp.FullName = '') {
 				$("#resultSpan").html('user not found').css('color', 'red');
 			} 
