@@ -26,6 +26,8 @@
 		header("Expires: 0");
 		header("Pragma: public");
         $output = fopen("php://output", "w");
+		$headers = $stmt->fetchAll(PDO::FETCH_COLUMN);
+		fputcsv($output, $headers);
 		$result = $stmt->fetchAll();
 		foreach($result as $row) {
 			fputcsv($output, $row);
