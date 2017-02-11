@@ -26,11 +26,9 @@
 		header("Expires: 0");
 		header("Pragma: public");
         $output = fopen("php://output", "w");
-		 if(count($stmt) > 0) {
-			foreach($stmt as $row) {
-				fputcsv($output, $row);
-			}
-		}	
+		foreach($stmt as $row) {
+			fputcsv($output, $row);
+		}
         fclose($output);
 
 	}
