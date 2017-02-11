@@ -19,11 +19,11 @@ $email = $_POST["email"];
 		$stmt->execute(array('email' => $email));
     
   
-    $result=$stmt->fetchAll();
+    $result = $stmt->fetchAll();
     echo $result;
     $name = $stmt->FullName();
     $stmt->close();
-
+    echo $name;
     print_r($name);
     }
 ?>
