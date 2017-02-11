@@ -23,7 +23,7 @@ $email = $_POST["email"];
             $name = $result['FullName'];
         } catch (PDOException $e) {
             if ($e->errorInfo[1] == 1054) {
-                die(printf("Cannot find user with email '" .$email. "'.");
+                die(printf("Cannot find user with email '" .$email. "'."));
             } else {
                 die(print_r($stmt->errorInfo()));
             }
