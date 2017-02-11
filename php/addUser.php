@@ -33,4 +33,5 @@ $name = $_POST["FName"] . ' ' . $_POST["LName"];
                 die(print_r($stmt->errorInfo()));
             }
         }    
+    }
 ?>
