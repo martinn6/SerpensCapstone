@@ -18,17 +18,19 @@ $name = $_POST["FName"] . ' ' . $_POST["LName"];
     if ($conn){
         $stmt = $conn->prepare("INSERT INTO dbo.UserAccount(Email,Password,FullName,UserTypeID)
             values(:em,:pw,:fn, (SELECT UserTypeId FROM dbo.UserTypes WHERE UserType=:ty))");
-        $stmt->execute(array(
-            ':em' => $email,
-            ':pw' => $password,
-            ':fn' => $name,
-            ':ty' => 'Admin'
-        )); 
-        if($stmt->errorInfo()){
-            die(print_r($stmt->errorInfo()));
-        } else {
+        try {
+             $stmt->execute(array(
+                ':em' => $email,
+                ':pw' => $password,
+                ':fn' => $name,
+                ':ty' => 'Admin'
+            )); 
             printf("Added '" .$name. "' as an admin user.");
-        }  
-    }
-    
+        } catch (PDOException $e) {
+            if ($e->errorInfo[1] == 1062) {
+                printf("Cannot add '" .$name. "' because the email '" .$email. "' already exists.");
+            } else {
+                die(print_r($stmt->errorInfo()));
+            }
+        }    
 ?>
