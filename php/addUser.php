@@ -15,23 +15,19 @@ $name = $_POST["FName"] . ' ' . $_POST["LName"];
     catch(Exception $e){
         die(print_r($e));
     }
-    if(!($stmt = $conn->prepare("INSERT INTO dbo.UserAccount(Email,Password,FullName,UserTypeID)
-    values(:em,:pw,:fn (SELECT id FROM dbo.UserType WHERE id=Admin))"))){
-        die(print_r($stmt->errorInfo()));
-    } 
-    if(!$stmt->execute(array(
-        ':em' => $email,
-        ':pw' => $password,
-        ':fn' => $name,
-    ))){
-        if($stmt->errorInfo() == 1062){
-        die(printf("Cannot add '" .$name. "' because there is already a user with the email '".$email."'."));
-        } else {
+    if ($conn){
+        $stmt = $conn->prepare("INSERT INTO dbo.UserAccount(Email,Password,FullName,UserTypeID)
+            values(:em,:pw,:fn (SELECT id FROM dbo.UserType WHERE id=Admin))");
+        $stmt->execute(array(
+            ':em' => $email,
+            ':pw' => $password,
+            ':fn' => $name,
+        )); 
+        if($stmt->errorInfo()){
             die(print_r($stmt->errorInfo()));
-        } 
-    } else {
-        printf("Added '" .$user. "' as an admin user.");
-    }  
-    $stmt->close();
+        } else {
+            printf("Added '" .$user. "' as an admin user.");
+        }  
+    }
     
 ?>
