@@ -20,10 +20,8 @@ $email = $_POST["email"];
     
   
     $result = $stmt->fetchAll();
-    echo $result;
-    $name = $result->FullName();
+    $json=json_encode($stmt);
     $stmt->close();
-    echo $name;
-    print_r($name);
+    print_r($stmt);
     }
 ?>
