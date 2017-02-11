@@ -180,14 +180,10 @@ $(document).ready(function(){
 		var data = $('#deleteUserForm').serialize();
 		console.log(data);
 		$.post(url, data, function(result){
-			if (!result) {
+			var resp = json.stingify(result);
+			if (resp.FullName = '') {
 				$("#resultSpan").html('user not found').css('color', 'red');
-			} else {
-				console.log(result);
-				$('#deleteUserForm').each(function(){
-					this.reset();
-				});
-			}
+			} 
 		});
 		
 	});
