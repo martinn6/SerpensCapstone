@@ -20,7 +20,7 @@ $email = $_POST["email"];
         try {
             $stmt->execute(array('email' => $email));
             $results=$stmt->fetch();
-            $name = $result[FullName];
+            $name = $result["FullName"];
         } catch (PDOException $e) {
             if ($e->errorInfo[1] == 1054) {
                 die(printf("Cannot find user with email '" .$email. "'."));
