@@ -26,7 +26,8 @@
 		header("Expires: 0");
 		header("Pragma: public");
         $output = fopen("php://output", "w");
-		foreach($stmt as $row) {
+		$result = $stmt->fetchAll();
+		foreach($result as $row) {
 			fputcsv($output, $row);
 		}
         fclose($output);

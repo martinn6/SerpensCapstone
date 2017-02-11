@@ -13,22 +13,17 @@ $email = $_POST["email"];
     catch(Exception $e){
         die(print_r($e));
     }
-    if(!($stmt = $conn->prepare('SELECT name FROM dbo.UserAccount WHERE email = ?'))){
-        die(print_r($stmt->errorInfo()));
-    }
+    if ($conn)
+    {
+        $stmt = $conn->prepare('SELECT name FROM dbo.UserAccount WHERE email = :email');
+		$stmt->execute(array('email' => $email));
     
-    if(!($stmt->bindParam(1, $email, PDO::PARAM_STR, 50))){
-        die(print_r($stmt->errorInfo()));
-    } 
-
-    if(!$stmt->execute()){
-       die(print_r($stmt->errorInfo()));
-    } 
-
+  
+    $result=$stmt->fetchAll();
+    echo $result;
     $name = $stmt->FullName();
-    
-    $stmt->fetch();
     $stmt->close();
 
     print_r($name);
+    }
 ?>
