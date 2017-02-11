@@ -18,8 +18,7 @@ $email = $_POST["email"];
         $stmt = $conn->prepare('SELECT FullName FROM dbo.UserAccount WHERE email = :email');
 		$stmt->execute(array('email' => $email));
     
-  
-    $result = $stmt->fetch();
-    print_r($result);
+        $result = $stmt->fetchAll();
+        print_r($result);
     }
 ?>
