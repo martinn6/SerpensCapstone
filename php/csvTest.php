@@ -23,11 +23,13 @@
 		header("Content-Disposition: attachment; filename={$file_name}");
 		header("Expires: 0");
 		header("Pragma: public");
-		$q = $conn->prepare('SELECT * From INFORMATION_SCHEMA.COLUMNS Where TABLE_NAME = UserAccount');
+	    $output = fopen("php://output", "w");
+
+		$q = $conn->prepare('SELECT * From INFORMATION_SCHEMA.COLUMNS Where TABLE_NAME = dbo.UserAccount');
 		$q->execute();
 		$headers = $q->fetchAll(PDO::FETCH_COLUMN);
 		fputcsv($output, $headers);		
-        $output = fopen("php://output", "w");
+
 		$stmt = $conn->prepare('SELECT * FROM dbo.UserAccount');
 		$stmt->execute();
 		$result = $stmt->fetchAll();
