@@ -139,17 +139,12 @@ $(document).ready(function(){
 		$('#newPassword2').attr('disabled', true);
 		var url = "../php/addUser.php";
 		var data = $('#addUserForm').serialize();
-		console.log(data);
 		$.post(url, data, function(result){
-			if (!result) {
-				$("#resultSpan").html('database error').css('color', 'red');
-			} else {
-				console.log(result);
-				$('#newPassword2').attr('disabled', false)
-				$("#addUserForm").each(function(){
-					this.reset();
-				});
-			}
+			$("#resultSpan").html(result).css('color', 'red');
+			$('#newPassword2').attr('disabled', false)
+			$("#addUserForm").each(function(){
+				this.reset();
+			});
 		});
 		
 	});
