@@ -33,10 +33,10 @@ $email = $_POST["email"];
         $stmt = $conn->prepare('DELETE FROM dbo.UserAccount WHERE email = :email');
         try {
             $stmt->execute(array('email' => $email));
-            printf("Deleted '" .$email. "' from the database. ");
+            printf("Deleted '" .$name. "' from the database. ");
         } catch (PDOException $e) {
             if ($e->errorInfo[1] == 1054) {
-                die(printf("Cannot find user with email '" .$name. "'."));
+                die(printf("Cannot find user with email '" .$email. "'."));
             } else {
                 die(print_r($stmt->errorInfo()));
             }
