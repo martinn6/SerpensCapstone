@@ -19,7 +19,7 @@ $email = $_POST["email"];
         $stmt = $conn->prepare('SELECT FullName FROM dbo.UserAccount WHERE email = :email');
         try {
             $stmt->execute(array('email' => $email));
-            while ( $result = $stmt->fetch(PDO::FETCH_ASSOC); ) 
+            while ( $result = $stmt->fetch(PDO::FETCH_ASSOC) ) 
             {
                 $name = $result['FullName'];
             }
