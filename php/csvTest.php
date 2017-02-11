@@ -1,4 +1,6 @@
 <?php
+	$table = $_GET['table'];
+	$file_name = $_GET['filename'];
 
 	// DB connection info
 	$host = "cs496osusql.database.windows.net";
@@ -14,11 +16,8 @@
 	
 	if($conn)
 	{
-		$stmt = $conn->prepare('SELECT * FROM ?');
-		$stmt->bindParam(1, $_GET['table'], PDO::PARAM_STR, 25);
-		$stmt->execute();
-		$awards = $stmt->fetchAll();
-		$file_name = $_GET['filename'];
+		$stmt = $conn->prepare('SELECT * FROM :table');
+		$stmt->execute(array('table' => $table)));
 		header("Last-Modified: " . gmdate("D, d M Y H:i:s",$_GET['timestamp']) . " GMT");
 		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 		header('Content-Description: File Transfer');
@@ -27,9 +26,9 @@
 		header("Expires: 0");
 		header("Pragma: public");
         $output = fopen("php://output", "w");
-		 if(count($awards) > 0) {
-			foreach($awards as $award) {
-				fputcsv($output, $award);
+		 if(count($stmt) > 0) {
+			foreach($stmt as $row) {
+				fputcsv($output, $row);
 			}
 		}	
         fclose($output);
