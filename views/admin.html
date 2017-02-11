@@ -160,16 +160,10 @@ $(document).ready(function(){
 		var data = $('#editUserForm').serialize();
 		console.log(data);
 		$.post(url, data, function(result){
-
-			if (!result) {
-				console.log(result);
-				$("#resultSpan").html(result).css('color', 'red');
-			} else {
-				console.log(result);
-				$("#resultSpan").html(result).css('color', 'red');
-				$('#editUserForm').each(function(){
-				});
-			}
+			var resp = json.stingify(result);
+			if (resp.FullName = '') {
+				$("#resultSpan").html('user not found').css('color', 'red');
+			} 
 		});
 		
 	});
