@@ -16,9 +16,8 @@
 	
 	if($conn)
 	{
-		$stmt = $conn->prepare('SELECT * FROM dbo.UserAccount');
-		$stmt->execute();
-		// $stmt->execute(array('table' => $table));
+		$stmt = $conn->prepare('SELECT * FROM :table');
+		$stmt->execute('table' => $table);
 		header("Last-Modified: " . gmdate("D, d M Y H:i:s",$_GET['timestamp']) . " GMT");
 		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 		header('Content-Description: File Transfer');
