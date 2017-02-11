@@ -18,10 +18,9 @@ $email = $_POST["email"];
         $stmt = $conn->prepare('SELECT FullName FROM dbo.UserAccount WHERE email = :email');
         try {
             $stmt->execute(array('email' => $email));
-            $results=$stmt->fetch();
-            // $name = $result["FullName"];
-            // print_r($name);
-            print_r($results);
+            $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+            $name = $result["FullName"];
+            print_r($name);
         } catch (PDOException $e) {
             if ($e->errorInfo[1] == 1054) {
                 printf("Cannot find user with email '" .$email. "'.");
