@@ -16,13 +16,14 @@ $email = $_POST["email"];
 
     if ($conn)
     {
-        $stmt = $conn->prepare('SELECT FullName FROM dbo.UserAccount WHERE email = :email');
+
         try {
+            $stmt = $conn->prepare('SELECT FullName FROM dbo.UserAccount WHERE email = :email');
             $stmt->execute(array('email' => $email));
-            while ( $result = $stmt->fetch(PDO::FETCH_ASSOC) ) 
-            {
-                $name = $result['FullName'];
-            }
+            // while ( $result = $stmt->fetch(PDO::FETCH_ASSOC) ) 
+            // {
+            //     $name = $result['FullName'];
+            // }
         } catch (PDOException $e) {
             if ($e->errorInfo[1] == 1054) {
                 die(printf("Cannot find user with email '" .$email. "'."));
@@ -30,10 +31,11 @@ $email = $_POST["email"];
                 die(print_r($stmt->errorInfo()));
             }
         }
-        $stmt = $conn->prepare('DELETE FROM dbo.UserAccount WHERE email = :email');
+        
         try {
+            $stmt = $conn->prepare('DELETE FROM dbo.UserAccount WHERE email = :email');
             $stmt->execute(array('email' => $email));
-            printf("Deleted '" .$name. "' from the database. ");
+            printf("Deleted '" .$email. "' from the database. ");
         } catch (PDOException $e) {
             if ($e->errorInfo[1] == 1054) {
                 die(printf("Cannot find user with email '" .$email. "'."));
