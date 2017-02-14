@@ -24,9 +24,9 @@
 		header("Expires: 0");
 		header("Pragma: public");		
         $output = fopen("php://output", "w");
-		$hd = $conn->prepare('exec sp_columns dbo.UserAccount');
+		$hd = $conn->prepare('DESC dbo.UserAccount');
 		$hd->execute();
-		$headers = $hd->fetchAll(PDO::FETCH_COLUMN);
+		$headers = $hd->fetchAll(PDO::FETCH_ASSOC);
 		fputcsv($output, $headers);
 		$stmt = $conn->prepare('SELECT * FROM dbo.UserAccount');
 		$stmt->execute();
