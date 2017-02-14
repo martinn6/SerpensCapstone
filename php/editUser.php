@@ -33,6 +33,6 @@ $email = $_POST["email"];
                 die(print_r($stmt->errorInfo()));
             }
         }
-        printf($name);
+        print_r('email'=>$email,'name'=>$name,'result'+>$result);
     }
 ?>
