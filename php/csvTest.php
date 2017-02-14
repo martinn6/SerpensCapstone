@@ -29,7 +29,8 @@
 		$stmt->execute();
 		$headers = $stmt->fetchAll(PDO::FETCH_COLUMN);
 		fputcsv($output, $headers);
-		$result = $stmt->fetchAll();
+		$stmt->execute();
+		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		foreach($result as $row) {
 			fputcsv($output, $row);
 		}
