@@ -27,7 +27,7 @@
 
 		$stmt = $conn->prepare('SELECT * FROM dbo.UserAccount');
 		$stmt->execute();
-		$headers = $stmt->fetchAll(PDO::FETCH_COLUMN);
+		$headers = $stmt->fetchAll(PDO::FETCH_COLUMN|PDO::FETCH_GROUP);
 		fputcsv($output, $headers);
 		$stmt->execute();
 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
