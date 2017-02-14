@@ -21,7 +21,7 @@ $email = $_POST["email"];
         if ($total == 0) {
             die(printf("Cannot find user with email '" .$email. "'."));
         }
-        $stmt = $conn->prepare('SELECT FullName FROM dbo.UserAccount WHERE email = :email');
+        $stmt = $conn->prepare('SELECT FullName,Email FROM dbo.UserAccount WHERE Email = :email');
         try {
             $stmt->execute(array('email' => $email));
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -33,7 +33,8 @@ $email = $_POST["email"];
                 die(print_r($stmt->errorInfo()));
             }
         }
-        $ret = array('email'=>$email,'name'=>$name,'result'=>$result);
+        $ret = array('email'=>$email,'name'=>$name);
         print_r($ret);
+        print_r(json_encode($result));
     }
 ?>
