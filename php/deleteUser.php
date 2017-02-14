@@ -28,11 +28,7 @@ $email = $_POST["email"];
             $stmt = $conn->prepare('DELETE FROM dbo.UserAccount WHERE email = :email');
             $stmt->execute(array('email' => $email));
         } catch (PDOException $e) {
-            if ($e->errorInfo[1] == 1054) {
-                die(printf("Cannot find user with email '" .$email. "'."));
-            } else {
-                die(print_r($stmt->errorInfo()));
-            }
+            die(print_r($stmt->errorInfo()));
         }
         printf("Deleted '" .$email. "' from the database. ");
     }
