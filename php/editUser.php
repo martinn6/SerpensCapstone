@@ -33,5 +33,6 @@ $email = $_POST["email"];
                 die(print_r($stmt->errorInfo()));
             }
         }
+        printf($name);
     }
 ?>
