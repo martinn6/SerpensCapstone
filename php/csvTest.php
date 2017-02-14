@@ -24,11 +24,11 @@
 		header("Expires: 0");
 		header("Pragma: public");		
         $output = fopen("php://output", "w");
-
-		$stmt = $conn->prepare('SELECT * FROM dbo.UserAccount');
-		$stmt->execute();
-		$headers = $stmt->fetchAll(PDO::FETCH_COLUMN|PDO::FETCH_GROUP);
+		$hd = $conn->prepare('exec sp_columns dbo.UserAccount');
+		$hd->execute();
+		$headers = $stmt->fetchAll(PDO::FETCH_COLUMN);
 		fputcsv($output, $headers);
+		$stmt = $conn->prepare('SELECT * FROM dbo.UserAccount');
 		$stmt->execute();
 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		foreach($result as $row) {
