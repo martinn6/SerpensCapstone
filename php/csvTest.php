@@ -26,7 +26,7 @@
         $output = fopen("php://output", "w");
 		$hd = $conn->prepare('exec sp_columns dbo.UserAccount');
 		$hd->execute();
-		$headers = $stmt->fetchAll(PDO::FETCH_COLUMN);
+		$headers = $hd->fetchAll(PDO::FETCH_COLUMN);
 		fputcsv($output, $headers);
 		$stmt = $conn->prepare('SELECT * FROM dbo.UserAccount');
 		$stmt->execute();
