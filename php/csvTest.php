@@ -24,7 +24,7 @@
 		header("Expires: 0");
 		header("Pragma: public");		
         $output = fopen("php://output", "w");
-		$hd = $conn->prepare('EXEC sp_help dbo.UserAccount');
+		$hd = $conn->prepare('SHOW columns from dbo.UserAccount');
 		$hd->execute();
 		$headers = $hd->fetchAll(PDO::FETCH_ASSOC);
 		fputcsv($output, $headers);
