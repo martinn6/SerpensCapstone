@@ -138,7 +138,7 @@ function checkName() {
 }
 	
 $(document).ready(function(){
-	$("#resultSpan").html('').css('color', 'red');
+	
 	$("#newEmail").keyup(function() {
 		checkEmail($(this));	
 	});
@@ -160,6 +160,7 @@ $(document).ready(function(){
 	
 	
 	$("#addBtn").click(function(e){
+		$("#resultSpan").html('').css('color', 'red');
 		e.preventDefault();
 		$('#ConfirmPassword').attr('disabled', true);
 		var url = "../php/addUser.php";
@@ -175,6 +176,7 @@ $(document).ready(function(){
 	});
 	
 	$("#editBtn").click(function(e){
+		$("#resultSpan").html('').css('color', 'red');
 		e.preventDefault();
 		var url = "../php/editUser.php";
 		var data = $('#editUserForm').serialize();
@@ -186,14 +188,17 @@ $(document).ready(function(){
 	});
 	
 	$("#deleteBtn").click(function(e){
+		$("#resultSpan").html('').css('color', 'red');
 		e.preventDefault();
 		var url = "../php/deleteUser.php";
 		var data = $('#deleteUserForm').serialize();
 		console.log(data);
 		$.post(url, data, function(result){
+			$("#resultSpan").html(result).css('color', 'green');
+		})
+		.fail(function() {
 			$("#resultSpan").html(result).css('color', 'red');
 		});
-		
 	});
 	
 });
