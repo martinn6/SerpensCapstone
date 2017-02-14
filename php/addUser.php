@@ -18,8 +18,8 @@ $name = $_POST["FName"] . ' ' . $_POST["LName"];
     if ($conn){
         $stm = $conn->prepare("SELECT COUNT(*) FROM dbo.UserAccount WHERE Email = :em");
         $stm->execute(array(':em' => $email));
-        $result = $stm->fetchObject();
-        if ($result->total > 0) {
+        $total = $query->fetch(PDO::FETCH_NUM);
+        if ($total > 0) {
             die(printf("Cannot add '" .$name. "' because the email '" .$email. "' already exists."));
         }
         $stmt = $conn->prepare("INSERT INTO dbo.UserAccount(Email,Password,FullName,UserTypeID)
