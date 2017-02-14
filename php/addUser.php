@@ -29,13 +29,13 @@ $name = $_POST["FName"] . ' ' . $_POST["LName"];
                 ':fn' => $name,
                 ':ty' => 'Admin'
             )); 
-            printf("Added '" .$name. "' as an admin user.");
         } catch (PDOException $e) {
             if ($e->errorInfo[1] == 1062) {
                 printf("Cannot add '" .$name. "' because the email '" .$email. "' already exists.");
             } else {
                 die(print_r($stmt->errorInfo()));
             }
-        }    
+        }
+        printf("Added '" .$name. "' as an admin user.");
     }
 ?>
