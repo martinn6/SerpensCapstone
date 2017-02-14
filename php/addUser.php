@@ -16,10 +16,14 @@ $name = $_POST["FName"] . ' ' . $_POST["LName"];
         die(print_r($e));
     }
     if ($conn){
-        $stmt = $conn->prepare("INSERT INTO dbo.UserAccount(Email,Password,FullName,UserTypeID)
-            values(:em,:pw,:fn, (SELECT UserTypeId FROM dbo.UserTypes WHERE UserType=:ty))");
+        $stmt = $conn->prepare("IF NOT EXISTS (SELECT * FROM dbo.UserAccount WHERE Email = :xe)
+        BEGIN
+        INSERT INTO dbo.UserAccount(Email,Password,FullName,UserTypeID)
+            values(:em,:pw,:fn, (SELECT UserTypeId FROM dbo.UserTypes WHERE UserType=:ty))
+        END");
         try {
              $stmt->execute(array(
+                ':xe' => $email,
                 ':em' => $email,
                 ':pw' => $password,
                 ':fn' => $name,
