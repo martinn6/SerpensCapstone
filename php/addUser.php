@@ -31,7 +31,7 @@ $name = $_POST["FName"] . ' ' . $_POST["LName"];
             )); 
         } catch (PDOException $e) {
             if ($e->errorInfo[1] == 1062) {
-                printf("Cannot add '" .$name. "' because the email '" .$email. "' already exists.");
+                die(printf("Cannot add '" .$name. "' because the email '" .$email. "' already exists."));
             } else {
                 die(print_r($stmt->errorInfo()));
             }
