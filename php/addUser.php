@@ -16,19 +16,16 @@ $name = $_POST["FName"] . ' ' . $_POST["LName"];
         die(print_r($e));
     }
     if ($conn){
-        $stmt = $conn->prepare("DECLARE @err nvarchar(255)
-        IF NOT EXISTS (SELECT * FROM dbo.UserAccount WHERE Email = :xe)
-        BEGIN
-        INSERT INTO dbo.UserAccount(Email,Password,FullName,UserTypeID)
-            values(:em,:pw,:fn, (SELECT UserTypeId FROM dbo.UserTypes WHERE UserType=:ty))
-        END
-        ELSE
-        BEGIN
-        SET @err = "already exists"
-        END");
+        $stm = $conn->prepare("SELECT * FROM dbo.UserAccount WHERE Email = :em");
+        $stm->execute(array(':em' => $email));
+        $result = $stm->fetchObject();
+        if ($result->total > 0) {
+            die(printf("Cannot add '" .$name. "' because the email '" .$email. "' already exists."));
+        }
+        $stmt = $conn->prepare("INSERT INTO dbo.UserAccount(Email,Password,FullName,UserTypeID)
+            values(:em,:pw,:fn, (SELECT UserTypeId FROM dbo.UserTypes WHERE UserType=:ty))");
         try {
              $stmt->execute(array(
-                ':xe' => $email,
                 ':em' => $email,
                 ':pw' => $password,
                 ':fn' => $name,
