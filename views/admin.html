@@ -161,12 +161,12 @@ $(document).ready(function(){
 	
 	$("#addBtn").click(function(e){
 		e.preventDefault();
-		$('#newPassword2').attr('disabled', true);
+		$('#ConfirmPassword').attr('disabled', true);
 		var url = "../php/addUser.php";
 		var data = $('#addUserForm').serialize();
 		$.post(url, data, function(result){
 			$("#resultSpan").html(result).css('color', 'red');
-			$('#newPassword2').attr('disabled', false)
+			$('#ConfirmPassword').attr('disabled', false)
 			$("#addUserForm").each(function(){
 				this.reset();
 			});
