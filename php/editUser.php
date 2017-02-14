@@ -15,6 +15,12 @@ $email = $_POST["email"];
     }
     if ($conn)
     {
+        $stm = $conn->prepare("SELECT COUNT(*) FROM dbo.UserAccount WHERE Email = :em");
+        $stm->execute(array(':em' => $email));
+        $total = $stm->fetch(PDO::FETCH_NUM);
+        if ($total = 0) {
+            die(printf("Cannot find user with email '" .$email. "'."));
+        }
         $stmt = $conn->prepare('SELECT FullName FROM dbo.UserAccount WHERE email = :email');
         try {
             $stmt->execute(array('email' => $email));
