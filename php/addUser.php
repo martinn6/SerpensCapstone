@@ -1,7 +1,7 @@
 <?php
 
 $email = $_POST["email"];
-$password = $_POST["password"];
+$password = $_POST["NewPassword"];
 $name = $_POST["FName"] . ' ' . $_POST["LName"];
 
     // DB connection info
