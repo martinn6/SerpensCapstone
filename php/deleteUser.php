@@ -20,6 +20,7 @@ $email = $_POST["email"];
         $stm = $conn->prepare("SELECT COUNT(*) FROM dbo.UserAccount WHERE Email = :em");
         $stm->execute(array(':em' => $email));
         $total = $stm->fetch(PDO::FETCH_NUM);
+        echo $total;
         if ($total == 0) {
             die(printf("Cannot find user with email '" .$email. "'."));
         }
