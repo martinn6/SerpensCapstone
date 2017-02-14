@@ -16,7 +16,7 @@ $name = $_POST["FName"] . ' ' . $_POST["LName"];
         die(print_r($e));
     }
     if ($conn){
-        $stm = $conn->prepare("SELECT * FROM dbo.UserAccount WHERE Email = :em");
+        $stm = $conn->prepare("SELECT COUNT(*) FROM dbo.UserAccount WHERE Email = :em");
         $stm->execute(array(':em' => $email));
         $result = $stm->fetchObject();
         if ($result->total > 0) {
