@@ -20,6 +20,7 @@ $name = $_POST["FName"] . ' ' . $_POST["LName"];
         $stm->execute(array(':em' => $email));
         $total = $stm->fetch(PDO::FETCH_NUM);
         if ($total > 0) {
+            print_r($total);
             die(printf("Cannot add '" .$name. "' because the email '" .$email. "' already exists."));
         }
         $stmt = $conn->prepare("INSERT INTO dbo.UserAccount(Email,Password,FullName,UserTypeID)
