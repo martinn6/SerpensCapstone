@@ -16,5 +16,6 @@ if(!empty($_POST)){
             header("Location : ../admin/adminLogin.php"); 
 			die();
         }
-} 
+    } 
+}
 ?>
