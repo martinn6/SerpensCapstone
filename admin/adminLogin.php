@@ -2,7 +2,7 @@
 if(!session_status() == PHP_SESSION_NONE){
 	header("Location: admin.php"); 
 	die();
-} 
+}
 ?>
 <html lang="en">
 <head>
