@@ -83,7 +83,7 @@ $(document).ready(function(){
 		var data = {email: email, password: password}
 		$.post(url, data, function(result){
 			console.log(result);
-			$('#error_msg').toggle().append(result);
+			$('#error_msg').toggle().html(result);
 		});
 		
 	});
