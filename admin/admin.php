@@ -5,6 +5,8 @@ if(empty($_SESSION['admin'])){
 	header("Location: adminLogin.php"); 
 	die();
 } 
+require '../php/getName.php';
+
 ?>
 
 <html lang="en">
@@ -210,7 +212,7 @@ $(document).ready(function(){
 <div class="container">
 	<div class="row">
 		<section class="col-xs-offset-2 col-xs-8">
-			<h1 class="text-center">Admin Page</h1>
+			<h1 class="text-center"><<?php echo $user; ?>Admin Page</h1>
 		</section>
 	</div>
     <div class="row">
