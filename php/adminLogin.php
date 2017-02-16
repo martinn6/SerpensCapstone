@@ -21,7 +21,9 @@ if(!empty($_POST)){
 			// if(md5($_POST['password']) === $row['Password']){
 			// 	$cred_match = true;
 			// }
-		}
+		} else {
+            echo "cannot find email";
+        }
 		
 		if ($cred_match){
 			$_SESSION['admin'] = $row;
