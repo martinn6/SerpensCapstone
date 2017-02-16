@@ -16,6 +16,7 @@ if (isset($_POST['email'])){
 
 		if($row){
 			if($_POST['password'] === $row['Password']){
+				echo "match";
 				$cred_match = true;
 			} else {
 				echo " no match";
@@ -27,7 +28,7 @@ if (isset($_POST['email'])){
 		
 		if ($cred_match){
 			$_SESSION['admin'] = $row;
-			header("Location: admin.php"); 
+			header("Location : admin.php"); 
 			die();
 		} else {
 			$form_email = htmlentities($_POST['email']);
