@@ -53,11 +53,11 @@ if (isset($_POST['submit'])){
 			$query = "INSERT INTO dbo.UserAccount (UserTypeId, Email, FullName, Password, SignatureURL) "
                 . "VALUES (:UserTypeId, :Email, :FullName, :Password, :SignatureURL)";
 			$query_params = array(
-				':UserTypeId' = 1, 
-				':Email' = $_POST['email'], 
-				':FullName' = $_POST['fname'], 
-				':Password' = $password, 
-				':SignatureURL' = $signature_path
+				':UserTypeId' => 1, 
+				':Email' => $_POST['email'], 
+				':FullName' => $_POST['fname'], 
+				':Password' => $password, 
+				':SignatureURL' => $signature_path
 			);
 			$stmt = $conn->prepare($query);
 			$stmt->execute($query_params) or die();
