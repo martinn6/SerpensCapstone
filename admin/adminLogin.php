@@ -1,5 +1,6 @@
 <?php
-if(!session_status() == PHP_SESSION_NONE){
+
+if(isset($_SESSION['admin'])){
 	header("Location: admin.php"); 
 	die();
 }

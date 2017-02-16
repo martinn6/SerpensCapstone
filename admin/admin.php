@@ -1,6 +1,5 @@
 <?php 
-session_start();
-if(isset($_SESSION['admin'])){
+if(!isset($_SESSION['admin'])){
 	header("Location: ../php/adminLogout.php"); 
 	die();
 } 
