@@ -23,7 +23,7 @@ if (isset($_POST['submit'])){
 		}
 		
 		if ($cred_match){
-			$_SESSION['user'] = $row;
+			$_SESSION['admin'] = $row;
 			header("Location: admin.php"); 
 			die();
 		} else {
@@ -31,6 +31,8 @@ if (isset($_POST['submit'])){
 			$err_msg = "<div class='alert alert-danger'>Email/Password does not match. Try again.</div>";
 		}
 	}
+} else {
+	echo "fail!";
 }
 ?>
 
@@ -111,7 +113,9 @@ $(document).ready(function(){
 		$("#resultSpan").html('').css('color', 'red');
 		e.preventDefault();
 		var url = "adminLogin.php";
-		var data = $('#loginForm').serialize();
+		var password = md5($('#adminPassword').val());
+		var email = $('#adminEmail').val();
+		var data = {email: email, password: password}
 		console.log(data);
 		$.post(url, data, function(result){
 			console.log(result);
@@ -156,7 +160,7 @@ $(document).ready(function(){
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" id="submitBtn"
+							<button type="submit" id="submitBtn" disabled
 							class="btn btn-default">Sign in</button>
 						</div>
 					</div>
@@ -170,10 +174,5 @@ $(document).ready(function(){
 		</section>
 	</div> 
 </div>
-
-
-<script src="../js/jquery-2.1.4.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/script.js"></script>
 </body>
 </html>
