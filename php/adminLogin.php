@@ -13,16 +13,16 @@ if(!empty($_POST)){
 		$row = $stmt->fetch();
 
 		if($row){
-			if($_POST['password'] === $row['Password']){
+            if(md5($_POST['password']) === $row['Password']){
+				$cred_match = true;
+			} else if($_POST['password'] === $row['Password']){
 				$cred_match = true;
 			}
-			// if(md5($_POST['password']) === $row['Password']){
-			// 	$cred_match = true;
-			// }
+			
 		}
 		
 		if ($cred_match){
-            // session_start();
+            session_start();
             $_SERVER['admin'] = $row;
 			$_SESSION['email'] = $row['Email'];
 			$_SESSION['user']  = $row['FullName'];
