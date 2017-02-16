@@ -110,7 +110,7 @@ function checkPasswordMatch() {
 		$('#new_password_message').html('');
 		$('#confirm_password_message').html('');
 // 		$('#addBtn').prop('disabled', false);
-		return = true;
+		return true;
 	}
 		
 // 	return button;
