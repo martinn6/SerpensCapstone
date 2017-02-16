@@ -194,17 +194,18 @@ $(document).ready(function(){
 		}
 	});
 	$("#addBtn").click(function(e){
-		$("#resultSpan").html('').css('color', 'red');
+		$("#resultSpan").html('');
 		e.preventDefault();
-		$('#ConfirmPassword').attr('disabled', true);
-		var url = "../php/addUser.php";
-		var data = $('#addUserForm').serialize();
+		var url = "../php/editUser.php";
+		var email = $('#editEmail').val();
+		var data = {email: email}
 		$.post(url, data, function(result){
-			$("#resultSpan").html(result).css('color', 'red');
-			$('#ConfirmPassword').attr('disabled', false)
-			$("#addUserForm").each(function(){
-				this.reset();
-			});
+			console.log(result);
+			if(!result){
+				window.location.href="editUser.php";
+			} else {
+				$('#error_msg').html(result).prop('hidden', false);	
+			}
 		});
 		
 	});
@@ -238,17 +239,20 @@ $(document).ready(function(){
 // 	});
 	
 	$("#deleteBtn").click(function(e){
-		$("#resultSpan").html('').css('color', 'red');
+		$("#resultSpan").html('');
 		e.preventDefault();
-		var url = "../php/deleteUser.php";
-		var data = $('#deleteUserForm').serialize();
-		console.log(data);
+		var url = "../php/editUser.php";
+		var email = $('#deleteEmail').val();
+		var data = {email: email}
 		$.post(url, data, function(result){
-			$("#resultSpan").html(result).css('color', 'green');
-		})
-		.fail(function() {
-			$("#resultSpan").html(result).css('color', 'red');
+			console.log(result);
+			if(!result){
+				window.location.href="adminLogout.php";
+			} else {
+				$('#error_msg').html(result).prop('hidden', false);	
+			}
 		});
+		
 	});
 	
 });
