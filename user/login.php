@@ -5,7 +5,7 @@ $form_email = '';
 $err_msg = '';
 $cred_match = false;
 
-if (isset($_POST['submit']){
+if (isset($_POST['submit'])){
 	if ($conn){
 		$query = "SELECT * FROM dbo.UserAccount WHERE Email = :Email";
 		$query_params = array(':Email' => $_POST['email']);
