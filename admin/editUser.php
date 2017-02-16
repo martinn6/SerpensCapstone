@@ -156,7 +156,7 @@ $(document).ready(function () {
 		});
 	});
 	
-	$("#email-btn").click(function(e){
+	$("#name-btn").click(function(e){
 		$("#resultSpan").html('');
 		e.preventDefault();
 		var url = "../php/editName.php";
@@ -332,7 +332,7 @@ $(document).ready(function () {
 	</section>
 	<div class="row">
 		<section class="col-xs-offset-5 col-xs-2">
-			<a href="admin.html" role="button" class="btn btn-primary">Return to Admin</a>
+			<a href="admin.php" role="button" class="btn btn-primary">Return to Admin</a>
 		</section>
 	</div>
 </div>
