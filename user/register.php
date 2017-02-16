@@ -30,7 +30,7 @@ if (isset($_POST['submit'])){
 		$err_msg[] = 'Please confirm your password.';
 	}
 	
-	if ((!empty($_POST['password']) && !empty($_POST['password-confirm'])) {
+	if (!empty($_POST['password']) && !empty($_POST['password-confirm'])) {
 		if ($_POST['password'] !== $_POST['password-confirm']) {
 			$err_msg[] = 'Passwords do not match. Re-enter passwords.';
 		}
