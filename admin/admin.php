@@ -202,18 +202,34 @@ $(document).ready(function(){
 		});
 		
 	});
-	
 	$("#editBtn").click(function(e){
-		$("#resultSpan").html('').css('color', 'red');
+		$("#resultSpan").html('');
 		e.preventDefault();
 		var url = "../php/editUser.php";
-		var data = $('#editUserForm').serialize();
-		console.log(data);
+		var email = $('#editEmail').val();
+		var data = {email: email}
 		$.post(url, data, function(result){
-			$("#resultSpan").html(result).css('color', 'red');
+			console.log(result);
+			if(!result){
+				window.location.href="editUser.php";
+			} else {
+				$('#error_msg').html(result).prop('hidden', false);	
+			}
 		});
 		
 	});
+	
+// 	$("#editBtn").click(function(e){
+// 		$("#resultSpan").html('').css('color', 'red');
+// 		e.preventDefault();
+// 		var url = "../php/editUser.php";
+// 		var data = $('#editUserForm').serialize();
+// 		console.log(data);
+// 		$.post(url, data, function(result){
+// 			$("#resultSpan").html(result).css('color', 'red');
+// 		});
+		
+// 	});
 	
 	$("#deleteBtn").click(function(e){
 		$("#resultSpan").html('').css('color', 'red');
