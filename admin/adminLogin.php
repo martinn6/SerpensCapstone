@@ -113,7 +113,7 @@ $(document).ready(function(){
 		$("#resultSpan").html('').css('color', 'red');
 		e.preventDefault();
 		var url = "adminLogin.php";
-		var password = ($('#adminPassword').val();
+		var password = $('#adminPassword').val();
 		var email = $('#adminEmail').val();
 		var data = {email: email, password: password}
 		console.log(data);
