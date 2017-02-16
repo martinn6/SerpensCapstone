@@ -408,7 +408,7 @@ $(document).ready(function(){
 					</div>
 					<div id="reports" class="panel-collapse collapse">
 						<div class="panel-body">
-							<a href="BIReports.html" role="button" class="btn btn-primary">view BI Reports</a>
+							<a href="BIReports.php" role="button" class="btn btn-primary">view BI Reports</a>
 						</div>
 					</div>
 				</div>
