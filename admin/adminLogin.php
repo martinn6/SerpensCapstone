@@ -2,10 +2,9 @@
 if(!session_status() == PHP_SESSION_NONE){
 	header("Location: admin.php"); 
 	die();
-	require 'connect.php';
 }
 
-require 'connect.php';
+require '../php/connect.php';
 
 $cred_match = false;
 
