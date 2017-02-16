@@ -1,8 +1,17 @@
 
 <?php
 
-$version = 'v1.9';
-$awardId = htmlspecialchars($_POST["awardId"]);
+$version = 'v2.0';
+
+if (!empty($_POST)
+{
+	$awardId = 0;
+}
+else
+{
+	$awardId = $_POST["awardId"];
+}
+
 $awardedName = "         ";
 
 require_once( "fpdf/fpdf.php" );
