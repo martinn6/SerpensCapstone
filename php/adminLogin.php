@@ -13,7 +13,6 @@ if(!empty($_POST)){
 		$row = $stmt->fetch();
 
 		if($row){
-            // echo $row['Password'];
 			if($_POST['password'] === $row['Password']){
 				$err_msg = "match";
 				$cred_match = true;
