@@ -1,6 +1,6 @@
 <?php 
 if(empty($_SESSION['admin'])){
-	header("Location: adminLogin.php"); 
+	header("Location: ../php/adminLogout.php"); 
 	die();
 } 
 require '../php/getName.php';
