@@ -86,11 +86,11 @@ $(document).ready(function(){
 		var email = $('#adminEmail').val();
 		var data = {email: email, password: password}
 		$.post(url, data, function(result){
-			if (result) {
-            window.location.href="admin.php";
-        } else {
-			console.log(result);
-			$('#error_msg').html(result).prop('hidden', false);
+			if (!result) {
+				console.log(result);
+				$('#error_msg').html(result).prop('hidden', false);
+        	} else {
+				window.location.href="admin.php";
 			}
 			
 		});
