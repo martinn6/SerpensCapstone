@@ -7,7 +7,7 @@ if(!isset($_SESSION['admin'])){
 	die();
 } 
 if(!isset($_SESSION['editUserEmail']) || !isset($_SESSION['editUserName'])){
-	header("Location: ../php/admin.php"); 
+	header("Location: admin.php"); 
 	die();
 } 
 $user = $_SESSION['user'];
