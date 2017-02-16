@@ -83,7 +83,7 @@ $(document).ready(function(){
 		var data = {email: email, password: password}
 		$.post(url, data, function(result){
 			console.log(result);
-			$('#result').toggle().append(result);
+			$('#error_msg').toggle().append(result);
 		});
 		
 	});
@@ -105,7 +105,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 </nav>
-<div class='alert alert-danger' id="response" hidden></div>;
+<div class='alert alert-danger' id="error_msg" hidden></div>;
 <div class="container">
 	<div class="row">
 		<section class="col-xs-offset-3 col-xs-6">
