@@ -1,7 +1,7 @@
 
 <?php
 
-$version = 'v1.5';
+$version = 'v1.6';
 
 require_once( "fpdf/fpdf.php" );
 $pdf = new FPDF( 'L', 'mm', 'Letter' );
@@ -9,8 +9,8 @@ $pdf->AddPage();
 $pdf->Image( "images/AwardBackground.png", 0, 0, 280 );
 $pdf->SetFont('Arial','B',48);
 $pdf->Ln(6);
-$pdf->Cell(280,0,'Employee of the Year',0,2,'C');
+$pdf->Cell(0,0,'Employee of the Year',0,1,'C');
 $pdf->SetFont('Arial','B', 8);
-$pdf->Cell(280,0, $version,0,2,'R');
+$pdf->Cell(0,0, $version,0,1,'R');
 $pdf->Output("pdftest.pdf","I");
 ?>
