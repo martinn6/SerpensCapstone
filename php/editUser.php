@@ -14,8 +14,7 @@ if(!empty($_POST)){
 		$row = $stmt->fetch();
         
         if($row){
-            $cred_match = true;
-        }
+
         if ($cred_match){
             if (session_status() == PHP_SESSION_NONE) {
                 session_start();
