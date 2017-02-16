@@ -24,12 +24,14 @@ if(!empty($_POST)){
 		
 		if ($cred_match){
 			$_SESSION['admin'] = $row;
-			header("Location : ../admin/admin.php"); 
-			die();
+            return true;
+			// header("Location : ../admin/admin.php"); 
+			// die();
 		} else {
 			$err_msg = "Email/Password does not match. Try again";
 		}
 	}
 	echo $err_msg;
+    return false;
 } 
 ?>
