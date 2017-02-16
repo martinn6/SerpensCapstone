@@ -1,15 +1,15 @@
 
 <?php
 
-$version = 'v2.0';
+$version = 'v2.1';
 
-if (!empty($_POST)
+if ($_POST["awardId"])
 {
-	$awardId = 0;
+	$awardId = $_POST["awardId"];
 }
 else
 {
-	$awardId = $_POST["awardId"];
+	$awardId = 0;
 }
 
 $awardedName = "         ";
