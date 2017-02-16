@@ -1,4 +1,8 @@
 <?php
+if(!empty($_SESSION['admin'])){
+	header("Location: admin.php"); 
+	die();
+} 
 ?>
 <html lang="en">
 <head>
@@ -105,7 +109,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 </nav>
-<div class='alert alert-danger' id="error_msg" hidden></div>;
+<div class='alert alert-danger' id="error_msg" hidden></div>
 <div class="container">
 	<div class="row">
 		<section class="col-xs-offset-3 col-xs-6">
