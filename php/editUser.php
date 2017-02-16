@@ -17,16 +17,11 @@ if(!empty($_POST)){
 			}
 			$_SESSION['editUserEmail'] = $row['Email'];
 			$_SESSION['editUserName']  = $row['FullName'];
-			// header("Location : ../admin/admin.php"); 
 			return false;
 		} else {
-			$err_msg = "Cannot find user. Try again";
+			$err_msg = "Cannot find user with .$_POST['email'].. Try again";
 		}
-	} else {
-		$err_msg = "conn error";
 	}
-} else {
-	$err_msg = "post error";
 }
 echo $err_msg;
 ?>
