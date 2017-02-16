@@ -119,6 +119,7 @@ $(document).ready(function(){
 		var email = $('#adminEmail').val();
 		var data = {email: email, password: password}
 		$.post(url, data, function(result){
+			console.log(result);
 			$('#result').html(result).toggle();
 		});
 		
