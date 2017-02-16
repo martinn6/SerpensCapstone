@@ -161,7 +161,7 @@ $(document).ready(function(){
 // 		if(checkEmail($(this));	
 // 	});
 	$("#newEmail, #NewPassword, #ConfirmPassword, #FName").keyup(function() {
-		if(checkPasswordMatch($(this)) && checkPasswordMatch($(this)) && checkName($(this))){
+		if(checkEmail($(this)) && checkPasswordMatch($(this)) && checkName($(this))){
 			$('#addBtn').prop('disabled', true);
 		} else {
 			$('#addBtn').prop('disabled', false);
@@ -294,7 +294,7 @@ $(document).ready(function(){
 										</label>
 										<div class="col-sm-7">
 											<input type="text" class="form-control" name="FName" onChange="checkName();"
-												id="FName" placeholder="FirstName" required>
+												id="FName" placeholder="Full Name" required>
 												<span id='fName_message'></span>
 										</div>
 									</div>
