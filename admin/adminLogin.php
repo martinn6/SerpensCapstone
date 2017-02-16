@@ -86,8 +86,8 @@ $(document).ready(function(){
 		var email = $('#adminEmail').val();
 		var data = {email: email, password: password}
 		$.post(url, data, function(result){
-			if (result.redirect) {
-            window.location.href = result.redirect;
+			if (result) {
+            window.location.href="admin.php";
         } else {
 			console.log(result);
 			$('#error_msg').html(result).prop('hidden', false);
