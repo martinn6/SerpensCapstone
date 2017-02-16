@@ -72,15 +72,13 @@ function checkEmail() {
 	
 	if (email.length < 6) {
 		$('#email_message').html('');
-		$('#submitBtn').prop('disabled', true);
-		return;
+		return false;
     } else if (!isEmail(email) ){
-		$('#email_message').html('not a valid email');
-		$('#submitBtn').prop('disabled', true);
-		return;
+		$('#email_message').html('not a valid email').css('color', 'red');
+		return false;
 	} else {
         $('#email_message').html('');
-		$('#submitBtn').prop('disabled', false);
+		return true;
 	}	
 }
 
@@ -89,44 +87,42 @@ function checkPassword() {
 	
 	if (password.length == 0){
 		$('#password_message').html('');
-		$('#password-btn').prop('disabled', true);
-		return;
+		return false;
 	} else if (password.length < 8){
 		$('#password_message').html('');
-
-		return;
+		return false;
 	} else if (!validPassword(password)){
 		$('#password_message').html('not a valid password').css('color', 'red');
-		$('#submitBtn').prop('disabled', true);
-		return;
+		return false;
 	} else {
 		$('#password_message').html('');
-		$('#submitBtn').prop('disabled', false);
+		return true;
 	}
 	       
 }
 
 $(document).ready(function(){
 	
-	$("#adminEmail").keyup(function() {
-		checkEmail();	
+	$("#adminEmail, #adminPassword").keyup(function() {
+		if (checkEmail() && checkPassword()){
+			$('#submitBtn').prop('disabled', false);
+		} else {
+			$('#submitBtn').prop('disabled', true);
+		}
 	});
-	$("#adminPassword ").keyup(function() {
-		checkPassword();
-	});
+
 	$("#submitBtn").click(function(e){
-		$("#resultSpan").html('').css('color', 'red');
+		$("#resultSpan").html('');
 		e.preventDefault();
 		var url = "adminLogin.php";
 		var password = $('#adminPassword').val();
 		var email = $('#adminEmail').val();
 		var data = {email: email, password: password}
 		$.post(url, data, function(result){
-			$('#result').html(result);
+			$('#result').html(result).toggle();
 		});
 		
 	});
-	
 });
 
 </script>
@@ -145,7 +141,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 </nav>
-<div class='alert alert-danger' id="response"></div>;
+<div class='alert alert-danger' id="response" hidden></div>;
 <?php echo $err_msg; ?>
 <div class="container">
 	<div class="row">
