@@ -104,7 +104,7 @@ $(document).ready(function(){
 		$("#resultSpan").html('').css('color', 'red');
 		e.preventDefault();
 		var url = "adminLogin.php";
-		var data = $('#editUserForm').serialize();
+		var data = $('#loginForm').serialize();
 		console.log(data);
 		$.post(url, data, function(result){
 			console.log(result);
@@ -124,7 +124,7 @@ $(document).ready(function(){
 	<?php echo $err_msg; ?>
 	<div class="row">
 		<section class="col-xs-offset-2 col-xs-8">
-			<form class="form-horizontal" action="">
+			<form class="form-horizontal" action="" method="post" id="loginForm">
 				<div class="row">
 					<div class="form-group">
 						<label class="col-sm-2" for="adminEmail">
