@@ -77,7 +77,7 @@ $(document).ready(function(){
 	$("#submitBtn").click(function(e){
 		$("#resultSpan").html('');
 		e.preventDefault();
-		var url = "adminLogin.php";
+		var url = "../php/adminLogin.php";
 		var password = $('#adminPassword').val();
 		var email = $('#adminEmail').val();
 		var data = {email: email, password: password}
