@@ -1,36 +1,24 @@
 <?php
-
 $email = $_POST["email"];
-
-    // DB connection info
-    $host = "cs496osusql.database.windows.net";
-    $user = "Serpins_Login";
-    $pwd = "T3amSerpin$!";
-    $db = "OSU_Capstone";
-    try{
-        $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
-    catch(Exception $e){
-        die(print_r($e));
-    }
-
-    if ($conn)
-    { 
-        $stm = $conn->prepare("SELECT COUNT(*) FROM dbo.UserAccount WHERE Email = :em");
-        $stm->execute(array(':em' => $email));
-        $total = $stm->fetchColumn(); 
-        if ($total == 0) {
-            die(printf("Cannot find user with email '" .$email. "'."));
-        }
+require '../php/connect.php';
+if(!empty($_POST)){
+	if ($conn){
+		$query = "SELECT * FROM dbo.UserAccount WHERE Email = :Email";
+		$query_params = array(':Email' => $_POST['email']);
+		$stmt = $conn->prepare($query);
+		$result = $stmt->execute($query_params) or die();
+		$row = $stmt->fetch();
         
-        try {
-            $stmt = $conn->prepare('DELETE FROM dbo.UserAccount WHERE email = :email');
-            $stmt->execute(array('email' => $email));
-        } catch (PDOException $e) {
-            die(print_r($stmt->errorInfo()));
-        }
-        printf("Deleted '" .$email. "' from the database. ");
-    }
-
+        if($row){
+                $query = "DELETE FROM dbo.UserAccount WHERE Email = :Email";
+                $query_params = array(':Email' => $_POST['email']);
+                $stmt = $conn->prepare($query);
+                $result = $stmt->execute($query_params) or die();
+                $err_msg = "Deleted user with email: $email.";
+		} else {
+			    $err_msg = "Cannot find user with email: $email.  Try again";
+		}
+	}
+}
+echo $err_msg;
 ?>
