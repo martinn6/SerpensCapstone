@@ -19,7 +19,6 @@ if(!empty($_POST)){
 
 		if($row){
 			if($_POST['password'] === $row['Password']){
-				$err_msg = "match";
 				$cred_match = true;
 			}
 			// if(md5($_POST['password']) === $row['Password']){
@@ -28,9 +27,10 @@ if(!empty($_POST)){
 		}
 		
 		if ($cred_match){
-			$_SESSION['admin'] = $row;
-			header("Location : ../admin/admin.php"); 
-			die();
+			$_SESSION['email'] = $row['Email'];
+			$_SESSION['user']  = $row['FullName'];
+			// header("Location : ../admin/admin.php"); 
+			return false;
 		} else {
 			$err_msg = "Email/Password does not match. Try again";
 		}
@@ -122,7 +122,11 @@ $(document).ready(function(){
 		var data = {email: email, password: password}
 		$.post(url, data, function(result){
 			console.log(result);
-			$('#error_msg').html(result).prop('hidden', false);	
+			if(!result){
+				window.location.href="admin.php";
+			} else {
+				$('#error_msg').html(result).prop('hidden', false);	
+			}
 		});
 		
 	});
