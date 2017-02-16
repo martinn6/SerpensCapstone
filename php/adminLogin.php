@@ -31,6 +31,6 @@ if(!empty($_POST)){
 			$err_msg = "Email/Password does not match. Try again";
 		}
 	}
-	return $err_msg;
+	echo $err_msg;
 } 
 ?>

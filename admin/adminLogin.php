@@ -106,7 +106,6 @@ $(document).ready(function(){
 	</div>
 </nav>
 <div class='alert alert-danger' id="response" hidden></div>;
-<?php echo $err_msg; ?>
 <div class="container">
 	<div class="row">
 		<section class="col-xs-offset-3 col-xs-6">
