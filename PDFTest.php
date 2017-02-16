@@ -1,7 +1,7 @@
 
 <?php
 
-$version = 'v2.6';
+$version = 'v2.7';
 
 $awardId = (isset($_GET['awardId']) ? $_GET['awardId'] : null);
 
@@ -14,7 +14,7 @@ $pdf->Image( "images/AwardBackground.png", 0, 0, 280 );
 $pdf->Ln(14);
 $pdf->SetFont('Arial','B', 8);
 $pdf->Cell(0,0, $version . "           ",0,1,'R');
-$pdf->Ln(25);
+$pdf->Ln(35);
 $pdf->SetFont('Arial','B',48);
 $pdf->Cell(0,0,'Employee of the Year',0,1,'C');
 
@@ -25,13 +25,13 @@ $pdf->Cell(0,0,'Awarded To',0,1,'C');
 
 //Awarded To Name
 $pdf->Ln(30);
-$pdf->SetFont('Arial','U',40);
+$pdf->SetFont('Arial','U',48);
 $pdf->Cell(0,0,$awardId,0,1,'C');
 
 //Awarded To Name
 $pdf->Ln(60);
 $pdf->SetFont('Arial','B',20);
-$pdf->Cell(20,0,'From',0,0,'L');
+$pdf->Cell(20,0,'    From',0,0,'L');
 $pdf->SetFont('Arial','U',20);
 $pdf->Cell(50,0,'          ',0,0,'L');
 
