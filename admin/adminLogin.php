@@ -1,13 +1,13 @@
 <?php
-require 'connect.php';
+require '../php/connect.php';
 
 $form_email = '';
 $err_msg = '';
 $cred_match = false;
 
 if(!empty($_POST)){
-	echo "post success";
 	if ($conn){
+		$err_msg = "conn ";
 		$query = "SELECT * FROM dbo.UserAccount WHERE Email = :Email";
 		$query_params = array(':Email' => $_POST['email']);
 		$stmt = $conn->prepare($query);
@@ -16,10 +16,10 @@ if(!empty($_POST)){
 
 		if($row){
 			if($_POST['password'] === $row['Password']){
-				echo "match";
+				$err_msg = "match";
 				$cred_match = true;
 			} else {
-				echo " no match";
+				$err_msg = " no match";
 			}
 			// if(md5($_POST['password']) === $row['Password']){
 			// 	$cred_match = true;
@@ -35,9 +35,7 @@ if(!empty($_POST)){
 			$err_msg = "<div class='alert alert-danger'>Email/Password does not match. Try again.</div>";
 		}
 	}
-} else {
-	echo "post fail!";
-}
+} 
 ?>
 
 </body>
