@@ -3,7 +3,6 @@
 // 	header("Location: ../php/adminLogout.php"); 
 // 	die();
 // } 
-$echo session_id();
 require '../php/getName.php';
 
 ?>
