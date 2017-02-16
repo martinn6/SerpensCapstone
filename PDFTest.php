@@ -1,7 +1,7 @@
 
 <?php
 
-$version = 'v2.4';
+$version = 'v2.5';
 
 $awardId = (isset($_GET['awardId']) ? $_GET['awardId'] : null);
 
@@ -11,10 +11,10 @@ require_once( "fpdf/fpdf.php" );
 $pdf = new FPDF( 'L', 'mm', 'Letter' );
 $pdf->AddPage();
 $pdf->Image( "images/AwardBackground.png", 0, 0, 280 );
-$pdf->Ln(15);
+$pdf->Ln(14);
 $pdf->SetFont('Arial','B', 8);
 $pdf->Cell(0,0, $version . "           ",0,1,'R');
-$pdf->Ln(15);
+$pdf->Ln(25);
 $pdf->SetFont('Arial','B',48);
 $pdf->Cell(0,0,'Employee of the Year',0,1,'C');
 
@@ -27,6 +27,13 @@ $pdf->Cell(0,0,'Awarded To',0,1,'C');
 $pdf->Ln(30);
 $pdf->SetFont('Arial','U',40);
 $pdf->Cell(0,0,$awardId,0,1,'C');
+
+//Awarded To Name
+$pdf->Ln(30);
+$pdf->SetFont('Arial','B',32);
+$pdf->Cell(0,0,'From',0,0,'L');
+$pdf->SetFont('Arial','U',32);
+$pdf->Cell(0,0,'          ',0,0,'L');
 
 $pdf->Output("pdftest.pdf","I");
 ?>
