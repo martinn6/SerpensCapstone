@@ -51,7 +51,6 @@ if (isset($_POST['submit'])){
 <script src="../js/jquery-2.1.4.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/script.js"></script>
-<script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/md5.js"></script>
 <script>
 function isEmail(email) {
 	var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -114,7 +113,7 @@ $(document).ready(function(){
 		$("#resultSpan").html('').css('color', 'red');
 		e.preventDefault();
 		var url = "adminLogin.php";
-		var password = CryptoJS.md5($('#adminPassword').val());
+		var password = ($('#adminPassword').val();
 		var email = $('#adminEmail').val();
 		var data = {email: email, password: password}
 		console.log(data);
