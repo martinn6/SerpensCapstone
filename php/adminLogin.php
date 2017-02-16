@@ -13,7 +13,7 @@ if(!empty($_POST)){
 		$row = $stmt->fetch();
 
 		if($row){
-            echo $row['Password'];
+            // echo $row['Password'];
 			if($_POST['password'] === $row['Password']){
 				$err_msg = "match";
 				$cred_match = true;
@@ -21,13 +21,11 @@ if(!empty($_POST)){
 			// if(md5($_POST['password']) === $row['Password']){
 			// 	$cred_match = true;
 			// }
-		} else {
-            echo "cannot find email";
-        }
+		}
 		
 		if ($cred_match){
 			$_SESSION['admin'] = $row;
-			header("Location : admin.php"); 
+			header("Location : ../admin/admin.php"); 
 			die();
 		} else {
 			$form_email = htmlentities($_POST['email']);
