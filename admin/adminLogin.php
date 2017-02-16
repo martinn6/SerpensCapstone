@@ -125,7 +125,7 @@ $(document).ready(function(){
 	<?php echo $err_msg; ?>
 	<div class="row">
 		<section class="col-xs-offset-2 col-xs-8">
-			<form class="form-horizontal" action="admin.html">
+			<form class="form-horizontal" action="">
 				<div class="row">
 					<div class="form-group">
 						<label class="col-sm-2" for="adminEmail">
