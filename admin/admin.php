@@ -101,11 +101,11 @@ function checkPasswordMatch() {
 	} else if (confirmPassword.length < password.length){
 		$('#confirm_password_message').html('');
 // 		$('#addBtn').prop('disabled', true);
-		return = false;
+		return false;
 	} else if (password != confirmPassword) {
         $('#confirm_password_message').html('Passwords do not match').css('color', 'red');
 // 		$('#addBtn').prop('disabled', true);
-		return = false;
+		return false;
     } else {
 		$('#new_password_message').html('');
 		$('#confirm_password_message').html('');
@@ -126,7 +126,7 @@ function checkName() {
 	return false;
 // 		$('#addBtn').prop('disabled', true);
 // 		button = false;
-		return;
+// 		return;
     } else if (!validName(fName) ){
 	$('#fName_message').html('not a valid Full Name format').css('color', 'red');
 	return false;
@@ -155,7 +155,7 @@ function checkName() {
 // 		button = true;
 // 	}
 	
-	return button;
+// 	return button;
 }
 	
 $(document).ready(function(){
