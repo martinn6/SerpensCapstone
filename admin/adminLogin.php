@@ -64,7 +64,7 @@ function validPassword(password) {
 	return regex.test(password);
 }
 
-function checkEmail(thisObj) {
+function checkEmail() {
     var email = $('#adminEmail').val();
 	
 	if (email.length < 6) {
@@ -81,7 +81,7 @@ function checkEmail(thisObj) {
 	}	
 }
 
-function checkPasswordMatch() {
+function checkPassword() {
     var password = $('#adminPassword').val();
 	
 	if (password.length == 0){
@@ -106,10 +106,10 @@ function checkPasswordMatch() {
 $(document).ready(function(){
 	
 	$("#adminEmail").keyup(function() {
-		checkEmail($(this));	
+		checkEmail();	
 	});
 	$("#adminPassword ").keyup(function() {
-		checkPasswordMatch($(this));
+		checkPasswordMatch();
 	});
 	$("#submitBtn").click(function(e){
 		$("#resultSpan").html('').css('color', 'red');
@@ -144,7 +144,7 @@ $(document).ready(function(){
 						Email address
 						</label>
 						<div class="col-sm-10">
-							<input type="email" class="form-control" name="email" onChange="checkEmail($(this));"
+							<input type="email" class="form-control" name="email" onChange="checkEmail()"
 							placeholder="Email" value="<?php echo $form_email; ?>"
 							id="adminEmail" required>
 							<span id='email_message'></span>
@@ -155,7 +155,7 @@ $(document).ready(function(){
 						Password
 						</label>
 						<div class="col-sm-10">
-							<input type="password" class="form-control" name="password" onChange="checkPassword($(this));"
+							<input type="password" class="form-control" name="password" onChange="checkPassword()"
 							id="adminPassword" placeholder="Password" required>
 							<span id='password_message'></span>
 						</div>
