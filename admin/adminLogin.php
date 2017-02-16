@@ -4,6 +4,9 @@ if(!session_status() == PHP_SESSION_NONE){
 	die();
 	require 'connect.php';
 }
+
+require 'connect.php';
+
 $cred_match = false;
 
 if(!empty($_POST)){
@@ -119,13 +122,8 @@ $(document).ready(function(){
 		var email = $('#adminEmail').val();
 		var data = {email: email, password: password}
 		$.post(url, data, function(result){
-			if (!result) {
-				console.log(result);
-				$('#error_msg').html(result).prop('hidden', false);
-        	} else {
-				window.location.href="admin.php";
-			}
-			
+			console.log(result);
+			$('#error_msg').html(result).prop('hidden', false);	
 		});
 		
 	});
