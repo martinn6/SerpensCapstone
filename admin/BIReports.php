@@ -6,8 +6,7 @@ if(!isset($_SESSION['admin'])){
 	header("Location: ../php/adminLogout.php"); 
 	die();
 } 
-$editUserEmail = $_SESSION['editUserEmail'];
-$editUserName = $_SESSION['editUserName'];
+$user = $_SESSION['user'];
 
 ?>
 <html lang="en">
@@ -59,10 +58,26 @@ $(document).ready(function(){
 	
 });
 </script>
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="glyphicon glyphicon-menu-hamburger"></span>                     
+			</button>
+			<a class="navbar-brand" href="../index.html">Employee Recognition</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="../php/adminLogout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class='alert alert-danger' id="error_msg" hidden></div>
 <div class="container">
 	<div class="row">
 		<section class="col-xs-offset-3 col-xs-6">
-			<h2>Business Intelligence Reports</h2>
+			<h2><?php echo $user; ?> Business Intelligence Reports</h2>
 		</section>
 	</div>
 
@@ -97,14 +112,10 @@ $(document).ready(function(){
 	
 	<div class="row">
 		<section class="col-xs-offset-3 col-xs-6">
-			<a href="admin.html" role="button" class="btn btn-primary">Return to Admin</a>
+			<a href="admin.php" role="button" class="btn btn-primary">Return to Admin</a>
 		</section>
 	</div>
 </div>
 
-
-<script src="../js/jquery-2.1.4.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/script.js"></script>
 </body>
 </html>
