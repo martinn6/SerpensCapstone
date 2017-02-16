@@ -1,16 +1,9 @@
 
 <?php
 
-$version = 'v2.1';
+$version = 'v2.2';
 
-if ($_POST["awardId"])
-{
-	$awardId = $_POST["awardId"];
-}
-else
-{
-	$awardId = 0;
-}
+$awardId = (isset($_GET['awardId']) ? $_GET['awardId'] : null);
 
 $awardedName = "         ";
 
