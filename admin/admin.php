@@ -1,8 +1,10 @@
 <?php 
-if(session_status() == PHP_SESSION_NONE){
-	header("Location: ../php/adminLogout.php"); 
-	die();
-} 
+// if(session_status() == PHP_SESSION_NONE){
+// 	header("Location: ../php/adminLogout.php"); 
+// 	die();
+// } 
+$echo session_status();
+$echo session_id();
 require '../php/getName.php';
 
 ?>
