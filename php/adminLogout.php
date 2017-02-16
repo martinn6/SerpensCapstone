@@ -1,6 +1,6 @@
 <?php 
-session_start(); 
-unset($_SESSION['admin']); 
+session_destroy();
+// unset($_SESSION['admin']); 
 header("Location: ../index.html"); 
 die();
 ?>
