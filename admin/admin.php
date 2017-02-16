@@ -1,5 +1,5 @@
 <?php 
-if(empty($_SESSION['admin'])){
+if(session_status() == PHP_SESSION_NONE){
 	header("Location: ../php/adminLogout.php"); 
 	die();
 } 
