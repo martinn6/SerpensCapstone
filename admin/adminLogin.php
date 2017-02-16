@@ -17,10 +17,12 @@ if (isset($_POST['email'])){
 		if($row){
 			if($_POST['password'] === $row['Password']){
 				$cred_match = true;
+			} else {
+				echo " no match";
 			}
-			if(md5($_POST['password']) === $row['Password']){
-				$cred_match = true;
-			}
+			// if(md5($_POST['password']) === $row['Password']){
+			// 	$cred_match = true;
+			// }
 		}
 		
 		if ($cred_match){
