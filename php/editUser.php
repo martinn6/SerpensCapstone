@@ -19,7 +19,7 @@ if(!empty($_POST)){
 			$_SESSION['editUserName']  = $row['FullName'];
 			return false;
 		} else {
-			$err_msg = "Cannot find user with $email.  Try again";
+			$err_msg = "Cannot find user with email: $email.  Try again";
 		}
 	}
 }
