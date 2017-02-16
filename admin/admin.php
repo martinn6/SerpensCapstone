@@ -161,7 +161,7 @@ $(document).ready(function(){
 // 		if(checkEmail($(this));	
 // 	});
 	$("#newEmail, #NewPassword, #ConfirmPassword, #FName").keyup(function() {
-		if(checkEmail($(this)) && checkPasswordMatch($(this)) && checkName($(this))){
+		if(checkEmail($('#newEmail')) && checkPasswordMatch() && checkName()){
 			$('#addBtn').prop('disabled', true);
 		} else {
 			$('#addBtn').prop('disabled', false);
