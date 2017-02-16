@@ -22,7 +22,9 @@ if(!empty($_POST)){
 		}
 		
 		if ($cred_match){
-            session_start();
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
             $_SERVER['admin'] = $row;
 			$_SESSION['email'] = $row['Email'];
 			$_SESSION['user']  = $row['FullName'];
