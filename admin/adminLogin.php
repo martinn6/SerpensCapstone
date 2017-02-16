@@ -53,41 +53,39 @@ function validPassword(password) {
 	return regex.test(password);
 }
 function checkEmail(thisObj) {
-    var email = thisObj.val();
-	var button = thisObj.closest("form").find('.btn');
-	var message = thisObj.parent().children('span');
+    var email = $('#adminEmail').val();
 	
 	if (email.length < 6) {
-		message.html('');
-		button.prop('disabled', true);
+		$('#email_message').html('');
+		$('#submitBtn').prop('disabled', true);
 		return;
     } else if (!isEmail(email) ){
-		message.html('not a valid email').css('color', 'red');
-		button.prop('disabled', true);
+		$('#email_message').html('not a valid email');
+		$('#submitBtn').prop('disabled', true);
 		return;
 	} else {
-        message.html('');
-		button.prop('disabled', false);
+        $('#email_message').html('');
+		$('#submitBtn').prop('disabled', false);
 	}	
 }
 function checkPasswordMatch() {
-    var password = thisObj.val();
+    var password = $('#adminPassword').val();
 	
 	if (password.length == 0){
-		$('#new_password_message').html('');
+		$('#password_message').html('');
 		$('#password-btn').prop('disabled', true);
 		return;
 	} else if (password.length < 8){
-		$('#new_password_message').html('');
+		$('#password_message').html('');
 
 		return;
 	} else if (!validPassword(password)){
-		$('#new_password_message').html('not a valid password').css('color', 'red');
-		$('#password-btn').prop('disabled', true);
+		$('#password_message').html('not a valid password').css('color', 'red');
+		$('#submitBtn').prop('disabled', true);
 		return;
 	} else {
-		$('#new_password_message').html('');
-		$('#password-btn').prop('disabled', false);
+		$('#password_message').html('');
+		$('#submitBtn').prop('disabled', false);
 	}
 	       
 }
@@ -102,13 +100,14 @@ $(document).ready(function(){
 
 
 
-	$("#editBtn").click(function(e){
+	$("#submitBtn").click(function(e){
 		$("#resultSpan").html('').css('color', 'red');
 		e.preventDefault();
 		var url = "adminLogin.php";
 		var data = $('#editUserForm').serialize();
 		console.log(data);
 		$.post(url, data, function(result){
+			console.log(result);
 		});
 		
 	});
@@ -132,7 +131,8 @@ $(document).ready(function(){
 						Email address
 						</label>
 						<div class="col-sm-10">
-							<input type="email" class="form-control" name="email" placeholder="Email" value="<?php echo $form_email; ?>"
+							<input type="email" class="form-control" name="email" onChange="checkEmail($(this));"
+							placeholder="Email" value="<?php echo $form_email; ?>"
 							id="adminEmail" required>
 							<span id='email_message'></span>
 						</div>
@@ -142,14 +142,14 @@ $(document).ready(function(){
 						Password
 						</label>
 						<div class="col-sm-10">
-							<input type="password" class="form-control" name="password"
+							<input type="password" class="form-control" name="password" onChange="checkPassword($(this));"
 							id="adminPassword" placeholder="Password" required>
-							<span id='new_password_message'></span>
+							<span id='password_message'></span>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit"
+							<button type="submit" id="submitBtn"
 							class="btn btn-default">Sign in</button>
 						</div>
 					</div>
