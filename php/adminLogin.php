@@ -27,7 +27,6 @@ if(!empty($_POST)){
 			header("Location : ../admin/admin.php"); 
 			die();
 		} else {
-			$form_email = htmlentities($_POST['email']);
 			$err_msg = "Email/Password does not match. Try again";
 		}
 	}
