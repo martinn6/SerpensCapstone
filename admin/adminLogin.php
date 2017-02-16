@@ -83,7 +83,7 @@ $(document).ready(function(){
 		var data = {email: email, password: password}
 		$.post(url, data, function(result){
 			console.log(result);
-			$('#result').html(result).toggle();
+			$('#result').toggle().append(result);
 		});
 		
 	});
