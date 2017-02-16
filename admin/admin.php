@@ -6,6 +6,12 @@ if(!isset($_SESSION['admin'])){
 	header("Location: ../php/adminLogout.php"); 
 	die();
 } 
+if(isset($_SESSION['editUserEmail'])){
+	unset($_SESSION['editUserEmai']);
+}
+if(isset($_SESSION['editUserName'])){
+	unset($_SESSION['editUserName']);
+}
 $user = $_SESSION['user'];
 
 ?>
