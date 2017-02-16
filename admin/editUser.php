@@ -102,8 +102,8 @@ function checkPasswordMatch() {
        
 }
 function checkNameMatch() {
-    var oldFName = $("#OldFName").val();
-    var newFName = $("#NewFName").val();
+    var oldFName = $("#OldName").val();
+    var newFName = $("#NewName").val();
 	
 	if (newFName.length == 0 && newLName.length == 0){
 		$('#fname_message').html('');
@@ -138,7 +138,7 @@ $(document).ready(function () {
 			$('#password-btn').prop('disabled', false);
 		}
 	});
-	$("#NewFName).keyup(function() {
+	$("#NewName).keyup(function() {
 		if(checkNameMatch()){
 			$('#name-btn').prop('disabled', true);
 		} else {
@@ -166,7 +166,7 @@ $(document).ready(function () {
 		$("#resultSpan").html('');
 		e.preventDefault();
 		var url = "../php/editName.php";
-		var name = $('##NewFName').val();
+		var name = $('#NewName').val();
 		var data = {name: name}
 		$.post(url, data, function(result){
 			console.log(result);
@@ -304,21 +304,21 @@ $(document).ready(function () {
 							<form class="form-horizontal" id="name" action="">
 								<div class="row">
 									<div class="form-group">
-										<label class="col-sm-3" for="OldFName">
+										<label class="col-sm-3" for="OldName">
 											Current Full Name
 										</label>
 										<div class="col-sm-7">
 											<input type="text" class="form-control"
-												id="OldFName" value="<?php echo $editUserName; ?>" readonly="readonly">
+												id="OldName" value="<?php echo $editUserName; ?>" readonly="readonly">
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-3" for="NewFName">
+										<label class="col-sm-3" for="NewName">
 											New Full Name
 										</label>
 										<div class="col-sm-7">
 											<input type="text" class="form-control" onChange="checkNameMatch();"
-												id="NewFName">
+												id="NewName">
 											<span id='fname_message'></span>
 										</div>
 									</div>
