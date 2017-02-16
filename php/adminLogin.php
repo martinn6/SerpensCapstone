@@ -1,5 +1,5 @@
-<?php
-require 'connect.php';
+<?
+require '../php/connect.php';
 
 $cred_match = false;
 
@@ -14,7 +14,6 @@ if(!empty($_POST)){
 
 		if($row){
 			if($_POST['password'] === $row['Password']){
-				$err_msg = "match";
 				$cred_match = true;
 			}
 			// if(md5($_POST['password']) === $row['Password']){
@@ -23,14 +22,16 @@ if(!empty($_POST)){
 		}
 		
 		if ($cred_match){
-			$_SESSION['admin'] = $row;
-			header("Location : ../admin/admin.php"); 
-			die();
+            session_start();
+            $_SERVER['admin'] = $row;
+			$_SESSION['email'] = $row['Email'];
+			$_SESSION['user']  = $row['FullName'];
+			// header("Location : ../admin/admin.php"); 
+			return false;
 		} else {
 			$err_msg = "Email/Password does not match. Try again";
 		}
 	}
 	echo $err_msg;
-    return false;
 } 
 ?>

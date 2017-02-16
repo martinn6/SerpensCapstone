@@ -1,9 +1,9 @@
 <?php 
-// if(session_status() == PHP_SESSION_NONE){
-// 	header("Location: ../php/adminLogout.php"); 
-// 	die();
-// } 
-// require '../php/getName.php';
+session_start();
+if(isset($_SESSION['admin'])){
+	header("Location: ../php/adminLogout.php"); 
+	die();
+} 
 $user = $_SESSION['name'];
 
 ?>
