@@ -115,55 +115,61 @@ function checkPasswordMatch() {
 
 function checkName() {
     var fName = $("#FName").val();
-    var lName = $("#LName").val();
-	var button = false;
+    //var lName = $("#LName").val();
+// 	var button = false;
 	
 	if (fName.length == 0) {
-		$('#fName_message').html('');
-		$('#addBtn').prop('disabled', true);
-		button = false;
+	$('#fName_message').html('');
+	return false;
+// 		$('#addBtn').prop('disabled', true);
+// 		button = false;
 		return;
     } else if (!validName(fName) ){
-		$('#fName_message').html('not a valid First Name format').css('color', 'red');
-		$('#addBtn').prop('disabled', true);
-		button = false;
-		return;
+	$('#fName_message').html('not a valid Full Name format').css('color', 'red');
+	return false;
+// 		$('#addBtn').prop('disabled', true);
+// 		button = false;
+// 		return;
 	} else {
         $('#fName_message').html('');
-		$('#addBtn').prop('disabled', false);
-		button = true;
+// 		$('#addBtn').prop('disabled', false);
+	return true;
 	}
 	
-	if (lName.length == 0) {
-		$('#lName_message').html('');
-		$('#addBtn').prop('disabled', true);
-		button = false;
-		return;
-    } else if (!validName(lName) ){
-		$('#lName_message').html('not a valid Last Name format').css('color', 'red');
-		$('#addBtn').prop('disabled', true);
-		button = false;
-		return;
-	} else {
-        $('#lName_message').html('');
-		$('#addBtn').prop('disabled', false);
-		button = true;
-	}
+// 	if (lName.length == 0) {
+// 		$('#lName_message').html('');
+// 		$('#addBtn').prop('disabled', true);
+// 		button = false;
+// 		return;
+//     } else if (!validName(lName) ){
+// 		$('#lName_message').html('not a valid Last Name format').css('color', 'red');
+// 		$('#addBtn').prop('disabled', true);
+// 		button = false;
+// 		return;
+// 	} else {
+//         $('#lName_message').html('');
+// 		$('#addBtn').prop('disabled', false);
+// 		button = true;
+// 	}
 	
 	return button;
 }
 	
 $(document).ready(function(){
 	
-	$("#newEmail").keyup(function() {
-		checkEmail($(this));	
+// 	$("#newEmail").keyup(function() {
+// 		if(checkEmail($(this));	
+// 	});
+	$("#newEmail, #NewPassword, #ConfirmPassword, #FName").keyup(function() {
+		if(checkPasswordMatch($(this)) && checkPasswordMatch($(this)) && checkName($(this))){
+			$('#addBtn').prop('disabled', true);
+		} else {
+			$('#addBtn').prop('disabled', false);
+		}
 	});
-	$("#NewPassword, #ConfirmPassword").keyup(function() {
-		checkPasswordMatch($(this));
-	});
-	$("#FName, #LName").keyup(function() {
-		checkName($(this));
-	});
+// 	$("#FName, #LName").keyup(function() {
+// 		checkName($(this));
+// 	});
 	$("#editEmail").keyup(function() {
 		checkEmail($(this));
 	});
@@ -234,7 +240,7 @@ $(document).ready(function(){
 <div class="container">
 	<div class="row">
 		<section class="col-xs-offset-2 col-xs-8">
-			<h1 class="text-center"><<?php echo $user; ?>Admin Page</h1>
+			<h1 class="text-center"><?php echo $user; ?> Admin Page</h1>
 		</section>
 	</div>
     <div class="row">
@@ -284,7 +290,7 @@ $(document).ready(function(){
 									</div>
 									<div class="form-group">
 										<label class="col-sm-3" for="newFName">
-											First Name
+											Full Name
 										</label>
 										<div class="col-sm-7">
 											<input type="text" class="form-control" name="FName" onChange="checkName();"
@@ -292,6 +298,7 @@ $(document).ready(function(){
 												<span id='fName_message'></span>
 										</div>
 									</div>
+									<!--
 									<div class="form-group">
 										<label class="col-sm-3" for="newLName">
 											Last Name
@@ -302,6 +309,7 @@ $(document).ready(function(){
 												<span id='lName_message'></span>
 										</div>
 									</div>
+									-->
 									<div class="form-group">
 										<div class="col-sm-offset-3 col-sm-3">
 											<button type="submit" id="addBtn"
