@@ -6,6 +6,7 @@ if(!isset($_SESSION['admin'])){
 	header("Location: ../php/adminLogout.php"); 
 	die();
 } 
+$user = $_SESSION['user'];
 $editUserEmail = $_SESSION['editUserEmail'];
 $editUserName = $_SESSION['editUserName'];
 
@@ -134,10 +135,26 @@ $(document).ready(function () {
 	});
 });
 </script>
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="glyphicon glyphicon-menu-hamburger"></span>                     
+			</button>
+			<a class="navbar-brand" href="../index.html">Employee Recognition</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="../php/adminLogout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class='alert alert-danger' id="error_msg" hidden></div>
 <div class="container">
 	<div class="row">
 		<section class="col-xs-offset-2 col-xs-8">
-			<h1 class="text-center">Edit Admin Account</h1>
+			<h1 class="text-center">Edit <?php echo $editUserName; ?> Account</h1>
 		</section>
 	</div>
     <div class="row">
@@ -147,7 +164,7 @@ $(document).ready(function () {
 					<div class="panel-heading">
 						<h4 class="panel-title">
 							<a data-toggle="collapse" data-parent="#accordion" href="#collapseEmail">
-							</span>CHANGE EMAIL</a>
+							CHANGE EMAIL</a>
 						</h4>
 					</div>
 					<div id="collapseEmail" class="panel-collapse collapse">
@@ -190,7 +207,7 @@ $(document).ready(function () {
 					<div class="panel-heading">
 						<h4 class="panel-title">
 							<a data-toggle="collapse" data-parent="#accordion" href="#collapsePassword">
-							</span>CHANGE PASSWORD</a>
+							CHANGE PASSWORD</a>
 						</h4>
 					</div>
 					<div id="collapsePassword" class="panel-collapse collapse">
@@ -234,7 +251,7 @@ $(document).ready(function () {
 					<div class="panel-heading">
 						<h4 class="panel-title">
 							<a data-toggle="collapse" data-parent="#accordion" href="#collapseName">
-							</span>CHANGE NAME</a>
+							>CHANGE NAME</a>
 						</h4>
 					</div>
 					<div id="collapseName" class="panel-collapse collapse">
