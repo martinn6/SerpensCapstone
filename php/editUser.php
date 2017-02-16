@@ -2,7 +2,6 @@
 
 $email = $_POST["email"];
 require '../php/connect.php';
-$cred_match = false;
 
 if(!empty($_POST)){
 	if ($conn){
@@ -13,17 +12,13 @@ if(!empty($_POST)){
 		$row = $stmt->fetch();
         
         	if($row){
-        		if ($cred_match){
-            			if (session_status() == PHP_SESSION_NONE) {
-                			session_start();
-				}
+	        	if (session_status() == PHP_SESSION_NONE) {
+                		session_start();
+			}
 			$_SESSION['editUserEmail'] = $row['Email'];
 			$_SESSION['editUserName']  = $row['FullName'];
 			// header("Location : ../admin/admin.php"); 
 			return false;
-			} else {
-				$err_msg = "cred error";
-			}
 		} else {
 			$err_msg = "Cannot find user. Try again";
 		}
