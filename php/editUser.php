@@ -21,6 +21,9 @@ if(!empty($_POST)){
 			$_SESSION['editUserName']  = $row['FullName'];
 			// header("Location : ../admin/admin.php"); 
 			return false;
+			} else {
+				$err_msg = "cred error";
+			}
 		} else {
 			$err_msg = "Cannot find user. Try again";
 		}
