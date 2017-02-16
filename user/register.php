@@ -36,7 +36,7 @@ if(!empty($_POST)){
 		}
 	}
 
-	if (empty($_POST['signature'])) {
+	if (empty($_FILES['signature'])) {
 		$err_msg[] = 'Please upload an image of your signature.';
 	} else {
 		if (!preg_match("!image!", $_FILES['signature']['type'])) {
