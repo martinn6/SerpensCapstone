@@ -6,19 +6,19 @@ $cred_match = false;
 
 if(!empty($_POST)){
 	if ($conn){
-        $err_msg = "conn ";
+        	$err_msg = "conn ";
 		$query = "SELECT * FROM dbo.UserAccount WHERE Email = :Email";
 		$query_params = array(':Email' => $_POST['email']);
 		$stmt = $conn->prepare($query);
 		$result = $stmt->execute($query_params) or die();
 		$row = $stmt->fetch();
         
-        if($row){
+        	if($row){
 
-        if ($cred_match){
-            if (session_status() == PHP_SESSION_NONE) {
-                session_start();
-            }
+        		if ($cred_match){
+            			if (session_status() == PHP_SESSION_NONE) {
+                			session_start();
+				}
 			$_SESSION['editUserEmail'] = $row['Email'];
 			$_SESSION['editUserName']  = $row['FullName'];
 			// header("Location : ../admin/admin.php"); 
@@ -28,7 +28,6 @@ if(!empty($_POST)){
 		}
 	}
 	echo $err_msg;
-    }
 }
 //         $stm = $conn->prepare("SELECT COUNT(*) FROM dbo.UserAccount WHERE Email = :em");
 //         $stm->execute(array(':em' => $email));
