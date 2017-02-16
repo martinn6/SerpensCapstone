@@ -6,6 +6,7 @@ $err_msg = '';
 $cred_match = false;
 
 if (isset($_POST['email'])){
+	echo "success";
 	if ($conn){
 		$query = "SELECT * FROM dbo.UserAccount WHERE Email = :Email";
 		$query_params = array(':Email' => $_POST['email']);
@@ -107,7 +108,7 @@ $(document).ready(function(){
 		checkEmail();	
 	});
 	$("#adminPassword ").keyup(function() {
-		checkPasswordMatch();
+		checkPassword();
 	});
 	$("#submitBtn").click(function(e){
 		$("#resultSpan").html('').css('color', 'red');
