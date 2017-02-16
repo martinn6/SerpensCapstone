@@ -25,7 +25,7 @@ if(!empty($_POST)){
             if (session_status() == PHP_SESSION_NONE) {
                 session_start();
             }
-            $_SERVER['admin'] = $row;
+            $_SESSION['admin'] = $row;
 			$_SESSION['email'] = $row['Email'];
 			$_SESSION['user']  = $row['FullName'];
 			// header("Location : ../admin/admin.php"); 
