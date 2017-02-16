@@ -3,7 +3,8 @@
 // 	header("Location: ../php/adminLogout.php"); 
 // 	die();
 // } 
-require '../php/getName.php';
+// require '../php/getName.php';
+$user = $_SESSION['name'];
 
 ?>
 

@@ -24,9 +24,8 @@ if(!empty($_POST)){
 		
 		if ($cred_match){
 			$_SESSION['admin'] = $row;
-            return true;
-			// header("Location : ../admin/admin.php"); 
-			// die();
+			header("Location : ../admin/admin.php"); 
+			die();
 		} else {
 			$err_msg = "Email/Password does not match. Try again";
 		}
