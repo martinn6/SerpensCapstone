@@ -108,33 +108,44 @@ function checkNameMatch() {
 	if (newFName.length == 0 && newLName.length == 0){
 		$('#fname_message').html('');
 		$('#lname_message').html('');
-		$('#name-btn').prop('disabled', true);
-		return;
+		return false;
 	} 
 	
 	if (newFName.length == 0){
 		$('#fname_message').html('');
-		return
+		return false;
 	} else if (!validName(newFName)){
 		$('#fname_message').html('invalid new First Name').css('color', 'red');
-		$('#name-btn').prop('disabled', true);
-		return;
+		return false;
 	} else {
 		$('#fname_message').html('');
-		$('#name-btn').prop('disabled', false);
+		return true;
 	}
 	
 }
 $(document).ready(function () {
 	$("#newEmail").keyup(function() {
-		checkEmail($(this));
+		if(checkEmail()){
+			$('#email-btn').prop('disabled', true);
+		} else {
+			$('#email-btn').prop('disabled', false);
+		}
 	});
 	$("#NewPassword, #ConfirmPassword").keyup(function() {
-		checkPasswordMatch($(this));
+		if(checkPasswordMatch()){
+			$('#password-btn').prop('disabled', true);
+		} else {
+			$('#password-btn').prop('disabled', false);
+		}
 	});
 	$("#NewFName).keyup(function() {
-		checkNameMatch($(this));
+		if(checkNameMatch()){
+			$('#name-btn').prop('disabled', true);
+		} else {
+			$('#name-btn').prop('disabled', false);
+		}
 	});
+	
 	$("#email-btn").click(function(e){
 		$("#resultSpan").html('');
 		e.preventDefault();
@@ -149,7 +160,22 @@ $(document).ready(function () {
 				$('#error_msg').html(result).prop('hidden', false);	
 			}
 		});
-		
+	});
+	
+	$("#email-btn").click(function(e){
+		$("#resultSpan").html('');
+		e.preventDefault();
+		var url = "../php/editName.php";
+		var name = $('##NewFName').val();
+		var data = {name: name}
+		$.post(url, data, function(result){
+			console.log(result);
+			if(!result){
+				window.location.href="admin.php";
+			} else {
+				$('#error_msg').html(result).prop('hidden', false);	
+			}
+		});
 	});
 });
 </script>
@@ -270,7 +296,7 @@ $(document).ready(function () {
 					<div class="panel-heading">
 						<h4 class="panel-title">
 							<a data-toggle="collapse" data-parent="#accordion" href="#collapseName">
-							>CHANGE NAME</a>
+							CHANGE NAME</a>
 						</h4>
 					</div>
 					<div id="collapseName" class="panel-collapse collapse">
