@@ -22,7 +22,7 @@ if(!empty($_POST)){
 		}
 		
 		if ($cred_match){
-            session_start();
+            // session_start();
             $_SERVER['admin'] = $row;
 			$_SESSION['email'] = $row['Email'];
 			$_SESSION['user']  = $row['FullName'];
