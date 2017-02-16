@@ -102,20 +102,14 @@ function checkPasswordMatch() {
        
 }
 function checkNameMatch() {
-    var oldFName = $("#OldName").val();
-    var newFName = $("#NewName").val();
+    var oldName = $("#OldName").val();
+    var newName = $("#NewName").val();
 	
-	if (newFName.length == 0 && newLName.length == 0){
-		$('#fname_message').html('');
-		$('#lname_message').html('');
-		return false;
-	} 
-	
-	if (newFName.length == 0){
+	if (newName.length == 0){
 		$('#fname_message').html('');
 		return false;
-	} else if (!validName(newFName)){
-		$('#fname_message').html('invalid new First Name').css('color', 'red');
+	} else if (!validName(newName)){
+		$('#fname_message').html('invalid new Full Name').css('color', 'red');
 		return false;
 	} else {
 		$('#fname_message').html('');
@@ -138,7 +132,7 @@ $(document).ready(function () {
 			$('#password-btn').prop('disabled', false);
 		}
 	});
-	$("#NewName).keyup(function() {
+	$("#NewName").keyup(function() {
 		if(checkNameMatch()){
 			$('#name-btn').prop('disabled', true);
 		} else {
