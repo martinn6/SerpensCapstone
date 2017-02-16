@@ -110,7 +110,7 @@ if (isset($_POST['submit'])){
 
 		<div style="padding-top:15px" class="panel-body" >
 		<?php
-			if(isset($err_msg){
+			if(isset($err_msg)){
 				foreach($err_msg as $msg){
 					echo '<div class="alert alert-danger">'.$msg.'</div>';
 				}
