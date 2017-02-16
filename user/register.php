@@ -2,7 +2,7 @@
 require 'connect.php';
 
 if (isset($_POST['submit'])){
-	if (empty($_POST['email']) {
+	if (empty($_POST['email'])) {
 		$err_msg[] = 'Please enter an email address.';
 	} else {
 		if ($conn){
