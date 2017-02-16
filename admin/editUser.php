@@ -68,34 +68,36 @@ function checkPasswordMatch() {
 	
 	if (password.length == 0){
 		$('#new_password_message').html('');
-		$('#password-btn').prop('disabled', true);
+// 		$('#password-btn').prop('disabled', true);
 		return;
 	} else if (password.length < 8){
 		$('#new_password_message').html('');
 		$('#ConfirmPassword').prop('disabled', true);
-		return;
+		return false;
 	} else if (!validPassword(password)){
 		$('#new_password_message').html('not a valid password').css('color', 'red');
-		$('#password-btn').prop('disabled', true);
+// 		$('#password-btn').prop('disabled', true);
 		$('#ConfirmPassword').prop('disabled', true);
-		return;
+		return false;
 	} else {
 		$('#new_password_message').html('');
-		$('#password-btn').prop('disabled', false);
+// 		$('#password-btn').prop('disabled', false);
 		$('#ConfirmPassword').prop('disabled', false);
 	}
 	
 	if (confirmPassword.length == 0){
 		$('#confirm_password_message').html('');
-		$('#password-btn').prop('disabled', true);
-		return;
+// 		$('#password-btn').prop('disabled', true);
+		return false;
 	} else if (password != confirmPassword) {
         $('#confirm_password_message').html('Passwords do not match').css('color', 'red');
-		$('#password-btn').prop('disabled', true);
+// 		$('#password-btn').prop('disabled', true);
+		return false;
     } else {
 		$('#new_password_message').html('');
 		$('#confirm_password_message').html('');
-		$('#password-btn').prop('disabled', false);
+// 		$('#password-btn').prop('disabled', false);
+	  	return true;
 	}
        
 }
@@ -133,6 +135,22 @@ $(document).ready(function () {
 	$("#NewFName).keyup(function() {
 		checkNameMatch($(this));
 	});
+	$("#email-btn").click(function(e){
+		$("#resultSpan").html('');
+		e.preventDefault();
+		var url = "../php/editEmail.php";
+		var email = $('#NewEmail').val();
+		var data = {email: email}
+		$.post(url, data, function(result){
+			console.log(result);
+			if(!result){
+				window.location.href="admin.php";
+			} else {
+				$('#error_msg').html(result).prop('hidden', false);	
+			}
+		});
+		
+	});
 });
 </script>
 <nav class="navbar navbar-default">
@@ -169,8 +187,8 @@ $(document).ready(function () {
 					</div>
 					<div id="collapseEmail" class="panel-collapse collapse">
 						<div class="panel-body">
-							<form id="email" class="form-horizontal" action="editUser.html"
-							  onsubmit="return validateEmailForm();" method="post">
+							<form id="email" class="form-horizontal" action="">
+<!-- 							  onsubmit="return validateEmailForm();" method="post"> -->
 								<div class="row">
 									<div class="form-group">
 										<label class="col-sm-3" for="OldEmail">
