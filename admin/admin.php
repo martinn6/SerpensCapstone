@@ -43,74 +43,77 @@ function validName(name) {
 }
 function checkEmail(thisObj) {
     var email = thisObj.val();
-	var button = thisObj.closest("form").find('.btn');
+// 	var button = thisObj.closest("form").find('.btn');
 	var message = thisObj.parent().children('span');
 	
 	if (email.length < 6) {
 		message.html('');
-		button.prop('disabled', true);
-		return;
+		return false;
+// 		button.prop('disabled', true);
+// 		return;
     } else if (!isEmail(email) ){
 		message.html('not a valid email').css('color', 'red');
-		button.prop('disabled', true);
-		return;
+	    	return false;
+// 		button.prop('disabled', true);
+// 		return;
 	} else {
-        message.html('');
-		button.prop('disabled', false);
+        	message.html('');
+		return true;
+// 		button.prop('disabled', false);
 	}	
 }
 
 function checkPasswordMatch() {
     var password = $("#NewPassword").val();
     var confirmPassword = $("#ConfirmPassword").val();
-	var button = false;
+// 	var button = false;
 	
 	if (password.length == 0){
 		$('#new_password_message').html('');
-		$('#addBtn').prop('disabled', true);
+// 		$('#addBtn').prop('disabled', true);
 		$('#ConfirmPassword').prop('disabled', true);
-		button = false;
-		return;
+// 		button = false;
+		return false;
 	} else if (password.length < 8){
 		$('#new_password_message').html('');
-		$('#ConfirmPassword').prop('disabled', true);
+// 		$('#ConfirmPassword').prop('disabled', true);
 		$('#addBtn').prop('disabled', true);
-		button = false;
-		return;
+// 		button = false;
+		return false;
 	} else if (!validPassword(password)){
 		$('#new_password_message').html('not a valid password').css('color', 'red');
-		$('#addBtn').prop('disabled', true);
+// 		$('#addBtn').prop('disabled', true);
 		$('#ConfirmPassword').prop('disabled', true);
-		button = false;
-		return;
+// 		button = false;
+		return false;
 	} else {
 		$('#new_password_message').html('');
-		$('#addBtn').prop('disabled', false);
+// 		$('#addBtn').prop('disabled', false);
 		$('#ConfirmPassword').prop('disabled', false);
-		button = true;
+// 		button = true;
 	}
 	
 	if (confirmPassword.length == 0){
 		$('#confirm_password_message').html('');
-		$('#addBtn').prop('disabled', true);
-		button = false;
-		return;
+// 		$('#addBtn').prop('disabled', true);
+// 		button = false;
+		return false;
 	} else if (confirmPassword.length < password.length){
 		$('#confirm_password_message').html('');
-		$('#addBtn').prop('disabled', true);
-		button = false;
+// 		$('#addBtn').prop('disabled', true);
+		return = false;
 	} else if (password != confirmPassword) {
         $('#confirm_password_message').html('Passwords do not match').css('color', 'red');
-		$('#addBtn').prop('disabled', true);
-		button = false;
+// 		$('#addBtn').prop('disabled', true);
+		return = false;
     } else {
 		$('#new_password_message').html('');
 		$('#confirm_password_message').html('');
-		$('#addBtn').prop('disabled', false);
-		button = true;
+// 		$('#addBtn').prop('disabled', false);
+		return = true;
 	}
 		
-	return button;
+// 	return button;
 }
 
 function checkName() {
@@ -162,19 +165,27 @@ $(document).ready(function(){
 // 	});
 	$("#newEmail, #NewPassword, #ConfirmPassword, #FName").keyup(function() {
 		if(checkEmail($('#newEmail')) && checkPasswordMatch() && checkName()){
-			$('#addBtn').prop('disabled', true);
-		} else {
 			$('#addBtn').prop('disabled', false);
+		} else {
+			$('#addBtn').prop('disabled', true);
 		}
 	});
 // 	$("#FName, #LName").keyup(function() {
 // 		checkName($(this));
 // 	});
 	$("#editEmail").keyup(function() {
-		checkEmail($(this));
+		if(checkEmail($(this))){
+			$('#editBtn').prop('disabled', false);
+		} else {
+			$('#editBtn').prop('disabled', true);
+		}
 	});
 	$("#deleteEmail").keyup(function() {
-		checkEmail($(this));
+		if(checkEmail($(this))){
+			$('#deleteBtn').prop('disabled', false);
+		} else {
+			$('#deleteBtn').prop('disabled', true);
+		}
 	});
 	$("#addBtn").click(function(e){
 		$("#resultSpan").html('').css('color', 'red');
