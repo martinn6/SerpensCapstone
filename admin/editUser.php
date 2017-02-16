@@ -153,6 +153,7 @@ $(document).ready(function () {
 	});
 });
 </script>
+	
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -168,7 +169,9 @@ $(document).ready(function () {
 		</div>
 	</div>
 </nav>
+	
 <div class='alert alert-danger' id="error_msg" hidden></div>
+	
 <div class="container">
 	<div class="row">
 		<section class="col-xs-offset-2 col-xs-8">
@@ -188,7 +191,6 @@ $(document).ready(function () {
 					<div id="collapseEmail" class="panel-collapse collapse">
 						<div class="panel-body">
 							<form id="email" class="form-horizontal" action="">
-<!-- 							  onsubmit="return validateEmailForm();" method="post"> -->
 								<div class="row">
 									<div class="form-group">
 										<label class="col-sm-3" for="OldEmail">
@@ -196,7 +198,7 @@ $(document).ready(function () {
 										</label>
 										<div class="col-sm-7">
 											<input type="email" class="form-control" onChange="checkEmailMatch();"
-											id="OldEmail" value="a@a.com" readonly="readonly">
+											id="OldEmail" value="<?php echo $editUserEmail; ?>" readonly="readonly">
 										</div>
 									</div>
 									<div class="form-group">
@@ -230,8 +232,7 @@ $(document).ready(function () {
 					</div>
 					<div id="collapsePassword" class="panel-collapse collapse">
 						<div class="panel-body">
-							<form id="password" class="form-horizontal" action="editUser.html"
-							onsubmit="return validatePasswordForm();" method="post">
+							<form id="password" class="form-horizontal" action="">
 								<div class="row">
 									<div class="form-group">
 										<label class="col-sm-3" for="NewPassword">
@@ -274,8 +275,7 @@ $(document).ready(function () {
 					</div>
 					<div id="collapseName" class="panel-collapse collapse">
 						<div class="panel-body">
-							<form class="form-horizontal" id="name" action="editUser.html"
-							onsubmit="return validateUserForm();" method="post">
+							<form class="form-horizontal" id="name" action="">
 								<div class="row">
 									<div class="form-group">
 										<label class="col-sm-3" for="OldFName">
@@ -283,7 +283,7 @@ $(document).ready(function () {
 										</label>
 										<div class="col-sm-7">
 											<input type="text" class="form-control"
-												id="OldFName" value="Firstname" readonly="readonly">
+												id="OldFName" value="<?php echo $editUserName; ?>" readonly="readonly">
 										</div>
 									</div>
 									<div class="form-group">
