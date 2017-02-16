@@ -5,8 +5,8 @@ $form_email = '';
 $err_msg = '';
 $cred_match = false;
 
-if (isset($_POST['email'])){
-	echo "success";
+if(!empty($_POST)){
+	echo "post success";
 	if ($conn){
 		$query = "SELECT * FROM dbo.UserAccount WHERE Email = :Email";
 		$query_params = array(':Email' => $_POST['email']);
@@ -36,7 +36,7 @@ if (isset($_POST['email'])){
 		}
 	}
 } else {
-	echo "fail!";
+	echo "post fail!";
 }
 ?>
 
@@ -48,12 +48,18 @@ if (isset($_POST['email'])){
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Serpens Admin Login</title>
-  <link rel="stylesheet" href="../css/bootstrap.min.css">
-  <link rel="stylesheet" href="../css/styles.css">
+  
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
 <body>
-<script src="../js/jquery-2.1.4.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
 <script src="../js/script.js"></script>
 <script>
 function isEmail(email) {
@@ -120,9 +126,7 @@ $(document).ready(function(){
 		var password = $('#adminPassword').val();
 		var email = $('#adminEmail').val();
 		var data = {email: email, password: password}
-		console.log(data);
 		$.post(url, data, function(result){
-			console.log(result);
 		});
 		
 	});
@@ -130,6 +134,21 @@ $(document).ready(function(){
 });
 
 </script>
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="glyphicon glyphicon-menu-hamburger"></span>                     
+			</button>
+			<a class="navbar-brand" href="index.html">Employee Recognition</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="adminLogin.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
 <div class="container">
 	<div class="row">
 		<section class="col-xs-offset-3 col-xs-6">
