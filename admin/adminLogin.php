@@ -18,8 +18,6 @@ if(!empty($_POST)){
 			if($_POST['password'] === $row['Password']){
 				$err_msg = "match";
 				$cred_match = true;
-			} else {
-				$err_msg = " no match";
 			}
 			// if(md5($_POST['password']) === $row['Password']){
 			// 	$cred_match = true;
@@ -32,14 +30,13 @@ if(!empty($_POST)){
 			die();
 		} else {
 			$form_email = htmlentities($_POST['email']);
-			$err_msg = "<div class='alert alert-danger'>Email/Password does not match. Try again.</div>";
+			$err_msg = "Email/Password does not match. Try again";
 		}
 	}
+	return $err_msg;
 } 
 ?>
 
-</body>
-</html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -125,6 +122,7 @@ $(document).ready(function(){
 		var email = $('#adminEmail').val();
 		var data = {email: email, password: password}
 		$.post(url, data, function(result){
+			$('#result').html(result);
 		});
 		
 	});
@@ -147,13 +145,14 @@ $(document).ready(function(){
 		</div>
 	</div>
 </nav>
+<div class='alert alert-danger' id="response"></div>;
+<?php echo $err_msg; ?>
 <div class="container">
 	<div class="row">
 		<section class="col-xs-offset-3 col-xs-6">
 			<h1>Admin Login Page</h1>
 		</section>
 	</div>
-	<?php echo $err_msg; ?>
 	<div class="row">
 		<section class="col-xs-offset-2 col-xs-8">
 			<form class="form-horizontal" action="" method="post" id="loginForm">
