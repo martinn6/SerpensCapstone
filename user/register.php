@@ -18,15 +18,15 @@ if (isset($_POST['submit'])){
 		}
 	}
 
-	if (empty($_POST['fname']) {
+	if (empty($_POST['fname'])) {
 		$err_msg[] = 'Please enter your full name.';
 	}
 	
-	if (empty($_POST['password']) {
+	if (empty($_POST['password'])) {
 		$err_msg[] = 'Please enter a password.';
 	}
 	
-	if (empty($_POST['password-confirm']) {
+	if (empty($_POST['password-confirm'])) {
 		$err_msg[] = 'Please confirm your password.';
 	}
 	
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])){
 		}
 	}
 
-	if (empty($_POST['signature']) {
+	if (empty($_POST['signature'])) {
 		$err_msg[] = 'Please upload an image of your signature.';
 	} else {
 		if (!preg_match("!image!", $_FILES['signature']['type'])) {
