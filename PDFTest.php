@@ -1,12 +1,12 @@
 
 <?php
 
-$version = 'v3.9';
+$version = 'v4.0';
 
 $awardId = (isset($_GET['awardId']) ? $_GET['awardId'] : null);
 
 $awardedName = "         ";
-$awardedFrom = "                 ";
+$awardedFrom = "Serpen's Test";
 
 require_once( "fpdf/fpdf.php" );
 $pdf = new FPDF( 'L', 'mm', 'Letter' );
@@ -35,6 +35,9 @@ $pdf->SetFont('Arial','B',20);
 $pdf->Cell(100,0,"From: ____________________",0,0,'L');
 $pdf->SetX(140);
 $pdf->Cell(100,0,"Signature: ____________________ ",0,0,'L');
+
+$pdf->SetXY(44,179);
+$pdf->Cell(100,0,$awardedFrom,0,0,'L');
 
 //snake signature
 $pdf->Image( "images/SerpensTestSig.png", 175, 160, 80 );
