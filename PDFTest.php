@@ -1,11 +1,12 @@
 
 <?php
 
-$version = 'v3.0';
+$version = 'v3.1';
 
 $awardId = (isset($_GET['awardId']) ? $_GET['awardId'] : null);
 
 $awardedName = "         ";
+$awardedFrom = "                 ";
 
 require_once( "fpdf/fpdf.php" );
 $pdf = new FPDF( 'L', 'mm', 'Letter' );
@@ -31,9 +32,12 @@ $pdf->Cell(0,0,$awardId,0,1,'C');
 //Awarded To Name
 $pdf->SetXY(30,180);
 $pdf->SetFont('Arial','B',20);
-$pdf->Cell(30,0,'    From',0,0,'L');
+$pdf->Cell(30,0,'From: ',0,0,'L');
 $pdf->SetFont('Arial','U',20);
-$pdf->Cell(100,0,'              ',0,0,'L');
+$pdf->Cell(180,0,$awardedFrom,0,0,'L');
+$pdf->Cell(180,0,"Signature: ",0,0,'L');
+
+
 
 $pdf->Output("pdftest.pdf","I");
 ?>
