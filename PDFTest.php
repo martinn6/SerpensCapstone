@@ -1,7 +1,7 @@
 
 <?php
 
-$version = 'v3.7';
+$version = 'v3.8';
 
 $awardId = (isset($_GET['awardId']) ? $_GET['awardId'] : null);
 
@@ -30,14 +30,14 @@ $pdf->SetFont('Arial','U',48);
 $pdf->Cell(0,0,$awardId,0,1,'C');
 
 //Awarded To Name
-$pdf->SetXY(27,180);
+$pdf->SetXY(24,180);
 $pdf->SetFont('Arial','B',20);
 $pdf->Cell(100,0,"From: ____________________",0,0,'L');
 $pdf->SetX(140);
 $pdf->Cell(100,0,"Signature: ____________________ ",0,0,'L');
 
 //snake signature
-$pdf->Image( "images/SerpensTestSig.png", 140, 150, 100 );
+$pdf->Image( "images/SerpensTestSig.png", 180, 150, 80 );
 
 $pdf->Output("pdftest.pdf","I");
 ?>
