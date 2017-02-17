@@ -49,8 +49,8 @@ if(empty($_SESSION['user'])){
 		<div style="padding-top:15px" class="panel-body" >
 			<ul class="list-unstyled">
 				<li><div class="glyphicon glyphicon-chevron-right"></div><a href="profile.php"> Update Profile</a></li>
-				<li><div class="glyphicon glyphicon-chevron-right"></div><a href="entry.html"> Create New Award</a></li>
-				<li><div class="glyphicon glyphicon-chevron-right"></div><a href="awards.html"> View Previous Awards</a></li>
+				<li><div class="glyphicon glyphicon-chevron-right"></div><a href="entry.php"> Create New Award</a></li>
+				<li><div class="glyphicon glyphicon-chevron-right"></div><a href="awards.php"> View Previous Awards</a></li>
 			</ul>
 			
 		</div>                     
