@@ -1,18 +1,17 @@
 <?php
-$newName = $_POST["name"];
-$oldName = $_SESSION["editUserName"];
-$email = $_SESSION["editUserEmail"];
+$newEmail = $_POST["email"];
+$oldEmail = $_SESSION["editUserEmail"];
 require '../php/connect.php';
 if(!empty($_POST)){
 	if ($conn){
 		$query = "SELECT * FROM dbo.UserAccount WHERE Email = :Email";
-		$query_params = array(':Email' => $email);
+		$query_params = array(':Email' => $_POST['email']);
 		$stmt = $conn->prepare($query);
 		$result = $stmt->execute($query_params) or die();
 		$row = $stmt->fetch();
         
         if($row){
-                $query = "INSERT INTO dbo.UserAccount :FullName WHERE Email = :Email";
+                $query = "DELETE FROM dbo.UserAccount WHERE Email = :Email";
                 $query_params = array(':Email' => $_POST['email']);
                 $stmt = $conn->prepare($query);
                 $result = $stmt->execute($query_params) or die();
