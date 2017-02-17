@@ -153,7 +153,7 @@ $(document).ready(function(){
 			console.log(result);
 			if(!result){
 
-			} else {
+			} else{
 				$('#error_msg').html(result).prop('hidden', false);	
 			}
 		});
