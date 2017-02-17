@@ -20,7 +20,7 @@ if(!empty($_POST)){
 		}
 		
 		if ($cred_match){
-			$_SESSION['user'] = $row;
+			$_SESSION['user'] = $row['Email'];
 			header("Location: main.php"); 
 			die();
 		} else {
