@@ -19,7 +19,6 @@ if(!empty($_POST)){
             $query = "INSERT INTO dbo.UserAccount (UserTypeId, Email, FullName, Password) "
                 . "VALUES ((SELECT UserTypeId FROM dbo.UserTypes WHERE UserType='Admin'), :Email, :FullName, :Password)";
 			$query_params = array(
-				':UserTypeId' => 2, 
 				':Email' => $_POST['email'], 
 				':FullName' => $_POST['fname'], 
 				':Password' => $password
