@@ -1,7 +1,7 @@
 
 <?php
 
-$version = 'v4.0';
+$version = 'v4.1';
 
 $awardId = (isset($_GET['awardId']) ? $_GET['awardId'] : null);
 
@@ -36,7 +36,7 @@ $pdf->Cell(100,0,"From: ____________________",0,0,'L');
 $pdf->SetX(140);
 $pdf->Cell(100,0,"Signature: ____________________ ",0,0,'L');
 
-$pdf->SetXY(44,179);
+$pdf->SetXY(47,180);
 $pdf->Cell(100,0,$awardedFrom,0,0,'L');
 
 //snake signature
