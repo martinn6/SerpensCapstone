@@ -55,120 +55,71 @@ function checkEmail(thisObj) {
 	if (email.length < 6) {
 		message.html('');
 		return false;
-// 		button.prop('disabled', true);
-// 		return;
     } else if (!isEmail(email) ){
 		message.html('not a valid email').css('color', 'red');
 	    	return false;
-// 		button.prop('disabled', true);
-// 		return;
 	} else {
         	message.html('');
 		return true;
-// 		button.prop('disabled', false);
 	}	
 }
 
 function checkPasswordMatch() {
     var password = $("#NewPassword").val();
     var confirmPassword = $("#ConfirmPassword").val();
-// 	var button = false;
 	
 	if (password.length == 0){
 		$('#new_password_message').html('');
-// 		$('#addBtn').prop('disabled', true);
 		$('#ConfirmPassword').prop('disabled', true);
-// 		button = false;
 		return false;
 	} else if (password.length < 8){
 		$('#new_password_message').html('');
-// 		$('#ConfirmPassword').prop('disabled', true);
 		$('#addBtn').prop('disabled', true);
-// 		button = false;
 		return false;
 	} else if (!validPassword(password)){
 		$('#new_password_message').html('not a valid password').css('color', 'red');
-// 		$('#addBtn').prop('disabled', true);
 		$('#ConfirmPassword').prop('disabled', true);
-// 		button = false;
 		return false;
 	} else {
 		$('#new_password_message').html('');
-// 		$('#addBtn').prop('disabled', false);
 		$('#ConfirmPassword').prop('disabled', false);
-// 		button = true;
 	}
 	
 	if (confirmPassword.length == 0){
 		$('#confirm_password_message').html('');
-// 		$('#addBtn').prop('disabled', true);
-// 		button = false;
 		return false;
 	} else if (confirmPassword.length < password.length){
 		$('#confirm_password_message').html('');
-// 		$('#addBtn').prop('disabled', true);
 		return false;
 	} else if (password != confirmPassword) {
-        $('#confirm_password_message').html('Passwords do not match').css('color', 'red');
-// 		$('#addBtn').prop('disabled', true);
+        $('#confirm_password_message').html('Passwords do not match').css('color', 'red'); 
 		return false;
     } else {
 		$('#new_password_message').html('');
 		$('#confirm_password_message').html('');
-// 		$('#addBtn').prop('disabled', false);
 		return true;
 	}
 		
-// 	return button;
 }
 
 function checkName() {
     var fName = $("#FName").val();
-    //var lName = $("#LName").val();
-// 	var button = false;
 	
 	if (fName.length == 0) {
 	$('#fName_message').html('');
 	return false;
-// 		$('#addBtn').prop('disabled', true);
-// 		button = false;
-// 		return;
     } else if (!validName(fName) ){
 	$('#fName_message').html('not a valid Full Name format').css('color', 'red');
 	return false;
-// 		$('#addBtn').prop('disabled', true);
-// 		button = false;
-// 		return;
 	} else {
         $('#fName_message').html('');
-// 		$('#addBtn').prop('disabled', false);
 	return true;
 	}
-	
-// 	if (lName.length == 0) {
-// 		$('#lName_message').html('');
-// 		$('#addBtn').prop('disabled', true);
-// 		button = false;
-// 		return;
-//     } else if (!validName(lName) ){
-// 		$('#lName_message').html('not a valid Last Name format').css('color', 'red');
-// 		$('#addBtn').prop('disabled', true);
-// 		button = false;
-// 		return;
-// 	} else {
-//         $('#lName_message').html('');
-// 		$('#addBtn').prop('disabled', false);
-// 		button = true;
-// 	}
-	
-// 	return button;
+
 }
 	
 $(document).ready(function(){
 	
-// 	$("#newEmail").keyup(function() {
-// 		if(checkEmail($(this));	
-// 	});
 	$("#newEmail, #NewPassword, #ConfirmPassword, #FName").keyup(function() {
 		if(checkEmail($('#newEmail')) && checkPasswordMatch() && checkName()){
 			$('#addBtn').prop('disabled', false);
@@ -176,9 +127,6 @@ $(document).ready(function(){
 			$('#addBtn').prop('disabled', true);
 		}
 	});
-// 	$("#FName, #LName").keyup(function() {
-// 		checkName($(this));
-// 	});
 	$("#editEmail").keyup(function() {
 		if(checkEmail($(this))){
 			$('#editBtn').prop('disabled', false);
@@ -198,11 +146,13 @@ $(document).ready(function(){
 		e.preventDefault();
 		var url = "../php/editUser.php";
 		var email = $('#editEmail').val();
-		var data = {email: email}
+		var password = $('#NewPassword').val();
+		var name = $('#FName').val();
+		var data = {email: email, password: password, name: name}
 		$.post(url, data, function(result){
 			console.log(result);
 			if(!result){
-				window.location.href="editUser.php";
+
 			} else {
 				$('#error_msg').html(result).prop('hidden', false);	
 			}
@@ -226,17 +176,6 @@ $(document).ready(function(){
 		
 	});
 	
-// 	$("#editBtn").click(function(e){
-// 		$("#resultSpan").html('').css('color', 'red');
-// 		e.preventDefault();
-// 		var url = "../php/editUser.php";
-// 		var data = $('#editUserForm').serialize();
-// 		console.log(data);
-// 		$.post(url, data, function(result){
-// 			$("#resultSpan").html(result).css('color', 'red');
-// 		});
-		
-// 	});
 	
 	$("#deleteBtn").click(function(e){
 		$("#resultSpan").html('');
