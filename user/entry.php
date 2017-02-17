@@ -26,8 +26,8 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="profile.html"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-				<li><a href="login.html"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				<li><a href="profile.php"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -70,7 +70,7 @@
 				<div class="form-group">
 					<div class="col-md-12 control">
 						<div style="border-top: 1px solid #BABABA; padding-top:10px">
-							<a href="main.html">Cancel</a>
+							<a href="main.php">Cancel</a>
 						</div>
 					</div>
 				</div>
