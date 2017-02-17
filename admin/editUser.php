@@ -72,30 +72,25 @@ function checkPasswordMatch() {
 	
 	if (password.length == 0){
 		$('#new_password_message').html('');
-// 		$('#password-btn').prop('disabled', true);
-		return;
+		return false;
 	} else if (password.length < 8){
 		$('#new_password_message').html('');
 		$('#ConfirmPassword').prop('disabled', true);
 		return false;
 	} else if (!validPassword(password)){
 		$('#new_password_message').html('not a valid password').css('color', 'red');
-// 		$('#password-btn').prop('disabled', true);
 		$('#ConfirmPassword').prop('disabled', true);
 		return false;
 	} else {
 		$('#new_password_message').html('');
-// 		$('#password-btn').prop('disabled', false);
 		$('#ConfirmPassword').prop('disabled', false);
 	}
 	
 	if (confirmPassword.length == 0){
 		$('#confirm_password_message').html('');
-// 		$('#password-btn').prop('disabled', true);
 		return false;
 	} else if (password != confirmPassword) {
         $('#confirm_password_message').html('Passwords do not match').css('color', 'red');
-// 		$('#password-btn').prop('disabled', true);
 		return false;
     } else {
 		$('#new_password_message').html('');
@@ -150,6 +145,22 @@ $(document).ready(function () {
 		var url = "../php/editEmail.php";
 		var email = $('#NewEmail').val();
 		var data = {email: email}
+		$.post(url, data, function(result){
+			console.log(result);
+			if(!result){
+				window.location.href="admin.php";
+			} else {
+				$('#error_msg').html(result).prop('hidden', false);	
+			}
+		});
+	});
+
+		$("#password-btn").click(function(e){
+		$("#resultSpan").html('');
+		e.preventDefault();
+		var url = "../php/editPassword.php";
+		var password = $('#NewPassword').val();
+		var data = {password: password}
 		$.post(url, data, function(result){
 			console.log(result);
 			if(!result){
