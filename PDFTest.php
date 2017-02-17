@@ -1,7 +1,7 @@
 
 <?php
 
-$version = 'v3.2';
+$version = 'v3.3';
 
 $awardId = (isset($_GET['awardId']) ? $_GET['awardId'] : null);
 
@@ -32,11 +32,9 @@ $pdf->Cell(0,0,$awardId,0,1,'C');
 //Awarded To Name
 $pdf->SetXY(30,180);
 $pdf->SetFont('Arial','B',20);
-$pdf->Cell(30,0,'From: ',0,0,'L');
-$pdf->SetFont('Arial','U',20);
-$pdf->Cell(100,0,$awardedFrom,0,0,'L');
+$pdf->Cell(100,0,"From: ____________________",0,0,'L');
 $pdf->SetFont('Arial','B',20);
-$pdf->Cell(100,0,"Signature: _______________________ ",0,0,'L');
+$pdf->Cell(100,0,"Signature: ____________________ ",0,0,'L');
 
 
 
