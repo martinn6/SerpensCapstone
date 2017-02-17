@@ -144,7 +144,7 @@ $(document).ready(function(){
 	$("#addBtn").click(function(e){
 		$("#resultSpan").html('');
 		e.preventDefault();
-		var url = "../php/editUser.php";
+		var url = "../php/addUser.php";
 		var email = $('#newEmail').val();
 		var password = $('#NewPassword').val();
 		var name = $('#FName').val();
