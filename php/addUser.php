@@ -25,7 +25,7 @@ if(!empty($_POST)){
 			);
 			$stmt = $conn->prepare($query);
 			$stmt->execute($query_params) or die();
-                
+            return false;
 		}
 	}
 }
