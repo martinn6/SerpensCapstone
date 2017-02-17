@@ -2,7 +2,7 @@
 
 $email = $_POST["email"];
 $password = md5($_POST["password"]);
-$name = $_POST["FName"];
+$name = $_POST["name"];
 require '../php/connect.php';
 
 if(!empty($_POST)){
@@ -19,8 +19,8 @@ if(!empty($_POST)){
             $query = "INSERT INTO dbo.UserAccount (UserTypeId, Email, FullName, Password) "
                 . "VALUES ((SELECT UserTypeId FROM dbo.UserTypes WHERE UserType='Admin'), :Email, :FullName, :Password)";
 			$query_params = array(
-				':Email' => $_POST['email'], 
-				':FullName' => $_POST['fname'], 
+				':Email' => $email,
+				':FullName' => $name,
 				':Password' => $password
 			);
 			$stmt = $conn->prepare($query);
