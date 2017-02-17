@@ -9,7 +9,7 @@ if(empty($_SESSION['user'])){
 $fname = '';
 
 if ($conn){
-	$query = "SELECT * FROM dbo.UserAccount WHERE Email = :Email";
+	$query = "SELECT * FROM dbo.UserAccount WHERE UserId = :UserId";
 	$query_params = array(':Email' => $_SESSION['user']);
 	$stmt = $conn->prepare($query);
 	$result = $stmt->execute($query_params) or die();
