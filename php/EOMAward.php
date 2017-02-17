@@ -17,7 +17,7 @@ $pdf->SetFont('Arial','B', 8);
 $pdf->Cell(0,0, $version . "           ",0,1,'R');
 $pdf->Ln(35);
 $pdf->SetFont('Arial','B',48);
-$pdf->Cell(0,0,'Employee of the Year',0,1,'C');
+$pdf->Cell(0,0,'Employee of the Month',0,1,'C');
 
 //Awarded To
 $pdf->Ln(30);
