@@ -10,7 +10,7 @@ $fname = '';
 
 if ($conn){
 	$query = "SELECT * FROM dbo.UserAccount WHERE UserId = :UserId";
-	$query_params = array(':Email' => $_SESSION['user']);
+	$query_params = array(':UserId' => $_SESSION['user']);
 	$stmt = $conn->prepare($query);
 	$result = $stmt->execute($query_params) or die();
 	$row = $stmt->fetch();
