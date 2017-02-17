@@ -8,10 +8,10 @@ $awardId = (isset($_GET['awardId']) ? $_GET['awardId'] : null);
 $awardedName = "         ";
 $awardedFrom = "Serpen's Test";
 
-require_once( "fpdf/fpdf.php" );
+require_once( "../fpdf/fpdf.php" );
 $pdf = new FPDF( 'L', 'mm', 'Letter' );
 $pdf->AddPage();
-$pdf->Image( "images/EOYAwardBackground.png", 0, 0, 280 );
+$pdf->Image( "../images/EOYAwardBackground.png", 0, 0, 280 );
 $pdf->Ln(14);
 $pdf->SetFont('Arial','B', 8);
 $pdf->Cell(0,0, $version . "           ",0,1,'R');
@@ -40,7 +40,7 @@ $pdf->SetXY(47,180);
 $pdf->Cell(100,0,$awardedFrom,0,0,'L');
 
 //snake signature
-$pdf->Image( "images/SerpensTestSig.png", 175, 160, 80 );
+$pdf->Image( "../images/SerpensTestSig.png", 175, 160, 80 );
 
-$pdf->Output("pdftest.pdf","I");
+$pdf->Output("EOMAward.pdf","I");
 ?>
