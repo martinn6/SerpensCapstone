@@ -59,7 +59,7 @@ if ($conn){
 		</div>     
 
 		<div style="padding-top:15px" class="panel-body" >
-			<form id="loginform" class="form-horizontal">           
+			<form id="profileform" class="form-horizontal">           
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
 					<input id="register-fname" type="text" class="form-control" name="fname" placeholder="Full Name" value="<?php echo $fname; ?>">                                        
@@ -67,12 +67,12 @@ if ($conn){
                                 
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="register-password" type="password" class="form-control" name="password" placeholder="New Password">
+					<input id="password" type="password" class="form-control" name="password" placeholder="New Password">
 				</div>
 
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="register-password2" type="password" class="form-control" name="password2" placeholder="Confirm New Password">
+					<input id="confirm-password" type="password" class="form-control" name="confirm-password" placeholder="Confirm New Password">
 				</div>
 				<img src="images/signature.jpg" />
 				<div style="margin-bottom: 15px" class="input-group">
@@ -84,7 +84,7 @@ if ($conn){
 
 				<div style="margin-top:5px" class="form-group">
 					<div class="col-sm-12 controls">
-						<a id="btn-login" href="#" class="btn btn-primary">Save</a>
+						<a id="btn-profile" href="#" class="btn btn-primary">Save</a>
 					</div>
 				</div>
 				

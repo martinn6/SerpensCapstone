@@ -2,24 +2,9 @@
 require 'connect.php';
 
 if(!empty($_POST)){
-	if (empty($_POST['email'])) {
-		$err_msg[] = 'Please enter an email address.';
-	} else {
-		if ($conn){
-			$query = "SELECT * FROM dbo.UserAccount WHERE Email = :Email";
-			$query_params = array(':Email' => $_POST['email']);
-			$stmt = $conn->prepare($query);
-			$stmt->execute($query_params) or die();
-			$row = $stmt->fetch();
 
-			if($row){
-				$err_msg[] = 'Email address already exists. Enter another email.';
-			}
-		}
-	}
-
-	if (empty($_POST['fname'])) {
-		$err_msg[] = 'Please enter your full name.';
+	if (empty($_POST['password-old'])) {
+		$err_msg[] = 'Please enter your old password.';
 	}
 	
 	if (empty($_POST['password'])) {
@@ -35,35 +20,9 @@ if(!empty($_POST)){
 			$err_msg[] = 'Passwords do not match. Re-enter passwords.';
 		}
 	}
-
-	if (empty($_FILES['signature'])) {
-		$err_msg[] = 'Please upload an image of your signature.';
-	} else {
-		if (!preg_match("!image!", $_FILES['signature']['type'])) {
-			$err_msg[] = 'Signature file is not an image. Re-upload image.';
-		}
-	}
 	
     if (!isset($err_msg)) {
-        $password = md5($_POST['password']);
-        $signature_path = 'images/'.$_FILES['signature']['name'];
-		
-		if ($conn){
-			copy($_FILES['signature']['tmp_name'], $signature_path);
-			$query = "INSERT INTO dbo.UserAccount (UserTypeId, Email, FullName, Password, SignatureURL) "
-                . "VALUES (:UserTypeId, :Email, :FullName, :Password, :SignatureURL)";
-			$query_params = array(
-				':UserTypeId' => 1, 
-				':Email' => $_POST['email'], 
-				':FullName' => $_POST['fname'], 
-				':Password' => $password, 
-				':SignatureURL' => $signature_path
-			);
-			$stmt = $conn->prepare($query);
-			$stmt->execute($query_params) or die();
-		}
-		
-		header("location: registerSuccess.php");
+
     }
 }
 ?>
@@ -105,7 +64,7 @@ if(!empty($_POST)){
 <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
 	<div class="panel panel-default" >
 		<div class="panel-heading">
-			<div class="panel-title">Register</div>	
+			<div class="panel-title">Password Reset</div>	
 		</div>     
 
 		<div style="padding-top:15px" class="panel-body" >
@@ -117,28 +76,19 @@ if(!empty($_POST)){
 			}
 		?>
 			<form id="loginform" class="form-horizontal" action="register.php" method="post" enctype="multipart/form-data">           
-				<div style="margin-bottom: 15px" class="input-group">
+ 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="register-email" type="text" class="form-control" name="email" placeholder="Email" value="<?php echo isset($err_msg) ? $_POST['email'] : '' ?>" required />                                        
+					<input id="register-password" type="password" class="form-control" name="password-old" placeholder="Old Password" required />
 				</div>
 				
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="register-fname" type="text" class="form-control" name="fname" placeholder="Full Name" value="<?php echo isset($err_msg) ? $_POST['fname'] : '' ?>" required />                                        
-				</div>
-                                
-				<div style="margin-bottom: 15px" class="input-group">
-					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="register-password" type="password" class="form-control" name="password" placeholder="Password" required />
+					<input id="register-password" type="password" class="form-control" name="password" placeholder="New Password" required />
 				</div>
 
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="register-password-confirm" type="password" class="form-control" name="password-confirm" placeholder="Confirm Password" required />
-				</div>
-				
-				<div style="margin-bottom: 15px" class="input-group">
-					<label>Upload Signature</label><input type="file" name="signature" accept="image/*" required />
+					<input id="register-password-confirm" type="password" class="form-control" name="password-confirm" placeholder="Confirm New Password" required />
 				</div>
 
 				<div style="margin-top:5px" class="form-group">
@@ -147,13 +97,6 @@ if(!empty($_POST)){
 					</div>
 				</div>
 				
-				<div class="form-group">
-					<div class="col-md-12 control">
-						<div style="border-top: 1px solid #BABABA; padding-top:10px">
-							<a href="login.php">Back to Login</a>
-						</div>
-					</div>
-				</div>
 			</form>
 
 		</div>                     
