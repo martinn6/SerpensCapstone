@@ -75,25 +75,25 @@ if(!empty($_POST)){
 				}
 			}
 		?>
-			<form id="loginform" class="form-horizontal" action="register.php" method="post" enctype="multipart/form-data">           
+			<form id="loginform" class="form-horizontal" action="reset.php" method="post">           
  				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="register-password" type="password" class="form-control" name="password-old" placeholder="Old Password" required />
+					<input id="reset-password" type="password" class="form-control" name="password-old" placeholder="Old Password" required />
 				</div>
 				
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="register-password" type="password" class="form-control" name="password" placeholder="New Password" required />
+					<input id="reset-password" type="password" class="form-control" name="password" placeholder="New Password" required />
 				</div>
 
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="register-password-confirm" type="password" class="form-control" name="password-confirm" placeholder="Confirm New Password" required />
+					<input id="reset-password-confirm" type="password" class="form-control" name="password-confirm" placeholder="Confirm New Password" required />
 				</div>
 
 				<div style="margin-top:5px" class="form-group">
 					<div class="col-sm-12 controls">
-						<input type="submit" value="Register" name ="register" class="btn btn-primary" />
+						<input type="submit" value="Submit" name ="Submit" class="btn btn-primary" />
 					</div>
 				</div>
 				
