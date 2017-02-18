@@ -1,4 +1,11 @@
-<!doctype html>
+<?php
+session_start();
+
+if(empty($_SESSION['user'])){
+	header("Location: login.php"); 
+	die();
+} 
+?>
 
 <html lang="en">
 <head>
@@ -52,6 +59,7 @@
 						<th>Date Created</th>
                         <th>Recipient</th>
                         <th>Email</th>
+						<th>Award Type</th>
 						<th>Award Date</th>
 						<th>Delete</th>
 					</tr> 
@@ -61,6 +69,7 @@
 						<td>JUL 23 02:16:57 2016</td>
 						<td>John Doe</td>
 						<td>johndoe@example.com</td>
+						<td>Employee of the Month</td>
 						<td>JUL 23 2016</td>
 						<td align="center"><a class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
 					</tr>
@@ -68,6 +77,7 @@
 						<td>JUL 23 02:16:57 2016</td>
 						<td>John Doe</td>
 						<td>johndoe@example.com</td>
+						<td>Employee of the Week</td>
 						<td>JUL 23 2016</td>
 						<td align="center"><a class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
 					</tr>
@@ -75,6 +85,7 @@
 						<td>JUL 23 02:16:57 2016</td>
 						<td>John Doe</td>
 						<td>johndoe@example.com</td>
+						<td>Employee of the Month</td>
 						<td>JUL 23 2016</td>
 						<td align="center"><a class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
 					</tr>
