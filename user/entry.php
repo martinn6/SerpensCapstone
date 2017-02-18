@@ -50,7 +50,11 @@ if(empty($_SESSION['user'])){
 			<form id="loginform" class="form-horizontal">           
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="register-username" type="text" class="form-control" name="username" placeholder="Award Type">                                        
+					<select class="form-control">
+						<option value="" disabled selected hidden>Please Select an Award</option>
+						<option>Employee of the Week</option>
+						<option>Employee of the Month</option>
+					</select>                                       
 				</div>
 				
 				<div style="margin-bottom: 15px" class="input-group">
