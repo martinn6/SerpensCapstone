@@ -3,7 +3,7 @@ require 'connect.php';
 
 $form_email = '';
 $err_msg = '';
-$cred_match = false;
+$pass_match = false;
 
 if(!empty($_POST)){
 	if ($conn){
@@ -15,17 +15,17 @@ if(!empty($_POST)){
 
 		if($row){
 			if(md5($_POST['password']) === $row['Password']){
-				$cred_match = true;
+				$pass_match = true;
 			}
 		}
 		
-		if ($cred_match){
+		if ($pass_match){
 			$_SESSION['user'] = $row['UserId'];
 			header("Location: main.php"); 
 			die();
 		} else {
 			$form_email = htmlentities($_POST['email']);
-			$err_msg = "<div class='alert alert-danger'>Email/Password does not match. Try again.</div>";
+			$err_msg = "<div class='alert alert-danger'>Email/Password is not valid. Try again.</div>";
 		}
 	}
 }
@@ -85,7 +85,7 @@ if(!empty($_POST)){
 
 				<div style="margin-top:5px" class="form-group">
 					<div class="col-sm-12 controls">
-						<input type="submit" value="Login" name = login" class="btn btn-primary" />
+						<input type="submit" value="Login" name = "login" class="btn btn-primary" />
 					</div>
 				</div>
 				
