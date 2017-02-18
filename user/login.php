@@ -2,38 +2,39 @@
 require 'connect.php';
 
 $form_email = '';
-$err_msg = '';
 $pass_match = false;
 
-if (empty($_POST['email'])) {
-	$err_msg[] = 'Please enter your email.';
-}
-
-if (empty($_POST['password'])) {
-	$err_msg[] = 'Please enter your password.';
-}
-
 if(!empty($_POST)){
-	if ($conn){
-		$query = "SELECT * FROM dbo.UserAccount WHERE Email = :Email";
-		$query_params = array(':Email' => $_POST['email']);
-		$stmt = $conn->prepare($query);
-		$result = $stmt->execute($query_params) or die();
-		$row = $stmt->fetch();
+	if (empty($_POST['email'])) {
+		$err_msg[] = 'Please enter your email.';
+	}
 
-		if($row){
-			if(md5($_POST['password']) === $row['Password']){
-				$pass_match = true;
+	if (empty($_POST['password'])) {
+		$err_msg[] = 'Please enter your password.';
+	}
+
+	if (!isset($err_msg)) {
+		if ($conn){
+			$query = "SELECT * FROM dbo.UserAccount WHERE Email = :Email";
+			$query_params = array(':Email' => $_POST['email']);
+			$stmt = $conn->prepare($query);
+			$result = $stmt->execute($query_params) or die();
+			$row = $stmt->fetch();
+
+			if($row){
+				if(md5($_POST['password']) === $row['Password']){
+					$pass_match = true;
+				}
 			}
-		}
-		
-		if ($pass_match){
-			$_SESSION['user'] = $row['UserId'];
-			header("Location: main.php"); 
-			die();
-		} else {
-			$form_email = htmlentities($_POST['email']);
-			$err_msg = "<div class='alert alert-danger'>Email/Password is not valid. Try again.</div>";
+			
+			if ($pass_match){
+				$_SESSION['user'] = $row['UserId'];
+				header("Location: main.php"); 
+				die();
+			} else {
+				$form_email = htmlentities($_POST['email']);
+				$err_msg[] = "Email/Password is not valid. Try again.";
+			}
 		}
 	}
 }
@@ -79,7 +80,13 @@ if(!empty($_POST)){
 		</div>     
 
 		<div style="padding-top:15px" class="panel-body" >
-		<?php echo $err_msg; ?>
+		<?php
+			if(isset($err_msg)){
+				foreach($err_msg as $msg){
+					echo '<div class="alert alert-danger">'.$msg.'</div>';
+				}
+			}
+		?>
 			<form id="loginform" class="form-horizontal" action="login.php" method="post">           
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
