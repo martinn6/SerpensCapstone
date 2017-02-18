@@ -5,6 +5,14 @@ $form_email = '';
 $err_msg = '';
 $pass_match = false;
 
+if (empty($_POST['email'])) {
+	$err_msg[] = 'Please enter your email.';
+}
+
+if (empty($_POST['password'])) {
+	$err_msg[] = 'Please enter your password.';
+}
+
 if(!empty($_POST)){
 	if ($conn){
 		$query = "SELECT * FROM dbo.UserAccount WHERE Email = :Email";
@@ -75,12 +83,12 @@ if(!empty($_POST)){
 			<form id="loginform" class="form-horizontal" action="login.php" method="post">           
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-					<input id="login-email" type="text" class="form-control" name="email" placeholder="Email" value="<?php echo $form_email; ?>" />                                        
+					<input id="login-email" type="text" class="form-control" name="email" placeholder="Email" value="<?php echo $form_email; ?>" required />                                        
 				</div>
                                 
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-					<input id="login-password" type="password" class="form-control" name="password" placeholder="Password" />
+					<input id="login-password" type="password" class="form-control" name="password" placeholder="Password" required />
 				</div>
 
 				<div style="margin-top:5px" class="form-group">
