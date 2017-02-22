@@ -25,6 +25,7 @@ if(!empty($_POST)){
 					}
 					unset($_SESSION['editUserName']);
 					$_SESSION['editUserName'] = $newName;
+					return false;
 				} else {
 					$err_msg = "error updating user with email: $email";
 				}
