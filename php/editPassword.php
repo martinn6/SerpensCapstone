@@ -19,8 +19,7 @@ if(!empty($_POST)){
 					':ID' => $row['UserId'])
                 $new_stmt = $conn->prepare($new_query);
                 $new_result = $new_stmt->execute($new_query_params) or die();
-				$new_row = $new_stmt->fetch();
-				if(!$new_row){
+				if(!$new_result){
 					$err_msg = "error updating user with email: $oldEmail";
 				}
 		} else {
