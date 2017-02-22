@@ -23,7 +23,6 @@ if(!empty($_POST)){
 					if (session_status() == PHP_SESSION_NONE) {
 							session_start();
 					}
-					unset($_SESSION['editUserName']);
 					$_SESSION['editUserName'] = $newName;
 					return false;
 				} else {
