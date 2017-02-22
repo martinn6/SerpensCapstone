@@ -115,10 +115,7 @@ function checkNameMatch() {
 	}
 	
 }
-$(document).click(function()){
-	$('#error_msg').prop('hidden', true);
-	$('#success_msg').prop('hidden', true);
-}
+
 $(document).ready(function () {
 	$("#newEmail").keyup(function() {
 		if(checkEmail()){
@@ -140,6 +137,10 @@ $(document).ready(function () {
 		} else {
 			$('#name-btn').prop('disabled', true);
 		}
+	});
+	$(document).click(function()){
+		$('#error_msg').prop('hidden', true);
+		$('#success_msg').prop('hidden', true);
 	});
 	
 	$("#email-btn").click(function(e){
@@ -255,7 +256,7 @@ $(document).ready(function () {
 										  New Email address
 										</label>
 										<div class="col-sm-7">
-											<input type="email" class="form-control" onChange="checkEmailMatch();"
+											<input type="email" class="form-control" onChange="checkEmailMatch()"
 											id="NewEmail" placeholder="New Email" required>
 											<span id='email_message'></span>
 										</div>
@@ -288,7 +289,7 @@ $(document).ready(function () {
 										  New Password
 										</label>
 										<div class="col-sm-7">
-											<input type="password" class="form-control" onChange="checkPasswordMatch($(this));"
+											<input type="password" class="form-control" onChange="checkPasswordMatch($(this))"
 											id="NewPassword" maxlength="16" required>
 											<span id='new_password_message'></span>
 										</div>
@@ -298,7 +299,7 @@ $(document).ready(function () {
 										  Re-Enter Password
 										</label>
 										<div class="col-sm-7">
-											<input type="password" class="form-control" onChange="checkPasswordMatch($(this));"
+											<input type="password" class="form-control" onChange="checkPasswordMatch($(this))"
 											id="ConfirmPassword" maxlength="16" disabled required>
 											<span id='confirm_password_message'></span>
 										</div>
@@ -340,7 +341,7 @@ $(document).ready(function () {
 											New Full Name
 										</label>
 										<div class="col-sm-7">
-											<input type="text" class="form-control" onChange="checkNameMatch();"
+											<input type="text" class="form-control" onChange="checkNameMatch()"
 												id="NewName">
 											<span id='fname_message'></span>
 										</div>
