@@ -1,6 +1,6 @@
 <?php
-$newEmail = $_POST["email"];
-$oldEmail = $_SESSION["editUserEmail"];
+$newPassword = md5($_POST["password"]);
+$email = $_SESSION["editUserEmail"];
 require '../php/connect.php';
 if(!empty($_POST)){
 	if ($conn){
@@ -12,11 +12,14 @@ if(!empty($_POST)){
 		$row = $stmt->fetch();
         
         if($row){
-                $query = "DELETE FROM dbo.UserAccount WHERE Email = :Email";
-                $query_params = array(':Email' => $_POST['email']);
+                $query = "UPDATE dbo.UserAccount SET Password = :Password
+				WHERE UserId = :ID";
+                $query_params = array(
+					':Email' => $newPassword,
+					':ID' => $row['UserId'])
                 $stmt = $conn->prepare($query);
                 $result = $stmt->execute($query_params) or die();
-                $err_msg = "Deleted user with email: $email.";
+                $err_msg = "Changed password for user with email: $email.";
 		} else {
 			    $err_msg = "Cannot find user with email: $email.  Try again";
 		}
