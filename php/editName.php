@@ -17,7 +17,7 @@ if(!empty($_POST)){
 				WHERE UserId = :ID";
                 $query_params = array(
 					':Name' => $newEmail,
-					':ID' => $row['UserId'])
+					':ID' => $row['UserId']);
                 $stmt = $conn->prepare($query);
                 $result = $stmt->execute($query_params) or die();
                 $err_msg = "Deleted user with email: $email.";
