@@ -115,6 +115,10 @@ function checkNameMatch() {
 	}
 	
 }
+$(document).click(function()){
+	$('#error_msg').prop('hidden', true);
+	$('#success_msg').prop('hidden', true);
+}
 $(document).ready(function () {
 	$("#newEmail").keyup(function() {
 		if(checkEmail()){
@@ -146,7 +150,6 @@ $(document).ready(function () {
 		var oldEmail = '<?php echo $editUserEmail; ?>';
 		var data = {newEmail: newEmail, oldEmail: oldEmail}
 		$.post(url, data, function(result){
-			console.log(result);
 			if(!result){
 				<?php $editUserEmail = $_SESSION['editUserEmail']; ?>
 				$('#success_msg').html("Email Update Successful").prop('hidden', false);
@@ -167,7 +170,6 @@ $(document).ready(function () {
 		var oldEmail = '<?php echo $editUserEmail; ?>';
 		var data = {password: password, oldEmail: oldEmail}
 		$.post(url, data, function(result){
-			console.log(result);
 			if(!result){
 				$('#success_msg').html("Password Update Successful").prop('hidden', false);
 				$('#NewPassword').val("");
@@ -187,7 +189,6 @@ $(document).ready(function () {
 		var oldEmail = '<?php echo $editUserEmail; ?>';
 		var data = {name: name, oldEmail: oldEmail}
 		$.post(url, data, function(result){
-			console.log(result);
 			if(!result){
 				<?php $editUserEmail = $_SESSION['editUserName']; ?>
 				$('#success_msg').html("Name Update Successful").prop('hidden', false);
