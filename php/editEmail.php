@@ -1,6 +1,6 @@
 <?php
-$newEmail = $_POST["email"];
-$oldEmail = $_SESSION['editUserEmail'];
+$newEmail = $_POST["newEmail"];
+$oldEmail = $_POST["oldEmail"];
 require '../php/connect.php';
 if(!empty($_POST)){
 	if ($conn){
