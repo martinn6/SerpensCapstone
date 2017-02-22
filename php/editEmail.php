@@ -19,13 +19,12 @@ if(!empty($_POST)){
 					':ID' => $row['UserId']);
                 $new_stmt = $conn->prepare($new_query);
                 $new_result = $new_stmt->execute($new_query_params) or die();
-				$new_row = $new_stmt->fetch();
-				if($new_row){
+				if($new_result){
 					if (session_status() == PHP_SESSION_NONE) {
 							session_start();
 					}
 					unset($_SESSION['editUserEmail']);
-					$_SESSION['editUserEmail'] = $new_row['Email'];
+					$_SESSION['editUserEmail'] = $newEmail;
 				} else {
 					$err_msg = "error updating user with email: $oldEmail";
 				}
