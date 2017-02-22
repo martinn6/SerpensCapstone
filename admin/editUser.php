@@ -150,8 +150,8 @@ $(document).ready(function () {
 			if(!result){
 				<?php $editUserEmail = $_SESSION['editUserEmail']; ?>
 				$('#success_msg').html("Email Update Successful").prop('hidden', false);
-				$('#OldEmail').html("<?php echo $editUserEmail; ?>");
-				$('#NewEmail').html("");
+				$('#OldEmail').val(name);
+				$('#NewEmail').val("");
 				$('#email-btn').prop('disabled', true);
 			} else {
 				$('#error_msg').html(result).prop('hidden', false);	
@@ -170,8 +170,8 @@ $(document).ready(function () {
 			console.log(result);
 			if(!result){
 				$('#success_msg').html("Password Update Successful").prop('hidden', false);
-				$('#NewPassword').html("");
-				$('#ConfirmPassword').html("").prop('disabled', true);
+				$('#NewPassword').val("");
+				$('#ConfirmPassword').val("").prop('disabled', true);
 				$('#password-btn').prop('disabled', true);
 			} else {
 				$('#error_msg').html(result).prop('hidden', false);	
@@ -191,9 +191,9 @@ $(document).ready(function () {
 			if(!result){
 				<?php $editUserEmail = $_SESSION['editUserName']; ?>
 				$('#success_msg').html("Name Update Successful").prop('hidden', false);
-				$('#titleName').html("<?php echo $editUserEmail; ?>");
-				$('#OldName').html("<?php echo $editUserEmail; ?>");
-				$('#NewName').html("");
+				$('#titleName').val(name);
+				$('#OldName').val(name);
+				$('#NewName').val("");
 				$('#name-btn').prop('disabled', true);
 			} else {
 				$('#error_msg').html(result).prop('hidden', false);	
