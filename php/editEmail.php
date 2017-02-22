@@ -12,7 +12,7 @@ if(!empty($_POST)){
 		$row = $stmt->fetch();
         
         if($row){
-                $new_uery = "UPDATE dbo.UserAccount SET Email = :Email
+                $new_query = "UPDATE dbo.UserAccount SET Email = :Email
 				WHERE UserId = :ID";
                 $new_query_params = array(
 					':Email' => $newEmail,
