@@ -49,7 +49,6 @@ function validName(name) {
 }
 function checkEmail(thisObj) {
     var email = thisObj.val();
-// 	var button = thisObj.closest("form").find('.btn');
 	var message = thisObj.parent().children('span');
 	
 	if (email.length < 6) {
@@ -141,6 +140,11 @@ $(document).ready(function(){
 			$('#deleteBtn').prop('disabled', true);
 		}
 	});
+	$(document).click(function() {
+		$('#error_msg').prop('hidden', true);
+		$('#success_msg').prop('hidden', true);
+	});
+
 	$("#addBtn").click(function(e){
 		$("#resultSpan").html('');
 		e.preventDefault();
@@ -150,9 +154,8 @@ $(document).ready(function(){
 		var name = $('#FName').val();
 		var data = {email: email, password: password, name: name}
 		$.post(url, data, function(result){
-			console.log(result);
 			if(!result){
-
+				$('#success_msg').html("Successful added new Admin User: " + name).prop('hidden', false);
 			} else{
 				$('#error_msg').html(result).prop('hidden', false);	
 			}
@@ -166,7 +169,6 @@ $(document).ready(function(){
 		var email = $('#editEmail').val();
 		var data = {email: email}
 		$.post(url, data, function(result){
-			console.log(result);
 			if(!result){
 				window.location.href="editUser.php";
 			} else {
@@ -184,9 +186,9 @@ $(document).ready(function(){
 		var email = $('#deleteEmail').val();
 		var data = {email: email}
 		$.post(url, data, function(result){
-			console.log(result);
 			if(!result){
-				window.location.href="adminLogout.php";
+				var name = <?php echo $_SESSION['deletedName']; ?>
+				$('#success_msg').html("Successful deleted Admin User: " + name).prop('hidden', false);
 			} else {
 				$('#error_msg').html(result).prop('hidden', false);	
 			}
@@ -213,6 +215,7 @@ $(document).ready(function(){
 	</div>
 </nav>
 <div class='alert alert-danger' id="error_msg" hidden></div>
+<div class='alert alert-success' id="success_msg" hidden></div>	
 <div class="container">
 	<div class="row">
 		<section class="col-xs-offset-2 col-xs-8">
