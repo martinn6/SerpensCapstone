@@ -143,7 +143,7 @@ $(document).ready(function () {
 		e.preventDefault();
 		var url = "../php/editEmail.php";
 		var newEmail = $('#NewEmail').val();
-		var oldEmail = <?php echo $editUserEmail; ?>;
+		var oldEmail = '<?php echo $editUserEmail; ?>';
 		var data = {newEmail: newEmail, oldEmail: oldEmail}
 		$.post(url, data, function(result){
 			console.log(result);
@@ -160,7 +160,7 @@ $(document).ready(function () {
 		e.preventDefault();
 		var url = "../php/editPassword.php";
 		var password = $('#NewPassword').val();
-		var oldEmail = <?php echo $editUserEmail; ?>;
+		var oldEmail = '<?php echo $editUserEmail; ?>';
 		var data = {password: password, oldEmail: oldEmail}
 		$.post(url, data, function(result){
 			console.log(result);
@@ -177,7 +177,7 @@ $(document).ready(function () {
 		e.preventDefault();
 		var url = "../php/editName.php";
 		var name = $('#NewName').val();
-		var oldEmail = <?php echo $editUserEmail; ?>;
+		var oldEmail = '<?php echo $editUserEmail; ?>';
 		var data = {name: name, oldEmail: oldEmail}
 		$.post(url, data, function(result){
 			console.log(result);
