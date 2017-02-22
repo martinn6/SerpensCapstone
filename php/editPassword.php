@@ -1,6 +1,6 @@
 <?php
 $newPassword = md5($_POST["password"]);
-$email = $_SESSION["editUserEmail"];
+$email = $_POST["oldEmail"];
 require '../php/connect.php';
 if(!empty($_POST)){
 	if ($conn){
