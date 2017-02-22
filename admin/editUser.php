@@ -245,7 +245,7 @@ $(document).ready(function () {
 										  Current Email address
 										</label>
 										<div class="col-sm-7">
-											<input type="email" class="form-control" onChange="checkEmailMatch();"
+											<input type="text" class="form-control"
 											id="OldEmail" value="<?php echo $editUserEmail; ?>" readonly="readonly">
 										</div>
 									</div>
