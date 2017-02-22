@@ -191,7 +191,7 @@ $(document).ready(function () {
 			if(!result){
 				<?php $editUserEmail = $_SESSION['editUserName']; ?>
 				$('#success_msg').html("Name Update Successful").prop('hidden', false);
-				$('#titleName').val(name);
+				$('#titleName').html(name);
 				$('#OldName').val(name);
 				$('#NewName').val("");
 				$('#name-btn').prop('disabled', true);
