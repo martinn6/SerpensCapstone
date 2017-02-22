@@ -148,7 +148,11 @@ $(document).ready(function () {
 		$.post(url, data, function(result){
 			console.log(result);
 			if(!result){
-				window.location.href="admin.php";
+				<?php $editUserEmail = $_SESSION['editUserEmail']; ?>
+				$('#success_msg').html("Email Update Successful").prop('hidden', false);
+				$('#OldEmail').html("<?php echo $editUserEmail; ?>");
+				$('#NewEmail').html("");
+				$('#email-btn').prop('disabled', true);
 			} else {
 				$('#error_msg').html(result).prop('hidden', false);	
 			}
@@ -165,7 +169,10 @@ $(document).ready(function () {
 		$.post(url, data, function(result){
 			console.log(result);
 			if(!result){
-				window.location.href="admin.php";
+				$('#success_msg').html("Password Update Successful").prop('hidden', false);
+				$('#NewPassword').html("");
+				$('#ConfirmPassword').html("").prop('disabled', true);
+				$('#password-btn').prop('disabled', true);
 			} else {
 				$('#error_msg').html(result).prop('hidden', false);	
 			}
@@ -182,7 +189,12 @@ $(document).ready(function () {
 		$.post(url, data, function(result){
 			console.log(result);
 			if(!result){
-				window.location.href="admin.php";
+				<?php $editUserEmail = $_SESSION['editUserName']; ?>
+				$('#success_msg').html("Name Update Successful").prop('hidden', false);
+				$('#titleName').html("<?php echo $editUserEmail; ?>");
+				$('#OldName').html("<?php echo $editUserEmail; ?>");
+				$('#NewName').html("");
+				$('#name-btn').prop('disabled', true);
 			} else {
 				$('#error_msg').html(result).prop('hidden', false);	
 			}
@@ -206,13 +218,12 @@ $(document).ready(function () {
 		</div>
 	</div>
 </nav>
-	
 <div class='alert alert-danger' id="error_msg" hidden></div>
-	
+<div class='alert alert-success' id="success_msg" hidden></div>	
 <div class="container">
 	<div class="row">
 		<section class="col-xs-offset-2 col-xs-8">
-			<h1 class="text-center">Edit <?php echo $editUserName; ?> Account</h1>
+			<h1 class="text-center">Edit <span id="titleName"><?php echo $editUserName; ?> Account</span></h1>
 		</section>
 	</div>
     <div class="row">
