@@ -138,7 +138,7 @@ $(document).ready(function () {
 			$('#name-btn').prop('disabled', true);
 		}
 	});
-	$(document).click(function()){
+	$(document).click() {
 		$('#error_msg').prop('hidden', true);
 		$('#success_msg').prop('hidden', true);
 	});
