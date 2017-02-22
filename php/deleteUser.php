@@ -15,7 +15,11 @@ if(!empty($_POST)){
                 $query_params = array(':ID' => $row['UserId']);
                 $stmt = $conn->prepare($query);
                 $result = $stmt->execute($query_params) or die();
-                $err_msg = "Deleted user with email: $email.";
+				if (session_status() == PHP_SESSION_NONE) {
+							session_start();
+					}
+				$_SESSION['deletedName'] = $row['FullName'];
+				return false;
 		} else {
 			    $err_msg = "Cannot find user with email: $email.  Try again";
 		}
