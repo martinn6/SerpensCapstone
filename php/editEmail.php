@@ -12,16 +12,25 @@ if(!empty($_POST)){
 		$row = $stmt->fetch();
         
         if($row){
-                $query = "UPDATE dbo.UserAccount SET Email = :Email
+                $new_uery = "UPDATE dbo.UserAccount SET Email = :Email
 				WHERE UserId = :ID";
-                $query_params = array(
+                $new_query_params = array(
 					':Email' => $newEmail,
 					':ID' => $row['UserId']);
-                $stmt = $conn->prepare($query);
-                $result = $stmt->execute($query_params) or die();
-                $err_msg = "Updated user with new email: $email.";
+                $new_stmt = $conn->prepare($new_query);
+                $new_result = $new_stmt->execute($new_query_params) or die();
+				$new_row = $new_stmt->fetch();
+				if($new_row){
+					if (session_status() == PHP_SESSION_NONE) {
+							session_start();
+					}
+					unset($_SESSION['editUserEmail']);
+					$_SESSION['editUserEmail'] = $new_row['Email'];
+				} else {
+					$err_msg = "error updating user with email: $oldEmail";
+				}
 		} else {
-			    $err_msg = "Cannot find user with email: $email.  Try again";
+			    $err_msg = "Cannot find user with email: $oldEmail.  Try again";
 		}
 	}
 }

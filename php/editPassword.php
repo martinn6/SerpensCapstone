@@ -12,14 +12,17 @@ if(!empty($_POST)){
 		$row = $stmt->fetch();
         
         if($row){
-                $query = "UPDATE dbo.UserAccount SET Password = :Password
+                $new_query = "UPDATE dbo.UserAccount SET Password = :Password
 				WHERE UserId = :ID";
-                $query_params = array(
+                $new_query_params = array(
 					':Email' => $newPassword,
 					':ID' => $row['UserId'])
-                $stmt = $conn->prepare($query);
-                $result = $stmt->execute($query_params) or die();
-                $err_msg = "Changed password for user with email: $email.";
+                $new_stmt = $conn->prepare($new_query);
+                $new_result = $new_stmt->execute($new_query_params) or die();
+				$new_row = $new_stmt->fetch();
+				if(!$new_row){
+					$err_msg = "error updating user with email: $oldEmail";
+				}
 		} else {
 			    $err_msg = "Cannot find user with email: $email.  Try again";
 		}
