@@ -95,7 +95,6 @@ function checkPasswordMatch() {
     } else {
 		$('#new_password_message').html('');
 		$('#confirm_password_message').html('');
-// 		$('#password-btn').prop('disabled', false);
 	  	return true;
 	}
        
@@ -119,23 +118,23 @@ function checkNameMatch() {
 $(document).ready(function () {
 	$("#newEmail").keyup(function() {
 		if(checkEmail()){
-			$('#email-btn').prop('disabled', true);
-		} else {
 			$('#email-btn').prop('disabled', false);
+		} else {
+			$('#email-btn').prop('disabled', true);
 		}
 	});
 	$("#NewPassword, #ConfirmPassword").keyup(function() {
 		if(checkPasswordMatch()){
-			$('#password-btn').prop('disabled', true);
-		} else {
 			$('#password-btn').prop('disabled', false);
+		} else {
+			$('#password-btn').prop('disabled', true);
 		}
 	});
 	$("#NewName").keyup(function() {
 		if(checkNameMatch()){
-			$('#name-btn').prop('disabled', true);
-		} else {
 			$('#name-btn').prop('disabled', false);
+		} else {
+			$('#name-btn').prop('disabled', true);
 		}
 	});
 	
