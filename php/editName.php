@@ -13,8 +13,11 @@ if(!empty($_POST)){
 		$row = $stmt->fetch();
         
         if($row){
-                $query = "INSERT INTO dbo.UserAccount :FullName WHERE Email = :Email";
-                $query_params = array(':Email' => $_POST['email']);
+                $query = "UPDATE dbo.UserAccount SET FullName = :Name
+				WHERE UserId = :ID";
+                $query_params = array(
+					':Name' => $newEmail,
+					':ID' => $row['UserId'])
                 $stmt = $conn->prepare($query);
                 $result = $stmt->execute($query_params) or die();
                 $err_msg = "Deleted user with email: $email.";
