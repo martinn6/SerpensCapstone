@@ -80,8 +80,8 @@ function checkEmailMatch() {
 }
 
 function checkPasswordMatch() {
-    var password = $("#NewPassword").val();
-    var confirmPassword = $("#ConfirmPassword").val();
+    var password = $("#newPassword").val();
+    var confirmPassword = $("#confirmPassword").val();
 	
 	if (password.length == 0){
 		$('#new_password_message').html('');
@@ -132,7 +132,7 @@ function checkName() {
 	
 $(document).ready(function(){
 	
-	$("#newEmail, #NewPassword, #ConfirmPassword, #FName").keyup(function() {
+	$("#newEmail, #newPassword, #confirmPassword, #FName").keyup(function() {
 		if(checkEmail($('#newEmail')) && checkPasswordMatch() && checkName()){
 			$('#addBtn').prop('disabled', false);
 		} else {
@@ -163,7 +163,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		var url = "../php/addUser.php";
 		var email = $('#newEmail').val();
-		var password = $('#NewPassword').val();
+		var password = $('#newPassword').val();
 		var name = $('#FName').val();
 		var data = {email: email, password: password, name: name}
 		$.post(url, data, function(result){
