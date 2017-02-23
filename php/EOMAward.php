@@ -1,7 +1,7 @@
 
 <?php
 
-	$version = 'v4.2';
+	$version = 'v4.3';
 
 	$awardGivenId = (isset($_GET['awardGivenId']) ? $_GET['awardGivenId'] : null);
 	$host = "cs496osusql.database.windows.net";
@@ -22,7 +22,7 @@
 			" 	SELECT ag.AwardId, userTo.FullName AS UserToFullname
 				FROM [dbo].[AwardsGiven] AS ag
 				JOIN [dbo].[UserAccount] AS userTo ON userTo.UserId = ag.AwardedToUserId
-				WHERE ag.AwardGivenId = 1 " . $awardGivenId;
+				WHERE ag.AwardGivenId = " . $awardGivenId;
 				
 		$stmt = $conn->query($sql_select);
 		$awards = $stmt->fetchAll();
