@@ -1,7 +1,7 @@
 
 <?php
 
-	$version = 'v4.8';
+	$version = 'v4.9';
 
 	$awardGivenId = (isset($_GET['awardGivenId']) ? $_GET['awardGivenId'] : null);
 	$host = "cs496osusql.database.windows.net";
@@ -9,7 +9,7 @@
 	$pwd = "T3amSerpin$!";
 	$db = "OSU_Capstone";
 	
-	if ($awardGivenId < 1)
+	if (!$awardGivenId)
 	{
 		echo "<p>Award not found.</p>";
 		break;
