@@ -16,7 +16,7 @@
 	if (!$awardGivenId)
 	{
 		echo "<p>Award not found.</p>";
-		break;
+		exit(1);
 	}
 	else
 	{
