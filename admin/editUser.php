@@ -11,8 +11,8 @@ if(!isset($_SESSION['editUserEmail']) || !isset($_SESSION['editUserName'])){
 	die();
 } 
 $user = $_SESSION['user'];
-$editUserEmail = $_SESSION['editUserEmail'];
-$editUserName = $_SESSION['editUserName'];
+$editUserEmail = $_SESSION['editUser']['editName'];
+$editUserName = $_SESSION['editUser']['editEmail'];
 
 ?>
 
