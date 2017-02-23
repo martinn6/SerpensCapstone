@@ -26,7 +26,7 @@ if(!empty($_POST)){
             if (session_status() == PHP_SESSION_NONE) {
                 session_start();
             }
-			$adminUser = array('Email' => $row['Email'], 'Name' => $row['FullName'], 'User' => $row['UserID']);
+			$adminUser = array('email' => $row['Email'], 'name' => $row['FullName'], 'user' => $row['UserID']);
 			$_SESSION['admin'] = $editUser;
 //             $_SESSION['admin'] = $row;
 			
