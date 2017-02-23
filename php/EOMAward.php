@@ -1,7 +1,7 @@
 
 <?php
 
-	$version = 'v4.4';
+	$version = 'v4.5';
 
 	$awardGivenId = (isset($_GET['awardGivenId']) ? $_GET['awardGivenId'] : null);
 	$host = "cs496osusql.database.windows.net";
@@ -26,7 +26,8 @@
 		if($conn)
 		{
 			$sql_select = 
-				" 	SELECT ag.AwardId, userTo.FullName AS UserToFullname, userFrom.FullName AS UserFromFullname
+				" 	SELECT ag.AwardId, userTo.FullName AS UserToFullname, userFrom.FullName AS UserFromFullname,
+						userFrom.SignatureURL
 					FROM [dbo].[AwardsGiven] AS ag
 					JOIN [dbo].[UserAccount] AS userTo ON userTo.UserId = ag.AwardedToUserId
 					JOIN [dbo].[UserAccount] AS userFrom ON userFrom.UserId = ag.AwardGivenByUserId
@@ -39,6 +40,7 @@
 					$awardId = $award['AwardId'];
 					$userToFullname = $award['UserToFullname'];
 					$userFromFullname = $award['UserFromFullname'];
+					$signatureURL = $award['SignatureURL'];
 				}
 				
 				$awardedFrom = "Serpen's Test";
@@ -75,7 +77,7 @@
 				$pdf->Cell(100,0,$userFromFullname,0,0,'L');
 
 				//snake signature
-				$pdf->Image( "../images/SerpensTestSig.png", 175, 160, 80 );
+				$pdf->Image( "../".$signatureURL, 175, 160, 80 );
 
 				$pdf->Output("EOMAward.pdf","I");
 						
