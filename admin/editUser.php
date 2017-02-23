@@ -154,7 +154,7 @@ $(document).ready(function () {
 			if(!result){
 				<?php $editUserEmail = $_SESSION['editUser']['editEmail']; ?>
 				$('#success_msg').html("Email Update Successful").prop('hidden', false);
-				$('#OldEmail').val(name);
+				$('#OldEmail').val(newEmail);
 				$('#NewEmail').val("");
 				$('#email-btn').prop('disabled', true);
 			} else {
