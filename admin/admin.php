@@ -6,14 +6,12 @@ if(!isset($_SESSION['admin'])){
 	header("Location: ../php/adminLogout.php"); 
 	die();
 } 
-if(isset($_SESSION['editUserEmail'])){
-	unset($_SESSION['editUserEmai']);
+if(isset($_SESSION['editUser']['editName'] || $_SESSION['editUser']['editEmail'])){
+	unset($_SESSION['editUser']);
 }
-if(isset($_SESSION['editUserName'])){
-	unset($_SESSION['editUserName']);
-}
-$user = $_SESSION['user'];
-$userEmail = $_SESSION['email'];
+
+$user = $_SESSION['admin']['name'];
+$userEmail = $_SESSION['admin']['email'];
 $_SESSION['deletedName'] = 'xxx';
 
 ?>
