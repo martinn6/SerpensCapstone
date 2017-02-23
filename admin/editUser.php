@@ -11,8 +11,8 @@ if(!isset($_SESSION['editUser']['editName']) || !isset($_SESSION['editUser']['ed
 	die();
 } 
 $user = $_SESSION['user'];
-$editUserEmail = $_SESSION['editUser']['editName'];
-$editUserName = $_SESSION['editUser']['editEmail'];
+$editUserName = $_SESSION['editUser']['editName'];
+$editUserEmail = $_SESSION['editUser']['editEmail'];
 
 ?>
 
@@ -152,7 +152,7 @@ $(document).ready(function () {
 		var data = {newEmail: newEmail, oldEmail: oldEmail}
 		$.post(url, data, function(result){
 			if(!result){
-				<?php $editUserEmail = $_SESSION['editUserEmail']; ?>
+				<?php $editUserEmail = $_SESSION['editUser']['editEmail']; ?>
 				$('#success_msg').html("Email Update Successful").prop('hidden', false);
 				$('#OldEmail').val(name);
 				$('#NewEmail').val("");
@@ -191,7 +191,7 @@ $(document).ready(function () {
 		var data = {name: name, oldEmail: oldEmail}
 		$.post(url, data, function(result){
 			if(!result){
-				<?php $editUserEmail = $_SESSION['editUserName']; ?>
+				<?php $editUserName = $_SESSION['editUser']['editName']; ?>
 				$('#success_msg').html("Name Update Successful").prop('hidden', false);
 				$('#titleName').html(name);
 				$('#OldName').val(name);
