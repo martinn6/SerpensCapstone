@@ -66,7 +66,7 @@ function checkEmail(thisObj) {
 }
 
 function checkEmailMatch() {
-	var userEmail = <?php echo $userEmail; ?>;
+	var userEmail = "<?php echo $userEmail; ?>";
 	var deleteEmail = $('#deleteEmail').val();
 
 	if (userEmail == deleteEmail) {
@@ -147,9 +147,7 @@ $(document).ready(function(){
 		}
 	});
 	$("#deleteEmail").keyup(function() {
-		if(checkEmail($(this))){
-			$('#deleteBtn').prop('disabled', false);
-		} else if (checkEmailMatch()){
+		if(checkEmail($(this)) && (checkEmailMatch()){
 			$('#deleteBtn').prop('disabled', false);
 		} else {
 			$('#deleteBtn').prop('disabled', true);
