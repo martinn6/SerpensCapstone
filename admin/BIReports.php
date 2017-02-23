@@ -95,7 +95,7 @@ $(document).ready(function(){
 						</div>
 					</div>
 				</div>
-				<!--<div class="row">
+				<div class="row">
 					<div class="form-group">
 						<label class="col-sm-2" for="report Type">
 						Users Report
@@ -105,7 +105,7 @@ $(document).ready(function(){
 						 class="btn btn-default">Download CSV</button>
 						</div>
 					</div>
-				</div>-->
+				</div>
 			</form>
 		</section>
 	</div>
