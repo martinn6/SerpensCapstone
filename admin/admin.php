@@ -85,19 +85,19 @@ function checkPasswordMatch() {
 	
 	if (password.length == 0){
 		$('#new_password_message').html('');
-		$("#confirmPassword").prop.prop('disabled', true);
+		$("#confirmPassword").prop('disabled', true);
 		return false;
 	} else if (password.length < 8){
 		$('#new_password_message').html('');
-		$("#confirmPassword").prop.prop('disabled', true);
+		$("#confirmPassword").prop('disabled', true);
 		return false;
 	} else if (!validPassword(password)){
 		$('#new_password_message').html('not a valid password').css('color', 'red');
-		$("#confirmPassword").prop.prop('disabled', true);
+		$("#confirmPassword").prop('disabled', true);
 		return false;
 	} else {
 		$('#new_password_message').html('');
-		$("#confirmPassword").prop.prop('disabled', false);
+		$("#confirmPassword").prop('disabled', false);
 	}
 	
 	if (confirmPassword.length == 0){
