@@ -28,7 +28,11 @@
 		$query_params = array(':table' => $table);
 		$stmt->execute();
 		$result = $stmt->fetch();
-		echo $result;
+		if ($result) {
+			echo $result;
+		} else {
+			echo "error";
+		}
 		foreach($result as $row) {
 			fputcsv($output, $row);
 		}
