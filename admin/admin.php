@@ -13,6 +13,7 @@ if(isset($_SESSION['editUserName'])){
 	unset($_SESSION['editUserName']);
 }
 $user = $_SESSION['user'];
+$userEmail = $_SESSION['email'];
 $_SESSION['deletedName'] = 'xxx';
 
 ?>
@@ -64,25 +65,36 @@ function checkEmail(thisObj) {
 	}	
 }
 
+function checkEmailMatch() {
+	var userEmail = <?php echo $userEmail; ?>;
+	var deleteEmail = $('#deleteEmail').val();
+
+	if (userEmail == deleteEmail) {
+		$('#delete_email_message').html('Cannot delete account you are logged into');
+		return false;
+	} else {
+		$('#new_password_message').html('');
+		return true;
+	}
+	
+}
+
 function checkPasswordMatch() {
     var password = $("#NewPassword").val();
     var confirmPassword = $("#ConfirmPassword").val();
 	
 	if (password.length == 0){
 		$('#new_password_message').html('');
-		$('#ConfirmPassword').prop('disabled', true);
 		return false;
 	} else if (password.length < 8){
 		$('#new_password_message').html('');
-		$('#addBtn').prop('disabled', true);
 		return false;
 	} else if (!validPassword(password)){
 		$('#new_password_message').html('not a valid password').css('color', 'red');
-		$('#ConfirmPassword').prop('disabled', true);
 		return false;
 	} else {
 		$('#new_password_message').html('');
-		$('#ConfirmPassword').prop('disabled', false);
+		return true;
 	}
 	
 	if (confirmPassword.length == 0){
@@ -341,7 +353,7 @@ $(document).ready(function(){
 										<div class="col-sm-7">
 											<input type="email" class="form-control" onChange="checkEmail($(this))"
 											name="email" id="deleteEmail" placeholder="Email" required>
-											<span name='email_message'></span>
+											<span id='delete_email_message'></span>
 										</div>
 									</div>
 									<div class="form-group">
