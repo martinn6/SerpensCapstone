@@ -207,6 +207,8 @@ $(document).ready(function(){
 		$.post(url, data, function(result){
 			if(!result){
 				<?php $deletedName = $_SESSION['deletedName']; ?>
+				var deletedName = "<?php echo $deletedName; ?>";
+				console.log(deletedname);
 				$('#success_msg').html("Successful deleted Admin User: <?php echo $deletedName; ?>").prop('hidden', false);
 				$('#deleteEmail').val("");
 				$('#deleteBtn').prop('disabled', true);
