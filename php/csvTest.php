@@ -24,24 +24,11 @@
 		header("Expires: 0");
 		header("Pragma: public");		
         $output = fopen("php://output", "w");
-		// $hd = $conn->prepare('SHOW columns FROM dbo.Awards');
-		// $hd->execute();
-		// $headers = $hd->fetchAll(PDO::FETCH_ASSOC);
-		// fputcsv($output, $headers);
 		$stmt = $conn->prepare('SELECT * FROM :table');
 		$query_params = array(':table' => $table);
 		$stmt->execute();
-		headers = array();
-		foreach(range(0, $stmt->columnCount() - 1) as $column_index) {
-			$meta[] = $stmt->getColumnMeta($column_index);
-		}
-		while($rw = $stmt->fetch(PDO::FETCH_NUM)) {
-			foreach($rw as $column_index => $column_value) {
-				$headers[] = $column_value;
-			}
-		}
-		fputcsv($output, $headers);
 		$result = $stmt->fetch();
+		echo $result;
 		foreach($result as $row) {
 			fputcsv($output, $row);
 		}
