@@ -14,7 +14,7 @@ if(!empty($_POST)){
                 $query = "DELETE FROM dbo.UserAccount WHERE UserId = :ID";
                 $query_params = array(':ID' => $row['UserId']);
                 $stmt = $conn->prepare($query);
-                $result = $stmt->query($query_params) or die();
+                $result = $stmt->execute($query_params) or die();
 			if ($result){
 				return false;
 			} else {
