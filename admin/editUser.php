@@ -6,7 +6,7 @@ if(!isset($_SESSION['admin'])){
 	header("Location: ../php/adminLogout.php"); 
 	die();
 } 
-if(!isset($_SESSION['editUserEmail']) || !isset($_SESSION['editUserName'])){
+if(!isset($_SESSION['editUser']['editName']) || !isset($_SESSION['editUser']['editEmail'])){
 	header("Location: admin.php"); 
 	die();
 } 
