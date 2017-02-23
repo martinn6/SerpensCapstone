@@ -22,7 +22,7 @@
 			" 	SELECT ag.AwardId, userTo.FullName AS UserToFullname
 				FROM [dbo].[AwardsGiven] AS ag
 				JOIN [dbo].[UserAccount] AS userTo ON userTo.UserId = ag.AwardedToUserId
-				WHERE ag.AwardGivenId = " . $awardGivenId;
+				WHERE ag.AwardGivenId = " . (string)$awardGivenId;
 				
 		$stmt = $conn->query($sql_select);
 		$awards = $stmt->fetchAll();
