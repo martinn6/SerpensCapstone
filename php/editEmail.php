@@ -23,7 +23,7 @@ if(!empty($_POST)){
 					if (session_status() == PHP_SESSION_NONE) {
 							session_start();
 					}
-					$_SESSION['editUserEmail'] = $newEmail;
+					$_SESSION['editUser']['editEmail'] = $newEmail;
 					return false;
 				} else {
 					$err_msg = "error updating user with email: $oldEmail";

@@ -152,7 +152,6 @@ $(document).ready(function () {
 		var data = {newEmail: newEmail, oldEmail: oldEmail}
 		$.post(url, data, function(result){
 			if(!result){
-				<?php $editUserEmail = $_SESSION['editUser']['editEmail']; ?>
 				$('#success_msg').html("Email Update Successful").prop('hidden', false);
 				$('#OldEmail').val(newEmail);
 				$('#NewEmail').val("");
@@ -191,7 +190,6 @@ $(document).ready(function () {
 		var data = {name: name, oldEmail: oldEmail}
 		$.post(url, data, function(result){
 			if(!result){
-				<?php $editUserName = $_SESSION['editUser']['editName']; ?>
 				$('#success_msg').html("Name Update Successful").prop('hidden', false);
 				$('#titleName').html(name);
 				$('#OldName').val(name);

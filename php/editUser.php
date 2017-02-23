@@ -18,8 +18,6 @@ if(!empty($_POST)){
 			}
 			$editUser = array('editEmail' => $row['Email'], 'editName' => $row['FullName']);
 			$_SESSION['editUser'] = $editUser;
-// 			$_SESSION['editUserEmail'] = $row['Email'];
-// 			$_SESSION['editUserName']  = $row['FullName'];
 			return false;
 		} else {
 			$err_msg = "Cannot find user with email: $email.  Try again";
