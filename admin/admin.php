@@ -273,17 +273,17 @@ $(document).ready(function(){
 										</label>
 										<div class="col-sm-7">
 											<input type="password" class="form-control" onChange="checkPasswordMatch()"
-											name="password" id="NewPassword" maxlength="16" required>
+											name="newPassword" id="newPassword" maxlength="16" required>
 											<span id='new_password_message'></span>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-3" for="newPassword2">
+										<label class="col-sm-3" for="confirmPassword">
 										  Re-Enter Password
 										</label>
 										<div class="col-sm-7">
 											<input type="password" class="form-control" onChange="checkPasswordMatch()"
-											id="ConfirmPassword" maxlength="16" disabled required>
+											id="confirmPassword" maxlength="16" disabled required>
 											<span id='confirm_password_message'></span>
 										</div>
 									</div>
