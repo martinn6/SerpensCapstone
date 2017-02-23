@@ -31,7 +31,7 @@
 		$stmt = $conn->prepare('SELECT * FROM :table');
 		$query_params = array(':table' => $table);
 		$stmt->execute();
-		headers = array();
+		$headers = array();
 		foreach(range(0, $stmt->columnCount() - 1) as $column_index) {
 			$meta[] = $stmt->getColumnMeta($column_index);
 		}
