@@ -6,7 +6,7 @@ if(!isset($_SESSION['admin'])){
 	header("Location: ../php/adminLogout.php"); 
 	die();
 } 
-if(isset($_SESSION['editUser']['editName'] || $_SESSION['editUser']['editEmail'])){
+if(isset($_SESSION['editUser'])){
 	unset($_SESSION['editUser']);
 }
 
