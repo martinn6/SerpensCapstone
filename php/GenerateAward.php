@@ -2,7 +2,7 @@
 <?php
 	require_once( "../fpdf/fpdf.php" );
 
-	$version = 'v5.0';
+	$version = 'v5.1';
 
 	//Get awardGivenId parameter from URL
 	$awardGivenId = (isset($_GET['awardGivenId']) ? $_GET['awardGivenId'] : null);
@@ -15,7 +15,7 @@
 	
 	if (!$awardGivenId)
 	{
-		echo "<p>Award not found.</p>";
+		echo "<p>Error: Award not found. Have you tried turning your computer off and on again? If so, please contact your admin.</p>";
 		exit(1);
 	}
 	else
@@ -105,7 +105,7 @@
 						
 			}	
 			else {
-				echo "<p>Award not found.</p>";
+				echo "<p>Error: Award not found. Have you tried turning your computer off and on again? If so, please contact your admin.</p>";
 			} 
 		}
 	}
