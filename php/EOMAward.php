@@ -28,10 +28,6 @@
 		$stmt = $conn->query($sql_select);
 		$awards = $stmt->fetchAll();
 		if(count($awards) > 0) {
-			echo "<h2>Awards:</h2>";
-			echo "<table>";
-			echo "<tr><th>AwardId</th>";
-			echo "<th>Award Name</th></tr>";
 			foreach($awards as $award) {
 				$awardId = $award['AwardId'];
 				$userToFullname = $award['UserToFullname'];
