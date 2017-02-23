@@ -149,6 +149,8 @@ $(document).ready(function(){
 	$("#deleteEmail").keyup(function() {
 		if(checkEmail($(this))){
 			$('#deleteBtn').prop('disabled', false);
+		} else if (checkEmailMatch()){
+			$('#deleteBtn').prop('disabled', false);
 		} else {
 			$('#deleteBtn').prop('disabled', true);
 		}
