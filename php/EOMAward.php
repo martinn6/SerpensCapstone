@@ -9,6 +9,12 @@
 	$pwd = "T3amSerpin$!";
 	$db = "OSU_Capstone";
 	
+	if ($awardGivenId < 1)
+	{
+		echo "<p>Award not found.</p>";
+		break;
+	}
+	
 	try{
 		 $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
 	  }
