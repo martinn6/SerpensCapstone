@@ -226,7 +226,7 @@ $(document).ready(function () {
 	<div class="row">
 		<section class="col-xs-offset-2 col-xs-8">
 			<h1 class="text-center">Edit <span id="titleName"><?php echo $editUserName; ?> 
-				<span id="titleEmail"><?php echo $editUserEmail; ?> Account</span></h1>
+				<?php echo $editUserEmail; ?> <?php echo $user; ?> Account</span></h1>
 		</section>
 	</div>
     <div class="row">
