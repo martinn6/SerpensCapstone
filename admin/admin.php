@@ -12,7 +12,6 @@ if(isset($_SESSION['editUser'])){
 
 $user = $_SESSION['admin']['name'];
 $userEmail = $_SESSION['admin']['email'];
-$_SESSION['deletedName'] = 'xxx';
 
 ?>
 
@@ -206,10 +205,7 @@ $(document).ready(function(){
 		var data = {email: email}
 		$.post(url, data, function(result){
 			if(!result){
-				<?php $deletedName = $_SESSION['deletedName']; ?>
-				var deletedName = "<?php echo $deletedName; ?>";
-				console.log(deletedName);
-				$('#success_msg').html("Successful deleted Admin User: <?php echo $deletedName; ?>").prop('hidden', false);
+				$('#success_msg').html("Successful deleted Admin User: " +email).prop('hidden', false);
 				$('#deleteEmail').val("");
 				$('#deleteBtn').prop('disabled', true);
 			} else {
