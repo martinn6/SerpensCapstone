@@ -18,7 +18,6 @@
 	 
 	if($conn)
 	{
-		echo "<p>Connection Established.</p>";
 		$sql_select = 
 			" 	SELECT ag.AwardId, userTo.FullName AS UserToFullname
 				FROM [dbo].[AwardsGiven] AS ag
