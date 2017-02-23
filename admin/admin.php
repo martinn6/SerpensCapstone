@@ -147,7 +147,7 @@ $(document).ready(function(){
 		}
 	});
 	$("#deleteEmail").keyup(function() {
-		if(checkEmail($(this)) && (checkEmailMatch()){
+		if(checkEmail($(this)) && checkEmailMatch()){
 			$('#deleteBtn').prop('disabled', false);
 		} else {
 			$('#deleteBtn').prop('disabled', true);
