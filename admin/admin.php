@@ -188,8 +188,8 @@ $(document).ready(function(){
 		var data = {email: email}
 		$.post(url, data, function(result){
 			if(!result){
-				var name = "<?php echo $_SESSION['deletedName']; ?>";
-				$('#success_msg').html("Successful deleted Admin User: " + name).prop('hidden', false);
+				<?php $deletedName = $_SESSION['deletedName']; ?>
+				$('#success_msg').html("Successful deleted Admin User: <?php echo $deletedName; ?>").prop('hidden', false);
 			} else {
 				$('#error_msg').html(result).prop('hidden', false);	
 			}
