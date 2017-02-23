@@ -14,12 +14,12 @@ if(!empty($_POST)){
                 $query = "DELETE FROM dbo.UserAccount WHERE UserId = :ID";
                 $query_params = array(':ID' => $row['UserId']);
                 $stmt = $conn->prepare($query);
-                $result = $stmt->execute($query_params) or die();
-				if (session_status() == PHP_SESSION_NONE) {
-							session_start();
-					}
-				$_SESSION['deletedName'] = $row['FullName'];
+                $result = $stmt->query($query_params) or die();
+			if ($result){
 				return false;
+			} else {
+				$err_msg = "Error deleting user with email: $email.";
+			}
 		} else {
 			    $err_msg = "Cannot find user with email: $email.  Try again";
 		}
