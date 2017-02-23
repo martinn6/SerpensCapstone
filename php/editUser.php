@@ -16,8 +16,10 @@ if(!empty($_POST)){
 	        	if (session_status() == PHP_SESSION_NONE) {
                 		session_start();
 			}
-			$_SESSION['editUserEmail'] = $row['Email'];
-			$_SESSION['editUserName']  = $row['FullName'];
+			$editUser = array('editEmail' => $row['Email'], 'editName' => $row['FullName']);
+			$_SESSION['editUser'] = $editUser;
+// 			$_SESSION['editUserEmail'] = $row['Email'];
+// 			$_SESSION['editUserName']  = $row['FullName'];
 			return false;
 		} else {
 			$err_msg = "Cannot find user with email: $email.  Try again";
