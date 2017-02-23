@@ -27,7 +27,6 @@
 		$stmt = $conn->prepare('SELECT * FROM :table');
 		$query_params = array(':table' => $table);
 		$stmt->execute();
-		fputcsv($output, $headers);
 		$result = $stmt->fetch();
 		echo $result;
 		foreach($result as $row) {
