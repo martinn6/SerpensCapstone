@@ -1,7 +1,7 @@
 
 <?php
 
-	$version = 'v4.7';
+	$version = 'v4.8';
 
 	$awardGivenId = (isset($_GET['awardGivenId']) ? $_GET['awardGivenId'] : null);
 	$host = "cs496osusql.database.windows.net";
@@ -27,7 +27,7 @@
 		{
 			$sql_select = 
 				" 	SELECT ag.AwardId, userTo.FullName AS UserToFullname, userFrom.FullName AS UserFromFullname,
-						userFrom.SignatureURL, aws.AwardTypeName, ag.AwardedDate
+						userFrom.SignatureURL, aws.AwardTypeName, CONVERT(nvarchar(12),ag.AwardedDate,101) AS AwardedDateText
 					FROM [dbo].[AwardsGiven] AS ag
 					JOIN [dbo].[UserAccount] AS userTo ON userTo.UserId = ag.AwardedToUserId
 					JOIN [dbo].[UserAccount] AS userFrom ON userFrom.UserId = ag.AwardGivenByUserId
@@ -43,7 +43,7 @@
 					$userFromFullname = $award['UserFromFullname'];
 					$signatureURL = $award['SignatureURL'];
 					$awardType = $award['AwardTypeName'];
-					$AwardedDate = $award['AwardedDate'];
+					$AwardedDate = $award['AwardedDateText'];
 				}
 				
 				$awardedFrom = "Serpen's Test";
@@ -71,8 +71,8 @@
 				
 				//Awarded Date
 				$pdf->Ln(30);
-				$pdf->SetFont('Arial','U',24);
-				$pdf->Cell(0,0,"Awarded on: " . $AwardedDate,0,1,'C');
+				$pdf->SetFont('Arial','B',24);
+				$pdf->Cell(0,0,"on: " . $AwardedDate,0,1,'C');
 
 				//Awarded To Name
 				$pdf->SetXY(24,180);
