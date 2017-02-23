@@ -13,6 +13,7 @@ if(isset($_SESSION['editUserName'])){
 	unset($_SESSION['editUserName']);
 }
 $user = $_SESSION['user'];
+$_SESSION['deletedName'] = 'xxx';
 
 ?>
 
