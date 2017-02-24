@@ -223,7 +223,7 @@ $(document).ready(function () {
 <div class="container">
 	<div class="row">
 		<section class="col-xs-offset-2 col-xs-8">
-			<h1 class="text-center">Edit <span id="titleName"><?php echo $editUserName; ?> Account</span></h1>
+			<h1 class="text-center">Edit '<span id="titleName"><?php echo $editUserName; ?></span>' Account</h1>
 		</section>
 	</div>
     <div class="row">
