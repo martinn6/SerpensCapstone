@@ -1,6 +1,10 @@
 <?php
-	$table = $_GET['table'];
-	$file_name = $_GET['filename'];
+	if ($_GET) {
+		$table = $_GET['table'];
+		$file_name = $_GET['filename'];
+	} else if ($_POST) {
+		$table = $_POST['table'];
+	}
 
 	// DB connection info
 	$host = "cs496osusql.database.windows.net";
