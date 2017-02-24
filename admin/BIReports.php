@@ -56,9 +56,9 @@ $(document).ready(function(){
 	});
 	$("#usersCSV").click(function(e){
 		e.preventDefault();
-		var MyTimestamp = new Date().getTime();
+// 		var MyTimestamp = new Date().getTime();
 		var MyTable = "users";
-		var MyTitle = "UserAccounts.csv";
+// 		var MyTitle = "UserAccounts.csv";
 // 				$.get('../php/csvTEST.php',
 // 		'timestamp='+MyTimestamp+
 // 		'&table='+MyTable+
