@@ -59,12 +59,12 @@ $(document).ready(function(){
 		var MyTimestamp = new Date().getTime();
 		var MyTable = "users";
 		var MyTitle = "UserAccounts.csv";
-				$.get('../php/csvTEST.php',
-		'timestamp='+MyTimestamp+
-		'&table='+MyTable+
-		'&filename='+MyTitle,function(){
-        document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+MyTable+'&filename='+MyTitle;
-		});
+// 				$.get('../php/csvTEST.php',
+// 		'timestamp='+MyTimestamp+
+// 		'&table='+MyTable+
+// 		'&filename='+MyTitle,function(){
+//         document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+MyTable+'&filename='+MyTitle;
+// 		});
 		var url = "../php/csvTEST.php"
 		var data = {table: email, MyTable};
 		$.post(url, data, function(result){
