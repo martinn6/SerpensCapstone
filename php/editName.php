@@ -24,8 +24,8 @@ if(!empty($_POST)){
 					if (session_status() == PHP_SESSION_NONE) {
 							session_start();
 					}
-					if ($_SESSION['admin']['user']) == $ID){
-						($_SESSION['admin']['name']) = $newName;
+					if ($_SESSION['admin']['user'] == $ID){
+						$_SESSION['admin']['name'] = $newName;
 					}
 					$_SESSION['editUser']['editName'] = $newName;
 					return false;
