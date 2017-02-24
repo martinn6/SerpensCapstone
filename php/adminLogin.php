@@ -28,11 +28,6 @@ if(!empty($_POST)){
             }
 			$adminUser = array ('email' => $row['Email'], 'name' => $row['FullName'], 'user' => $row['UserId']);
 			$_SESSION['admin'] = $adminUser;
-//             $_SESSION['admin'] = $row;
-			
-// 			$_SESSION['email'] = $row['Email'];
-// 			$_SESSION['user']  = $row['FullName'];
-			// header("Location : ../admin/admin.php"); 
 			return false;
 		} else {
 			$err_msg = "Email/Password does not match. Try again";

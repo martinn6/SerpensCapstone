@@ -9,10 +9,11 @@ if(!empty($_POST)){
 		$stmt = $conn->prepare($query);
 		$result = $stmt->execute($query_params) or die();
 		$row = $stmt->fetch();
+		$ID = $row['UserId'];
         
         if($row){
                 $query = "DELETE FROM dbo.UserAccount WHERE UserId = :ID";
-                $query_params = array(':ID' => $row['UserId']);
+                $query_params = array(':ID' => $ID);
                 $stmt = $conn->prepare($query);
                 $rslt = $stmt->execute($query_params) or die();
 			if ($stmt->rowCount() > 0){
