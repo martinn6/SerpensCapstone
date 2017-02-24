@@ -30,7 +30,7 @@ $user = $_SESSION['admin']['name'];
 <script>
 $(document).ready(function(){
 
-	$("#EOMawardsCSV").click(function(e){
+	$("#EOYawardsCSV").click(function(e){
 		e.preventDefault();
 		var MyTimestamp = new Date().getTime();
 		var MyTable = "EOY";
@@ -42,7 +42,7 @@ $(document).ready(function(){
         document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+MyTable+'&filename='+MyTitle;
 		});
 	});
-	$("#EOYawardsCSV").click(function(e){
+	$("#EOMawardsCSV").click(function(e){
 		e.preventDefault();
 		var MyTimestamp = new Date().getTime();
 		var MyTable = "EOM";
