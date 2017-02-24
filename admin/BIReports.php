@@ -6,7 +6,7 @@ if(!isset($_SESSION['admin'])){
 	header("Location: ../php/adminLogout.php"); 
 	die();
 } 
-$user = $_SESSION['user'];
+$user = $_SESSION['admin']['name'];
 
 ?>
 <html lang="en">
