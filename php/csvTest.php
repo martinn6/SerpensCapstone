@@ -24,7 +24,31 @@
 		header("Expires: 0");
 		header("Pragma: public");		
         $output = fopen("php://output", "w");
-		$stmt = $conn->prepare('SELECT * FROM :table');
+		if ($table = "users") {
+			$stmt = $conn->prepare('SELECT FullName, UserName, Password FROM dbo.UserAccount');
+		} else if ($table = "EOM") {
+			$stmt = $conn->prepare(
+			'SELECT dbo.UserAccount.FullName, 
+					dbo.Awards.AwardTypeName,
+					dbo.AwardGiven.AwardedDate,
+					dbo.AwardGiven.AwardURL
+					FROM dbo.UserAccount
+					WHERE dbo.Awards.AwardTypeName = "Employee of the Month"
+			INNER JOIN dbo.AwardGiven on dbo.UserAccount.UserId=dbo.AwardGiven.AwardedToUserId
+			INNER JOIN dbo.Awards on dbo.AwardGiven.AwardId=dbo.Awards.AwardId');
+		} else if ($table = "EOY") {
+			$stmt = $conn->prepare(
+			'SELECT dbo.UserAccount.FullName, 
+					dbo.Awards.AwardTypeName,
+					dbo.AwardGiven.AwardedDate,
+					dbo.AwardGiven.AwardURL
+					FROM dbo.UserAccount
+					WHERE dbo.Awards.AwardTypeName = "Employee of the Month"
+			INNER JOIN dbo.AwardGiven on dbo.UserAccount.UserId=dbo.AwardGiven.AwardedToUserId
+			INNER JOIN dbo.Awards on dbo.AwardGiven.AwardId=dbo.Awards.AwardId');
+
+		}
+		
 		$query_params = array(':table' => $table);
 		$result = $stmt->execute($query_params) or die();
 		foreach($result as $row) {

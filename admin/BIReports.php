@@ -30,11 +30,11 @@ $user = $_SESSION['user'];
 <script>
 $(document).ready(function(){
 
-	$("#awardsCSV").click(function(e){
+	$("#EOMawardsCSV").click(function(e){
 		e.preventDefault();
 		var MyTimestamp = new Date().getTime();
-		var MyTable = "dbo.Awards";
-		var MyTitle = "Awards.csv";
+		var MyTable = "EOY";
+		var MyTitle = "EOY_Awards.csv";
 		$.get('../php/csvTEST.php',
 		'timestamp='+MyTimestamp+
 		'&table='+MyTable+
@@ -42,11 +42,22 @@ $(document).ready(function(){
         document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+MyTable+'&filename='+MyTitle;
 		});
 	});
-
-	$("#usersCSV").click(function(e){
+	$("#EOYawardsCSV").click(function(e){
 		e.preventDefault();
 		var MyTimestamp = new Date().getTime();
-		var MyTable = "dbo.UserAccounts";
+		var MyTable = "EOM";
+		var MyTitle = "EOM_Awards.csv";
+		$.get('../php/csvTEST.php',
+		'timestamp='+MyTimestamp+
+		'&table='+MyTable+
+		'&filename='+MyTitle,function(){
+        document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+MyTable+'&filename='+MyTitle;
+		});
+	});
+	$("#UsersCSV").click(function(e){
+		e.preventDefault();
+		var MyTimestamp = new Date().getTime();
+		var MyTable = "users";
 		var MyTitle = "UserAccounts.csv";
 				$.get('../php/csvTEST.php',
 		'timestamp='+MyTimestamp+
@@ -83,14 +94,25 @@ $(document).ready(function(){
 
 	<div class="row">
 		<section class="col-xs-offset-2 col-xs-8">
-			<form class="form-horizontal" action="adminLanding.html">
+			<form class="form-horizontal" >
 				<div class="row">
 					<div class="form-group">
 						<label class="col-sm-2" for="report Type">
-						Awards Report
+						EOM Awards Report
 						</label>
 						<div class="col-sm-10">
-						<button type="submit" id="awardsCSV"
+						<button type="submit" id="EOMawardsCSV"
+						 class="btn btn-default">Download CSV</button>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label class="col-sm-2" for="report Type">
+						EOY Awards Report
+						</label>
+						<div class="col-sm-10">
+						<button type="submit" id="EOYawardsCSV"
 						 class="btn btn-default">Download CSV</button>
 						</div>
 					</div>
