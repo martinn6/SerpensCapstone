@@ -65,6 +65,16 @@ $(document).ready(function(){
 		'&filename='+MyTitle,function(){
         document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+MyTable+'&filename='+MyTitle;
 		});
+		var url = "../php/csvTEST.php"
+		var data = {table: email, MyTable};
+		$.post(url, data, function(result){
+			console.log(result);
+			if(result){
+				$('#success_msg').html("SUCCESS").prop('hidden', false);
+			} else {
+				$('#error_msg').html("ERROR").prop('hidden', false);	
+			}
+		});
 	});
 	
 });
