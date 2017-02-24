@@ -54,7 +54,8 @@
 		$stmt = $conn->prepare($query);
 		$result = $stmt->execute() or die();
 		if ($_POST){
-			$json=json_encode($result);
+			$array = $stmt->fetchAll( PDO::FETCH_ASSOC );
+			$json=json_encode($array);
 			header('Content-type: application/json');
 			echo $json;
 			die();
