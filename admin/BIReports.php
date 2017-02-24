@@ -109,7 +109,7 @@ $(document).ready(function(){
 // 				$('#success_msg').html("SUCCESS").prop('hidden', false);
 // 			} else {
 // 				$('#error_msg').html("ERROR").prop('hidden', false);	
-// 			}
+ 			}
 		});
 	});
 	$("#EOMawardsCSV").click(function(e){
