@@ -45,26 +45,108 @@ $(document).ready(function(){
 
 	$("#EOYawardsCSV").click(function(e){
 		e.preventDefault();
-		var MyTimestamp = new Date().getTime();
+// 		var MyTimestamp = new Date().getTime();
 		var MyTable = "EOY";
-		var MyTitle = "EOY_Awards.csv";
-		$.get('../php/csvTEST.php',
-		'timestamp='+MyTimestamp+
-		'&table='+MyTable+
-		'&filename='+MyTitle,function(){
-        document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+MyTable+'&filename='+MyTitle;
+		var filename = "EOY_Awards.csv";
+// 		$.get('../php/csvTEST.php',
+// 		'timestamp='+MyTimestamp+
+// 		'&table='+MyTable+
+// 		'&filename='+MyTitle,function(){
+//         document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+MyTable+'&filename='+MyTitle;
+			var url = "../php/csvTEST.php"
+		var data = {table: MyTable};
+		$.post(url, data, function(result){
+			console.log(result);
+			if(result){
+// 				$(function(){
+// 				  ConvertToCSV(result).download('UserAccounts.csv').go();
+// 				});
+				var json = result;
+				var fields = Object.keys(json[0])
+				var replacer = function(key, value) { return value === null ? '' : value } 
+				var csv = json.map(function(row){
+				  return fields.map(function(fieldName){
+				    return JSON.stringify(row[fieldName], replacer)
+				  }).join(',')
+				})
+				csv.unshift(fields.join(',')); // add header column
+				var csvFile = csv.join('\r\n');
+				console.log(csvFile);
+				var blob = new Blob([csvFile], { type: 'text/csv;charset=utf-8;' });
+				if (navigator.msSaveBlob) { // IE 10+
+				    navigator.msSaveBlob(blob, filename);
+				} else {
+				    var link = document.createElement("a");
+				    if (link.download !== undefined) { // feature detection
+					// Browsers that support HTML5 download attribute
+					var url = URL.createObjectURL(blob);
+					link.setAttribute("href", url);
+					link.setAttribute("download", filename);
+					link.style.visibility = 'hidden';
+					document.body.appendChild(link);
+					link.click();
+					document.body.removeChild(link);
+				    }
+				}
+// 				var csv = ConvertToCSV(result);
+// 				console.log(csv);
+				$('#success_msg').html("SUCCESS").prop('hidden', false);
+			} else {
+				$('#error_msg').html("ERROR").prop('hidden', false);	
+			}
 		});
 	});
 	$("#EOMawardsCSV").click(function(e){
 		e.preventDefault();
-		var MyTimestamp = new Date().getTime();
+// 		var MyTimestamp = new Date().getTime();
 		var MyTable = "EOM";
-		var MyTitle = "EOM_Awards.csv";
-		$.get('../php/csvTEST.php',
-		'timestamp='+MyTimestamp+
-		'&table='+MyTable+
-		'&filename='+MyTitle,function(){
-        document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+MyTable+'&filename='+MyTitle;
+		var filename = "EOM_Awards.csv";
+// 		$.get('../php/csvTEST.php',
+// 		'timestamp='+MyTimestamp+
+// 		'&table='+MyTable+
+// 		'&filename='+MyTitle,function(){
+//         document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+MyTable+'&filename='+MyTitle;
+		var url = "../php/csvTEST.php"
+		var data = {table: MyTable};
+		$.post(url, data, function(result){
+			console.log(result);
+			if(result){
+// 				$(function(){
+// 				  ConvertToCSV(result).download('UserAccounts.csv').go();
+// 				});
+				var json = result;
+				var fields = Object.keys(json[0])
+				var replacer = function(key, value) { return value === null ? '' : value } 
+				var csv = json.map(function(row){
+				  return fields.map(function(fieldName){
+				    return JSON.stringify(row[fieldName], replacer)
+				  }).join(',')
+				})
+				csv.unshift(fields.join(',')); // add header column
+				var csvFile = csv.join('\r\n');
+				console.log(csvFile);
+				var blob = new Blob([csvFile], { type: 'text/csv;charset=utf-8;' });
+				if (navigator.msSaveBlob) { // IE 10+
+				    navigator.msSaveBlob(blob, filename);
+				} else {
+				    var link = document.createElement("a");
+				    if (link.download !== undefined) { // feature detection
+					// Browsers that support HTML5 download attribute
+					var url = URL.createObjectURL(blob);
+					link.setAttribute("href", url);
+					link.setAttribute("download", filename);
+					link.style.visibility = 'hidden';
+					document.body.appendChild(link);
+					link.click();
+					document.body.removeChild(link);
+				    }
+				}
+// 				var csv = ConvertToCSV(result);
+// 				console.log(csv);
+				$('#success_msg').html("SUCCESS").prop('hidden', false);
+			} else {
+				$('#error_msg').html("ERROR").prop('hidden', false);	
+			}
 		});
 	});
 	$("#usersCSV").click(function(e){
