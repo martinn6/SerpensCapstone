@@ -54,7 +54,7 @@ $(document).ready(function(){
         document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+MyTable+'&filename='+MyTitle;
 		});
 	});
-	$("#UsersCSV").click(function(e){
+	$("#usersCSV").click(function(e){
 		e.preventDefault();
 		var MyTimestamp = new Date().getTime();
 		var MyTable = "users";
