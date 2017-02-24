@@ -24,9 +24,9 @@ if(!empty($_POST)){
 					if (session_status() == PHP_SESSION_NONE) {
 							session_start();
 					}
-					
-					if ($_SESSION['admin']['user']) == $ID){
-						($_SESSION['admin']['email']) = $newEmail;
+
+					if ($_SESSION['admin']['user'] == $ID){
+						$_SESSION['admin']['email'] = $newEmail;
 					}
 					$_SESSION['editUser']['editEmail'] = $newEmail;
 					
