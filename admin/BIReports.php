@@ -66,7 +66,7 @@ $(document).ready(function(){
 //         document.location.href = '../php/csvTEST.php?timestamp='+MyTimestamp+'&table='+MyTable+'&filename='+MyTitle;
 // 		});
 		var url = "../php/csvTEST.php"
-		var data = {table: email, MyTable};
+		var data = {table: MyTable};
 		$.post(url, data, function(result){
 			console.log(result);
 			if(result){
