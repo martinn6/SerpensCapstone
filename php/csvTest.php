@@ -30,9 +30,9 @@
 			header("Pragma: public");
 			$output = fopen("php://output", "w");
 		}
-		if ($table = "users") {
+		if ($table == "users") {
 			$query = 'SELECT * FROM dbo.UserAccount';
-		} else if ($table = "EOM") {
+		} else if ($table == "EOM") {
 			$query = 'SELECT dbo.UserAccount.FullName, 
 					dbo.Awards.AwardTypeName,
 					dbo.AwardGiven.AwardedDate,
@@ -41,7 +41,7 @@
 					WHERE dbo.Awards.AwardTypeName = "Employee of the Month"
 			INNER JOIN dbo.AwardGiven on dbo.UserAccount.UserId=dbo.AwardGiven.AwardedToUserId
 			INNER JOIN dbo.Awards on dbo.AwardGiven.AwardId=dbo.Awards.AwardId';
-		} else if ($table = "EOY") {
+		} else if ($table == "EOY") {
 			$query = 'SELECT dbo.UserAccount.FullName, 
 					dbo.Awards.AwardTypeName,
 					dbo.AwardGiven.AwardedDate,
