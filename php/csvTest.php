@@ -16,6 +16,7 @@
 	
 	if($conn)
 	{
+		
 		header("Last-Modified: " . gmdate("D, d M Y H:i:s",$_GET['timestamp']) . " GMT");
 		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 		header('Content-Description: File Transfer');
@@ -25,30 +26,32 @@
 		header("Pragma: public");		
         $output = fopen("php://output", "w");
 		if ($table = "users") {
-			$stmt = $conn->prepare(
-			'SELECT * FROM dbo.UserAccount');
+			$query = 'SELECT * FROM dbo.UserAccount';
 		} else if ($table = "EOM") {
-			$stmt = $conn->prepare(
-			'SELECT dbo.UserAccount.FullName, 
+			$query = 'SELECT dbo.UserAccount.FullName, 
 					dbo.Awards.AwardTypeName,
 					dbo.AwardGiven.AwardedDate,
 					dbo.AwardGiven.AwardURL
 					FROM dbo.UserAccount
 					WHERE dbo.Awards.AwardTypeName = "Employee of the Month"
 			INNER JOIN dbo.AwardGiven on dbo.UserAccount.UserId=dbo.AwardGiven.AwardedToUserId
-			INNER JOIN dbo.Awards on dbo.AwardGiven.AwardId=dbo.Awards.AwardId');
+			INNER JOIN dbo.Awards on dbo.AwardGiven.AwardId=dbo.Awards.AwardId';
 		} else if ($table = "EOY") {
-			$stmt = $conn->prepare(
-			'SELECT dbo.UserAccount.FullName, 
+			$query = 'SELECT dbo.UserAccount.FullName, 
 					dbo.Awards.AwardTypeName,
 					dbo.AwardGiven.AwardedDate,
 					dbo.AwardGiven.AwardURL
 					FROM dbo.UserAccount
 					WHERE dbo.Awards.AwardTypeName = "Employee of the Month"
 			INNER JOIN dbo.AwardGiven on dbo.UserAccount.UserId=dbo.AwardGiven.AwardedToUserId
-			INNER JOIN dbo.Awards on dbo.AwardGiven.AwardId=dbo.Awards.AwardId');
+			INNER JOIN dbo.Awards on dbo.AwardGiven.AwardId=dbo.Awards.AwardId';
 		}
+		$stmt = $conn->prepare($query);
 		$result = $stmt->execute() or die();
+		if ($_POST){
+			$json=json_encode($result);
+			die();
+		}
 		foreach($result as $row) {
 			fputcsv($output, $row);
 		}
