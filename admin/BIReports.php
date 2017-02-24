@@ -71,7 +71,7 @@ $(document).ready(function(){
 		e.preventDefault();
 // 		var MyTimestamp = new Date().getTime();
 		var MyTable = "users";
-// 		var MyTitle = "UserAccounts.csv";
+  		var filename = "UserAccounts.csv";
 // 				$.get('../php/csvTEST.php',
 // 		'timestamp='+MyTimestamp+
 // 		'&table='+MyTable+
@@ -95,20 +95,25 @@ $(document).ready(function(){
 				    return JSON.stringify(row[fieldName], replacer)
 				  }).join(',')
 				})
-				csv.unshift(fields.join(',')) // add header column
-
-				console.log(csv.join('\r\n'))
-				var link = document.createElement("a");
-            if (link.download !== undefined) { // feature detection
-                // Browsers that support HTML5 download attribute
-                var url = URL.createObjectURL(blob);
-                link.setAttribute("href", url);
-                link.setAttribute("download", filename);
-                link.style.visibility = 'hidden';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }
+				csv.unshift(fields.join(',')); // add header column
+				var csvFile = csv.join('\r\n');
+				console.log(csvFile);
+				var blob = new Blob([csvFile], { type: 'text/csv;charset=utf-8;' });
+				if (navigator.msSaveBlob) { // IE 10+
+				    navigator.msSaveBlob(blob, filename);
+				} else {
+				    var link = document.createElement("a");
+				    if (link.download !== undefined) { // feature detection
+					// Browsers that support HTML5 download attribute
+					var url = URL.createObjectURL(blob);
+					link.setAttribute("href", url);
+					link.setAttribute("download", filename);
+					link.style.visibility = 'hidden';
+					document.body.appendChild(link);
+					link.click();
+					document.body.removeChild(link);
+				    }
+				}
 // 				var csv = ConvertToCSV(result);
 // 				console.log(csv);
 				$('#success_msg').html("SUCCESS").prop('hidden', false);
