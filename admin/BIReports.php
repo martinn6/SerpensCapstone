@@ -86,7 +86,8 @@ $(document).ready(function(){
 // 				$(function(){
 // 				  ConvertToCSV(result).download('UserAccounts.csv').go();
 // 				});
-				ConvertToCSV(result);
+				var csv = ConvertToCSV(result);
+				console.log(csv);
 				$('#success_msg').html("SUCCESS").prop('hidden', false);
 			} else {
 				$('#error_msg').html("ERROR").prop('hidden', false);	
