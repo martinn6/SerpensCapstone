@@ -10,7 +10,7 @@ if(!isset($_SESSION['editUser']['editName']) || !isset($_SESSION['editUser']['ed
 	header("Location: admin.php"); 
 	die();
 } 
-$user = $_SESSION['user'];
+$user = $_SESSION['admin']['name'];
 $editUserName = $_SESSION['editUser']['editName'];
 $editUserEmail = $_SESSION['editUser']['editEmail'];
 
