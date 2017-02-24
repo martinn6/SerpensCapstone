@@ -24,7 +24,12 @@ if(!empty($_POST)){
 					if (session_status() == PHP_SESSION_NONE) {
 							session_start();
 					}
+					
+					if ($_SESSION['admin']['user']) == $ID){
+						($_SESSION['admin']['email']) = $newEmail;
+					}
 					$_SESSION['editUser']['editEmail'] = $newEmail;
+					
 					return false;
 				} else {
 					$err_msg = "error updating user with email: $oldEmail";
