@@ -48,9 +48,7 @@
 			INNER JOIN dbo.Awards on dbo.AwardGiven.AwardId=dbo.Awards.AwardId');
 
 		}
-		
-		$query_params = array(':table' => $table);
-		$result = $stmt->execute($query_params) or die();
+		$result = $stmt->execute() or die();
 		foreach($result as $row) {
 			fputcsv($output, $row);
 		}
