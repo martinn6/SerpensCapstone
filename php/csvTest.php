@@ -26,10 +26,7 @@
         $output = fopen("php://output", "w");
 		if ($table = "users") {
 			$stmt = $conn->prepare(
-			'SELECT dbo.UserAccount.FullName, 
-					dbo.UserAccount.UserName, 
-					dbo.UserAccount.Password 
-					FROM dbo.UserAccount');
+			'SELECT * FROM dbo.UserAccount');
 		} else if ($table = "EOM") {
 			$stmt = $conn->prepare(
 			'SELECT dbo.UserAccount.FullName, 
