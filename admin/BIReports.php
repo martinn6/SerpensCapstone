@@ -86,8 +86,19 @@ $(document).ready(function(){
 // 				$(function(){
 // 				  ConvertToCSV(result).download('UserAccounts.csv').go();
 // 				});
-				var csv = ConvertToCSV(result);
-				console.log(csv);
+				var json = result.items;
+				var fields = Object.keys(json[0])
+				var replacer = function(key, value) { return value === null ? '' : value } 
+				var csv = json.map(function(row){
+				  return fields.map(function(fieldName){
+				    return JSON.stringify(row[fieldName], replacer)
+				  }).join(',')
+				})
+				csv.unshift(fields.join(',')) // add header column
+
+				console.log(csv.join('\r\n'))
+// 				var csv = ConvertToCSV(result);
+// 				console.log(csv);
 				$('#success_msg').html("SUCCESS").prop('hidden', false);
 			} else {
 				$('#error_msg').html("ERROR").prop('hidden', false);	
