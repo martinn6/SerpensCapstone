@@ -28,6 +28,19 @@ $user = $_SESSION['admin']['name'];
 </head>
 <body>
 <script>
+function ConvertToCSV(objArray) {
+    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    var str = '';
+    for (var i = 0; i < array.length; i++) {
+	var line = '';
+	for (var index in array[i]) {
+	    if (line != '') line += ','
+	    line += array[i][index];
+	}
+	str += line + '\r\n';
+    }
+    return str;
+}
 $(document).ready(function(){
 
 	$("#EOYawardsCSV").click(function(e){
@@ -70,6 +83,7 @@ $(document).ready(function(){
 		$.post(url, data, function(result){
 			console.log(result);
 			if(result){
+				ConvertToCSV(result).download('UserAccounts.csv').go();
 				$('#success_msg').html("SUCCESS").prop('hidden', false);
 			} else {
 				$('#error_msg').html("ERROR").prop('hidden', false);	
