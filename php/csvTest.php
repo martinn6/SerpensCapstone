@@ -55,6 +55,7 @@
 		$result = $stmt->execute() or die();
 		if ($_POST){
 			$json=json_encode($result);
+			echo $json;
 			die();
 		}
 		foreach($result as $row) {
