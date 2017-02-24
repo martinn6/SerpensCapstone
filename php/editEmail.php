@@ -10,13 +10,14 @@ if(!empty($_POST)){
 		$stmt = $conn->prepare($query);
 		$result = $stmt->execute($query_params) or die();
 		$row = $stmt->fetch();
+		$ID = $row['UserId'];
         
         if($row){
                 $new_query = "UPDATE dbo.UserAccount SET Email = :Email
 				WHERE UserId = :ID";
                 $new_query_params = array(
 					':Email' => $newEmail,
-					':ID' => $row['UserId']);
+					':ID' => $ID);
                 $new_stmt = $conn->prepare($new_query);
                 $new_result = $new_stmt->execute($new_query_params) or die();
 				if($new_result){
