@@ -55,6 +55,7 @@
 		$result = $stmt->execute() or die();
 		if ($_POST){
 			$json=json_encode($result);
+			header('Content-type: application/json');
 			echo $json;
 			die();
 		}
