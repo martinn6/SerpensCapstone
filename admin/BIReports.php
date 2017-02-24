@@ -86,7 +86,7 @@ $(document).ready(function(){
 // 				$(function(){
 // 				  ConvertToCSV(result).download('UserAccounts.csv').go();
 // 				});
-				var json = result.items;
+				var json = result;
 				var fields = Object.keys(json[0])
 				var replacer = function(key, value) { return value === null ? '' : value } 
 				var csv = json.map(function(row){
