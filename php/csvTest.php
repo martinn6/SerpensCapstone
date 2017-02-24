@@ -20,15 +20,16 @@
 	
 	if($conn)
 	{
-		
-		header("Last-Modified: " . gmdate("D, d M Y H:i:s",$_GET['timestamp']) . " GMT");
-		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-		header('Content-Description: File Transfer');
-		header("Content-type: text/csv");
-		header("Content-Disposition: attachment; filename={$file_name}");
-		header("Expires: 0");
-		header("Pragma: public");		
-        $output = fopen("php://output", "w");
+		if ($_GET){
+			header("Last-Modified: " . gmdate("D, d M Y H:i:s",$_GET['timestamp']) . " GMT");
+			header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+			header('Content-Description: File Transfer');
+			header("Content-type: text/csv");
+			header("Content-Disposition: attachment; filename={$file_name}");
+			header("Expires: 0");
+			header("Pragma: public");
+			$output = fopen("php://output", "w");
+		}
 		if ($table = "users") {
 			$query = 'SELECT * FROM dbo.UserAccount';
 		} else if ($table = "EOM") {
