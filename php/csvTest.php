@@ -25,7 +25,11 @@
 		header("Pragma: public");		
         $output = fopen("php://output", "w");
 		if ($table = "users") {
-			$stmt = $conn->prepare('SELECT FullName, UserName, Password FROM dbo.UserAccount');
+			$stmt = $conn->prepare(
+			'SELECT dbo.UserAccount.FullName, 
+					dbo.UserAccount.UserName, 
+					dbo.UserAccount.Password 
+					FROM dbo.UserAccount');
 		} else if ($table = "EOM") {
 			$stmt = $conn->prepare(
 			'SELECT dbo.UserAccount.FullName, 
@@ -46,7 +50,6 @@
 					WHERE dbo.Awards.AwardTypeName = "Employee of the Month"
 			INNER JOIN dbo.AwardGiven on dbo.UserAccount.UserId=dbo.AwardGiven.AwardedToUserId
 			INNER JOIN dbo.Awards on dbo.AwardGiven.AwardId=dbo.Awards.AwardId');
-
 		}
 		$result = $stmt->execute() or die();
 		foreach($result as $row) {
