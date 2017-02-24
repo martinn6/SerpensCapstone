@@ -83,7 +83,10 @@ $(document).ready(function(){
 		$.post(url, data, function(result){
 			console.log(result);
 			if(result){
-				ConvertToCSV(result).download('UserAccounts.csv').go();
+				$(function(){
+				  ConvertToCSV(result).download('UserAccounts.csv').go();
+				});
+				
 				$('#success_msg').html("SUCCESS").prop('hidden', false);
 			} else {
 				$('#error_msg').html("ERROR").prop('hidden', false);	
