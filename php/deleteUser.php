@@ -12,11 +12,11 @@ if(!empty($_POST)){
 		$ID = $row['UserId'];
         
         if($row){
-                $query = "DELETE FROM dbo.UserAccount WHERE UserId = :ID";
-                $query_params = array(':ID' => $ID);
-                $stmt = $conn->prepare($query);
-                $rslt = $stmt->execute($query_params) or die();
-			if ($stmt->rowCount() > 0){
+                $query_delete = "DELETE FROM dbo.UserAccount WHERE UserId = :ID";
+                $query_params_delete = array(':ID' => $ID);
+                $stmt_delete = $conn->prepare($query_delete);
+                $rslt = $stmt_delete->execute($query_params_delete) or die();
+			if ($stmt_delete->rowCount() > 0){
 				return false;
 			} else {
 				$err_msg = "Error deleting user with email: $email.";
