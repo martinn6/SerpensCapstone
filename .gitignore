@@ -1,4 +1,4 @@
 #folders to ignore
 **/.git
-
+/images
 #file extensions to ignore
