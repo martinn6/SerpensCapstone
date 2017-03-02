@@ -89,7 +89,7 @@ if(!empty($_POST)){
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="../jquery.cropit.js"></script>
+	<script src="../js/jquery.cropit.js"></script>
 	
 	<style>
       .cropit-preview {
