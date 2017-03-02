@@ -15,7 +15,7 @@ if(!empty($_POST)){
 
 	if (!isset($err_msg)) {
 		if ($conn){
-			$query = "SELECT * FROM dbo.UserAccount WHERE Email = :Email";
+			$query = "SELECT * FROM UserAccount WHERE Email = :Email";
 			$query_params = array(':Email' => $_POST['email']);
 			$stmt = $conn->prepare($query);
 			$result = $stmt->execute($query_params) or die();

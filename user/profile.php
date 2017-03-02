@@ -9,13 +9,14 @@ if(empty($_SESSION['user'])){
 $fname = '';
 
 if ($conn){
-	$query = "SELECT * FROM dbo.UserAccount WHERE UserId = :UserId";
+	$query = "SELECT * FROM UserAccount WHERE UserId = :UserId";
 	$query_params = array(':UserId' => $_SESSION['user']);
 	$stmt = $conn->prepare($query);
 	$result = $stmt->execute($query_params) or die();
 	$row = $stmt->fetch();
 
 	$fname = $row['FullName'];
+	$sig_image = $row['SignatureURL'];
 }
 ?>
 
@@ -74,7 +75,7 @@ if ($conn){
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
 					<input id="confirm-password" type="password" class="form-control" name="confirm-password" placeholder="Confirm New Password">
 				</div>
-				<img src="images/signature.jpg" />
+				<img src="<?php echo $sig_image; ?>" />
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"> </span></span>
 					<label class="btn btn-default btn-file">

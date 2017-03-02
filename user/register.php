@@ -6,7 +6,7 @@ if(!empty($_POST)){
 		$err_msg[] = 'Please enter an email address.';
 	} else {
 		if ($conn){
-			$query = "SELECT * FROM dbo.UserAccount WHERE Email = :Email";
+			$query = "SELECT * FROM UserAccount WHERE Email = :Email";
 			$query_params = array(':Email' => $_POST['email']);
 			$stmt = $conn->prepare($query);
 			$stmt->execute($query_params) or die();
@@ -47,17 +47,24 @@ if(!empty($_POST)){
     if (!isset($err_msg)) {
         $password = md5($_POST['password']);
         $signature_path = 'images/'.$_FILES['signature']['name'];
-		
+
+		define('UPLOAD_DIR', '../images/');
+		$img = $_POST['image-data'];
+		$img = str_replace('data:image/png;base64,', '', $img);
+		$img = str_replace(' ', '+', $img);
+		$data = base64_decode($img);
+		$file = UPLOAD_DIR . uniqid() . '.png';
+
 		if ($conn){
-			copy($_FILES['signature']['tmp_name'], $signature_path);
-			$query = "INSERT INTO dbo.UserAccount (UserTypeId, Email, FullName, Password, SignatureURL) "
+			file_put_contents($file, $data);
+			$query = "INSERT INTO UserAccount (UserTypeId, Email, FullName, Password, SignatureURL) "
                 . "VALUES (:UserTypeId, :Email, :FullName, :Password, :SignatureURL)";
 			$query_params = array(
 				':UserTypeId' => 1, 
 				':Email' => $_POST['email'], 
 				':FullName' => $_POST['fname'], 
 				':Password' => $password, 
-				':SignatureURL' => $signature_path
+				':SignatureURL' => $file
 			);
 			$stmt = $conn->prepare($query);
 			$stmt->execute($query_params) or die();
@@ -80,8 +87,39 @@ if(!empty($_POST)){
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="../jquery.cropit.js"></script>
+	
+	<style>
+      .cropit-preview {
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-top: 7px;
+      }
+
+      .cropit-preview-image-container {
+        cursor: move;
+      }
+
+      input {
+        display: block;
+      }
+
+      #result {
+        margin-top: 10px;
+        width: 900px;
+      }
+
+      #result-data {
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+      }
+	</style>
+	
 </head>
 
 <body>
@@ -137,8 +175,14 @@ if(!empty($_POST)){
 					<input id="register-password-confirm" type="password" class="form-control" name="password-confirm" placeholder="Confirm Password" required />
 				</div>
 				
-				<div style="margin-bottom: 15px" class="input-group">
-					<label>Upload Signature</label><input type="file" name="signature" accept="image/*" required />
+				<div class="image-editor">
+					<label>Upload Signature</label><input type="file" class="cropit-image-input" name="signature" accept="image/*" required />
+					<div class="cropit-preview"></div>
+					<div class="image-size-label">
+					  Resize image
+					</div>
+					<input type="range" class="cropit-image-zoom-input">
+					<input type="hidden" name="image-data" class="hidden-image-data" />
 				</div>
 
 				<div style="margin-top:5px" class="form-group">
@@ -159,6 +203,15 @@ if(!empty($_POST)){
 		</div>                     
 	</div>  
 </div>
+    <script>
+      $(function() {
+        $('.image-editor').cropit();
 
+        $('form').submit(function() {
+          var imageData = $('.image-editor').cropit('export');
+          $('.hidden-image-data').val(imageData);
+        });
+      });
+    </script>
 </body>
 </html>
