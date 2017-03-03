@@ -23,15 +23,13 @@ if(!empty($_POST)){
 					if (session_status() == PHP_SESSION_NONE) {
 							session_start();
 					}
-
 					if ($_SESSION['admin']['user'] == $ID){
 						$_SESSION['admin']['email'] = $newEmail;
 					}
 					$_SESSION['editUser']['editEmail'] = $newEmail;
-					
 					return false;
 				} else {
-					$err_msg = "error updating user with email: $_SESSION['editUser']['editEmail']";
+					$err_msg = "error updating user with email: $ID";
 				}
 		} else {
 			    $err_msg = "Cannot find user with email: $_SESSION['editUser']['editEmail'].  Try again";
