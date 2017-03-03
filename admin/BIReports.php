@@ -68,7 +68,6 @@ $(document).ready(function(){
 			console.log(result);
 			if(result){
 				ConvertToCSV(result, filename);
-				}
 			} else {
 				$('#error_msg').html("ERROR").prop('hidden', false);	
 			}
@@ -84,7 +83,6 @@ $(document).ready(function(){
 			console.log(result);
 			if(result){
 				ConvertToCSV(result, filename);
-				}
 			} else {
 				$('#error_msg').html("ERROR").prop('hidden', false);	
 			}
@@ -100,7 +98,6 @@ $(document).ready(function(){
 			console.log(result);
 			if(result){
 				ConvertToCSV(result, filename);
-				}
 			} else {
 				$('#error_msg').html("ERROR").prop('hidden', false);	
 			}
