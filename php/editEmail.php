@@ -1,11 +1,13 @@
 <?php
 $newEmail = $_POST["newEmail"];
+$oldEmail = $_POST["oldEmail"];
+
 require '../php/connect.php';
 if(!empty($_POST)){
 	if ($conn){
 		$query = "SELECT * FROM dbo.UserAccount WHERE Email = :Email AND 
 		UserTypeId = (SELECT UserTypeId FROM dbo.UserTypes WHERE UserType='Admin')";
-		$query_params = array(':Email' => $_SESSION['editUser']['editEmail']);
+		$query_params = array(':Email' => $oldEmail);
 		$stmt = $conn->prepare($query);
 		$result = $stmt->execute($query_params) or die();
 		$row = $stmt->fetch();
@@ -29,10 +31,10 @@ if(!empty($_POST)){
 					$_SESSION['editUser']['editEmail'] = $newEmail;
 					return false;
 				} else {
-					$err_msg = "error updating user with email: $ID";
+					$err_msg = "error updating user with email: $oldEmail";
 				}
 		} else {
-			    $err_msg = "Cannot find user with email: $_SESSION['editUser']['editEmail'].  Try again";
+			    $err_msg = "Cannot find user with email: $oldEmail.  Try again";
 		}
 	}
 }
