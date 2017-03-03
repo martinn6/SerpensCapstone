@@ -1,12 +1,11 @@
 <?php
 $newName = $_POST["name"];
-$oldEmail = $_SESSION['editUser']['editEmail'];
 require '../php/connect.php';
 if(!empty($_POST)){
 	if ($conn){
 		$query = "SELECT * FROM dbo.UserAccount WHERE Email = :Email AND 
 		UserTypeId = (SELECT UserTypeId FROM dbo.UserTypes WHERE UserType='Admin')";
-		$query_params = array(':Email' => $email);
+		$query_params = array(':Email' => $_SESSION['editUser']['editEmail']);
 		$stmt = $conn->prepare($query);
 		$result = $stmt->execute($query_params) or die();
 		$row = $stmt->fetch();
