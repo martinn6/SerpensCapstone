@@ -168,7 +168,7 @@ $(document).ready(function () {
 		var url = "../php/editPassword.php";
 		var password = $('#NewPassword').val();
 		var oldEmail = $('#OldEmail').val();
-		var data = {password: password, oldEamil: oldEmail}
+		var data = {password: password, oldEmail: oldEmail}
 		$.post(url, data, function(result){
 			if(!result){
 				$('#success_msg').html("Password Update Successful").prop('hidden', false);
