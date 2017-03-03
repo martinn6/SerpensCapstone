@@ -117,7 +117,7 @@ function checkNameMatch() {
 }
 
 $(document).ready(function () {
-	$("#newEmail").keyup(function() {
+	$("#NewEmail").keyup(function() {
 		if(checkEmailMatch()){
 			$('#email-btn').prop('disabled', false);
 		} else {

@@ -132,7 +132,7 @@ $(document).ready(function(){
 						Email address
 						</label>
 						<div class="col-sm-10">
-							<input type="email" class="form-control" name="email" onChange="checkEmail()"
+							<input type="email" class="form-control" name="email"
 							placeholder="Email" value=""
 							id="adminEmail" required>
 							<span id='email_message'></span>
@@ -143,7 +143,7 @@ $(document).ready(function(){
 						Password
 						</label>
 						<div class="col-sm-10">
-							<input type="password" class="form-control" name="password" onChange="checkPassword()"
+							<input type="password" class="form-control" name="password"
 							id="adminPassword" placeholder="Password" required>
 							<span id='password_message'></span>
 						</div>
