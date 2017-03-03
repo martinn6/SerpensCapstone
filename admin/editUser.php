@@ -148,8 +148,8 @@ $(document).ready(function () {
 		e.preventDefault();
 		var url = "../php/editEmail.php";
 		var newEmail = $('#NewEmail').val();
-		var oldEmail = '<?php echo $editUserEmail; ?>';
-		var data = {newEmail: newEmail}
+		var oldEmail = $('#OldEmail').val();
+		var data = {newEmail: newEmail, oldEmail: oldEmail}
 		$.post(url, data, function(result){
 			if(!result){
 				$('#success_msg').html("Email Update Successful").prop('hidden', false);
@@ -167,8 +167,8 @@ $(document).ready(function () {
 		e.preventDefault();
 		var url = "../php/editPassword.php";
 		var password = $('#NewPassword').val();
-		var oldEmail = '<?php echo $editUserEmail; ?>';
-		var data = {password: password}
+		var oldEmail = $('#OldEmail').val();
+		var data = {password: password, oldEamil: oldEmail}
 		$.post(url, data, function(result){
 			if(!result){
 				$('#success_msg').html("Password Update Successful").prop('hidden', false);
@@ -186,8 +186,8 @@ $(document).ready(function () {
 		e.preventDefault();
 		var url = "../php/editName.php";
 		var name = $('#NewName').val();
-		var oldEmail = '<?php echo $editUserEmail; ?>';
-		var data = {name: name}
+		var oldEmail = $('#OldEmail').val();
+		var data = {name: name, oldEmail: oldEmail}
 		$.post(url, data, function(result){
 			if(!result){
 				$('#success_msg').html("Name Update Successful").prop('hidden', false);
