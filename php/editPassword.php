@@ -16,7 +16,7 @@ if(!empty($_POST)){
 				WHERE UserId = :ID";
                 $new_query_params = array(
 					':Email' => $newPassword,
-					':ID' => $row['UserId'])
+					':ID' => $row['UserId']);
                 $new_stmt = $conn->prepare($new_query);
                 $new_result = $new_stmt->execute($new_query_params) or die();
 				if($new_result) {
