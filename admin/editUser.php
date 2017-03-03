@@ -54,16 +54,16 @@ function checkEmailMatch() {
 	
 	if (newEmail.length == 0){
 		$('#email_message').html('').css('color', 'red');
-		$('#email-btn').prop('disabled', true);
+		return false;
 	} else if (!isEmail(newEmail) ){
 		$('#email_message').html('not a valid email').css('color', 'red');
-		$('#email-btn').prop('disabled', true);
+		return false;
     }else if (oldEmail == newEmail) {
         $('#email_message').html('must enter a new email').css('color', 'red');
-		$('#email-btn').prop('disabled', true);
+		return false;
     } else {
         $('#email_message').html('');
-		$('#email-btn').prop('disabled', false);
+		return true;
 	}	
 }
 function checkPasswordMatch() {
