@@ -29,10 +29,10 @@ if(!empty($_POST)){
 					$_SESSION['editUser']['editName'] = $newName;
 					return false;
 				} else {
-					$err_msg = "error updating user with email: $email";
+					$err_msg = "error updating user with email: $_SESSION['editUser']['editEmail']";
 				}
 		} else {
-			    $err_msg = "Cannot find user with email: $email.  Try again";
+			    $err_msg = "Cannot find user with email: $_SESSION['editUser']['editEmail'].  Try again";
 		}
 	}
 }

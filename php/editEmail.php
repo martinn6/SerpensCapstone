@@ -31,10 +31,10 @@ if(!empty($_POST)){
 					
 					return false;
 				} else {
-					$err_msg = "error updating user with email: $oldEmail";
+					$err_msg = "error updating user with email: $_SESSION['editUser']['editEmail']";
 				}
 		} else {
-			    $err_msg = "Cannot find user with email: $oldEmail.  Try again";
+			    $err_msg = "Cannot find user with email: $_SESSION['editUser']['editEmail'].  Try again";
 		}
 	}
 }
