@@ -161,7 +161,7 @@ function checkName() {
 }
 	
 $(document).ready(function(){
-	
+
 	$("#newEmail, #newPassword, #confirmPassword, #FName").keyup(function() {
 		if(checkEmail($('#newEmail')) && checkPasswordMatch() && checkName()){
 			$('#addBtn').prop('disabled', false);
@@ -339,7 +339,6 @@ $(document).ready(function(){
 					</div>
 				</div>
 
-				<div class="panel-group" id="accordion">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
@@ -349,69 +348,11 @@ $(document).ready(function(){
 					</div>
 					<div id="register" class="panel-collapse collapse">
 						<div class="panel-body">
-							<form class="form-horizontal" action="" id="addUserForm">
-								<div class="row">
-									<div class="form-group">
-										<label class="col-sm-3" for="newEmail">
-										  Email address
-										</label>
-										<div class="col-sm-7">
-											<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-											<input type="email" class="form-control" name="email" id="newEmail" placeholder="Email" required>
-											<span id='new_email_message'></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3" for="newPassword">
-										  Password
-										</label>
-										<div class="col-sm-7">
-											<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-											<input type="password" class="form-control" name="newPassword" id="newPassword" maxlength="16" required>
-											<span id='new_password_message'></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3" for="confirmPassword">
-										  Re-Enter Password
-										</label>
-										<div class="col-sm-7">
-											<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-											<input type="password" class="form-control" id="confirmPassword" maxlength="16" disabled required>
-											<span id='confirm_password_message'></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3" for="newFName">
-											Full Name
-										</label>
-										<div class="col-sm-7">
-											<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-											<input type="text" class="form-control" name="FName" id="FName" placeholder="Full Name" required>
-												<span id='fName_message'></span>
-										</div>
-									</div>
-									<div class="image-editor">
-										<label>Upload Signature</label>
-										<input type="file" class="cropit-image-input" name="signature" accept="image/*" required />
-										<div class="cropit-preview"></div>
-										<div class="image-size-label">
-										Resize image
-										</div>
-										<input type="range" class="cropit-image-zoom-input">
-										<input type="hidden" name="image-data" class="hidden-image-data" />
-									</div>
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-3">
-											<button type="submit" id="addBtn"
-											class="btn btn-default" disabled>Add User</button>
-										</div>
-									</div>
-								</div>
-							</form>
+							<a href="../user/register.php" role="button" class="btn btn-primary">Register New User</a>	
 						</div>
 					</div>
 				</div>
+			</div>
 				
 				<div class="panel panel-default">
 					<div class="panel-heading">
