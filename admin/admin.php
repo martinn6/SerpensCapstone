@@ -31,6 +31,36 @@ $userEmail = $_SESSION['admin']['email'];
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="../js/jquery.cropit.js"></script>
+
+		<style>
+      .cropit-preview {
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-top: 7px;
+      }
+
+      .cropit-preview-image-container {
+        cursor: move;
+      }
+
+      input {
+        display: block;
+      }
+
+      #result {
+        margin-top: 10px;
+        width: 900px;
+      }
+
+      #result-data {
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+      }
+	</style>
   </head>
 <body>
 <script>
@@ -241,6 +271,7 @@ $(document).ready(function(){
 			<h1 class="text-center"><?php echo $user; ?> Admin Page</h1>
 		</section>
 	</div>
+	
     <div class="row">
 		<span id="resultSpan"></span>
 		<section class="col-xs-offset-2 col-xs-8">
@@ -249,7 +280,7 @@ $(document).ready(function(){
 					<div class="panel-heading">
 						<h4 class="panel-title">
 							<a data-toggle="collapse" data-parent="#accordion" href="#newUser">
-							ADD USER</a>
+							ADD ADMIN USER</a>
 						</h4>
 					</div>
 					<div id="newUser" class="panel-collapse collapse">
@@ -295,6 +326,80 @@ $(document).ready(function(){
 												id="FName" placeholder="Full Name" required>
 												<span id='fName_message'></span>
 										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-3">
+											<button type="submit" id="addBtn"
+											class="btn btn-default" disabled>Add User</button>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#newUser">
+							REGISTER USER</a>
+						</h4>
+					</div>
+					<div id="newUser" class="panel-collapse collapse">
+						<div class="panel-body">
+							<form class="form-horizontal" action="" id="addUserForm">
+								<div class="row">
+									<div class="form-group">
+										<label class="col-sm-3" for="newEmail">
+										  Email address
+										</label>
+										<div class="col-sm-7">
+											<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
+											<input type="email" class="form-control" name="email" id="newEmail" placeholder="Email" required>
+											<span id='new_email_message'></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3" for="newPassword">
+										  Password
+										</label>
+										<div class="col-sm-7">
+											<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
+											<input type="password" class="form-control" name="newPassword" id="newPassword" maxlength="16" required>
+											<span id='new_password_message'></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3" for="confirmPassword">
+										  Re-Enter Password
+										</label>
+										<div class="col-sm-7">
+											<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
+											<input type="password" class="form-control" id="confirmPassword" maxlength="16" disabled required>
+											<span id='confirm_password_message'></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3" for="newFName">
+											Full Name
+										</label>
+										<div class="col-sm-7">
+											<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
+											<input type="text" class="form-control" name="FName" id="FName" placeholder="Full Name" required>
+												<span id='fName_message'></span>
+										</div>
+									</div>
+									<div class="image-editor">
+										<label>Upload Signature</label>
+										<input type="file" class="cropit-image-input" name="signature" accept="image/*" required />
+										<div class="cropit-preview"></div>
+										<div class="image-size-label">
+										Resize image
+										</div>
+										<input type="range" class="cropit-image-zoom-input">
+										<input type="hidden" name="image-data" class="hidden-image-data" />
 									</div>
 									<div class="form-group">
 										<div class="col-sm-offset-3 col-sm-3">
