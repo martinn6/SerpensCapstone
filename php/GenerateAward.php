@@ -2,7 +2,7 @@
 <?php
 	require_once( "../fpdf/fpdf.php" );
 
-	$version = 'v5.1';
+	$version = 'v5.2';
 
 	//Get awardGivenId parameter from URL
 	$awardGivenId = (isset($_GET['awardGivenId']) ? $_GET['awardGivenId'] : null);
@@ -32,10 +32,9 @@
 		{
 			//SQL query to get award data
 			$sql_select = 
-				" 	SELECT ag.AwardId, userTo.FullName AS UserToFullname, userFrom.FullName AS UserFromFullname,
+				" 	SELECT ag.AwardId, ag.AwardedToFullName, userFrom.FullName AS UserFromFullname,
 						userFrom.SignatureURL, aws.AwardTypeName, CONVERT(nvarchar(12),ag.AwardedDate,101) AS AwardedDateText
 					FROM [dbo].[AwardsGiven] AS ag
-					JOIN [dbo].[UserAccount] AS userTo ON userTo.UserId = ag.AwardedToUserId
 					JOIN [dbo].[UserAccount] AS userFrom ON userFrom.UserId = ag.AwardGivenByUserId
 					JOIN [dbo].[Awards] AS aws ON aws.AwardId = ag.AwardId
 					WHERE ag.AwardGivenId = " . (string)$awardGivenId;
@@ -47,7 +46,7 @@
 			if(count($awards) > 0) {
 				foreach($awards as $award) {
 					$awardId = $award['AwardId'];
-					$userToFullname = $award['UserToFullname'];
+					$userToFullname = $award['AwardedToFullName'];
 					$userFromFullname = $award['UserFromFullname'];
 					$signatureURL = $award['SignatureURL'];
 					$awardType = $award['AwardTypeName'];
