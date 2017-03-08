@@ -343,11 +343,11 @@ $(document).ready(function(){
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
-							<a data-toggle="collapse" data-parent="#accordion" href="#newUser">
-							REGISTER USER</a>
+							<a data-toggle="collapse" data-parent="#accordion" href="#register">
+							REGISTER NEW USER</a>
 						</h4>
 					</div>
-					<div id="newUser" class="panel-collapse collapse">
+					<div id="register" class="panel-collapse collapse">
 						<div class="panel-body">
 							<form class="form-horizontal" action="" id="addUserForm">
 								<div class="row">
