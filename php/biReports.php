@@ -7,6 +7,9 @@ if(!empty($_POST)){
 		if ($table == "users") {
 			$query = '	SELECT 		* 
 						FROM 		dbo.UserAccount';
+		} else if ($table == "awards") {
+			$query = '	SELECT 		* 
+						FROM 		dbo.AwardsGiven';
 		} else if ($table == "UBT") {
 			$query = '	SELECT 		ut.UserType as "Type", 
 									count(*) as "Count" 
