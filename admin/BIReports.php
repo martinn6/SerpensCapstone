@@ -568,7 +568,7 @@ $(document).ready(function(){
 					</div> 
 				</div>
 				
-                                <div class="panel panel-default">
+                <div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
 							<a data-toggle="collapse" data-parent="#accordion" href="#collapseUBT">
@@ -589,16 +589,28 @@ $(document).ready(function(){
 						</div>
 					</div> 
 				</div>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseOther">
+							Other CSV Downloads</a>
+						</h4>
+					</div>
+					<div id="collapseOther" class="panel-collapse collapse">
+						<div class="panel-body">
+							<div class="col-sm-10">
+								<button type="submit" id="usersCSV" class="btn btn-default">All Users</button>
+								<button type="submit" id="awardsCSV" class="btn btn-default">All Awards</button>
+                            </div>
+						</div>
+					</div> 
+				</div>
 				
 			</div>
 		</div>
 	</section>
-		<div class="row">
-		<section class="col-xs-offset-5 col-xs-2">
-			<button type="submit" id="usersCSV" class="btn btn-default">All Users</button>
-			<button type="submit" id="awardsCSV" class="btn btn-default">All Awards</button>
-		</section>
-	</div>
+
 	<div class="row">
 		<section class="col-xs-offset-5 col-xs-2">
 			<a href="admin.php" role="button" class="btn btn-primary">Return to Admin</a>
