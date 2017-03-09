@@ -14,8 +14,8 @@ if(!empty($_POST)){
 									dbo.AwardsGiven.AwardURL
 					  	FROM 		dbo.UserAccount
 						WHERE 		dbo.Awards.AwardTypeName = "Employee of the Month"
-						INNER JOIN	dbo.AwardsGiven on dbo.UserAccount.UserId=dbo.AwardsGiven.AwardedToUserId
-						INNER JOIN 	dbo.Awards on dbo.AwardGiven.AwardId=dbo.Awards.AwardId';
+						JOIN		dbo.AwardsGiven on dbo.UserAccount.UserId = dbo.AwardsGiven.AwardedToUserId
+						JOIN 		dbo.Awards on dbo.AwardGiven.AwardId = dbo.Awards.AwardId';
 		} else if ($table == "EOY") {
 			$query = '	SELECT 		dbo.UserAccount.FullName, 
 									dbo.Awards.AwardTypeName,
@@ -26,15 +26,13 @@ if(!empty($_POST)){
 						INNER JOIN 	dbo.AwardGiven on dbo.UserAccount.UserId=dbo.AwardsGiven.AwardedToUserId
 						INNER JOIN 	dbo.Awards on dbo.AwardGiven.AwardId=dbo.Awards.AwardId';
 		} else if ($table == "ABM") {
-			$query = '	SELECT 		count(*)
-					 	FROM 		dbo.AwardsGiven
-					  	GROUP BY 	MONTHNAME(AwardedDate)
-						  ';
+			$query = '	SELECT 		* --count(*)
+					 	FROM 		[dbo].[AwardsGiven] AS ag
+					  	GROUP BY 	MONTHNAME(AwardedDate)';
 		} else if ($table == "ABT") {
-			$query = '	SELECT 		count(*)
-					 	FROM 		dbo.Awards
-					  	GROUP BY 	dbo.Awards.AwardTypeName
-						  ';
+			$query = '	SELECT 		* --count(*)
+					 	FROM 		[dbo].[Awards] AS a
+					  	GROUP BY 	a.AwardTypeName';
 		}
 		
 	
