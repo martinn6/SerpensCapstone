@@ -21,7 +21,7 @@ if(!empty($_POST)){
 									count(*) as "Count" 
 					  	FROM 		[dbo].[AwardsGiven] AS ag
 						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
-						JOIN 		[dbo].[UserTypes] AS ut ON ut.TypeId = ua.UserTypeId
+						JOIN 		[dbo].[UserTypes] AS ut ON ut.UserTypeId = ua.UserTypeId
 						GROUP BY 	ut.UserType
 						';
 		} else if ($table == "ABUG") {
