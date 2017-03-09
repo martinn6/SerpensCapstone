@@ -128,15 +128,20 @@ function ABMChart(){
 		y.domain([0, d3.max(data, function(d) { return d.Total; })]);      
 
 				// add axis
-		svg.append("g")
-			.attr("class", "x axis")
-			.attr("transform", "translate(0," + height + ")")
-			.call(xAxis)
-			.selectAll("text")
-			.style("text-anchor", "end")
-			.attr("dx", "-.8em")
-			.attr("dy", "-.55em")
-			.attr("transform", "rotate(-0)" );
+		// svg.append("g")
+		// 	.attr("class", "x axis")
+		// 	.attr("transform", "translate(0," + height + ")")
+		// 	.call(xAxis)
+		// 	.selectAll("text")
+		// 	.style("text-anchor", "end")
+		// 	.attr("dx", "-.8em")
+		// 	.attr("dy", "-.55em")
+		// 	.attr("transform", "rotate(-0)" );
+
+ 		svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
 
 		svg.append("g")
 			.attr("class", "y axis")
@@ -208,15 +213,21 @@ function ABTChart(){
 		y.domain([0, d3.max(data, function(d) { return d.Count; })]);      
 
 				// add axis
+		// svg.append("g")
+		// 	.attr("class", "x axis")
+		// 	.attr("transform", "translate(0," + height + ")")
+		// 	.call(xAxis)
+		// 	.selectAll("text")
+		// 	.style("text-anchor", "end")
+		// 	.attr("dx", "-.8em")
+		// 	.attr("dy", "-.55em")
+		// 	.attr("transform", "rotate(-90)" );
+
 		svg.append("g")
-			.attr("class", "x axis")
-			.attr("transform", "translate(0," + height + ")")
-			.call(xAxis)
-			.selectAll("text")
-			.style("text-anchor", "end")
-			.attr("dx", "-.8em")
-			.attr("dy", "-.55em")
-			.attr("transform", "rotate(-90)" );
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
+		
 
 		svg.append("g")
 			.attr("class", "y axis")
