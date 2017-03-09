@@ -103,6 +103,21 @@ $(document).ready(function(){
 			}
 		});
 	});
+		$("#ABMCSV").click(function(e){
+		e.preventDefault();
+		var MyTable = "ABM";
+  		var filename = "AwardsByMonth.csv";		
+		var url = "../php/biReports.php"
+		var data = {table: MyTable};
+		$.post(url, data, function(result){
+			console.log(result);
+			if(result){
+				ConvertToCSV(result, filename);
+			} else {
+				$('#error_msg').html("ERROR").prop('hidden', false);	
+			}
+		});
+	});
 	
 });
 </script>
@@ -150,6 +165,17 @@ $(document).ready(function(){
 						</label>
 						<div class="col-sm-10">
 						<button type="submit" id="EOYawardsCSV"
+						 class="btn btn-default">Download CSV</button>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label class="col-sm-2" for="report Type">
+						Awards By Month
+						</label>
+						<div class="col-sm-10">
+						<button type="submit" id="ABMCSV"
 						 class="btn btn-default">Download CSV</button>
 						</div>
 					</div>
