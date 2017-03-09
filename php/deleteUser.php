@@ -17,7 +17,8 @@ if(!empty($_POST)){
                 $stmt_delete = $conn->prepare($query_delete);
                 $rslt = $stmt_delete->execute($query_params_delete) or die();
 			if ($stmt_delete->rowCount() > 0){
-				return false;
+				$stmt_delete->rowCount()
+				// return false;
 			} else {
 				$err_msg = "Error deleting user with email: $email.";
 			}
