@@ -120,33 +120,37 @@ function ABTChart(){
 			.append("g")
 			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");        
 
-		//create bars
-		svg.selectAll(".bar")
-			.data(data)
-			.enter()
-			.append("rect")
-			.attr("class", "bar")
-			.attr("x", function(d) { return xScale(d.x); })
-			.attr("width", xScale.rangeBand())
-			.attr("y", function(d) { return yScale(d.y); })
-			.attr("height", function(d) { return height - yScale(d.y); });
+		  // add axis
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+    .selectAll("text")
+      .style("text-anchor", "end")
+      .attr("dx", "-.8em")
+      .attr("dy", "-.55em")
+      .attr("transform", "rotate(-90)" );
 
-		//drawing the x axis on svg
-		svg.append("g")
-			.attr("class", "x axis")
-			.attr("transform", "translate(0," + height + ")")
-			.call(xAxis);
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 5)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Count");
 
-		//drawing the y axis on svg
-		svg.append("g")
-			.attr("class", "y axis")
-			.call(yAxis)
-			.append("text")
-			.attr("transform", "rotate(-90)")
-			.attr("y", 6)
-			.attr("dy", ".71em")
-			.style("text-anchor", "end")
-			.text("Count");
+
+  // Add bar chart
+  svg.selectAll("bar")
+      .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.Letter); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.Freq); })
+      .attr("height", function(d) { return height - y(d.Freq); });
 	});
 }
 
