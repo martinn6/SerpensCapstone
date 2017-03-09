@@ -275,12 +275,76 @@ $(document).ready(function(){
     <div class="row">
 		<span id="resultSpan"></span>
 		<section class="col-xs-offset-2 col-xs-8">
+
 			<div class="panel-group" id="accordion">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#newAdmin">
+							ADD ADMIN</a>
+						</h4>
+					</div>
+					<div id="newAdmin" class="panel-collapse collapse">
+						<div class="panel-body">
+							<form class="form-horizontal" action="" id="addUserForm">
+								<div class="row">
+									<div class="form-group">
+										<label class="col-sm-3" for="newEmail">
+										  Email address
+										</label>
+										<div class="col-sm-7">
+											<input type="email" class="form-control" onChange="checkEmail($(this))"
+											name="email" id="newEmail" placeholder="Email" required>
+											<span id='new_email_message'></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3" for="newPassword">
+										  Password
+										</label>
+										<div class="col-sm-7">
+											<input type="password" class="form-control" onChange="checkPasswordMatch()"
+											name="newPassword" id="newPassword" maxlength="16" required>
+											<span id='new_password_message'></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3" for="confirmPassword">
+										  Re-Enter Password
+										</label>
+										<div class="col-sm-7">
+											<input type="password" class="form-control" onChange="checkPasswordMatch()"
+											id="confirmPassword" maxlength="16" disabled required>
+											<span id='confirm_password_message'></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3" for="newFName">
+											Full Name
+										</label>
+										<div class="col-sm-7">
+											<input type="text" class="form-control" name="FName" onChange="checkName()"
+												id="FName" placeholder="Full Name" required>
+												<span id='fName_message'></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-3">
+											<button type="submit" id="addBtn"
+											class="btn btn-default" disabled>Add User</button>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
 							<a data-toggle="collapse" data-parent="#accordion" href="#newUser">
-							ADD ADMIN USER</a>
+							REGISTER NEW USER</a>
 						</h4>
 					</div>
 					<div id="newUser" class="panel-collapse collapse">

@@ -24,7 +24,12 @@ if(!empty($_POST)){
 					WHERE dbo.Awards.AwardTypeName = "Employee of the Month"
 			INNER JOIN dbo.AwardGiven on dbo.UserAccount.UserId=dbo.AwardGiven.AwardedToUserId
 			INNER JOIN dbo.Awards on dbo.AwardGiven.AwardId=dbo.Awards.AwardId';
+		} else if ($table == "ABM") {
+			$query = 'SELECT count(*)
+					  FROM dbo.AwardGiven
+					  GROUP BY MONTHNAME(AwardedDate)';
 		}
+		
 		
 		$stmt = $conn->prepare($query);
 		$result = $stmt->execute() or die();
