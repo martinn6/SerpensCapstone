@@ -37,8 +37,7 @@ if(!empty($_POST)){
 					  	GROUP BY 	aws.AwardTypeName
 						  ';
 		} else if ($table == "Atest") {
-			$query = '	count(*) AS "Total",
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 1 THEN ag.AwardId END) AS Jan,
+			$query = 'Count(CASE MONTH(ag.CreatedDateTime) WHEN 1 THEN ag.AwardId END) AS Jan,
     Count(CASE MONTH(ag.CreatedDateTime) WHEN 2 THEN ag.AwardId END) AS Feb,
     Count(CASE MONTH(ag.CreatedDateTime) WHEN 3 THEN ag.AwardId END) AS Mar,
     Count(CASE MONTH(ag.CreatedDateTime) WHEN 4 THEN ag.AwardId END) AS Apr,
@@ -51,7 +50,8 @@ if(!empty($_POST)){
     Count(CASE MONTH(ag.CreatedDateTime) WHEN 11 THEN ag.AwardId END) AS Nov,
     Count(CASE MONTH(ag.CreatedDateTime) WHEN 12 THEN ag.AwardId END) AS Dec
 FROM dbo].[AwardsGiven] AS ag
-GROUP BY datename(m, ag.CreatedDateTime)
+JOIN 		[dbo].[Awards] AS aws ON aws.AwardId = ag.AwardId
+					  	GROUP BY 	aws.AwardTypeName
 						  ';
 		}
 		
