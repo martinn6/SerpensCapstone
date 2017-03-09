@@ -13,6 +13,8 @@ if(isset($_SESSION['editUser'])){
 $user = $_SESSION['admin']['name'];
 $userEmail = $_SESSION['admin']['email'];
 
+
+
 ?>
 
 <html lang="en">
@@ -196,7 +198,7 @@ $(document).ready(function(){
 	$("#newEmailUser, #newPasswordUser, #confirmPasswordUser, #FNameUser").keyup(function(){
 		checkDone();
 	});
-	$("Signature").change(function(){
+	$("Signature").click(function(){
 		checkDone();
 	});
 	$("#editEmail").keyup(function() {
