@@ -81,83 +81,163 @@ function ConvertToCSV(json, filename) {
 	    }
 	}
 }
-
-function BarChart(div,table,xName,yName){
+function ABMChart(){
 	// set the dimensions of the canvas
-var margin = {top: 20, right: 20, bottom: 70, left: 40},
-    width = 600 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+	var margin = {top: 20, right: 20, bottom: 70, left: 40},
+		width = 600 - margin.left - margin.right,
+		height = 300 - margin.top - margin.bottom;
 
 
-// set the ranges
-var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+	// set the ranges
+	var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
 
-var y = d3.scale.linear().range([height, 0]);
+	var y = d3.scale.linear().range([height, 0]);
 
-// define the axis
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom")
-
-
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(10);
+	// define the axis
+	var xAxis = d3.svg.axis()
+		.scale(x)
+		.orient("bottom")
 
 
-// add the SVG element
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", 
-          "translate(" + margin.left + "," + margin.top + ")");
-
-	var url = "../php/biReports.php";
-	// var table = "ABT";
-	var send = {table: table};
-	$.post(url, send, function(data){
-		    data.forEach(function(d) {
-        d.xName = d.xName;
-        d.yName = +d.CyName;
-    });
-	
-  // scale the range of the data
-  x.domain(data.map(function(d) { return d.xName; }));
-  y.domain([0, d3.max(data, function(d) { return d.yName; })]);      
-
-		  // add axis
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis)
-    .selectAll("text")
-      .style("text-anchor", "end")
-      .attr("dx", "-.8em")
-      .attr("dy", "-.55em")
-      .attr("transform", "rotate(-90)" );
-
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 5)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Count");
+	var yAxis = d3.svg.axis()
+		.scale(y)
+		.orient("left")
+		.ticks(10);
 
 
-  // Add bar chart
-  svg.selectAll("bar")
-      .data(data)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.xName); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.yName); })
-      .attr("height", function(d) { return height - y(d.yName); });
+	// add the SVG element
+	var svg = d3.select("#ABM-chart").append("svg")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+		.append("g")
+		.attr("transform", 
+			"translate(" + margin.left + "," + margin.top + ")");
+
+		var url = "../php/biReports.php";
+		var table = "ABM";
+		var send = {table: table};
+		$.post(url, send, function(data){
+
+			data.forEach(function(d) {
+				d.Month = d.Month;
+				d.Total = +d.Total;
+			});
+			
+		// scale the range of the data
+		x.domain(data.map(function(d) { return d.Month; }));
+		y.domain([0, d3.max(data, function(d) { return d.Total; })]);      
+
+				// add axis
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + height + ")")
+			.call(xAxis)
+			.selectAll("text")
+			.style("text-anchor", "end")
+			.attr("dx", "-.8em")
+			.attr("dy", "-.55em")
+			.attr("transform", "rotate(-90)" );
+
+		svg.append("g")
+			.attr("class", "y axis")
+			.call(yAxis)
+			.append("text")
+			.attr("transform", "rotate(-90)")
+			.attr("y", 5)
+			.attr("dy", ".71em")
+			.style("text-anchor", "end")
+			.text("Total");
+
+
+		// Add bar chart
+		svg.selectAll("bar")
+			.data(data)
+			.enter().append("rect")
+			.attr("class", "bar")
+			.attr("x", function(d) { return x(d.Month); })
+			.attr("width", x.rangeBand())
+			.attr("y", function(d) { return y(d.Total); })
+			.attr("height", function(d) { return height - y(d.Total); });
+	});
+}
+
+function ABTChart(){
+	// set the dimensions of the canvas
+	var margin = {top: 20, right: 20, bottom: 70, left: 40},
+		width = 600 - margin.left - margin.right,
+		height = 300 - margin.top - margin.bottom;
+
+
+	// set the ranges
+	var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+
+	var y = d3.scale.linear().range([height, 0]);
+
+	// define the axis
+	var xAxis = d3.svg.axis()
+		.scale(x)
+		.orient("bottom")
+
+
+	var yAxis = d3.svg.axis()
+		.scale(y)
+		.orient("left")
+		.ticks(10);
+
+
+	// add the SVG element
+	var svg = d3.select("#ABT-chart").append("svg")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+		.append("g")
+		.attr("transform", 
+			"translate(" + margin.left + "," + margin.top + ")");
+
+		var url = "../php/biReports.php";
+		var table = "ABT";
+		var send = {table: table};
+		$.post(url, send, function(data){
+
+			data.forEach(function(d) {
+				d.Award = d.Award;
+				d.Count = +d.Count;
+			});
+			
+		// scale the range of the data
+		x.domain(data.map(function(d) { return d.Award; }));
+		y.domain([0, d3.max(data, function(d) { return d.Count; })]);      
+
+				// add axis
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + height + ")")
+			.call(xAxis)
+			.selectAll("text")
+			.style("text-anchor", "end")
+			.attr("dx", "-.8em")
+			.attr("dy", "-.55em")
+			.attr("transform", "rotate(-90)" );
+
+		svg.append("g")
+			.attr("class", "y axis")
+			.call(yAxis)
+			.append("text")
+			.attr("transform", "rotate(-90)")
+			.attr("y", 5)
+			.attr("dy", ".71em")
+			.style("text-anchor", "end")
+			.text("Count");
+
+
+		// Add bar chart
+		svg.selectAll("bar")
+			.data(data)
+			.enter().append("rect")
+			.attr("class", "bar")
+			.attr("x", function(d) { return x(d.Award); })
+			.attr("width", x.rangeBand())
+			.attr("y", function(d) { return y(d.Count); })
+			.attr("height", function(d) { return height - y(d.Count); });
 	});
 }
 
@@ -295,9 +375,9 @@ $(document).ready(function(){
 						Awards By Month
 						</label>
 						<div class="col-sm-10">
-						<div id="ABT-chart">
+							<div id="ABM-chart">
 							<script type="text/javascript">
-								BarChart($(this).attr('id'),"ABM","Month","Total");
+								ABMChart();
 							</script>
 						</div>
 						<button type="submit" id="ABMCSV"
@@ -313,7 +393,7 @@ $(document).ready(function(){
 						<div class="col-sm-10">
 						<div id="ABT-chart">
 							<script type="text/javascript">
-								BarChart($(this).attr('id'),"ABT","Award","Count");
+								ABTChart();
 							</script>
 						</div>
 						<button type="submit" id="ABTCSV"
