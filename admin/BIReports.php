@@ -107,7 +107,7 @@ function ABTChart(){
 
 
 	// add the SVG element
-	var svg = d3.select("body").append("svg")
+	var svg = d3.select("ABT-chart").append("svg")
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom)
 		.append("g")
@@ -118,13 +118,13 @@ function ABTChart(){
 	var send = {table: table};
 	$.post(url, send, function(data){
 		data.forEach(function(d) {
-        d.Letter = d.Letter;
-        d.Freq = +d.Freq;
+        d.Award = d.Award;
+        d.count = +d.Count;
     });
 	
   // scale the range of the data
-  x.domain(data.map(function(d) { return d.Letter; }));
-  y.domain([0, d3.max(data, function(d) { return d.Freq; })]);
+  x.domain(data.map(function(d) { return d.Award; }));
+  y.domain([0, d3.max(data, function(d) { return d.Count; })]);
 
   // add axis
   svg.append("g")
