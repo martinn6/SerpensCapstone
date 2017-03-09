@@ -136,7 +136,7 @@ function ABMChart(){
 			.style("text-anchor", "end")
 			.attr("dx", "-.8em")
 			.attr("dy", "-.55em")
-			.attr("transform", "rotate(-90)" );
+			.attr("transform", "rotate(-0)" );
 
 		svg.append("g")
 			.attr("class", "y axis")
