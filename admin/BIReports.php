@@ -117,7 +117,7 @@ function ABMChart(){
 		var table = "ABM";
 		var send = {table: table};
 		$.post(url, send, function(data){
-			
+
 			data.forEach(function(d) {
 				d.Month = d.Month;
 				d.Total = +d.Total;
@@ -350,19 +350,27 @@ $(document).ready(function(){
 <div class='alert alert-danger' id="error_msg" hidden></div>
 <div class="container">
 	<div class="row">
-		<section class="col-xs-offset-3 col-xs-6">
+		<section class="col-xs-offset-1 col-xs-6">
 			<h2><?php echo $user; ?> Business Intelligence Reports</h2>
 		</section>
 	</div>
 
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapsePassword">
+				EOM Awards Report</a>
+			</h4>
+		</div>
+	<div id="collapsePassword" class="panel-collapse collapse">
 	<div class="row">
 		<section class="col-xs-offset-2 col-xs-8">
 			<form class="form-horizontal" >
 				<div class="row">
 					<div class="form-group">
-						<label class="col-sm-2" for="report Type">
+						<!--<label class="col-sm-2" for="report Type">
 						EOM Awards Report
-						</label>
+						</label>-->
 						<div class="col-sm-10">
 						<button type="submit" id="EOMawardsCSV"
 						 class="btn btn-default">Download CSV</button>
