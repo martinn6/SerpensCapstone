@@ -262,6 +262,7 @@ $(document).ready(function(){
 		var email = $('#deleteEmail').val();
 		var data = {email: email}
 		$.post(url, data, function(result){
+			console.log(result);
 			if(!result){
 				$('#success_msg').html("Successful deleted Admin User: " +email).prop('hidden', false);
 				$('#deleteEmail').val("");
