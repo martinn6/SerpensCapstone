@@ -115,7 +115,7 @@ var svg = d3.select("body").append("svg")
           "translate(" + margin.left + "," + margin.top + ")");
 
 	var url = "../php/biReports.php";
-	?var table = "ABT";
+	// var table = "ABT";
 	var send = {table: table};
 	$.post(url, send, function(data){
 		    data.forEach(function(d) {
