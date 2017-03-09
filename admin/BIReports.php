@@ -82,7 +82,7 @@ function ConvertToCSV(json, filename) {
 	}
 }
 
-function ABTChart(){
+function BarChart(div,table,xName,yName){
 	// set the dimensions of the canvas
 var margin = {top: 20, right: 20, bottom: 70, left: 40},
     width = 600 - margin.left - margin.right,
@@ -115,17 +115,17 @@ var svg = d3.select("body").append("svg")
           "translate(" + margin.left + "," + margin.top + ")");
 
 	var url = "../php/biReports.php";
-	var table = "ABT";
+	?var table = "ABT";
 	var send = {table: table};
 	$.post(url, send, function(data){
 		    data.forEach(function(d) {
-        d.Award = d.Award;
-        d.Count = +d.Count;
+        d.xName = d.xName;
+        d.yName = +d.CyName;
     });
 	
   // scale the range of the data
-  x.domain(data.map(function(d) { return d.Award; }));
-  y.domain([0, d3.max(data, function(d) { return d.Count; })]);      
+  x.domain(data.map(function(d) { return d.xName; }));
+  y.domain([0, d3.max(data, function(d) { return d.yName; })]);      
 
 		  // add axis
   svg.append("g")
@@ -154,10 +154,10 @@ var svg = d3.select("body").append("svg")
       .data(data)
     .enter().append("rect")
       .attr("class", "bar")
-      .attr("x", function(d) { return x(d.Award); })
+      .attr("x", function(d) { return x(d.xName); })
       .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.Count); })
-      .attr("height", function(d) { return height - y(d.Count); });
+      .attr("y", function(d) { return y(d.yName); })
+      .attr("height", function(d) { return height - y(d.yName); });
 	});
 }
 
@@ -295,6 +295,11 @@ $(document).ready(function(){
 						Awards By Month
 						</label>
 						<div class="col-sm-10">
+						<div id="ABT-chart">
+							<script type="text/javascript">
+								BarChart($(this).attr('id'),"ABM","Month","Total");
+							</script>
+						</div>
 						<button type="submit" id="ABMCSV"
 						 class="btn btn-default">Download CSV</button>
 						</div>
@@ -308,7 +313,7 @@ $(document).ready(function(){
 						<div class="col-sm-10">
 						<div id="ABT-chart">
 							<script type="text/javascript">
-								ABTChart();
+								BarChart($(this).attr('id'),"ABT","Award","Count");
 							</script>
 						</div>
 						<button type="submit" id="ABTCSV"
