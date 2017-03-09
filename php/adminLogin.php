@@ -6,7 +6,7 @@ $cred_match = false;
 if(!empty($_POST)){
 	if ($conn){
 		$err_msg = "conn ";
-		$query = "SELECT * FROM dbo.UserAccount WHERE WHERE IsActive = 1 AND Email = :Email AND 
+		$query = "SELECT * FROM dbo.UserAccount WHERE IsActive = 1 AND Email = :Email AND 
 		UserTypeId = (SELECT UserTypeId FROM dbo.UserTypes WHERE UserType='Admin')";
 		$query_params = array(':Email' => $_POST['email']);
 		$stmt = $conn->prepare($query);
