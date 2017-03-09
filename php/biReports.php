@@ -15,7 +15,7 @@ if(!empty($_POST)){
 						FROM 		[dbo].[UserTypes] AS ut';
 		} else if ($table == "awardTypes") {
 			$query = '	SELECT 		* 
-						FROM 		[dbo].[UserTypes] AS at';
+						FROM 		[dbo].[Awards] AS at';
 		} else if ($table == "UBT") {
 			$query = '	SELECT 		ut.UserType as "Type", 
 									count(*) as "Count" 
