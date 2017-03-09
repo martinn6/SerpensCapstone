@@ -85,7 +85,7 @@ function ABTChart(){
 
 }
 
-$(document).onload(function()){
+$(document).onload(function(){
 	var url = "../php/biReports.php";
 	var table = "ABT";
 	$.getJSON(url,+table, function(data){
@@ -148,7 +148,7 @@ $(document).onload(function()){
             .text("Count");
 
 	});
-}
+});
 $(document).ready(function(){
 
 	$("#EOYawardsCSV").click(function(e){
