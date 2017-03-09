@@ -4,9 +4,9 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if(isset($_SESSION['admin'])){
-	$header = "location: ../admin/admin.php"
+	$header = "location: ../admin/admin.php";
 } else {
-	$header = "location: registerSuccess.php"
+	$header = "location: registerSuccess.php";
 }
 if(!empty($_POST)){
 	if (empty($_POST['email'])) {
