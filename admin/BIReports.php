@@ -381,6 +381,36 @@ function ABTChart(){
 
 $(document).ready(function(){
 
+	$("#aTypeCSV").click(function(e){
+		e.preventDefault();
+		var MyTable = "awardTypes";
+		var filename = "Award_Types.csv";
+		var url = "../php/biReports.php"
+		var data = {table: MyTable};
+		$.post(url, data, function(result){
+			console.log(result);
+			if(result){
+				ConvertToCSV(result, filename);
+			} else {
+				$('#error_msg').html("ERROR").prop('hidden', false);	
+			}
+		});
+	});
+	$("#uTypeCSV").click(function(e){
+		e.preventDefault();
+		var MyTable = "userTypes";
+		var filename = "User_Types.csv";
+		var url = "../php/biReports.php"
+		var data = {table: MyTable};
+		$.post(url, data, function(result){
+			console.log(result);
+			if(result){
+				ConvertToCSV(result, filename);
+			} else {
+				$('#error_msg').html("ERROR").prop('hidden', false);	
+			}
+		});
+	});
 	$("#usersCSV").click(function(e){
 		e.preventDefault();
 		var MyTable = "users";
@@ -602,6 +632,8 @@ $(document).ready(function(){
 							<div class="col-sm-10">
 								<button type="submit" id="usersCSV" class="btn btn-default">All Users</button>
 								<button type="submit" id="awardsCSV" class="btn btn-default">All Awards</button>
+								<button type="submit" id="uTypeCSV" class="btn btn-default">User Types</button>
+								<button type="submit" id="aTypeCSV" class="btn btn-default">Award Types</button>
                             </div>
 						</div>
 					</div> 

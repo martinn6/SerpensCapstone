@@ -6,16 +6,22 @@ if(!empty($_POST)){
 	{
 		if ($table == "users") {
 			$query = '	SELECT 		* 
-						FROM 		dbo.UserAccount';
+						FROM 		[dbo].[UserAccount] AS ua';
 		} else if ($table == "awards") {
 			$query = '	SELECT 		* 
-						FROM 		dbo.AwardsGiven';
+						FROM 		[dbo].[AwardsGiven] AS ag';
+		} else if ($table == "userTypes") {
+			$query = '	SELECT 		* 
+						FROM 		[dbo].[UserTypes] AS ut';
+		} else if ($table == "awardTypes") {
+			$query = '	SELECT 		* 
+						FROM 		[dbo].[UserTypes] AS at';
 		} else if ($table == "UBT") {
 			$query = '	SELECT 		ut.UserType as "Type", 
 									count(*) as "Count" 
 					  	FROM 		[dbo].[AwardsGiven] AS ag
 						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
-						JOIN 		[dbo].[UserTypes] AS ut ON ut.TypeId = ua.TypeId
+						JOIN 		[dbo].[UserTypes] AS ut ON ut.TypeId = ua.UserTypeId
 						GROUP BY 	ut.UserType
 						';
 		} else if ($table == "ABUG") {
