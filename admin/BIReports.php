@@ -109,7 +109,7 @@ function ABTChart(){
 			.ticks(10, "%");
 
 		//create svg container
-		var svg = d3.select("body")
+		var svg = d3.select("#ABT-chart")
 			.append("svg")
 			.attr("width", width + margin.left + margin.right)
 			.attr("height", height + margin.top + margin.bottom)
