@@ -291,7 +291,11 @@ $(document).ready(function(){
 						Awards By Type
 						</label>
 						<div class="col-sm-10">
-						<div id="ABT-chart" onload="ABTChart();"></div>
+						<div id="ABT-chart">
+							<script type="text/javascript">
+								ABTChart();
+							</script>
+						</div>
 						<button type="submit" id="ABTCSV"
 						 class="btn btn-default">Download CSV</button>
 						</div>
