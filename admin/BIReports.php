@@ -629,10 +629,16 @@ $(document).ready(function(){
 					</div>
 					<div id="collapseOther" class="panel-collapse collapse">
 						<div class="panel-body">
-							<div class="col-sm-10">
+							<div class="col-sm-9 col-md-6 col-lg-3">
 								<button type="submit" id="usersCSV" class="btn btn-default">All Users</button>
+							</div>
+							<div class="col-sm-9 col-md-6 col-lg-3">
 								<button type="submit" id="awardsCSV" class="btn btn-default">All Awards</button>
+							</div>
+							<div class="col-sm-9 col-md-6 col-lg-3">
 								<button type="submit" id="uTypeCSV" class="btn btn-default">User Types</button>
+							</div>
+							<div class="col-sm-9 col-md-6 col-lg-3">
 								<button type="submit" id="aTypeCSV" class="btn btn-default">Award Types</button>
                             </div>
 						</div>
