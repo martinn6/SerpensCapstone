@@ -18,10 +18,10 @@ if(!empty($_POST)){
 						FROM 		[dbo].[Awards] AS at';
 		} else if ($table == "UBT") {
 			$query = '	SELECT 		ut.UserType as "Type", 
-									count(*) as "Count" 
+									count(ag.AwardId) as "Count" 
 					  	FROM 		[dbo].[AwardsGiven] AS ag
-						JOIN 		[dbo].[UserTypes] AS ut ON ut.UserTypeId = ua.UserTypeId
 						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
+						JOIN 		[dbo].[UserTypes] AS ut ON ut.UserTypeId = ua.UserTypeId
 						GROUP BY 	ut.UserType
 						';
 		} else if ($table == "ABUG") {
