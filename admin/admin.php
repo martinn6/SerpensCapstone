@@ -258,7 +258,7 @@ $(document).ready(function(){
 	$("#deleteBtn").click(function(e){
 		$("#resultSpan").html('');
 		e.preventDefault();
-		var url = "../php/editUser.php";
+		var url = "../php/deleteUser.php";
 		var email = $('#deleteEmail').val();
 		var data = {email: email}
 		$.post(url, data, function(result){
