@@ -20,16 +20,16 @@ if(!empty($_POST)){
 			$query = '	SELECT 		ut.UserType as "Type", 
 									count(*) as "Count" 
 					  	FROM 		[dbo].[UserAccount] AS ua
-						WHERE		ua.IsActive = "1"
 						JOIN 		[dbo].[UserTypes] AS ut ON ut.UserTypeId = ua.UserTypeId
+						WHERE		ua.IsActive = "1"
 						GROUP BY 	ut.UserType
 						';
 		} else if ($table == "ABUG") {
 			$query = '	SELECT 		ua.FullName as "User", 
 									count(ag.AwardId) as "Count" 
 					  	FROM 		[dbo].[AwardsGiven] AS ag
-						WHERE		ua.IsActive = "1"
 						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
+						WHERE		ua.IsActive = "1"
 						GROUP BY 	ua.FullName
 						';
 		} else if ($table == "ABM") {
