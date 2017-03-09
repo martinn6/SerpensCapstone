@@ -27,7 +27,7 @@ if(!empty($_POST)){
 		$err_msg = "CONN error";
 	}
 }else {
-		$err_msg = "Post error"
+		$err_msg = "Post error";
 }
 echo $err_msg;
 ?>
