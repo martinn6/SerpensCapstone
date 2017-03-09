@@ -147,10 +147,10 @@ function ABTChart(){
       .data(data)
     .enter().append("rect")
       .attr("class", "bar")
-      .attr("x", function(d) { return x(d.Letter); })
+      .attr("x", function(d) { return x(d.Award); })
       .attr("width", x.rangeBand())
       .attr("y", function(d) { return y(d.Freq); })
-      .attr("height", function(d) { return height - y(d.Freq); });
+      .attr("height", function(d) { return height - y(d.Count); });
 	});
 }
 
