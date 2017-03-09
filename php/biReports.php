@@ -38,18 +38,18 @@ if(!empty($_POST)){
 						  ';
 		} else if ($table == "Atest") {
 			$query = 'count(ag.AwardId) as "Total",
-	Count(CASE MONTH(ag.CreatedDateTime) WHEN 1 THEN ag.AwardId END) AS Jan,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 2 THEN ag.AwardId END) AS Feb,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 3 THEN ag.AwardId END) AS Mar,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 4 THEN ag.AwardId END) AS Apr,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 5 THEN ag.AwardId END) AS May,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 6 THEN ag.AwardId END) AS Jun,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 7 THEN ag.AwardId END) AS Jul,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 8 THEN ag.AwardId END) AS Aug,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 9 THEN ag.AwardId END) AS Sep,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 10 THEN ag.AwardId END) AS Oct,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 11 THEN ag.AwardId END) AS Nov,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 12 THEN ag.AwardId END) AS Dec
+	Count(CASE MONTH(ag.CreatedDateTime) WHEN 1 THEN ELSE NULL END) AS Jan,
+    Count(CASE MONTH(ag.CreatedDateTime) WHEN 2 THEN ELSE NULL END) AS Feb,
+    Count(CASE MONTH(ag.CreatedDateTime) WHEN 3 THEN ELSE NULL END) AS Mar,
+    Count(CASE MONTH(ag.CreatedDateTime) WHEN 4 THEN ELSE NULL END) AS Apr,
+    Count(CASE MONTH(ag.CreatedDateTime) WHEN 5 THEN ELSE NULL END) AS May,
+    Count(CASE MONTH(ag.CreatedDateTime) WHEN 6 THEN ELSE NULL END) AS Jun,
+    Count(CASE MONTH(ag.CreatedDateTime) WHEN 7 THEN ELSE NULL END) AS Jul,
+    Count(CASE MONTH(ag.CreatedDateTime) WHEN 8 THEN ELSE NULL END) AS Aug,
+    Count(CASE MONTH(ag.CreatedDateTime) WHEN 9 THEN ELSE NULL END) AS Sep,
+    Count(CASE MONTH(ag.CreatedDateTime) WHEN 10 THEN ELSE NULL END) AS Oct,
+    Count(CASE MONTH(ag.CreatedDateTime) WHEN 11 THEN ELSE NULL END) AS Nov,
+    Count(CASE MONTH(ag.CreatedDateTime) WHEN 12 THEN ELSE NULL END) AS Dec
 	FROM dbo].[AwardsGiven] AS ag
 	GROUP BY 	Total
 						  ';
