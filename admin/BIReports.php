@@ -458,7 +458,7 @@ $(document).ready(function(){
 	});
 	$("#UBTCSV").click(function(e){
 		e.preventDefault();
-		var MyTable = "UBTCSV";
+		var MyTable = "UBT";
   		var filename = "UsersByType.csv";		
 		var url = "../php/biReports.php"
 		var data = {table: MyTable};
