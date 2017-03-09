@@ -86,8 +86,9 @@ function ABTChart(){
 	var table = "ABT";
 	var d = {table: table};
 	$.post(url, d, function(data){
-		var width = 960, height = 500;
-		var margin = {top: 20, right: 20, bottom: 30, left: 40};
+		var margin = {top: 20, right: 20, bottom: 70, left: 40},
+    		width = 600 - margin.left - margin.right,
+    		height = 300 - margin.top - margin.bottom;
 		
 		//x and y Scales
 		var xScale = d3.scale.ordinal()
@@ -107,7 +108,7 @@ function ABTChart(){
 		var yAxis = d3.svg.axis()
 			.scale(yScale)
 			.orient("left")
-			.ticks(10, "%");
+			.ticks(5);
 
 		//create svg container
 		var svg = d3.select("#ABT-chart")
