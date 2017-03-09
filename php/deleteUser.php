@@ -12,7 +12,7 @@ if(!empty($_POST)){
 		$ID = $row['UserId'];
         
         if($row){
-                $query_delete = "UPDATE dbo.UserAccount SET IsActive = 0 WHERE UserId = :ID";
+                $query_delete = "UPDATE dbo.UserAccount SET IsActive = "0" WHERE UserId = :ID";
                 $query_params_delete = array(':ID' => $ID);
                 $stmt_delete = $conn->prepare($query_delete);
                 $rslt = $stmt_delete->execute($query_params_delete) or die();
