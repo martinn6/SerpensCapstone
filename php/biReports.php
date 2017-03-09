@@ -26,7 +26,7 @@ if(!empty($_POST)){
 						INNER JOIN 	dbo.AwardGiven on dbo.UserAccount.UserId=dbo.AwardsGiven.AwardedToUserId
 						INNER JOIN 	dbo.Awards on dbo.AwardGiven.AwardId=dbo.Awards.AwardId';
 		} else if ($table == "ABM") {
-			$query = '	SELECT 		count(*) AS "Total",
+			$query = '	SELECT 		count(*) AS "Total"
 									,isnull(sum(case when month(ag.CreatedDateTime) = 1 then Qty end), 0) Jan
 									,isnull(sum(case when month(ag.CreatedDateTime) = 2 then Qty end), 0) Feb 
 									,isnull(sum(case when month(ag.CreatedDateTime) = 3 then Qty end), 0) Mar
