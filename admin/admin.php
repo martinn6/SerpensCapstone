@@ -374,7 +374,7 @@ $(document).ready(function(){
 							REGISTER NEW USER</a>
 						</h4>
 					</div>
-					<div id="reports" class="panel-collapse collapse">
+					<div id="newUser" class="panel-collapse collapse">
 						<div class="panel-body">
 							<div class="col-sm-offset-5">
 								<a href="../user/register.php" role="button" class="btn btn-primary">Register New User</a>
