@@ -86,11 +86,9 @@ function ABTChart(){
 	var table = "ABT";
 	var d = {table: table};
 	$.post(url, d, function(data){
-		var margin = {top: 30, right: 10, bottom: 30, left: 10}
-			, width = parseInt(d3.select('#ABT-chart').style('width'), 10)
-			, width = width - margin.left - margin.right
-			, barHeight = 20
-			, percent = d3.format('%');
+		var width = 960, height = 500;
+		var margin = {top: 20, right: 20, bottom: 30, left: 40};
+		
 		//x and y Scales
 		var xScale = d3.scale.ordinal()
 			.rangeRoundBands([0, width], .1);
@@ -134,9 +132,7 @@ function ABTChart(){
 		svg.append("g")
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + height + ")")
-			.call(xAxis)
-			.append("text")
-			.text("Award");
+			.call(xAxis);
 
 		//drawing the y axis on svg
 		svg.append("g")
