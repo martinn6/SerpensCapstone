@@ -24,7 +24,7 @@ if(!empty($_POST)){
 			    $err_msg = "Cannot find user with email: $email.  Try again";
 		}
 	} else {
-		$err_msg = "CONN error"
+		$err_msg = "CONN error";
 	}
 }else {
 		$err_msg = "Post error"
