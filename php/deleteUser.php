@@ -10,7 +10,7 @@ if(!empty($_POST)){
 		$result = $stmt->execute($query_params) or die();
 		$row = $stmt->fetch();
 		$ID = $row['UserId'];
-        
+        $echo $row;
         if($row){
                 $query_delete = "UPDATE dbo.UserAccount SET IsActive = "0" WHERE UserId = :ID";
                 $query_params_delete = array(':ID' => $ID);
@@ -18,6 +18,7 @@ if(!empty($_POST)){
                 $rslt = $stmt_delete->execute($query_params_delete) or die();
 			if ($stmt_delete->rowCount() > 0){
 				$err_msg = $stmt_delete->rowCount();
+				$echo $rslt;
 				// return false;
 			} else {
 				$err_msg = "Error deleting user with email: $email.";
