@@ -26,7 +26,7 @@ if(!empty($_POST)){
 						';
 		} else if ($table == "ABUG") {
 			$query = '	SELECT 		ua.FullName as "User", 
-									count(*) as "Count" 
+									count(ag.AwardId) as "Count" 
 					  	FROM 		[dbo].[AwardsGiven] AS ag
 						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
 						GROUP BY 	ua.FullName

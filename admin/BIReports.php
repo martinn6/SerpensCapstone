@@ -524,7 +524,7 @@ $(document).ready(function(){
 <div class="container">
 	<div class="row">
 		<section class="col-xs-offset-1 col-xs-10">
-			<h1><?php echo $user; ?> Business Intelligence Reports</h1>
+			<h1 align="center"><?php echo $user; ?> Business Intelligence Reports</h1>
 		</section>
 	</div>
 
@@ -613,7 +613,7 @@ $(document).ready(function(){
 								        UBTChart();
 							        </script>
 						        </div>
-						        <button type="submit" id="UBTCSV"
+						        <button type="submit" id="UBTCSV" text-center
                                 class="btn btn-default">Download CSV</button>
                             </div>
 						</div>
