@@ -240,29 +240,6 @@ $(document).ready(function(){
 		});
 		
 	});
-	$("#addUserBtn").click(function(e){
-		$("#resultSpan").html('');
-		e.preventDefault();
-		var url = "../php/addUser.php";
-		var email = $('#newEmailUser').val();
-		var password = $('#newPasswordUser').val();
-		var name = $('#FNameUser').val();
-		var file = $('#Signature').files[0];
-		var data = {email: email, password: password, name: name, file: file}
-		$.post(url, data, function(result){
-			if(!result){
-				$('#success_msg').html("Successful added new Admin User: " + name).prop('hidden', false);
-				$('#newEmail').val("");
-				$('#newPassword').val("");
-				$('#confirmPassword').val("").prop('hidden', false);
-				$('#FName').val("");
-				$('#addBtn').prop('disabled', true);
-			} else{
-				$('#error_msg').html(result).prop('hidden', false);	
-			}
-		});
-		
-	});
 	$("#editBtn").click(function(e){
 		$("#resultSpan").html('');
 		e.preventDefault();
