@@ -147,8 +147,6 @@ function ABTChart(){
 }
 
 $(document).ready(function(){
-	ABTChart();
-		
 
 		$("#EOYawardsCSV").click(function(e){
 			e.preventDefault();
@@ -293,7 +291,7 @@ $(document).ready(function(){
 						Awards By Type
 						</label>
 						<div class="col-sm-10">
-						<div id="ABT-chart"></div>
+						<div id="ABT-chart" onload="ABTChart();"></div>
 						<button type="submit" id="ABTCSV"
 						 class="btn btn-default">Download CSV</button>
 						</div>
