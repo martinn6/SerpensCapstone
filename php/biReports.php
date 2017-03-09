@@ -9,16 +9,15 @@ if(!empty($_POST)){
 						FROM 		dbo.UserAccount';
 		} else if ($table == "UBT") {
 			$query = '	SELECT 		ua.UserType as "Type", count(*) as "Count" 
-					  	FROM 		[dbo].[UserAccount] AS ua
+					  	FROM 		[dbo].[AwardsGiven] AS ag
+						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardedGivenByUserId
 						JOIN 		[dbo].[UserTypes] AS ut ON ut.TypeId = ua.TypeId
-						JOIN 		[dbo].[AwardsGiven] AS ag ON ag.AwardedGivenByUserId = ua.UserId
 						GROUP BY 	ua.TypeId
 						';
 		} else if ($table == "ABUG") {
 			$query = '	SELECT 		ua.FullName as "Name", count(*) as "Count" 
-					  	FROM 		[dbo].[UserAccount] AS ua
-						JOIN 		[dbo].[UserTypes] AS ut ON ut.TypeId = ua.TypeId
-						JOIN 		[dbo].[AwardsGiven] AS ag ON ag.AwardedGivenByUserId = ua.UserId
+					  	FROM 		[dbo].[AwardsGiven] AS ag
+						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardedGivenByUserId
 						GROUP BY 	ua.FullName
 						';
 		} else if ($table == "ABM") {
