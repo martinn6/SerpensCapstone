@@ -19,7 +19,7 @@ if(!empty($_POST)){
 						GROUP BY 	ut.UserType
 						';
 		} else if ($table == "ABUG") {
-			$query = '	SELECT 		ua.FullName as "Name", 
+			$query = '	SELECT 		ua.FullName as "User", 
 									count(*) as "Count" 
 					  	FROM 		[dbo].[AwardsGiven] AS ag
 						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
