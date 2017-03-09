@@ -117,7 +117,7 @@ function ABMChart(){
 		var table = "ABM";
 		var send = {table: table};
 		$.post(url, send, function(data){
-
+			
 			data.forEach(function(d) {
 				d.Month = d.Month;
 				d.Total = +d.Total;
@@ -217,7 +217,7 @@ function ABTChart(){
 		// 	.attr("class", "x axis")
 		// 	.attr("transform", "translate(0," + height + ")")
 		// 	.call(xAxis)
-		// 	.selectAll("text")
+		// 	.selectAll("text") 
 		// 	.style("text-anchor", "end")
 		// 	.attr("dx", "-.8em")
 		// 	.attr("dy", "-.55em")

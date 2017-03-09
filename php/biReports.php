@@ -38,18 +38,18 @@ if(!empty($_POST)){
 						  ';
 		} else if ($table == "Atest") {
 			$query = 'count(ag.AwardId) as "Total",
-	Count(CASE MONTH(ag.CreatedDateTime) WHEN 1 THEN ELSE NULL END) AS Jan,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 2 THEN ELSE NULL END) AS Feb,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 3 THEN ELSE NULL END) AS Mar,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 4 THEN ELSE NULL END) AS Apr,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 5 THEN ELSE NULL END) AS May,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 6 THEN ELSE NULL END) AS Jun,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 7 THEN ELSE NULL END) AS Jul,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 8 THEN ELSE NULL END) AS Aug,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 9 THEN ELSE NULL END) AS Sep,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 10 THEN ELSE NULL END) AS Oct,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 11 THEN ELSE NULL END) AS Nov,
-    Count(CASE MONTH(ag.CreatedDateTime) WHEN 12 THEN ELSE NULL END) AS Dec
+	Count(CASE datepart(m, ag.CreatedDateTime) WHEN 1 THEN 1 ELSE NULL END) AS Jan,
+    Count(CASE datepart(m, ag.CreatedDateTime) WHEN 2 THEN 1 ELSE NULL END) AS Feb,
+    Count(CASE datepart(m, ag.CreatedDateTime) WHEN 3 THEN 1 ELSE NULL END) AS Mar,
+    Count(CASE datepart(m, ag.CreatedDateTime) WHEN 4 THEN 1 ELSE NULL END) AS Apr,
+    Count(CASE datepart(m, ag.CreatedDateTime) WHEN 5 THEN 1 ELSE NULL END) AS May,
+    Count(CASE datepart(m, ag.CreatedDateTime) WHEN 6 THEN 1 ELSE NULL END) AS Jun,
+    Count(CASE datepart(m, ag.CreatedDateTime) WHEN 7 THEN 1 ELSE NULL END) AS Jul,
+    Count(CASE datepart(m, ag.CreatedDateTime) WHEN 8 THEN 1 ELSE NULL END) AS Aug,
+    Count(CASE datepart(m, ag.CreatedDateTime) WHEN 9 THEN 1 ELSE NULL END) AS Sep,
+    Count(CASE datepart(m, ag.CreatedDateTime) WHEN 10 THEN 1 ELSE NULL END) AS Oct,
+    Count(CASE datepart(m, ag.CreatedDateTime) WHEN 11 THEN 1 ELSE NULL END) AS Nov,
+    Count(CASE datepart(m, ag.CreatedDateTime) WHEN 12 THEN 1 ELSE NULL END) AS Dec
 	FROM dbo].[AwardsGiven] AS ag
 	GROUP BY 	Total
 						  ';
