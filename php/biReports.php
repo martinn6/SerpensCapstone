@@ -28,7 +28,7 @@ if(!empty($_POST)){
 		} else if ($table == "ABM") {
 			$query = '	SELECT 		count(*)
 					 	FROM 		dbo.AwardsGiven
-					  	GROUP BY 	MONTHNAME(AwardedDate)
+					  	-- GROUP BY 	MONTHNAME(AwardedDate)
 						  ';
 		}
 		
