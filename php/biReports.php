@@ -30,6 +30,11 @@ if(!empty($_POST)){
 					 	FROM 		dbo.AwardsGiven
 					  	-- GROUP BY 	MONTHNAME(AwardedDate)
 						  ';
+		} else if ($table == "ABT") {
+			$query = '	SELECT 		count(*)
+					 	FROM 		dbo.Awards
+					  	GROUP BY 	dbo.Awards.AwardTypeName
+						  ';
 		}
 		
 	
