@@ -28,11 +28,13 @@ if(!empty($_POST)){
 		} else if ($table == "ABM") {
 			$query = '	SELECT 		* --count(*)
 					 	FROM 		[dbo].[AwardsGiven] AS ag
-					  	GROUP BY 	MONTHNAME(AwardedDate)';
+					  	-- GROUP BY 	MONTHNAME(ag.AwardedDate)
+						  ';
 		} else if ($table == "ABT") {
 			$query = '	SELECT 		* --count(*)
 					 	FROM 		[dbo].[Awards] AS a
-					  	GROUP BY 	a.AwardTypeName';
+					  	-- GROUP BY 	a.AwardTypeName
+						  ';
 		}
 		
 	
