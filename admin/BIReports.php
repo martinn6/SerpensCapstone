@@ -381,20 +381,35 @@ function ABTChart(){
 
 $(document).ready(function(){
 
-		$("#EOYawardsCSV").click(function(e){
-			e.preventDefault();
-			var MyTable = "EOY";
-			var filename = "EOY_Awards.csv";
-			var url = "../php/biReports.php"
-			var data = {table: MyTable};
-			$.post(url, data, function(result){
-				console.log(result);
-				if(result){
-					ConvertToCSV(result, filename);
-				} else {
-					$('#error_msg').html("ERROR").prop('hidden', false);	
-				}
-			});
+	$("#usersCSV").click(function(e){
+		e.preventDefault();
+		var MyTable = "users";
+		var filename = "All_Users.csv";
+		var url = "../php/biReports.php"
+		var data = {table: MyTable};
+		$.post(url, data, function(result){
+			console.log(result);
+			if(result){
+				ConvertToCSV(result, filename);
+			} else {
+				$('#error_msg').html("ERROR").prop('hidden', false);	
+			}
+		});
+	});
+	$("#awardsCSV").click(function(e){
+		e.preventDefault();
+		var MyTable = "awards";
+		var filename = "All_Awards.csv";
+		var url = "../php/biReports.php"
+		var data = {table: MyTable};
+		$.post(url, data, function(result){
+			console.log(result);
+			if(result){
+				ConvertToCSV(result, filename);
+			} else {
+				$('#error_msg').html("ERROR").prop('hidden', false);	
+			}
+		});
 	});
 	$("#ABUGCSV").click(function(e){
 		e.preventDefault();
@@ -578,6 +593,12 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</section>
+		<div class="row">
+		<section class="col-xs-offset-5 col-xs-2">
+			<button type="submit" id="usersCSV" class="btn btn-default">All Users</button>
+			<button type="submit" id="awardsCSV" class="btn btn-default">All Awards</button>
+		</section>
+	</div>
 	<div class="row">
 		<section class="col-xs-offset-5 col-xs-2">
 			<a href="admin.php" role="button" class="btn btn-primary">Return to Admin</a>
