@@ -134,8 +134,8 @@ function ABTChart(){
 		svg.append("g")
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + height + ")")
-			.call(xAxis),
-			.append("text"),
+			.call(xAxis)
+			.append("text")
 			.text("Award");
 
 		//drawing the y axis on svg
