@@ -20,7 +20,7 @@ if(!empty($_POST)){
 			$query = '	SELECT 		ut.UserType as "Type", 
 									count(*) as "Count" 
 					  	FROM 		[dbo].[UserAccount] AS ua
-						WHERE		ua.IsActive = 1
+						WHERE		ua.IsActive = "1"
 						JOIN 		[dbo].[UserTypes] AS ut ON ut.UserTypeId = ua.UserTypeId
 						GROUP BY 	ut.UserType
 						';
@@ -28,7 +28,7 @@ if(!empty($_POST)){
 			$query = '	SELECT 		ua.FullName as "User", 
 									count(ag.AwardId) as "Count" 
 					  	FROM 		[dbo].[AwardsGiven] AS ag
-						WHERE		ua.IsActive = 1
+						WHERE		ua.IsActive = "1"
 						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
 						GROUP BY 	ua.FullName
 						';
