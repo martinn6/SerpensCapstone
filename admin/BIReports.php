@@ -84,7 +84,7 @@ function ConvertToCSV(json, filename) {
 function ABTChart(){
 	var url = "../php/biReports.php";
 	var table = "ABT";
-	var d = {table: MyTable};
+	var d = {table: table};
 	$.post(url, d, function(data){
 		var width = 960, height = 500;
 		var margin = {top: 20, right: 20, bottom: 30, left: 40};
