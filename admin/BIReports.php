@@ -83,66 +83,67 @@ function ConvertToCSV(json, filename) {
 }
 function ABTChart(){
 	var url = "../php/biReports.php";
-		var table = "ABT";
-		$.getJSON(url,+table, function(data){
-			var width = 960, height = 500;
-			var margin = {top: 20, right: 20, bottom: 30, left: 40};
-			//x and y Scales
-			var xScale = d3.scale.ordinal()
-				.rangeRoundBands([0, width], .1);
+	var table = "ABT";
+	var d = {table: MyTable};
+	$.getJSON(url, d, function(data){
+		var width = 960, height = 500;
+		var margin = {top: 20, right: 20, bottom: 30, left: 40};
+		//x and y Scales
+		var xScale = d3.scale.ordinal()
+			.rangeRoundBands([0, width], .1);
 
-			var yScale = d3.scale.linear()
-				.range([height, 0]);
+		var yScale = d3.scale.linear()
+			.range([height, 0]);
 
-			xScale.domain(data.map(function(d) { return d.Count; }));
-			yScale.domain([0, d3.max(data, function(d) { return d.Award; })]);
+		xScale.domain(data.map(function(d) { return d.Count; }));
+		yScale.domain([0, d3.max(data, function(d) { return d.Award; })]);
 
-			//x and y Axes
-			var xAxis = d3.svg.axis()
-				.scale(xScale)
-				.orient("bottom");
+		//x and y Axes
+		var xAxis = d3.svg.axis()
+			.scale(xScale)
+			.orient("bottom");
 
-			var yAxis = d3.svg.axis()
-				.scale(yScale)
-				.orient("left")
-				.ticks(10, "%");
+		var yAxis = d3.svg.axis()
+			.scale(yScale)
+			.orient("left")
+			.ticks(10, "%");
 
-			//create svg container
-			var svg = d3.select("body")
-				.append("svg")
-				.attr("width", width + margin.left + margin.right)
-				.attr("height", height + margin.top + margin.bottom)
-				.append("g")
-				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");        
+		//create svg container
+		var svg = d3.select("body")
+			.append("svg")
+			.attr("width", width + margin.left + margin.right)
+			.attr("height", height + margin.top + margin.bottom)
+			.append("g")
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");        
 
-			//create bars
-			svg.selectAll(".bar")
-				.data(data)
-				.enter()
-				.append("rect")
-				.attr("class", "bar")
-				.attr("x", function(d) { return xScale(d.x); })
-				.attr("width", xScale.rangeBand())
-				.attr("y", function(d) { return yScale(d.y); })
-				.attr("height", function(d) { return height - yScale(d.y); });
+		//create bars
+		svg.selectAll(".bar")
+			.data(data)
+			.enter()
+			.append("rect")
+			.attr("class", "bar")
+			.attr("x", function(d) { return xScale(d.x); })
+			.attr("width", xScale.rangeBand())
+			.attr("y", function(d) { return yScale(d.y); })
+			.attr("height", function(d) { return height - yScale(d.y); });
 
-			//drawing the x axis on svg
-			svg.append("g")
-				.attr("class", "x axis")
-				.attr("transform", "translate(0," + height + ")")
-				.call(xAxis);
+		//drawing the x axis on svg
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + height + ")")
+			.call(xAxis);
 
-			//drawing the y axis on svg
-			svg.append("g")
-				.attr("class", "y axis")
-				.call(yAxis)
-				.append("text")
-				.attr("transform", "rotate(-90)")
-				.attr("y", 6)
-				.attr("dy", ".71em")
-				.style("text-anchor", "end")
-				.text("Count");
-		});
+		//drawing the y axis on svg
+		svg.append("g")
+			.attr("class", "y axis")
+			.call(yAxis)
+			.append("text")
+			.attr("transform", "rotate(-90)")
+			.attr("y", 6)
+			.attr("dy", ".71em")
+			.style("text-anchor", "end")
+			.text("Count");
+	});
 }
 
 $(document).ready(function(){
