@@ -164,27 +164,6 @@ function checkName(thisObj) {
 	}
 
 }
-
-function checkFile(obj) {
-	var sig = obj.val();
-	if (sig == ''){
-		return false;
-	} else {
-		return true;
-	}
-	
-}
-
-function checkDone() {
-	if(checkEmail($('#newEmailUser')) 
-		&& checkPasswordMatch($('#newPasswordUser'),$('#confirmPasswordUser')) 
-		&& checkName($('#FNameUser'))
-		&& checkFile($('Signature'))){
-			$('#addUserBtn').prop('disabled', false);
-		} else {
-			$('#addUserBtn').prop('disabled', true);
-		}
-}
 	
 $(document).ready(function(){
 
@@ -194,12 +173,6 @@ $(document).ready(function(){
 		} else {
 			$('#addBtn').prop('disabled', true);
 		}
-	});
-	$("#newEmailUser, #newPasswordUser, #confirmPasswordUser, #FNameUser").keyup(function(){
-		checkDone();
-	});
-	$("Signature").click(function(){
-		checkDone();
 	});
 	$("#editEmail").keyup(function() {
 		if(checkEmail($(this))){
@@ -228,6 +201,29 @@ $(document).ready(function(){
 		var password = $('#newPassword').val();
 		var name = $('#FName').val();
 		var data = {email: email, password: password, name: name}
+		$.post(url, data, function(result){
+			if(!result){
+				$('#success_msg').html("Successful added new Admin User: " + name).prop('hidden', false);
+				$('#newEmail').val("");
+				$('#newPassword').val("");
+				$('#confirmPassword').val("").prop('hidden', false);
+				$('#FName').val("");
+				$('#addBtn').prop('disabled', true);
+			} else{
+				$('#error_msg').html(result).prop('hidden', false);	
+			}
+		});
+		
+	});
+	$("#addUserBtn").click(function(e){
+		$("#resultSpan").html('');
+		e.preventDefault();
+		var url = "../php/addUser.php";
+		var email = $('#newEmailUser').val();
+		var password = $('#newPasswordUser').val();
+		var name = $('#FNameUser').val();
+		var file = $('#Signature').files[0];
+		var data = {email: email, password: password, name: name, file: file}
 		$.post(url, data, function(result){
 			if(!result){
 				$('#success_msg').html("Successful added new Admin User: " + name).prop('hidden', false);
@@ -277,14 +273,6 @@ $(document).ready(function(){
 		
 	});
 	
-});
-$(function() {
-	$('.image-editor').cropit();
-
-	$("#registerForm").submit(function() {
-		var imageData = $('.image-editor').cropit('export');
-		$('.hidden-image-data').val(imageData);
-	});
 });
 </script>
 <nav class="navbar navbar-default">
@@ -386,75 +374,11 @@ $(function() {
 							REGISTER NEW USER</a>
 						</h4>
 					</div>
-					<div id="newUser" class="panel-collapse collapse">
+					<div id="reports" class="panel-collapse collapse">
 						<div class="panel-body">
-							<form class="form-horizontal" action="../registerUser.php" id="addUserForm" method="post" enctype="multipart/form-data" id="registerForm">
-								<div class="row">
-									<div class="form-group">
-										<label class="col-sm-3" for="newEmail">
-										  Email address
-										</label>
-										<div class="col-sm-7">
-											<input type="email" class="form-control" 
-											name="email" id="newEmailUser" placeholder="Email" required />
-											<span id='new_email_messageUser'></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3" for="newPassword">
-										  Password
-										</label>
-										<div class="col-sm-7">
-											<input type="password" class="form-control" 
-											name="newPasswordUser" id="newPasswordUser" maxlength="16" required />
-											<span id='new_password_messageUser'></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3" for="confirmPassword">
-										  Re-Enter Password
-										</label>
-										<div class="col-sm-7">
-											<input type="password" class="form-control" 
-											id="confirmPasswordUser" maxlength="16" disabled required>
-											<span id='confirm_password_messageUser'></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-3" for="newFNameUser">
-											Full Name
-										</label>
-										<div class="col-sm-7">
-											<input type="text" class="form-control" name="FNameUser" 
-												id="FNameUser" placeholder="Full Name" required>
-												<span id='fName_message'></span>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="image-editor">
-											<label class="col-sm-3" for="Signature">
-												Upload Signature
-											</label>
-											<div class="col-sm-7">
-												<input type="file" class="cropit-image-input" id="Signature" name="Signature" accept="image/*" required />
-												<div class="cropit-preview">
-												</div>
-												<div class="image-size-label">
-													Resize image
-												</div>
-												<input type="range" class="cropit-image-zoom-input">
-												<input type="hidden" name="image-data" class="hidden-image-data" />
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-sm-offset-3 col-sm-3">
-											<input type="submit" id="addUserBtn"
-											class="btn btn-default" disabled>Add User</input>
-										</div>
-									</div>
-								</div>
-							</form>
+							<div class="col-sm-offset-5">
+								<a href="../user/register.php" role="button" class="btn btn-primary">Register New User</a>
+							</div>
 						</div>
 					</div>
 				</div>
