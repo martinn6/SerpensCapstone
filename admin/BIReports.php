@@ -316,7 +316,7 @@ $(document).ready(function(){
 	});
 	$("#ABTCSV").click(function(e){
 		e.preventDefault();
-		var MyTable = "ABT";
+		var MyTable = "Atest";
   		var filename = "AwardsByType.csv";		
 		var url = "../php/biReports.php"
 		var data = {table: MyTable};
