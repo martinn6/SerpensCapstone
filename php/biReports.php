@@ -6,10 +6,16 @@ if(!empty($_POST)){
 	{
 		if ($table == "users") {
 			$query = '	SELECT 		* 
-						FROM 		[dbo].[UserTypes] AS ua';
+						FROM 		[dbo].[UserAccount] AS ua';
 		} else if ($table == "awards") {
 			$query = '	SELECT 		* 
 						FROM 		[dbo].[AwardsGiven] AS ag';
+		} else if ($table == "userTypes") {
+			$query = '	SELECT 		* 
+						FROM 		[dbo].[UserTypes] AS ut';
+		} else if ($table == "awardTypes") {
+			$query = '	SELECT 		* 
+						FROM 		[dbo].[UserTypes] AS at';
 		} else if ($table == "UBT") {
 			$query = '	SELECT 		ut.UserType as "Type", 
 									count(*) as "Count" 
