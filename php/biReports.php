@@ -26,22 +26,10 @@ if(!empty($_POST)){
 						INNER JOIN 	dbo.AwardGiven on dbo.UserAccount.UserId=dbo.AwardsGiven.AwardedToUserId
 						INNER JOIN 	dbo.Awards on dbo.AwardGiven.AwardId=dbo.Awards.AwardId';
 		} else if ($table == "ABM") {
-			$query = '	SELECT 		aws.AwardTypeName AS "Award", count(*) AS "Total"
-									,isnull(sum(case when month(ag.CreatedDateTime) = 1 then Total end), 0) Jan
-									,isnull(sum(case when month(ag.CreatedDateTime) = 2 then Total end), 0) Feb 
-									,isnull(sum(case when month(ag.CreatedDateTime) = 3 then Total end), 0) Mar
-									,isnull(sum(case when month(ag.CreatedDateTime) = 4 then Total end), 0) Apr
-									,isnull(sum(case when month(ag.CreatedDateTime) = 5 then Total end), 0) May
-									,isnull(sum(case when month(ag.CreatedDateTime) = 6 then Total end), 0) Jun
-									,isnull(sum(case when month(ag.CreatedDateTime) = 7 then Total end), 0) Jul
-									,isnull(sum(case when month(ag.CreatedDateTime) = 8 then Total end), 0) Aug
-									,isnull(sum(case when month(ag.CreatedDateTime) = 9 then Total end), 0) Sep
-									,isnull(sum(case when month(ag.CreatedDateTime) = 10 then Total end), 0) Oct
-									,isnull(sum(case when month(ag.CreatedDateTime) = 11 then Total end), 0) Nov
-									,isnull(sum(case when month(ag.CreatedDateTime) = 12 then Total end), 0) Dec
+			$query = '	SELECT 		aws.AwardTypeName AS "Award", count(*) AS "Total",
 					 	FROM 		[dbo].[AwardsGiven] AS ag
 						JOIN 		[dbo].[Awards] AS aws ON aws.AwardId = ag.AwardId
-					  	GROUP BY 	Award
+					  	GROUP BY 	datename(month, ag.CreatedDateTime)
 						  ';
 		} else if ($table == "ABT") {
 			$query = '	SELECT 		aws.AwardTypeName AS "Award", count(*) AS "Count"
