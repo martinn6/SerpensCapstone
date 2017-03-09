@@ -82,15 +82,7 @@ function ConvertToCSV(json, filename) {
 	}
 }
 function ABTChart(){
-
-}
-
-$(document).onload(function(){
-	
-});
-$(document).ready(function(){
-	$("#ABTChart").on(load(function(){
-		var url = "../php/biReports.php";
+	var url = "../php/biReports.php";
 		var table = "ABT";
 		$.getJSON(url,+table, function(data){
 			var width = 960, height = 500;
@@ -151,6 +143,11 @@ $(document).ready(function(){
 				.style("text-anchor", "end")
 				.text("Count");
 		});
+}
+
+$(document).ready(function(){
+	ABTChart();
+		
 
 		$("#EOYawardsCSV").click(function(e){
 			e.preventDefault();
