@@ -26,9 +26,9 @@ if(!empty($_POST)){
 						INNER JOIN 	dbo.AwardGiven on dbo.UserAccount.UserId=dbo.AwardsGiven.AwardedToUserId
 						INNER JOIN 	dbo.Awards on dbo.AwardGiven.AwardId=dbo.Awards.AwardId';
 		} else if ($table == "ABM") {
-			$query = '	SELECT 		ag.CreatedDateTime AS "Month", count(*) AS "Count"
+			$query = '	SELECT 		Month = datename(m, ag.CreatedDateTime), count(*) AS "Count"
 					 	FROM 		[dbo].[AwardsGiven] AS ag
-					  	GROUP BY 	datename(month, ag.CreatedDateTime)
+					  	GROUP BY 	datename(m, ag.CreatedDateTime)
 						  ';
 		} else if ($table == "ABT") {
 			$query = '	SELECT 		aws.AwardTypeName AS "Award", count(*) AS "Count"
