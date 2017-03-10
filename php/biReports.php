@@ -33,10 +33,10 @@ if(!empty($_POST)){
 						GROUP BY 	ua.FullName
 						';
 		} else if ($table == "ABM") {
-			$query = '	SELECT 		Month = datename(m, ag.CreatedDateTime), 
+			$query = '	SELECT 		Month = datename(m, ag.AwardedDate), 
 									count(*) AS "Total"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
-  					  	GROUP BY 	datename(m, ag.CreatedDateTime)
+  					  	GROUP BY 	datename(m, ag.AwardedDate)
 						';
 		} else if ($table == "ABT") {
 			$query = '	SELECT 		aws.AwardTypeName AS "Award", 
