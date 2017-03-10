@@ -1,5 +1,6 @@
 <?php
 $email = $_POST["email"];
+$hash = $password = md5($_POST["email"]);
 require '../php/connect.php';
 if(!empty($_POST)){
 	if ($conn){
@@ -11,8 +12,11 @@ if(!empty($_POST)){
 		$row = $stmt->fetch();
 		$ID = $row['UserId'];
         if($row){
-                $query_delete = "UPDATE dbo.UserAccount SET IsActive = 0 WHERE UserId = :ID";
-                $query_params_delete = array(':ID' => $ID);
+                $query_delete = "UPDATE dbo.UserAccount SET IsActive = 0 AND Email = :Email WHERE UserId = :ID";
+                $query_params_delete = array(
+					':ID' => $ID,
+					':Email' => $hash
+					);
                 $stmt_delete = $conn->prepare($query_delete);
                 $rslt = $stmt_delete->execute($query_params_delete) or die();
 			if ($stmt_delete->rowCount() > 0){
