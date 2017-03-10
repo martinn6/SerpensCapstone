@@ -5,8 +5,7 @@ require '../php/connect.php';
 
 if(!empty($_POST)){
 	if ($conn){
-		$query = "SELECT * FROM dbo.UserAccount WHERE IsActive = 1 AND Email = :Email AND 
-		UserTypeId = (SELECT UserTypeId FROM dbo.UserTypes WHERE UserType='Admin')";
+		$query = "SELECT * FROM dbo.UserAccount WHERE IsActive = 1 AND Email = :Email";
 		$query_params = array(':Email' => $_POST['email']);
 		$stmt = $conn->prepare($query);
 		$result = $stmt->execute($query_params) or die();
