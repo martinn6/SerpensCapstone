@@ -1,4 +1,5 @@
 #folders to ignore
 **/.git
 /images
+/awards
 #file extensions to ignore
