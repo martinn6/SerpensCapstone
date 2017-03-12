@@ -115,9 +115,9 @@ if(!empty($_POST)){
 				<div class="form-group">
 					<div class="col-md-12 control">
 						<div style="border-top: 1px solid #BABABA; padding-top:10px">
-							<a href="register.php">Create New Account</a>
+							<a href="user/register.php">Create New Account</a>
 						</div>
-						<div style="float:left; position: relative"><a href="recovery.php">Forgot Password?</a></div>
+						<div style="float:left; position: relative"><a href="user/recovery.php">Forgot Password?</a></div>
 					</div>
 				</div>
 			</form>
