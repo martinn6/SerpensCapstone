@@ -70,7 +70,7 @@ if(!empty($_POST)){
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 				<span class="glyphicon glyphicon-menu-hamburger"></span>                     
 			</button>
-			<a class="navbar-brand" href="index.html">Employee Recognition</a>
+			<a class="navbar-brand" href="index.php">Employee Recognition</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
