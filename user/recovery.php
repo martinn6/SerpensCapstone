@@ -15,6 +15,7 @@ if(!empty($_POST)){
 
 		if($row){
 			date_default_timezone_set('America/Los_Angeles');
+			$resetLink = "http://serpenscapstone.azurewebsites.net/user/reset.php?uid=" . $row['UserId'];
 	
 			$mail = new PHPMailer;
 			$mail->isSMTP();
@@ -30,7 +31,7 @@ if(!empty($_POST)){
 			$mail->addAddress($row['Email'], $row['FullName']);
 			$mail->Subject = 'Employee Recognition - Password Recovery';
 			$mail->isHTML(true);
-			$mail->Body = "This is a password recovery email message. <a href=\"http://serpenscapstone.azurewebsites.net/user/reset.php\">Click Here</a> to reset password (in development).";
+			$mail->Body = "This is a password recovery email message. <a href=\"" . $resetLink . "\">Click Here</a> to reset password.";
 
 			if (!$mail->send()) {
 				echo "Error: " . $mail->ErrorInfo;

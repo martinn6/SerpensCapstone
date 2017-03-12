@@ -1,12 +1,28 @@
 <?php
 require 'connect.php';
 
-if(!empty($_POST)){
+$store_uid = $_GET['uid'];
+$uid = null;
 
-	if (empty($_POST['password-old'])) {
-		$err_msg[] = 'Please enter your old password.';
+if(isset($_GET['uid'])) {
+	if ($conn){
+		$query = "SELECT * FROM UserAccount WHERE UserId = :UserId";
+		$query_params = array(':UserId' => $_GET['uid']);
+		$stmt = $conn->prepare($query);
+		$stmt->execute($query_params);
+		$row = $stmt->fetch();
+
+		if($row) {
+			$uid = $row['UserId'];
+		}
 	}
-	
+}
+
+if(empty($uid)) {
+	$err_msg[] = "Please check the password reset link in your email.";
+}
+
+if(!empty($_POST) and !empty($uid)) {
 	if (empty($_POST['password'])) {
 		$err_msg[] = 'Please enter a password.';
 	}
@@ -22,7 +38,19 @@ if(!empty($_POST)){
 	}
 	
     if (!isset($err_msg)) {
+		$password = md5($_POST['password']);
 
+		if ($conn){
+			$query = "UPDATE UserAccount SET Password = :Password "
+                . "WHERE UserId = " . $uid;
+			$query_params = array( 
+				':Password' => $password
+			);
+			$stmt = $conn->prepare($query);
+			$stmt->execute($query_params) or die();
+		}
+		
+		header("location: resetSuccess.php");
     }
 }
 ?>
@@ -76,12 +104,7 @@ if(!empty($_POST)){
 				}
 			}
 		?>
-			<form id="loginform" class="form-horizontal" action="reset.php" method="post">           
- 				<div style="margin-bottom: 15px" class="input-group">
-					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="reset-password" type="password" class="form-control" name="password-old" placeholder="Old Password" required />
-				</div>
-				
+			<form id="loginform" class="form-horizontal" action="reset.php?uid=<?php echo $store_uid ?>" method="post">           
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
 					<input id="reset-password" type="password" class="form-control" name="password" placeholder="New Password" required />
