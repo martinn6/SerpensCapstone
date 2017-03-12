@@ -33,7 +33,7 @@ if(!empty($_POST)){
 						GROUP BY 	ua.FullName
 						ORDER BY	Count DESC
 						';
-		} else if ($table == "ABUG_CSV") {
+		} else if ($table == "ABUGCSV") {
 			$query = '	SELECT		ua.FullName as "User", 
 									ag.AwardedToFullName as "Award Given To"
 					  	FROM 		[dbo].[AwardsGiven] AS ag
