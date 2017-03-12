@@ -443,7 +443,7 @@ $(document).ready(function(){
 	});
 	$("#ABUGCSV").click(function(e){
 		e.preventDefault();
-		var MyTable = "ABUG";
+		var MyTable = "ABUG_CSV";
 		var filename = "AwardsGivenByUser.csv";
 		var url = "../php/biReports.php"
 		var data = {table: MyTable};
