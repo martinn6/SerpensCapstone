@@ -45,7 +45,7 @@ if(!empty($_POST)){
 			$query = '	SELECT 		datename(m, ag.AwardedDate) AS "Award Month", 
 									count(*) AS "Total"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
-  					  	GROUP BY 	month(CONVERT(nvarchar(12),ag.AwardedDate,101) ) ASC
+  					  	GROUP BY 	datename(m, ag.AwardedDate)
 						';
 		} else if ($table == "ABMCSV") {
 			$query = '	SELECT 		datename(m, ag.AwardedDate) AS "Award Month", 
