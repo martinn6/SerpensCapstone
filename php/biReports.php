@@ -28,20 +28,20 @@ if(!empty($_POST)){
 			$query = '	SELECT TOP 5 ua.FullName as "User", 
 									count(ag.AwardId) as "Count" 
 					  	FROM 		[dbo].[AwardsGiven] AS ag
-						WHERE		ag.IsDeleted = 0
 						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
-						WHERE		ua.IsActive = 1
+						WHERE		ua.IsActive = 1 AND
+									ag.IsDeleted = 0
 						GROUP BY 	ua.FullName
 						ORDER BY	Count DESC
 						';
-		} else if ($table == "ABUGforCSV") {
-			$query = '	SELECT		ua.FullName as "User", 
-									ag.AwardedToFullName as "Award Given To"
-					  	FROM 		[dbo].[AwardsGiven] AS ag
-						WHERE		ua.IsActive = 1						  
-						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
-						GROUP BY 	ua.FullName
-						';
+		// } else if ($table == "ABUGforCSV") {
+		// 	$query = '	SELECT		ua.FullName as "User", 
+		// 							ag.AwardedToFullName as "Award Given To"
+		// 			  	FROM 		[dbo].[AwardsGiven] AS ag
+		// 				WHERE		ua.IsActive = 1						  
+		// 				JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
+		// 				GROUP BY 	ua.FullName
+		// 				';
 		} else if ($table == "ABM") {
 			$query = '	SELECT 		Month = datename(m, ag.AwardedDate), 
 									count(*) AS "Total"
@@ -49,21 +49,21 @@ if(!empty($_POST)){
 						WHERE		ag.IsDeleted = 0
   					  	GROUP BY 	datename(m, ag.AwardedDate)
 						';
-		} else if ($table == "ABMforCSV") {
-			$query = '	SELECT 		"Award Month" = datename(m, ag.AwardedDate),  
-									ag.AwardedToFullName as "Award Given To",
-									ua.FullName as "User"
-  					 	FROM 		[dbo].[AwardsGiven] AS ag
-						WHERE		ag.IsDeleted = 0
-						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
-  					  	GROUP BY 	datename(m, ag.AwardedDate)
-						';
+		// } else if ($table == "ABMforCSV") {
+		// 	$query = '	SELECT 		"Award Month" = datename(m, ag.AwardedDate),  
+		// 							ag.AwardedToFullName as "Award Given To",
+		// 							ua.FullName as "User"
+  		// 			 	FROM 		[dbo].[AwardsGiven] AS ag
+		// 				JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
+		// 				WHERE		ag.IsDeleted = 0
+  		// 			  	GROUP BY 	datename(m, ag.AwardedDate)
+		// 				';
 		} else if ($table == "ABT") {
 			$query = '	SELECT 		aws.AwardTypeName AS "Award", 
 									count(*) AS "Count"
 					 	FROM 		[dbo].[AwardsGiven] AS ag
-						WHERE		ag.IsDeleted = 0
 						JOIN 		[dbo].[Awards] AS aws ON aws.AwardId = ag.AwardId
+						WHERE		ag.IsDeleted = 0						
 					  	GROUP BY 	aws.AwardTypeName
 						';
 		} 
