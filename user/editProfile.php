@@ -1,19 +1,30 @@
 <?php
 require 'connect.php';
 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-if(isset($_SESSION['admin'])){
-	$header = "location: ../admin/admin.php";
-} else {
-	$header = "location: registerSuccess.php";
+if(empty($_SESSION['user']) or $_SESSION['userType'] != 1){
+	header("Location: login.php"); 
+	die();
+} 
+
+if ($conn){
+	$query = "SELECT * FROM UserAccount WHERE UserId = :UserId";
+	$query_params = array(':UserId' => $_SESSION['user']);
+	$stmt = $conn->prepare($query);
+	$result = $stmt->execute($query_params) or die();
+	$row = $stmt->fetch();
+
+	$email = $row['Email'];
+	$fname = $row['FullName'];
+	$password = $row['Password'];
+	$sig_image = $row['SignatureURL'];
 }
 
 if(!empty($_POST)){
 	if (empty($_POST['email'])) {
 		$err_msg[] = 'Please enter an email address.';
-	} else {
+	} 
+	
+	if ($email != $_POST['email']) {
 		if ($conn){
 			$query = "SELECT * FROM UserAccount WHERE Email = :Email";
 			$query_params = array(':Email' => $_POST['email']);
@@ -30,31 +41,22 @@ if(!empty($_POST)){
 	if (empty($_POST['fname'])) {
 		$err_msg[] = 'Please enter your full name.';
 	}
-	
-	if (empty($_POST['password'])) {
-		$err_msg[] = 'Please enter a password.';
-	}
-	
-	if (empty($_POST['password-confirm'])) {
-		$err_msg[] = 'Please confirm your password.';
-	}
-	
+
 	if (!empty($_POST['password']) && !empty($_POST['password-confirm'])) {
 		if ($_POST['password'] !== $_POST['password-confirm']) {
 			$err_msg[] = 'Passwords do not match. Re-enter passwords.';
+		} else {
+			$password = md5($_POST['password']);
 		}
 	}
 
 	if (empty($_FILES['signature'])) {
-		$err_msg[] = 'Please upload an image of your signature.';
-	} else {
 		if (!preg_match("!image!", $_FILES['signature']['type'])) {
 			$err_msg[] = 'Signature file is not an image. Re-upload image.';
 		}
 	}
 	
     if (!isset($err_msg)) {
-        $password = md5($_POST['password']);
         $signature_path = 'images/'.$_FILES['signature']['name'];
 
 		define('UPLOAD_DIR', '../images/');
@@ -66,21 +68,19 @@ if(!empty($_POST)){
 
 		if ($conn){
 			file_put_contents($file, $data);
-			$query = "INSERT INTO UserAccount (UserTypeId, Email, FullName, Password, SignatureURL, IsActive) "
-                . "VALUES (:UserTypeId, :Email, :FullName, :Password, :SignatureURL, :IsActive)";
-			$query_params = array(
-				':UserTypeId' => 1, 
+			$query = "UPDATE UserAccount SET Email = :Email, FullName = :FullName, Password = :Password, SignatureURL = :SignatureURL "
+                . "WHERE UserId = " . $_SESSION['user'];
+			$query_params = array( 
 				':Email' => $_POST['email'], 
 				':FullName' => $_POST['fname'], 
 				':Password' => $password, 
-				':SignatureURL' => $file,
-				':IsActive' => 1
+				':SignatureURL' => $file
 			);
 			$stmt = $conn->prepare($query);
 			$stmt->execute($query_params) or die();
 		}
 		
-		header($header);
+		header("location: profile.php");
     }
 }
 ?>
@@ -143,17 +143,17 @@ if(!empty($_POST)){
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="register.php"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-				<li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<li><a href="profile.php"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 			</ul>
 		</div>
 	</div>
 </nav>
 
-<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+<div id="menubox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
 	<div class="panel panel-default" >
 		<div class="panel-heading">
-			<div class="panel-title">Register</div>	
+			<div class="panel-title">User Profile - Edit</div>	
 		</div>     
 
 		<div style="padding-top:15px" class="panel-body" >
@@ -164,29 +164,29 @@ if(!empty($_POST)){
 				}
 			}
 		?>
-			<form id="loginform" class="form-horizontal" action="register.php" method="post" enctype="multipart/form-data">           
+			<form id="editform" class="form-horizontal" action="editProfile.php" method="post" enctype="multipart/form-data">           
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="register-email" type="text" class="form-control" name="email" placeholder="Email" value="<?php echo isset($err_msg) ? $_POST['email'] : '' ?>" required />                                        
+					<input id="edit-email" type="text" class="form-control" name="email" placeholder="Email" value="<?php echo $email; ?>" required />                                        
 				</div>
 				
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="register-fname" type="text" class="form-control" name="fname" placeholder="Full Name" value="<?php echo isset($err_msg) ? $_POST['fname'] : '' ?>" required />                                        
+					<input id="edit-fname" type="text" class="form-control" name="fname" placeholder="Full Name" value="<?php echo $fname; ?>" >                                        
 				</div>
                                 
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="register-password" type="password" class="form-control" name="password" placeholder="Password" required />
+					<input id="edit-password" type="password" class="form-control" name="password" placeholder="New Password" >
 				</div>
 
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="register-password-confirm" type="password" class="form-control" name="password-confirm" placeholder="Confirm Password" required />
+					<input id="edit-password-confirm" type="password" class="form-control" name="password-confirm" placeholder="Confirm New Password" >
 				</div>
 				
 				<div class="image-editor">
-					<label>Upload Signature</label><input type="file" class="cropit-image-input" name="signature" accept="image/*" required />
+					<label>Upload New Signature</label><input type="file" class="cropit-image-input" name="signature" accept="image/*" >
 					<div class="cropit-preview"></div>
 					<div class="image-size-label">
 					  Resize image
@@ -196,15 +196,15 @@ if(!empty($_POST)){
 				</div>
 
 				<div style="margin-top:5px" class="form-group">
-					<div class="col-sm-12 controls">
-						<input type="submit" value="Register" name ="register" class="btn btn-primary" />
+					<div class="col-sm-10 controls">
+						<input type="submit" value="Save" name ="save" class="btn btn-primary" />
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<div class="col-md-12 control">
 						<div style="border-top: 1px solid #BABABA; padding-top:10px">
-							<a href="login.php">Back to Login</a>
+							<a href="profile.php"> Cancel</a>
 						</div>
 					</div>
 				</div>
@@ -223,5 +223,6 @@ if(!empty($_POST)){
         });
       });
     </script>
+
 </body>
 </html>

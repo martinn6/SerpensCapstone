@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(empty($_SESSION['user'])){
+if(empty($_SESSION['user']) or $_SESSION['userType'] != 1){
 	header("Location: login.php"); 
 	die();
 } 

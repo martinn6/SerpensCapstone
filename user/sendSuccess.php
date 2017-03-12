@@ -5,18 +5,6 @@ if(empty($_SESSION['user']) or $_SESSION['userType'] != 1){
 	header("Location: login.php"); 
 	die();
 } 
-
-if ($conn){
-	$query = "SELECT * FROM UserAccount WHERE UserId = :UserId";
-	$query_params = array(':UserId' => $_SESSION['user']);
-	$stmt = $conn->prepare($query);
-	$result = $stmt->execute($query_params) or die();
-	$row = $stmt->fetch();
-
-	$email = $row['Email'];
-	$fname = $row['FullName'];
-	$sig_image = $row['SignatureURL'];
-}
 ?>
 
 <html lang="en">
@@ -52,58 +40,14 @@ if ($conn){
 	</div>
 </nav>
 
-<div id="menubox" style="margin-top:25px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
 	<div class="panel panel-default" >
 		<div class="panel-heading">
-			<div class="panel-title">User Profile</div>	
+			<div class="panel-title">Award Certificate Sent</div>	
 		</div>     
 
 		<div style="padding-top:15px" class="panel-body" >
-			<form id="profileform" class="form-horizontal">           
-
-				<div class="form-group">
-					<label class="col-xs-3">Email:</label>
-					<div class="col-xs-9">
-						<p><?php echo $email; ?></p>
-					</div>
-				</div>          
-
-				<div class="form-group">
-					<label class="col-xs-3">Full Name:</label>
-					<div class="col-xs-9">
-						<p><?php echo $fname; ?></p>
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<label class="col-xs-3">Password:</label>
-					<div class="col-xs-9">
-						<p>***************</p>
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<label class="col-xs-3">Signature: </label>
-					<div class="col-xs-9">
-						<img src="<?php echo $sig_image; ?>" />
-					</div>
-				</div>
-				
-				<div style="margin-top:5px" class="form-group">
-					<div class="col-sm-12 controls">
-						<a id="btn-editprofile" href="editProfile.php" class="btn btn-primary">Edit Profile</a>
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<div class="col-md-12 control">
-						<div style="border-top: 1px solid #BABABA; padding-top:10px">
-							<a href="main.php">Back to Menu</a>
-						</div>
-					</div>
-				</div>
-			</form>
-			
+				<p class="text-center">The award was sent to the recipient's email. Return to <a href="main.php">Menu</a> page.</p>
 		</div>                     
 	</div>  
 </div>

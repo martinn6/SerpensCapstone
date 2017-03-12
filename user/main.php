@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(empty($_SESSION['user'])){
+if(empty($_SESSION['user']) or $_SESSION['userType'] != 1){
 	header("Location: login.php"); 
 	die();
 } 
@@ -48,7 +48,7 @@ if(empty($_SESSION['user'])){
 
 		<div style="padding-top:15px" class="panel-body" >
 			<ul class="list-unstyled">
-				<li><div class="glyphicon glyphicon-chevron-right"></div><a href="profile.php"> Update Profile</a></li>
+				<li><div class="glyphicon glyphicon-chevron-right"></div><a href="profile.php"> View Profile</a></li>
 				<li><div class="glyphicon glyphicon-chevron-right"></div><a href="entry.php"> Create New Award</a></li>
 				<li><div class="glyphicon glyphicon-chevron-right"></div><a href="awards.php"> View Previous Awards</a></li>
 			</ul>

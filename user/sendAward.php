@@ -1,5 +1,6 @@
 <?php
 require 'connect.php';
+require '../PHPMailer/PHPMailerAutoload.php';
 
 if(empty($_SESSION['user']) or $_SESSION['userType'] != 1){
 	header("Location: login.php"); 
@@ -7,15 +8,46 @@ if(empty($_SESSION['user']) or $_SESSION['userType'] != 1){
 } 
 
 if ($conn){
-	$query = "SELECT * FROM UserAccount WHERE UserId = :UserId";
-	$query_params = array(':UserId' => $_SESSION['user']);
+	$query = "SELECT * FROM AwardsGiven WHERE AwardGivenId = :AwardGivenId";
+	$query_params = array(':AwardGivenId' => $_SESSION['AwardGivenId']);
 	$stmt = $conn->prepare($query);
 	$result = $stmt->execute($query_params) or die();
 	$row = $stmt->fetch();
 
-	$email = $row['Email'];
-	$fname = $row['FullName'];
-	$sig_image = $row['SignatureURL'];
+	$rewardtype = $row['AwardId'] == 0 ? "Employee of the Year" : "Employee of the Month";
+	$recname = $row['AwardedToFullName'];
+	$recemail = $row['AwardedToEmail'];
+	$awardPDF = "GenerateAward.php?awardGivenId=" . $_SESSION['AwardGivenId'];
+	$awardURL = "localhost/user/GenerateAward.php?awardGivenId=" . $_SESSION['AwardGivenId'];
+	$success = $stmt->closeCursor();
+}
+
+if(!empty($_POST)){
+			date_default_timezone_set('America/Los_Angeles');
+	
+			$mail = new PHPMailer;
+			$mail->isSMTP();
+			$mail->SMTPDebug = 0;
+			$mail->Debugoutput = 'html';
+			$mail->Host = 'smtp.gmail.com';
+			$mail->Port = 587;
+			$mail->SMTPSecure = 'tls';
+			$mail->SMTPAuth = true;
+			$mail->Username = "serpenscapstone@gmail.com";
+			$mail->Password = "T3amSerpin$!";
+			$mail->setFrom('serpenscapstone@gmail.com', 'Employee Recognition');
+			//$mail->addAddress($recemail, $recname);
+			$mail->addAddress("johnnyDoe12345@mailinator.com", $recname);
+			$mail->Subject = 'Employee Recognition Award';
+			$mail->isHTML(true);
+			$mail->Body = "You received an employee recognition award. <a href=\"".$awardURL."\">Click Here</a> to download certificate.";
+
+			if (!$mail->send()) {
+				echo "Error: " . $mail->ErrorInfo;
+			}
+			
+			header("Location: sendSuccess.php");
+			die();
 }
 ?>
 
@@ -55,50 +87,42 @@ if ($conn){
 <div id="menubox" style="margin-top:25px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
 	<div class="panel panel-default" >
 		<div class="panel-heading">
-			<div class="panel-title">User Profile</div>	
-		</div>     
+			<div class="panel-title">Award Certificate</div>	
+		</div>
 
 		<div style="padding-top:15px" class="panel-body" >
-			<form id="profileform" class="form-horizontal">           
-
-				<div class="form-group">
-					<label class="col-xs-3">Email:</label>
-					<div class="col-xs-9">
-						<p><?php echo $email; ?></p>
-					</div>
-				</div>          
-
-				<div class="form-group">
-					<label class="col-xs-3">Full Name:</label>
-					<div class="col-xs-9">
-						<p><?php echo $fname; ?></p>
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<label class="col-xs-3">Password:</label>
-					<div class="col-xs-9">
-						<p>***************</p>
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<label class="col-xs-3">Signature: </label>
-					<div class="col-xs-9">
-						<img src="<?php echo $sig_image; ?>" />
-					</div>
-				</div>
-				
+			<table class="table "table-responsive"">
+				<tbody>
+					<tr>
+						<td>Award:</td>
+						<td><?php echo $rewardtype; ?></td>
+					</tr>
+					<tr>
+						<td>Recipient:</td>
+						<td><?php echo $recname; ?></td>
+					</tr>
+					<tr>
+						<td>Email:</td>
+						<td><?php echo $recemail; ?></td>
+					</tr>
+					<tr>
+						<td>Preview:</td>
+						<td><a href="<?php echo $awardPDF; ?>">View Award</a></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<form id="entryform" class="form-horizontal" action="sendAward.php" method="post">          
 				<div style="margin-top:5px" class="form-group">
 					<div class="col-sm-12 controls">
-						<a id="btn-editprofile" href="editProfile.php" class="btn btn-primary">Edit Profile</a>
+						<input type="submit" value="send" name ="Send" class="btn btn-primary" />
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<div class="col-md-12 control">
 						<div style="border-top: 1px solid #BABABA; padding-top:10px">
-							<a href="main.php">Back to Menu</a>
+							<a href="main.php">Cancel</a>
 						</div>
 					</div>
 				</div>

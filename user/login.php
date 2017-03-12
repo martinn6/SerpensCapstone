@@ -22,13 +22,14 @@ if(!empty($_POST)){
 			$row = $stmt->fetch();
 
 			if($row){
-				if(md5($_POST['password']) === $row['Password']){
+				if(md5($_POST['password']) === $row['Password'] and $row['IsActive'] == 1 and $row['UserTypeId'] = 1) {
 					$pass_match = true;
 				}
 			}
-			
+
 			if ($pass_match){
 				$_SESSION['user'] = $row['UserId'];
+				$_SESSION['userType'] = $row['UserTypeId'];
 				header("Location: main.php"); 
 				die();
 			} else {

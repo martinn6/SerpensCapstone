@@ -1,10 +1,49 @@
 <?php
-session_start();
+require 'connect.php';
 
-if(empty($_SESSION['user'])){
+if(empty($_SESSION['user']) or $_SESSION['userType'] != 1){
 	header("Location: login.php"); 
-	die();
-} 
+	die("");
+}
+
+if(!empty($_POST)){
+	if (!isset($_POST['awardtype'])) {
+		$err_msg[] = 'Please select an award.';
+	}
+
+	if (empty($_POST['recname'])) {
+		$err_msg[] = 'Please enter name of recipient.';
+	}
+
+	if (empty($_POST['recemail'])) {
+		$err_msg[] = 'Please enter email of recipient.';
+	}
+
+	if (empty($_POST['awarddate'])) {
+		$err_msg[] = 'Please enter date of award.';
+	}
+
+    if (!isset($err_msg)) {
+		if ($conn){
+			$query = "INSERT INTO AwardsGiven (AwardId, AwardedToFullName, AwardedToEmail, AwardedDate, AwardGivenByUserId) "
+				. "VALUES (:AwardId, :AwardedToFullName, :AwardedToEmail, :AwardedDate, :AwardGivenByUserId)";
+			$query_params = array(
+				':AwardId' => $_POST['awardtype'], 
+				':AwardedToFullName' => $_POST['recname'], 
+				':AwardedToEmail' => $_POST['recemail'], 
+				':AwardedDate' => $_POST['awarddate'], 
+				':AwardGivenByUserId' => $_SESSION['user']
+			);
+			$stmt = $conn->prepare($query);
+			$stmt->execute($query_params) or die();
+			
+			$insert_Id = $conn->lastInsertId();
+			$_SESSION['AwardGivenId'] = $insert_Id;
+
+			header("location: sendAward.php");
+		}
+    }
+}
 ?>
 
 <html lang="en">
@@ -47,34 +86,42 @@ if(empty($_SESSION['user'])){
 		</div>     
 
 		<div style="padding-top:15px" class="panel-body" >
-			<form id="loginform" class="form-horizontal">           
+		<?php
+			if(isset($err_msg)){
+				foreach($err_msg as $msg){
+					echo '<div class="alert alert-danger">'.$msg.'</div>';
+				}
+			}
+		?>
+		
+			<form id="entryform" class="form-horizontal" action="entry.php" method="post">          
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<select class="form-control">
+					<select class="form-control" id="awardtype" name="awardtype" required>
 						<option value="" disabled selected hidden>Please Select an Award</option>
-						<option>Employee of the Week</option>
-						<option>Employee of the Month</option>
+						<option value="0">Employee of the Year</option>
+						<option value="1">Employee of the Month</option>
 					</select>                                       
 				</div>
 				
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="register-fname" type="text" class="form-control" name="fname" placeholder="Recipient's Name">                                        
+					<input id="recname" type="text" class="form-control" name="recname" placeholder="Recipient's Name" required />                                        
 				</div>
 
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="register-lname" type="text" class="form-control" name="lname" placeholder="Recipient's Email">                                        
+					<input id="recemail" type="text" class="form-control" name="recemail" placeholder="Recipient's Email" required />                                        
 				</div>
                                 
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="register-password" type="password" class="form-control" name="password" placeholder="Date">
+					<input id="awarddate" type="date" class="form-control" name="awarddate" placeholder="Date" required />
 				</div>
 
 				<div style="margin-top:5px" class="form-group">
 					<div class="col-sm-12 controls">
-						<a id="btn-login" href="#" class="btn btn-primary">Save</a>
+						<input type="submit" value="save" name ="Save" class="btn btn-primary" />
 					</div>
 				</div>
 				
