@@ -42,7 +42,7 @@ if(!empty($_POST)){
 						GROUP BY 	User
 						';
 		} else if ($table == "ABM") {
-			$query = '	SELECT 		datename(m, ag.AwardedDate) AS "Month", 
+			$query = '	SELECT 		"Month" = datename(m, ag.AwardedDate), 
 									count(*) AS "Total"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
   					  	GROUP BY 	Month
