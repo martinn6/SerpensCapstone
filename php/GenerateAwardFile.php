@@ -2,7 +2,7 @@
 <?php
 	require_once( "../fpdf/fpdf.php" );
 
-	$version = 'v5.2';
+	$version = 'v5.3';
 
 	//Get awardGivenId parameter from URL
 	$awardGivenId = (isset($_GET['awardGivenId']) ? $_GET['awardGivenId'] : null);
@@ -99,7 +99,7 @@
 				//output signature image
 				$pdf->Image( "../".$signatureURL, 175, 160, 80 );
 
-				$pdf->Output("../awards/EOMAward.pdf","F");
+				$pdf->Output("../awards/EOMAward.pdf","D");
 						
 						
 			}	
