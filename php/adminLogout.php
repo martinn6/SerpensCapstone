@@ -4,6 +4,6 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 session_destroy();
 // unset($_SESSION['admin']); 
-header("Location: ../index.html"); 
+header("Location: ../index.php"); 
 die();
 ?>
