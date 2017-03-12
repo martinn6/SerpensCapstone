@@ -96,7 +96,7 @@ if(!empty($_POST)){
 				}
 			}
 		?>
-			<form id="loginform" class="form-horizontal" action="login.php" method="post">           
+			<form id="loginform" class="form-horizontal" action="../user/login.php" method="post">           
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
 					<input id="login-email" type="text" class="form-control" name="email" placeholder="Email" value="<?php echo $form_email; ?>" required />                                        
