@@ -35,7 +35,7 @@ if(!empty($_POST)){
 						';
 		} else if ($table == "ABUGforCSV") {
 			$query = '	SELECT		ua.FullName as "User", 
-									ag.AwardedToFullName as "Award Given To"
+									ag.AwardedToFullName as "AwardGivenTo"
 					  	FROM 		[dbo].[AwardsGiven] AS ag
 						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
 						WHERE		ua.IsActive = 1
@@ -48,12 +48,12 @@ if(!empty($_POST)){
   					  	GROUP BY 	datename(m, ag.AwardedDate)
 						';
 		} else if ($table == "ABMforCSV") {
-			$query = '	SELECT 		datename(m, ag.AwardedDate) AS "Award Month", 
-									ag.AwardedToFullName as "Award Given To",
+			$query = '	SELECT 		datename(m, ag.AwardedDate) AS "AwardMonth", 
+									ag.AwardedToFullName as "AwardGivenTo",
 									ua.FullName as "User"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
 						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
-  					  	GROUP BY 	month(CONVERT(nvarchar(12),ag.AwardedDate,101) ) ASC
+  					  	GROUP BY 	AwardMonth
 						';
 		} else if ($table == "ABT") {
 			$query = '	SELECT 		aws.AwardTypeName AS "Award", 
