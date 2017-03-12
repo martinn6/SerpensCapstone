@@ -31,6 +31,7 @@ if(!empty($_POST)){
 						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
 						WHERE		ua.IsActive = 1
 						GROUP BY 	ua.FullName
+						ORDER BY	Count DESC
 						';
 		} else if ($table == "ABM") {
 			$query = '	SELECT 		Month = datename(m, ag.AwardedDate), 
