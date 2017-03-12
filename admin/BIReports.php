@@ -151,7 +151,8 @@ $(document).ready(function(){
 	});
 	$("#ABUGCSV").click(function(e){
 		e.preventDefault();
-		var MyTable = "ABUGforCSV";
+		// var MyTable = "ABUGforCSV";
+		var MyTable = "ABUG";
 		var filename = "AwardsGivenByUser.csv";
 		var url = "../php/biReports.php"
 		var data = {table: MyTable};
@@ -181,7 +182,8 @@ $(document).ready(function(){
 	});
 	$("#ABMCSV").click(function(e){
 		e.preventDefault();
-		var MyTable = "ABMforCSV";
+		// var MyTable = "ABMforCSV";
+		var MyTable = "ABM";
   		var filename = "AwardsByMonth.csv";		
 		var url = "../php/biReports.php"
 		var data = {table: MyTable};
