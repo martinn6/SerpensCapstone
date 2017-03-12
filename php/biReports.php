@@ -45,6 +45,7 @@ if(!empty($_POST)){
 			$query = '	SELECT 		Month = datename(m, ag.AwardedDate), 
 									count(*) AS "Total"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
+						WHERE		ag.IsDeleted = 0
   					  	GROUP BY 	datename(m, ag.AwardedDate)
 						';
 		} else if ($table == "ABMforCSV") {
@@ -52,6 +53,7 @@ if(!empty($_POST)){
 									ag.AwardedToFullName as "Award Given To",
 									ua.FullName as "User"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
+						WHERE		ag.IsDeleted = 0
 						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
   					  	GROUP BY 	datename(m, ag.AwardedDate)
 						';
@@ -59,6 +61,7 @@ if(!empty($_POST)){
 			$query = '	SELECT 		aws.AwardTypeName AS "Award", 
 									count(*) AS "Count"
 					 	FROM 		[dbo].[AwardsGiven] AS ag
+						WHERE		ag.IsDeleted = 0
 						JOIN 		[dbo].[Awards] AS aws ON aws.AwardId = ag.AwardId
 					  	GROUP BY 	aws.AwardTypeName
 						';
