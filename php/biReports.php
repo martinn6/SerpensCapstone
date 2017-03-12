@@ -48,7 +48,7 @@ if(!empty($_POST)){
   					  	GROUP BY 	datename(m, ag.AwardedDate)
 						';
 		} else if ($table == "ABMforCSV") {
-			$query = '	SELECT 		datename(m, ag.AwardedDate) AS "Award Month", 
+			$query = '	SELECT 		"Award Month" = datename(m, ag.AwardedDate),  
 									ag.AwardedToFullName as "Award Given To",
 									ua.FullName as "User"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
