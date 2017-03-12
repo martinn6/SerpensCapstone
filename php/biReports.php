@@ -45,8 +45,15 @@ if(!empty($_POST)){
 			$query = '	SELECT 		datename(m, ag.AwardedDate) AS "Award Month", 
 									count(*) AS "Total"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
-  					  	GROUP BY 	datepart(m, ag.AwardedDate) ASC
-						-- ORDER BY	datepart(m, ag.AwardedDate) ASC
+  					  	GROUP BY 	month(CONVERT(nvarchar(12),ag.AwardedDate,101) ) ASC
+						';
+		} else if ($table == "ABMCSV") {
+			$query = '	SELECT 		datename(m, ag.AwardedDate) AS "Award Month", 
+									ag.AwardedToFullName as "Award Given To",
+									ua.FullName as "User"
+  					 	FROM 		[dbo].[AwardsGiven] AS ag
+						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
+  					  	GROUP BY 	month(CONVERT(nvarchar(12),ag.AwardedDate,101) ) ASC
 						';
 		} else if ($table == "ABT") {
 			$query = '	SELECT 		aws.AwardTypeName AS "Award", 

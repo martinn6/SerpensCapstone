@@ -473,7 +473,7 @@ $(document).ready(function(){
 	});
 	$("#ABMCSV").click(function(e){
 		e.preventDefault();
-		var MyTable = "ABM";
+		var MyTable = "ABM_CSV";
   		var filename = "AwardsByMonth.csv";		
 		var url = "../php/biReports.php"
 		var data = {table: MyTable};
