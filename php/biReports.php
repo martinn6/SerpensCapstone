@@ -33,12 +33,21 @@ if(!empty($_POST)){
 						GROUP BY 	ua.FullName
 						ORDER BY	Count DESC
 						';
+		} else if ($table == "ABUG_CSV") {
+			$query = '	SELECT		ua.FullName as "User", 
+									count(ag.AwardId) as "Count" 
+					  	FROM 		[dbo].[AwardsGiven] AS ag
+						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
+						WHERE		ua.IsActive = 1
+						GROUP BY 	ua.FullName
+						ORDER BY	User
+						';
 		} else if ($table == "ABM") {
 			$query = '	SELECT 		Month = datename(m, ag.AwardedDate), 
 									count(*) AS "Total"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
-  					  	GROUP BY 	datename(m, ag.AwardedDate)
-						ORDER BY	datepart(m, ag.AwardedDate) ASC
+  					  	GROUP BY 	datepart(m, ag.AwardedDate) ASC
+						-- ORDER BY	datepart(m, ag.AwardedDate) ASC
 						';
 		} else if ($table == "ABT") {
 			$query = '	SELECT 		aws.AwardTypeName AS "Award", 
