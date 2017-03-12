@@ -38,8 +38,8 @@ if(!empty($_POST)){
 			$query = '	SELECT		ua.FullName as "User", 
 									ag.AwardedToFullName as "Award Given To"
 					  	FROM 		[dbo].[AwardsGiven] AS ag
+						WHERE		ua.IsActive = 1						  
 						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
-						WHERE		ua.IsActive = 1
 						GROUP BY 	ua.FullName
 						';
 		} else if ($table == "ABM") {
