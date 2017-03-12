@@ -38,7 +38,7 @@ if(!empty($_POST)){
 									count(*) AS "Total"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
   					  	GROUP BY 	datename(m, ag.AwardedDate)
-						ORDER BY	datename(m, CONVERT(nvarchar(12),ag.AwardedDate,101)) ASC
+						ORDER BY	datepart(m, CONVERT(nvarchar(12),ag.AwardedDate) ASC
 						';
 		} else if ($table == "ABT") {
 			$query = '	SELECT 		aws.AwardTypeName AS "Award", 
