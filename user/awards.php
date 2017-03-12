@@ -1,10 +1,32 @@
 <?php
-session_start();
+require 'connect.php';
 
 if(empty($_SESSION['user']) or $_SESSION['userType'] != 1){
 	header("Location: login.php"); 
 	die();
 } 
+
+if (isset($_POST['delete'])) {
+	if ($conn){
+		$query = "DELETE FROM AwardsGiven WHERE AwardGivenId = :AwardGivenId";
+		$query_params = array(':AwardGivenId' => $_POST['delete']);
+		$stmt = $conn->prepare($query);
+		$stmt->execute($query_params) or die();
+	}
+}
+
+if ($conn){
+	$query = "SELECT AwardGivenId, Awards.AwardId, CONVERT(nvarchar(12),AwardedDate) AS AwardedDateTxt, 
+					AwardedToFullName, AwardedToEmail, CONVERT(nvarchar(12),CreatedDateTime) AS CreatedDateTimeTxt, AwardTypeName 
+				FROM AwardsGiven JOIN Awards ON Awards.AwardId = AwardsGiven.AwardId 
+				WHERE AwardGivenByUserId = :AwardGivenByUserId";
+	$query_params = array(':AwardGivenByUserId' => $_SESSION['user']);
+	$stmt = $conn->prepare($query);
+	$result = $stmt->execute($query_params) or die();
+	$awards = $stmt->fetchAll();
+}
+
+
 ?>
 
 <html lang="en">
@@ -40,8 +62,8 @@ if(empty($_SESSION['user']) or $_SESSION['userType'] != 1){
 	</div>
 </nav>
 
-<div id="menubox" style="margin-top:25px;" class="col-sm-8 col-sm-offset-2">                    
-	<div class="panel panel-default">
+<div id="menubox" style="margin-top:25px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+	<div class="panel panel-default" >
 		<div class="panel-heading">
 			<div class="row">
 				<div class="col col-xs-6">
@@ -52,58 +74,49 @@ if(empty($_SESSION['user']) or $_SESSION['userType'] != 1){
 				</div>
 			</div>
 		</div>
-		<div class="panel-body">
-			<table class="table table-striped table-bordered table-list">
+		<div class="panel-body" >
+			<table class="table table-bordered table-list" >
 				<thead>
 					<tr>
+						<th></th>
 						<th>Date Created</th>
                         <th>Recipient</th>
                         <th>Email</th>
-						<th>Award Type</th>
+						<th>Award</th>
 						<th>Award Date</th>
 						<th>Delete</th>
 					</tr> 
 				</thead>
 				<tbody>
-					<tr>
-						<td>JUL 23 02:16:57 2016</td>
-						<td>John Doe</td>
-						<td>johndoe@example.com</td>
-						<td>Employee of the Month</td>
-						<td>JUL 23 2016</td>
-						<td align="center"><a class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
-					</tr>
-					<tr>
-						<td>JUL 23 02:16:57 2016</td>
-						<td>John Doe</td>
-						<td>johndoe@example.com</td>
-						<td>Employee of the Week</td>
-						<td>JUL 23 2016</td>
-						<td align="center"><a class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
-					</tr>
-					<tr>
-						<td>JUL 23 02:16:57 2016</td>
-						<td>John Doe</td>
-						<td>johndoe@example.com</td>
-						<td>Employee of the Month</td>
-						<td>JUL 23 2016</td>
-						<td align="center"><a class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
-					</tr>
+					<form action="awards.php" method="post">
+					<?php
+						if(count($awards) > 0) {
+							foreach($awards as $award) {
+								echo "<tr>";
+								echo '<td><a href="GenerateAward.php?awardGivenId='.$award['AwardGivenId'].'">View</a>';
+								echo "<td>".$award['CreatedDateTimeTxt']."</td>";
+								echo "<td>".$award['AwardedToFullName']."</td>";
+								echo "<td>".$award['AwardedToEmail']."</td>";
+								echo "<td>".$award['AwardTypeName']."</td>";
+								echo "<td>".$award['AwardedDateTxt']."</td>";
+								echo '<td align="center"><button class="btn btn-danger" name="delete" value="'.$award['AwardGivenId'].'"><span class="glyphicon glyphicon-trash"></span></button></td>';
+								echo "</tr>";
+							}
+						}
+					?>
+				</form>
 				</tbody>
 			</table>
-		</div>
-		<div class="panel-footer">
-			<div class="row">
-				<div class="col col-xs-6">
-					<ul class="pagination">
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-					</ul>
+			
+			<div class="form-group">
+				<div class="col-md-12 control">
+					<div style="border-top: 1px solid #BABABA; padding-top:10px">
+						<a href="main.php">Back to Menu</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>                     
+	</div>
 </div>
 
 </body>
