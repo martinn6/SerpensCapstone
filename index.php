@@ -1,5 +1,5 @@
 <?php
-require '../php/connect.php';
+require '/php/connect.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
