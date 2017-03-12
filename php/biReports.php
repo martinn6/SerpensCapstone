@@ -25,7 +25,7 @@ if(!empty($_POST)){
 						GROUP BY 	ut.UserType
 						';
 		} else if ($table == "ABUG") {
-			$query = '	SELECT 		ua.FullName as "User", 
+			$query = '	SELECT TOP 5 ua.FullName as "User", 
 									count(ag.AwardId) as "Count" 
 					  	FROM 		[dbo].[AwardsGiven] AS ag
 						JOIN 		[dbo].[UserAccount] AS ua ON ua.UserID = ag.AwardGivenByUserId
@@ -37,7 +37,7 @@ if(!empty($_POST)){
 									count(*) AS "Total"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
   					  	GROUP BY 	datename(m, ag.AwardedDate)
-						-- ORDER BY	datepart(m, ag.AwardedDate) ASC
+						ORDER BY	month(ag.AwardedDate) ASC
 						';
 		} else if ($table == "ABT") {
 			$query = '	SELECT 		aws.AwardTypeName AS "Award", 
