@@ -39,7 +39,7 @@
 		</div>     
 
 		<div style="padding-top:15px" class="panel-body" >
-				<p class="text-center">You have successfully registered your account. Return to <a href="login.php">login</a> page.</p>
+				<p class="text-center">You have successfully registered your account. Return to <a href="../index.php">login</a> page.</p>
 		</div>                     
 	</div>  
 </div>
