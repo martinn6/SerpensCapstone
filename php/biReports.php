@@ -33,7 +33,7 @@ if(!empty($_POST)){
 						GROUP BY 	ua.FullName
 						ORDER BY	Count DESC
 						';
-		} else if ($table == "ABUGCSV") {
+		} else if ($table == "ABUGforCSV") {
 			$query = '	SELECT		ua.FullName as "User", 
 									ag.AwardedToFullName as "Award Given To"
 					  	FROM 		[dbo].[AwardsGiven] AS ag
@@ -47,7 +47,7 @@ if(!empty($_POST)){
   					 	FROM 		[dbo].[AwardsGiven] AS ag
   					  	GROUP BY 	Month
 						';
-		} else if ($table == "ABMCSV") {
+		} else if ($table == "ABMforCSV") {
 			$query = '	SELECT 		datename(m, ag.AwardedDate) AS "Award Month", 
 									ag.AwardedToFullName as "Award Given To",
 									ua.FullName as "User"
