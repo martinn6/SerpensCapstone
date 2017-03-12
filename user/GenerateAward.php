@@ -16,7 +16,7 @@
 			//SQL query to get award data
 			$sql_select = 
 				" 	SELECT ag.AwardId, ag.AwardedToEmail, ag.AwardedToFullName, userFrom.FullName AS UserFromFullname,
-						userFrom.SignatureURL, aws.AwardTypeName, ag.AwardedDate
+						userFrom.SignatureURL, aws.AwardTypeName, CONVERT(nvarchar(12),ag.AwardedDate,101) AS AwardedDateText
 					FROM AwardsGiven AS ag
 					JOIN UserAccount AS userFrom ON userFrom.UserId = ag.AwardGivenByUserId
 					JOIN Awards AS aws ON aws.AwardId = ag.AwardId
@@ -31,7 +31,7 @@
 			$userFromFullname = $award['UserFromFullname'];
 			$signatureURL = $award['SignatureURL'];
 			$awardType = $award['AwardTypeName'];
-			$AwardedDate = $award['AwardedDate'];
+			$AwardedDate = $award['AwardedDateText'];
 				
 			//generate PDF using FPDF
 			$pdf = new FPDF( 'L', 'mm', 'Letter' );

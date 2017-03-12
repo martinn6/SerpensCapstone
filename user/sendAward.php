@@ -18,7 +18,7 @@ if ($conn){
 	$recname = $row['AwardedToFullName'];
 	$recemail = $row['AwardedToEmail'];
 	$awardPDF = "GenerateAward.php?awardGivenId=" . $_SESSION['AwardGivenId'];
-	$awardURL = "localhost/user/GenerateAward.php?awardGivenId=" . $_SESSION['AwardGivenId'];
+	$awardURL = "http://serpenscapstone.azurewebsites.net/user/GenerateAward.php?awardGivenId=" . $_SESSION['AwardGivenId'];
 	$success = $stmt->closeCursor();
 }
 
@@ -36,8 +36,7 @@ if(!empty($_POST)){
 			$mail->Username = "serpenscapstone@gmail.com";
 			$mail->Password = "T3amSerpin$!";
 			$mail->setFrom('serpenscapstone@gmail.com', 'Employee Recognition');
-			//$mail->addAddress($recemail, $recname);
-			$mail->addAddress("johnnyDoe12345@mailinator.com", $recname);
+			$mail->addAddress($recemail, $recname);
 			$mail->Subject = 'Employee Recognition Award';
 			$mail->isHTML(true);
 			$mail->Body = "You received an employee recognition award. <a href=\"".$awardURL."\">Click Here</a> to download certificate.";
