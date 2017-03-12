@@ -37,7 +37,7 @@ if(!empty($_POST)){
 			if ($pass_match){
 				$_SESSION['user'] = $row['UserId'];
 				$_SESSION['userType'] = $row['UserTypeId'];
-				header("Location: main.php"); 
+				header("Location: ../user/main.php"); 
 				die();
 			} else {
 				$form_email = htmlentities($_POST['email']);
