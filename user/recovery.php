@@ -106,7 +106,7 @@ if(!empty($_POST)){
 				<div class="form-group">
 					<div class="col-md-12 control">
 						<div style="border-top: 1px solid #BABABA; padding-top:10px" >
-							<a href="login.php">Back to Login</a>
+							<a href="../index.php">Back to Login</a>
 						</div>
 					</div>
 				</div>
