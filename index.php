@@ -75,7 +75,7 @@ if(!empty($_POST)){
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="../user/register.php"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-				<li><a href="../user/login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<!--<li><a href="../user/login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
 				<li><a href="../admin/adminLogin.php"><span class="glyphicon glyphicon-log-in"></span> Admin</a></li>
 			</ul>
 		</div>
