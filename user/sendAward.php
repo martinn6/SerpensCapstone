@@ -43,7 +43,7 @@ if(!empty($_POST)){
 			$mail->Subject = 'Employee Recognition Award';
 			$mail->isHTML(true);
 			$mail->Body = "Congratulations ".$recname
-						.",<p>".$user." has chosen you for the ".$rewardtype."award. Your certificate is attached.</p>";
+						.",<p>".$user." has chosen you for the ".$rewardtype." award. Your certificate is attached.</p>";
 			$mail -> Addattachment($awardPDF);
 
 			if (!$mail->send()) {
