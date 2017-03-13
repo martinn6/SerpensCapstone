@@ -8,7 +8,7 @@ if(empty($_SESSION['user']) or $_SESSION['userType'] != 1){
 
 if (isset($_POST['delete'])) {
 	if ($conn){
-		$query = "DELETE FROM AwardsGiven WHERE AwardGivenId = :AwardGivenId";
+		$query = "UPDATE AwardsGiven SET IsDeleted = '1' WHERE AwardGivenId = :AwardGivenId";
 		$query_params = array(':AwardGivenId' => $_POST['delete']);
 		$stmt = $conn->prepare($query);
 		$stmt->execute($query_params) or die();
@@ -19,7 +19,7 @@ if ($conn){
 	$query = "SELECT AwardGivenId, Awards.AwardId, CONVERT(nvarchar(12),AwardedDate) AS AwardedDateTxt, 
 					AwardedToFullName, AwardedToEmail, CONVERT(nvarchar(12),CreatedDateTime) AS CreatedDateTimeTxt, AwardTypeName 
 				FROM AwardsGiven JOIN Awards ON Awards.AwardId = AwardsGiven.AwardId 
-				WHERE AwardGivenByUserId = :AwardGivenByUserId";
+				WHERE AwardGivenByUserId = :AwardGivenByUserId AND IsDeleted = '0'";
 	$query_params = array(':AwardGivenByUserId' => $_SESSION['user']);
 	$stmt = $conn->prepare($query);
 	$result = $stmt->execute($query_params) or die();
@@ -102,9 +102,11 @@ if ($conn){
 								echo '<td align="center"><button class="btn btn-danger" name="delete" value="'.$award['AwardGivenId'].'"><span class="glyphicon glyphicon-trash"></span></button></td>';
 								echo "</tr>";
 							}
+						} else {
+							echo '<tr><td colspan="7" align="center">No awards have been created.</td></tr>';
 						}
 					?>
-				</form>
+					</form>
 				</tbody>
 			</table>
 			
