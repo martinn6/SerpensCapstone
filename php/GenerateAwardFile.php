@@ -99,7 +99,7 @@
 				//output signature image
 				$pdf->Image( "../".$signatureURL, 175, 160, 80 );
 
-				$filename = "../EOMAward.pdf"
+				$filename = "../EOMAward.pdf";
 				$pdf->Output($filename,'F');
 						
 						
