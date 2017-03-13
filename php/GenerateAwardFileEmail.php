@@ -158,10 +158,10 @@ date_default_timezone_set('America/Los_Angeles');
 
 				//Read an HTML message body from an external file, convert referenced images to embedded,
 				//convert HTML into a basic plain-text alternative body
-				$mail->msgHTML = "You have recieved an employee award from ".$UserFromFullname.". <BR>It has been attached to this email.";
+				$mail->msgHTML = "You have recieved an employee award from ".$userFromFullname.". <BR>It has been attached to this email.";
 
 				//Replace the plain text body with one created manually
-				$mail->Body = "You have recieved an employee award from ".$UserFromFullname.". It has been attached to this email.";
+				$mail->Body = "You have recieved an employee award from ".$userFromFullname.". It has been attached to this email.";
 
 				//attach pdf
 				$mail -> Addattachment($filename, EmployeeAward.pdf, "base64", "application/pdf");
