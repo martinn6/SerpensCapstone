@@ -163,6 +163,14 @@ date_default_timezone_set('America/Los_Angeles');
 				//Replace the plain text body with one created manually
 				$mail->Body = "You have recieved an employee award from ".$UserFromFullname.". It has been attached to this email.";
 
+				//attach pdf
+				if (isset($_FILES[$filename]) && $_FILES[$filename]['error'] == UPLOAD_ERR_OK) 
+				{
+						$mail->AddAttachment($_FILES[$filename]['tmp_name'],
+                         $_FILES[$filename]['name']);
+				}
+}
+				
 				//send the message, check for errors
 				if (!$mail->send()) {
 					echo "Mailer Error: " . $mail->ErrorInfo;
