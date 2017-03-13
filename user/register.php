@@ -13,6 +13,8 @@ if(isset($_SESSION['admin'])){
 if(!empty($_POST)){
 	if (empty($_POST['email'])) {
 		$err_msg[] = 'Please enter an email address.';
+	} else if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
+		$err_msg[] = 'Please enter a valid email.';
 	} else {
 		if ($conn){
 			$query = "SELECT * FROM UserAccount WHERE Email = :Email";

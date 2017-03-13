@@ -19,8 +19,19 @@ if(!empty($_POST)){
 		$err_msg[] = 'Please enter email of recipient.';
 	}
 
+	if (filter_var($_POST['recemail'], FILTER_VALIDATE_EMAIL) === false) {
+		$err_msg[] = 'Please enter a valid email.';
+	}
+
 	if (empty($_POST['awarddate'])) {
 		$err_msg[] = 'Please enter date of award.';
+	}
+
+	if (!empty($_POST['awarddate'])) {
+		$datePart = explode("-",$_POST['awarddate']);
+		if(!checkdate($datePart[1], $datePart[2], $datePart[0]) Or ($datePart[0] < 1753) Or ($datePart[0] > 9999)) {
+			$err_msg[] = 'Please enter a valid date.';
+		}
 	}
 
     if (!isset($err_msg)) {
@@ -99,24 +110,24 @@ if(!empty($_POST)){
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
 					<select class="form-control" id="awardtype" name="awardtype" required>
 						<option value="" disabled selected hidden>Please Select an Award</option>
-						<option value="0">Employee of the Year</option>
-						<option value="1">Employee of the Month</option>
+						<option <?php if(isset($err_msg) And ($_POST['awardtype'] == '0')){echo "selected";} ?> value="0">Employee of the Year</option>
+						<option <?php if(isset($err_msg) And ($_POST['awardtype'] == '1')){echo "selected";} ?> value="1">Employee of the Month</option>
 					</select>                                       
 				</div>
 				
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="recname" type="text" class="form-control" name="recname" placeholder="Recipient's Name" required />                                        
+					<input id="recname" type="text" class="form-control" name="recname" placeholder="Recipient's Name" value="<?php echo isset($err_msg) ? $_POST['recname'] : '' ?>" required />                                        
 				</div>
 
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="recemail" type="text" class="form-control" name="recemail" placeholder="Recipient's Email" required />                                        
+					<input id="recemail" type="text" class="form-control" name="recemail" placeholder="Recipient's Email" value="<?php echo isset($err_msg) ? $_POST['recemail'] : '' ?>" required />                                        
 				</div>
                                 
 				<div style="margin-bottom: 15px" class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-right"></span></span>
-					<input id="awarddate" type="date" class="form-control" name="awarddate" placeholder="Date" required />
+					<input id="awarddate" type="date" class="form-control" name="awarddate" placeholder="Date" value="<?php echo isset($err_msg) ? $_POST['awarddate'] : '' ?>" required />
 				</div>
 
 				<div style="margin-top:5px" class="form-group">
