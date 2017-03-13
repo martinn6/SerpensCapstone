@@ -5,7 +5,7 @@ date_default_timezone_set('America/Los_Angeles');
 	require '../PHPMailer/PHPMailerAutoload.php';
 	require_once( "../fpdf/fpdf.php" );
 
-	$version = 'v5.7';
+	$version = 'v5.8';
 
 	//Get awardGivenId parameter from URL
 	$awardGivenId = (isset($_GET['awardGivenId']) ? $_GET['awardGivenId'] : null);
@@ -166,10 +166,8 @@ date_default_timezone_set('America/Los_Angeles');
 				//attach pdf
 				if (isset($_FILES[$filename]) && $_FILES[$filename]['error'] == UPLOAD_ERR_OK) 
 				{
-						$mail->AddAttachment($_FILES[$filename]['tmp_name'],
-                         $_FILES[$filename]['name']);
+						$mail->AddAttachment($_FILES[$filename]['tmp_name'], $_FILES[$filename]['name']);
 				}
-}
 				
 				//send the message, check for errors
 				if (!$mail->send()) {
