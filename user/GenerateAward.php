@@ -79,7 +79,10 @@
 			//output signature image
 			$pdf->Image($signatureURL, 175, 160, 80 );
 
-			$pdf->Output("Award.pdf","I");
+			$filename = "../awards/EmployeeAward".$awardGivenId.".pdf";
+			$pdf->Output($filename,'F');
+			
+			header("location: sendAward.php");
 		}
 	}
 ?>

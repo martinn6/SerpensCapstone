@@ -40,7 +40,7 @@ if(!empty($_POST)){
 			$insert_Id = $conn->lastInsertId();
 			$_SESSION['AwardGivenId'] = $insert_Id;
 
-			header("location: sendAward.php");
+			header("location: GenerateAward.php?awardGivenId=".$insert_Id);
 		}
     }
 }
@@ -121,14 +121,14 @@ if(!empty($_POST)){
 
 				<div style="margin-top:5px" class="form-group">
 					<div class="col-sm-12 controls">
-						<input type="submit" value="save" name ="Save" class="btn btn-primary" />
+						<input type="submit" value="create" name ="Create" class="btn btn-primary" />
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<div class="col-md-12 control">
 						<div style="border-top: 1px solid #BABABA; padding-top:10px">
-							<a href="main.php">Cancel</a>
+							<a href="main.php">Back to Menu</a>
 						</div>
 					</div>
 				</div>

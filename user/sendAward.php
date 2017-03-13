@@ -8,17 +8,20 @@ if(empty($_SESSION['user']) or $_SESSION['userType'] != 1){
 } 
 
 if ($conn){
-	$query = "SELECT * FROM AwardsGiven WHERE AwardGivenId = :AwardGivenId";
+	$query = "SELECT AwardGivenId, Awards.AwardId, AwardedToFullName, AwardedToEmail, AwardTypeName, FullName
+				FROM AwardsGiven JOIN Awards ON Awards.AwardId = AwardsGiven.AwardId
+				JOIN UserAccount ON UserAccount.UserId = AwardsGiven.AwardGivenByUserId
+				WHERE AwardGivenId = :AwardGivenId";
 	$query_params = array(':AwardGivenId' => $_SESSION['AwardGivenId']);
 	$stmt = $conn->prepare($query);
 	$result = $stmt->execute($query_params) or die();
 	$row = $stmt->fetch();
 
-	$rewardtype = $row['AwardId'] == 0 ? "Employee of the Year" : "Employee of the Month";
-	$recname = $row['AwardedToFullName'];
+	$rewardtype = $row['AwardTypeName'];
+	$recname = ucfirst($row['AwardedToFullName']);
+	$user = ucfirst($row['FullName']);
 	$recemail = $row['AwardedToEmail'];
-	$awardPDF = "GenerateAward.php?awardGivenId=" . $_SESSION['AwardGivenId'];
-	$awardURL = "http://serpenscapstone.azurewebsites.net/user/GenerateAward.php?awardGivenId=" . $_SESSION['AwardGivenId'];
+	$awardPDF = "../awards/EmployeeAward".$_SESSION['AwardGivenId'].".pdf";
 	$success = $stmt->closeCursor();
 }
 
@@ -39,7 +42,9 @@ if(!empty($_POST)){
 			$mail->addAddress($recemail, $recname);
 			$mail->Subject = 'Employee Recognition Award';
 			$mail->isHTML(true);
-			$mail->Body = "You received an employee recognition award. <a href=\"".$awardURL."\">Click Here</a> to download certificate.";
+			$mail->Body = "Congratulations ".$recname
+						.",<p>".$user." has chosen you for the ".$rewardtype."award. Your certificate is attached.</p>";
+			$mail -> Addattachment($awardPDF);
 
 			if (!$mail->send()) {
 				echo "Error: " . $mail->ErrorInfo;
@@ -121,7 +126,7 @@ if(!empty($_POST)){
 				<div class="form-group">
 					<div class="col-md-12 control">
 						<div style="border-top: 1px solid #BABABA; padding-top:10px">
-							<a href="main.php">Cancel</a>
+							<a href="main.php">Back to Menu</a>
 						</div>
 					</div>
 				</div>
