@@ -2,7 +2,7 @@
 <?php
 date_default_timezone_set('America/Los_Angeles');
 
-	require '/PHPMailer/PHPMailerAutoload.php';
+	require '../PHPMailer/PHPMailerAutoload.php';
 	require_once( "../fpdf/fpdf.php" );
 
 	$version = 'v5.6';
