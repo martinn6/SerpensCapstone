@@ -5,7 +5,7 @@ date_default_timezone_set('America/Los_Angeles');
 	require '../PHPMailer/PHPMailerAutoload.php';
 	require_once( "../fpdf/fpdf.php" );
 
-	$version = 'v6.1';
+	$version = 'v6.3';
 
 	//Get awardGivenId parameter from URL
 	$awardGivenId = (isset($_GET['awardGivenId']) ? $_GET['awardGivenId'] : null);
@@ -103,7 +103,7 @@ date_default_timezone_set('America/Los_Angeles');
 				//output signature image
 				$pdf->Image($signatureURL, 175, 160, 80 );
 
-				$filename = "../awards/EmployeeAward".$awardId.".pdf";
+				$filename = "../awards/EmployeeAward".$awardGivenId.".pdf";
 				$pdf->Output($filename,'F');
 				
 				
