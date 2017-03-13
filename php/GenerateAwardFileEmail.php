@@ -5,7 +5,7 @@ date_default_timezone_set('America/Los_Angeles');
 	require '../PHPMailer/PHPMailerAutoload.php';
 	require_once( "../fpdf/fpdf.php" );
 
-	$version = 'v5.8';
+	$version = 'v5.9';
 
 	//Get awardGivenId parameter from URL
 	$awardGivenId = (isset($_GET['awardGivenId']) ? $_GET['awardGivenId'] : null);
@@ -164,10 +164,7 @@ date_default_timezone_set('America/Los_Angeles');
 				$mail->Body = "You have recieved an employee award from ".$UserFromFullname.". It has been attached to this email.";
 
 				//attach pdf
-				if (isset($_FILES[$filename]) && $_FILES[$filename]['error'] == UPLOAD_ERR_OK) 
-				{
-						$mail->AddAttachment($_FILES[$filename]['tmp_name'], $_FILES[$filename]['name']);
-				}
+				$mail -> Addattachment($filename, awardpdf, "base64", "application/pdf");
 				
 				//send the message, check for errors
 				if (!$mail->send()) {
