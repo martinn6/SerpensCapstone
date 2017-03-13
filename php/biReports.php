@@ -44,11 +44,11 @@ if(!empty($_POST)){
 		// 				';
 		} else if ($table == "ABM") {
 			$query = '	SELECT 		Month = datename(m, ag.AwardedDate), 
-									-- mm = datepart(m, ag.AwardedDate),
+									-- mm = datepart(m, Month),
 									count(*) AS "Total"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
 						WHERE		ag.IsDeleted = 0
-  					  	GROUP BY 	datename(m, ag.AwardedDate)
+  					  	GROUP BY 	Month
 						-- ORDER BY 	datepart(m, ag.AwardedDate)
 						';
 		// } else if ($table == "ABMforCSV") {
