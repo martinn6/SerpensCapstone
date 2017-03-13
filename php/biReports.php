@@ -44,7 +44,7 @@ if(!empty($_POST)){
 		// 				';
 		} else if ($table == "ABM") {
 			$query = '	SELECT 		Month = datename(m, ag.AwardedDate), 
-									mm = datepart(m, ag.AwardedDate)
+									mm = datepart(m, ag.AwardedDate),
 									count(*) AS "Total"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
 						WHERE		ag.IsDeleted = 0
