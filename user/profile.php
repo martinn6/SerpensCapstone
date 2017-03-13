@@ -85,7 +85,7 @@ if ($conn){
 				<div class="form-group">
 					<label class="col-xs-3">Signature: </label>
 					<div class="col-xs-9">
-						<img src="<?php echo $sig_image; ?>" />
+						<img class="img-responsive" src="<?php echo $sig_image; ?>" />
 					</div>
 				</div>
 				

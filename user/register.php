@@ -190,7 +190,7 @@ if(!empty($_POST)){
 				
 				<div class="image-editor">
 					<label>Upload Signature</label><input type="file" class="cropit-image-input" name="signature" accept="image/*" required />
-					<div class="cropit-preview"></div>
+					<div class="cropit-preview img-responsive"></div>
 					<div class="image-size-label">
 					  Resize image
 					</div>
