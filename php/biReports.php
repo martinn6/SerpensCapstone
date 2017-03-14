@@ -48,7 +48,7 @@ if(!empty($_POST)){
 									count(*) AS "Total"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
 						WHERE		ag.IsDeleted = 0
-						GROUP BY	ag.AwardedDate
+						GROUP BY	CONVERT(varchar(3),  ag.AwardedDate, 0)
 						ORDER BY 	"MInt"
 						';
 		// } else if ($table == "ABMforCSV") {
