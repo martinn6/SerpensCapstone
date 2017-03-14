@@ -312,7 +312,7 @@ $(document).ready(function(){
 							ADD ADMIN</a>
 						</h4>
 					</div>
-					<div id="newAdmin" class="panel-collapse collapse">
+					<div id="newAdmin" class="panel-collapse collapse in">
 						<div class="panel-body">
 							<form class="form-horizontal" action="" id="addUserForm">
 								<div class="row">
