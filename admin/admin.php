@@ -82,7 +82,7 @@ function checkEmail(thisObj) {
     var email = thisObj.val();
 	var message = thisObj.parent().children('span');
 	
-	if (email.length < 6) {
+	if (email.length < 5) {
 		message.html('');
 		return false;
     } else if (!isEmail(email) ){
@@ -118,12 +118,12 @@ function checkPasswordMatch(pass,cPass) {
 		message.html('');
 		cPass.prop('disabled', true);
 		return false;
-	} else if (password.length < 8){
+	} else if (password.length < 4){
 		message.html('');
 		cPass.prop('disabled', true);
 		return false;
 	} else if (!validPassword(password)){
-		message.html('not a valid password').css('color', 'red');
+		message.html('not a valid password (passwords are 8-16 Alpha-Numeric only)').css('color', 'red');
 		cPass.prop('disabled', true);
 		return false;
 	} else {
