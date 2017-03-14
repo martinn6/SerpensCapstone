@@ -1,8 +1,8 @@
 function ABUGChart(){
 	// set the dimensions of the canvas
 	var margin = {top: 20, right: 20, bottom: 70, left: 40},
-		width = 100% - margin.left - margin.right,
-		height = 100% - margin.top - margin.bottom;
+		width = 600px - margin.left - margin.right,
+		height = 300px - margin.top - margin.bottom;
 
 
 	// set the ranges
