@@ -159,9 +159,9 @@ function UBTChart(){
 
 function ABMChart(){
 	// set the dimensions of the canvas
-	var margin = {top: 20, right: 20, bottom: 70, left: 40},
-		width = 400 - margin.left - margin.right,
-		height = 200 - margin.top - margin.bottom;
+	var margin = {top: 20, right: 20, bottom: 10, left: 40},
+		width = 600 - margin.left - margin.right,
+		height = 300 - margin.top - margin.bottom;
 
 
 	// set the ranges
@@ -188,7 +188,7 @@ function ABMChart(){
 // 		.attr("width", width + margin.left + margin.right)
 // 		.attr("height", height + margin.top + margin.bottom)
 		.attr("preserveAspectRatio", "xMinYMin meet")
-   		.attr("viewBox", "0 0 400 200")
+   		.attr("viewBox", "0 0 600 300")
 		.style("text-anchor", "end")
 		.classed("svg-content-responsive", true)
 		.append("g")
@@ -239,9 +239,9 @@ function ABMChart(){
 
 function ABTChart(){
 	// set the dimensions of the canvas
-	var margin = {top: 20, right: 20, bottom: 70, left: 40},
-		width = 400 - margin.left - margin.right,
-		height = 200 - margin.top - margin.bottom;
+	var margin = {top: 20, right: 20, bottom: 10, left: 40},
+		width = 600 - margin.left - margin.right,
+		height = 300 - margin.top - margin.bottom;
 
 
 	// set the ranges
@@ -268,7 +268,7 @@ function ABTChart(){
 // 		.attr("width", width + margin.left + margin.right)
 // 		.attr("height", height + margin.top + margin.bottom)
 		.attr("preserveAspectRatio", "xMinYMin meet")
-   		.attr("viewBox", "0 0 400 200")
+   		.attr("viewBox", "0 0 600 300")
 		.style("text-anchor", "end")
 		.classed("svg-content-responsive", true)
 		.append("g")
