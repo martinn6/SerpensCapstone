@@ -157,7 +157,7 @@ $(document).ready(function(){
 				</div>
 				<div class="form-group">
 					<div class="col-md-12 control">
-						<div style="float:left; position: relative"><a href="recovery.php">Forgot Password?</a></div>
+						<div style="float:left; position: relative"><a href="../user/recovery.php">Forgot Password?</a></div>
 					</div>
 				</div>
 			</form>
