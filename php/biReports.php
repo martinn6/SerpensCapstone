@@ -45,7 +45,7 @@ if(!empty($_POST)){
 		} else if ($table == "ABM") {
 			$query = '	SELECT 		CONVERT(varchar(3),  ag.AwardedDate, 0) as "Month",
 									CONVERT(varchar(2),  ag.AwardedDate, 101) as "MthInt",
-									count("Month") AS "Total"
+									count(*) AS "Total"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
 						WHERE		ag.IsDeleted = 0
 						GROUP BY	CONVERT(varchar(3),  ag.AwardedDate, 0)
