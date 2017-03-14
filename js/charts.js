@@ -1,8 +1,8 @@
 function ABUGChart(){
 	// set the dimensions of the canvas
 	var margin = {top: 20, right: 20, bottom: 70, left: 40},
-		width = 600 - margin.left - margin.right,
-		height = 300 - margin.top - margin.bottom;
+		width = 400 - margin.left - margin.right,
+		height = 200 - margin.top - margin.bottom;
 
 
 	// set the ranges
@@ -29,7 +29,7 @@ function ABUGChart(){
 // 		.attr("width", width + margin.left + margin.right)
 // 		.attr("height", height + margin.top + margin.bottom)
 		.attr("preserveAspectRatio", "xMinYMin meet")
-   		.attr("viewBox", "0 0 600 300")
+   		.attr("viewBox", "0 0 400 200")
 		.style("text-anchor", "end")
 		.classed("svg-content-responsive", true)
 		.append("g")
@@ -80,8 +80,8 @@ function ABUGChart(){
 function UBTChart(){
 	// set the dimensions of the canvas
 	var margin = {top: 20, right: 20, bottom: 70, left: 40},
-		width = 600 - margin.left - margin.right,
-		height = 300 - margin.top - margin.bottom;
+		width = 400 - margin.left - margin.right,
+		height = 200 - margin.top - margin.bottom;
 
 
 	// set the ranges
@@ -102,9 +102,15 @@ function UBTChart(){
 
 
 	// add the SVG element
-	var svg = d3.select("#UBT-chart").append("svg")
-		.attr("width", width + margin.left + margin.right)
-		.attr("height", height + margin.top + margin.bottom)
+	var svg = d3.select("#UBT-chart")
+		.classed("svg-container", true)
+		.append("svg")
+// 		.attr("width", width + margin.left + margin.right)
+// 		.attr("height", height + margin.top + margin.bottom)
+		.attr("preserveAspectRatio", "xMinYMin meet")
+   		.attr("viewBox", "0 0 400 200")
+		.style("text-anchor", "end")
+		.classed("svg-content-responsive", true)
 		.append("g")
 		.attr("transform", 
 			"translate(" + margin.left + "," + margin.top + ")");
@@ -154,8 +160,8 @@ function UBTChart(){
 function ABMChart(){
 	// set the dimensions of the canvas
 	var margin = {top: 20, right: 20, bottom: 70, left: 40},
-		width = 600 - margin.left - margin.right,
-		height = 300 - margin.top - margin.bottom;
+		width = 400 - margin.left - margin.right,
+		height = 200 - margin.top - margin.bottom;
 
 
 	// set the ranges
@@ -176,9 +182,15 @@ function ABMChart(){
 
 
 	// add the SVG element
-	var svg = d3.select("#ABM-chart").append("svg")
-		.attr("width", width + margin.left + margin.right)
-		.attr("height", height + margin.top + margin.bottom)
+	var svg = d3.select("#ABM-chart")
+		.classed("svg-container", true)
+		.append("svg")
+// 		.attr("width", width + margin.left + margin.right)
+// 		.attr("height", height + margin.top + margin.bottom)
+		.attr("preserveAspectRatio", "xMinYMin meet")
+   		.attr("viewBox", "0 0 400 200")
+		.style("text-anchor", "end")
+		.classed("svg-content-responsive", true)
 		.append("g")
 		.attr("transform", 
 			"translate(" + margin.left + "," + margin.top + ")");
@@ -228,8 +240,8 @@ function ABMChart(){
 function ABTChart(){
 	// set the dimensions of the canvas
 	var margin = {top: 20, right: 20, bottom: 70, left: 40},
-		width = 600 - margin.left - margin.right,
-		height = 300 - margin.top - margin.bottom;
+		width = 400 - margin.left - margin.right,
+		height = 200 - margin.top - margin.bottom;
 
 
 	// set the ranges
@@ -250,9 +262,15 @@ function ABTChart(){
 
 
 	// add the SVG element
-	var svg = d3.select("#ABT-chart").append("svg")
-		.attr("width", width + margin.left + margin.right)
-		.attr("height", height + margin.top + margin.bottom)
+	var svg = d3.select("#ABT-chart")
+		.classed("svg-container", true)
+		.append("svg")
+// 		.attr("width", width + margin.left + margin.right)
+// 		.attr("height", height + margin.top + margin.bottom)
+		.attr("preserveAspectRatio", "xMinYMin meet")
+   		.attr("viewBox", "0 0 400 200")
+		.style("text-anchor", "end")
+		.classed("svg-content-responsive", true)
 		.append("g")
 		.attr("transform", 
 			"translate(" + margin.left + "," + margin.top + ")");
