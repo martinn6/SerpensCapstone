@@ -43,7 +43,7 @@ if(!empty($_POST)){
 		// 				GROUP BY 	ua.FullName
 		// 				';
 		} else if ($table == "ABM") {
-			$query = '	SELECT 		CONVERT(varchar(7),  ag.AwardedDate, 20) as "Month",
+			$query = '	SELECT 		datname(m, CONVERT(varchar(7),  ag.AwardedDate, 20)) as "Month",
 									count(*) AS "Total"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
 						WHERE		ag.IsDeleted = 0
