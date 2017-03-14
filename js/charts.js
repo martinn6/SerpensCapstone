@@ -1,8 +1,8 @@
 function ABUGChart(){
 	// set the dimensions of the canvas
 	var margin = {top: 20, right: 20, bottom: 70, left: 40},
-		width = 600 - margin.left - margin.right,
-		height = 300 - margin.top - margin.bottom;
+		width = 800 - margin.left - margin.right,
+		height = 400 - margin.top - margin.bottom;
 
 
 	// set the ranges
@@ -29,7 +29,7 @@ function ABUGChart(){
 // 		.attr("width", width + margin.left + margin.right)
 // 		.attr("height", height + margin.top + margin.bottom)
 		.attr("preserveAspectRatio", "xMinYMin meet")
-   		.attr("viewBox", "0 0 600 300")
+   		.attr("viewBox", "0 0 800 400")
 		.style("text-anchor", "end")
 		.classed("svg-content-responsive", true)
 		.append("g")
