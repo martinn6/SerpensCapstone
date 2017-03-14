@@ -26,6 +26,10 @@ function ABUGChart(){
 	var svg = d3.select("#ABUG-chart").append("svg")
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom)
+		.attr("preserveAspectRatio", "xMinYMin meet")
+   			.attr("viewBox", "0 0 600 300")
+			.style("text-anchor", "end")
+			.classed("svg-content-responsive", true
 		.append("g")
 		.attr("transform", 
 			"translate(" + margin.left + "," + margin.top + ")");
@@ -56,7 +60,6 @@ function ABUGChart(){
 			.attr("transform", "rotate(-90)")
 			.attr("y", 5)
 			.attr("dy", ".71em")
-			.style("text-anchor", "end")
 			.text("Total");
 
 
