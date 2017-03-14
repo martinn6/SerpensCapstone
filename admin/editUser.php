@@ -236,7 +236,7 @@ $(document).ready(function () {
 							CHANGE EMAIL</a>
 						</h4>
 					</div>
-					<div id="collapseEmail" class="panel-collapse collapse">
+					<div id="collapseEmail" class="panel-collapse collapse in">
 						<div class="panel-body">
 							<form id="email" class="form-horizontal" action="">
 								<div class="row">
