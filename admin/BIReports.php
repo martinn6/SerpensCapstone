@@ -63,9 +63,10 @@ $user = $_SESSION['admin']['name'];
 }
 .svg-content-responsive {
     display: inline-block;
-    position: relative;
+    position: absolute;
     top: 10px;
     left: 0;
+	padding-bottom: 10px;
 }
 	</style>
 </head>
