@@ -43,12 +43,12 @@ if(!empty($_POST)){
 		// 				GROUP BY 	ua.FullName
 		// 				';
 		} else if ($table == "ABM") {
-			$query = '	SELECT 		CONCAT(CONVERT(varchar(2),  ag.AwardedDate, 101), "-", CONVERT(varchar(3),  ag.AwardedDate, 0)) as "Month",
+			$query = '	SELECT 		CONVERT(varchar(3),  ag.AwardedDate, 0) as "Month",
 									count(*) AS "Total"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
 						WHERE		ag.IsDeleted = 0
 						GROUP BY	CONVERT(varchar(3),  ag.AwardedDate, 0)
-						-- ORDER BY 	"MthInt"
+						ORDER BY 	DATEPART(MM,CONVERT(varchar(3),  ag.AwardedDate, 0)+'01 1900')
 						';
 		// } else if ($table == "ABMforCSV") {
 		// 	$query = '	SELECT 		"Award Month" = datename(m, ag.AwardedDate),  
