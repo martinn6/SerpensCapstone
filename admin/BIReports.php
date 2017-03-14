@@ -249,7 +249,7 @@ $(document).ready(function(){
 							Total Awards By Type</a>
 						</h4>
 					</div>
-					<div id="collapseABT" class="panel-collapse collapse">
+					<div id="collapseABT" class="panel-collapse collapse in">
 						<div class="panel-body">
 							<div class="col-sm-10">
 						        <div id="ABT-chart">
