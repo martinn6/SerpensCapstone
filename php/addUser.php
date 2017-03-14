@@ -7,15 +7,14 @@ require '../php/connect.php';
 
 if(!empty($_POST)){
 	if ($conn){
-		$query = "SELECT * FROM dbo.UserAccount WHERE IsActive = 1 AND Email = :Email AND 
-		UserTypeId = (SELECT UserTypeId FROM dbo.UserTypes WHERE UserType='Admin')";
+		$query = "SELECT * FROM dbo.UserAccount WHERE IsActive = 1 AND Email = :Email";
 		$query_params = array(':Email' => $_POST['email']);
 		$stmt = $conn->prepare($query);
 		$result = $stmt->execute($query_params) or die();
 		$row = $stmt->fetch();
         
         	if($row){
-                $err_msg = "Cannot add user because $email already is an admin user.";
+                $err_msg = "Cannot add user because $email already in use.";
 		} else {
             $query = "INSERT INTO dbo.UserAccount (UserTypeId, Email, FullName, Password) "
                 . "VALUES ((SELECT UserTypeId FROM dbo.UserTypes WHERE UserType='Admin'), :Email, :FullName, :Password)";
