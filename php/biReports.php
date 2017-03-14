@@ -48,7 +48,7 @@ if(!empty($_POST)){
   					 	FROM 		[dbo].[AwardsGiven] AS ag
 						WHERE		ag.IsDeleted = 0
 						GROUP BY	CONVERT(varchar(3),  ag.AwardedDate, 0)
-						ORDER BY 	DATEPART(MM,"Month"+" 01 1900")
+						ORDER BY 	SELECT(CONVERT(varchar(2),  ag.AwardedDate,101))
 						';
 		// } else if ($table == "ABMforCSV") {
 		// 	$query = '	SELECT 		"Award Month" = datename(m, ag.AwardedDate),  
