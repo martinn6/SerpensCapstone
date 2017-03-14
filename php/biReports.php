@@ -48,7 +48,6 @@ if(!empty($_POST)){
 									count(*) AS "Total"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
 						WHERE		ag.IsDeleted = 0
-  					  	GROUP BY 	"MInt"
 						ORDER BY 	"MInt"
 						';
 		// } else if ($table == "ABMforCSV") {
