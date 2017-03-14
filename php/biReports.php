@@ -48,7 +48,7 @@ if(!empty($_POST)){
   					 	FROM 		[dbo].[AwardsGiven] AS ag
 						WHERE		ag.IsDeleted = 0
   					  	GROUP BY 	ag.AwardedDate
-						-- ORDER BY 	datepart(m, ag.AwardedDate)
+						ORDER BY 	"Month"
 						';
 		// } else if ($table == "ABMforCSV") {
 		// 	$query = '	SELECT 		"Award Month" = datename(m, ag.AwardedDate),  
