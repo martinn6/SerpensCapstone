@@ -286,7 +286,7 @@ $(document).ready(function(){
 							<div class="col-sm-10">
 						        <div id="ABT-chart">
 							        <script type="text/javascript">
-								        ABTChart1();
+								        ABTChart();
 							        </script>
 						        </div>
 						        <button type="submit" id="ABTCSV"
