@@ -53,7 +53,20 @@ $user = $_SESSION['admin']['name'];
 	  stroke: #000;
 	  shape-rendering: crispEdges;
 	}
-
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; /* aspect ratio */
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
 	</style>
 </head>
 <body>
