@@ -31,6 +31,8 @@ $user = $_SESSION['admin']['name'];
 
 	<!-- charts js scripts -->
 	<script src="../js/charts.js"></script>
+	
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		<style>
 
   .bar{
@@ -85,6 +87,36 @@ function ConvertToCSV(json, filename) {
 	}
 }
 
+function ABTChart1(){
+	var url = "../php/biReports.php";
+		var table = "ABT";
+		var send = {table: table};
+		$.post(url, send, function(json){
+		});
+google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable(json);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Density of Precious Metals, in g/cm^3",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+  }
+}
 
 
 $(document).ready(function(){
@@ -254,7 +286,7 @@ $(document).ready(function(){
 							<div class="col-sm-10">
 						        <div id="ABT-chart">
 							        <script type="text/javascript">
-								        ABTChart();
+								        ABTChart1();
 							        </script>
 						        </div>
 						        <button type="submit" id="ABTCSV"
