@@ -43,13 +43,12 @@ if(!empty($_POST)){
 		// 				GROUP BY 	ua.FullName
 		// 				';
 		} else if ($table == "ABM") {
-			$query = '	SELECT 		CONVERT(varchar(7),  ag.AwardedDate, 20) as mth,
-									Month = datename(m, ag.AwardedDate),  
+			$query = '	SELECT 		CONVERT(varchar(7),  ag.AwardedDate, 20) as Month,
 									count(*) AS "Total"
   					 	FROM 		[dbo].[AwardsGiven] AS ag
 						WHERE		ag.IsDeleted = 0
-  					  	GROUP BY 	datename(m, ag.AwardedDate) 
-						ORDER BY 	mth
+  					  	GROUP BY 	Month
+						-- ORDER BY 	datepart(m, ag.AwardedDate)
 						';
 		// } else if ($table == "ABMforCSV") {
 		// 	$query = '	SELECT 		"Award Month" = datename(m, ag.AwardedDate),  
