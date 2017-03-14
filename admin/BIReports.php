@@ -57,7 +57,7 @@ $user = $_SESSION['admin']['name'];
     display: inline-block;
     position: relative;
     width: 100%;
-    padding-bottom: 100%;
+    padding-bottom: 10px;
     vertical-align: top;
     overflow: hidden;
 }
@@ -66,7 +66,6 @@ $user = $_SESSION['admin']['name'];
     position: absolute;
     top: 10px;
     left: 0;
-	padding-bottom: 10px;
 }
 	</style>
 </head>
