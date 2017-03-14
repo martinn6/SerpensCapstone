@@ -52,7 +52,7 @@ function checkEmailMatch() {
     var oldEmail = $("#OldEmail").val();
     var newEmail = $("#NewEmail").val();
 	
-	if (newEmail.length == 0){
+	if (newEmail.length < 5){
 		$('#email_message').html('').css('color', 'red');
 		return false;
 	} else if (!isEmail(newEmail) ){
@@ -73,12 +73,12 @@ function checkPasswordMatch() {
 	if (password.length == 0){
 		$('#new_password_message').html('');
 		return false;
-	} else if (password.length < 8){
+	} else if (password.length < 4){
 		$('#new_password_message').html('');
 		$('#ConfirmPassword').prop('disabled', true);
 		return false;
 	} else if (!validPassword(password)){
-		$('#new_password_message').html('not a valid password').css('color', 'red');
+		$('#new_password_message').html('not a valid password (passwords are 8-16 Alpha-Numeric only)').css('color', 'red');
 		$('#ConfirmPassword').prop('disabled', true);
 		return false;
 	} else {
