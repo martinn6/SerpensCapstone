@@ -49,7 +49,7 @@ if(!empty($_POST)){
 						WHERE		ag.IsDeleted = 0
 						GROUP BY	CONVERT(varchar(3),  ag.AwardedDate, 0)
 						-- ORDER BY    datepart(mm, "Month")
-						ORDER BY 	CONVERT(varchar(2),  ag.AwardedDate, 101)
+						-- ORDER BY 	CONVERT(varchar(2),  ag.AwardedDate, 101)
 						';
 		// } else if ($table == "ABMforCSV") {
 		// 	$query = '	SELECT 		"Award Month" = datename(m, ag.AwardedDate),  
