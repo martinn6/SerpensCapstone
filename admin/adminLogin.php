@@ -40,7 +40,7 @@ function validPassword(password) {
 function checkEmail() {
     var email = $('#adminEmail').val();
 	
-	if (email.length < 6) {
+	if (email.length < 5) {
 		$('#email_message').html('');
 		return false;
     } else if (!isEmail(email) ){
@@ -58,11 +58,11 @@ function checkPassword() {
 	if (password.length == 0){
 		$('#password_message').html('');
 		return false;
-	} else if (password.length < 8){
+	} else if (password.length < 4){
 		$('#password_message').html('');
 		return false;
 	} else if (!validPassword(password)){
-		$('#password_message').html('not a valid password').css('color', 'red');
+		$('#password_message').html('not a valid password (passwords are 8-16 Alpha-Numeric only)').css('color', 'red');
 		return false;
 	} else {
 		$('#password_message').html('');
