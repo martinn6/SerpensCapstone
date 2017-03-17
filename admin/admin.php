@@ -322,7 +322,7 @@ $(document).ready(function(){
 										  Email address
 										</label>
 										<div class="col-sm-7">
-											<input type="email" class="form-control" onChange="checkEmail($(this))"
+											<input type="email" class="form-control" onkeyup="checkEmail($(this))"
 											name="email" id="newEmail" placeholder="Email" required>
 											<span id='new_email_message'></span>
 										</div>
@@ -332,7 +332,7 @@ $(document).ready(function(){
 										  Password
 										</label>
 										<div class="col-sm-7">
-											<input type="password" class="form-control" onChange="checkPasswordMatch($(this),$('#confirmPassword'))"
+											<input type="password" class="form-control" onkeyup="checkPasswordMatch($(this),$('#confirmPassword'))"
 											name="newPassword" id="newPassword" maxlength="16" required>
 											<span id='new_password_message'></span>
 										</div>
@@ -342,7 +342,7 @@ $(document).ready(function(){
 										  Re-Enter Password
 										</label>
 										<div class="col-sm-7">
-											<input type="password" class="form-control" onChange="checkPasswordMatch($('#newPassword'),$(this))"
+											<input type="password" class="form-control" onkeyup="checkPasswordMatch($('#newPassword'),$(this))"
 											id="confirmPassword" maxlength="16" disabled required>
 											<span id='confirm_password_message'></span>
 										</div>
@@ -401,7 +401,7 @@ $(document).ready(function(){
 											Email address
 										</label>
 										<div class="col-sm-7">
-											<input type="email" class="form-control" onChange="checkEmail($(this))"
+											<input type="email" class="form-control" onkeyup="checkEmail($(this))"
 											name="email" id="editEmail" placeholder="Email" required>
 											<span name='email_message'></span>
 										</div>
@@ -434,7 +434,7 @@ $(document).ready(function(){
 											Email address
 										</label>
 										<div class="col-sm-7">
-											<input type="email" class="form-control" onChange="checkEmail($(this))"
+											<input type="email" class="form-control" onkeyup="checkEmail($(this))"
 											name="email" id="deleteEmail" placeholder="Email" required>
 											<span id='delete_email_message'></span>
 										</div>
