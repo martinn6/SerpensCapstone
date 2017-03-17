@@ -352,7 +352,7 @@ $(document).ready(function(){
 											Full Name
 										</label>
 										<div class="col-sm-7">
-											<input type="text" class="form-control" name="FName" onChange="checkName($(this))"
+											<input type="text" class="form-control" name="FName" onkeyup="checkName($(this))"
 												id="FName" placeholder="Full Name" required>
 												<span id='fName_message'></span>
 										</div>
