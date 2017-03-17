@@ -174,6 +174,7 @@ $(document).ready(function(){
 			$('#addBtn').prop('disabled', true);
 		}
 	});
+
 	$("#editEmail").keyup(function() {
 		if(checkEmail($(this))){
 			$('#editBtn').prop('disabled', false);
@@ -331,7 +332,7 @@ $(document).ready(function(){
 										  Password
 										</label>
 										<div class="col-sm-7">
-											<input type="password" class="form-control" onChange="checkPasswordMatch($(this))"
+											<input type="password" class="form-control" onChange="checkPasswordMatch($(this),$('#confirmPassword'))"
 											name="newPassword" id="newPassword" maxlength="16" required>
 											<span id='new_password_message'></span>
 										</div>
@@ -341,7 +342,7 @@ $(document).ready(function(){
 										  Re-Enter Password
 										</label>
 										<div class="col-sm-7">
-											<input type="password" class="form-control" onChange="checkPasswordMatch($(this))"
+											<input type="password" class="form-control" onChange="checkPasswordMatch($('#newPassword'),$(this))"
 											id="confirmPassword" maxlength="16" disabled required>
 											<span id='confirm_password_message'></span>
 										</div>
