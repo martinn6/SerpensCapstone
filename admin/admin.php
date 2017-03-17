@@ -321,7 +321,7 @@ $(document).ready(function(){
 										  Email address
 										</label>
 										<div class="col-sm-7">
-											<input type="email" class="form-control" 
+											<input type="email" class="form-control" onChange="checkEmail($(this))"
 											name="email" id="newEmail" placeholder="Email" required>
 											<span id='new_email_message'></span>
 										</div>
@@ -331,7 +331,7 @@ $(document).ready(function(){
 										  Password
 										</label>
 										<div class="col-sm-7">
-											<input type="password" class="form-control" 
+											<input type="password" class="form-control" onChange="checkPasswordMatch($(this))"
 											name="newPassword" id="newPassword" maxlength="16" required>
 											<span id='new_password_message'></span>
 										</div>
@@ -341,7 +341,7 @@ $(document).ready(function(){
 										  Re-Enter Password
 										</label>
 										<div class="col-sm-7">
-											<input type="password" class="form-control" 
+											<input type="password" class="form-control" onChange="checkPasswordMatch($(this))"
 											id="confirmPassword" maxlength="16" disabled required>
 											<span id='confirm_password_message'></span>
 										</div>
@@ -351,7 +351,7 @@ $(document).ready(function(){
 											Full Name
 										</label>
 										<div class="col-sm-7">
-											<input type="text" class="form-control" name="FName" 
+											<input type="text" class="form-control" name="FName" onChange="checkName($(this))"
 												id="FName" placeholder="Full Name" required>
 												<span id='fName_message'></span>
 										</div>
@@ -400,7 +400,7 @@ $(document).ready(function(){
 											Email address
 										</label>
 										<div class="col-sm-7">
-											<input type="email" class="form-control" 
+											<input type="email" class="form-control" onChange="checkEmail($(this))"
 											name="email" id="editEmail" placeholder="Email" required>
 											<span name='email_message'></span>
 										</div>
@@ -433,7 +433,7 @@ $(document).ready(function(){
 											Email address
 										</label>
 										<div class="col-sm-7">
-											<input type="email" class="form-control" 
+											<input type="email" class="form-control" onChange="checkEmail($(this))"
 											name="email" id="deleteEmail" placeholder="Email" required>
 											<span id='delete_email_message'></span>
 										</div>
