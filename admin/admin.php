@@ -134,9 +134,6 @@ function checkPasswordMatch(pass,cPass) {
 	if (confirmPassword.length == 0){
 		confirmMessage.html('');
 		return false;
-	} else if (confirmPassword.length < password.length){
-		confirmMessage.html('');
-		return false;
 	} else if (password != confirmPassword) {
         confirmMessage.html('Passwords do not match').css('color', 'red'); 
 		return false;
